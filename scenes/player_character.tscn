@@ -44,6 +44,7 @@ radius = 6.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6r27q")
+metadata/_edit_horizontal_guides_ = [-62.0]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -55,3 +56,12 @@ frame_progress = 0.7240835
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_56udc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5.18, 5.18)
+limit_left = -159
+limit_top = -186
+limit_right = 203
+limit_bottom = 0
+limit_smoothed = true
+position_smoothing_enabled = true
