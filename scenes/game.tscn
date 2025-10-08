@@ -1,17 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmnmagbbjxpm3"]
+[gd_scene load_steps=5 format=3 uid="uid://bmnmagbbjxpm3"]
 
 [ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/player_character.tscn" id="1_uwrxv"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
 
+[sub_resource type="Gradient" id="Gradient_uwrxv"]
+offsets = PackedFloat32Array(0, 0.82666665, 0.99333334, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.546914, 0.5220408, 0.579337, 1, 0.86691684, 0.82749015, 0.91831076, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yqjtg"]
+gradient = SubResource("Gradient_uwrxv")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.9953271)
+
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(3.84, 1)
 shape = SubResource("WorldBoundaryShape2D_yqjtg")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D2"]
+position = Vector2(-159, -90)
+rotation = 1.5722734
+shape = SubResource("WorldBoundaryShape2D_yqjtg")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D3"]
+position = Vector2(199, -94.99999)
+rotation = -1.5503763
+shape = SubResource("WorldBoundaryShape2D_yqjtg")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="StaticBody2D"]
+rotation = 1.5987803
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D4"]
+position = Vector2(-201.14513, -2.3728275)
+rotation = 1.5722734
+scale = Vector2(2.7533448, 1)
+shape = SubResource("WorldBoundaryShape2D_yqjtg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-58.5, -71.25001)
+rotation = -0.006036062
+scale = Vector2(0.859375, 0.3984374)
+texture = SubResource("GradientTexture2D_yqjtg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(112.79985, -181.12302)
+rotation = 0.92989075
+scale = Vector2(0.9775836, 0.75990397)
+texture = SubResource("GradientTexture2D_yqjtg")
+
+[node name="downLeftLimit" type="Marker2D" parent="."]
+position = Vector2(-159, 0)
+
+[node name="topRightLimit" type="Marker2D" parent="."]
+position = Vector2(203, -196)
