@@ -54,14 +54,15 @@ autoplay = "Idle"
 frame_progress = 0.7240835
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -3.88)
+scale = Vector2(1, 0.605)
 shape = SubResource("CircleShape2D_56udc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5.18, 5.18)
-limit_left = -159
-limit_top = -186
-limit_right = 203
+limit_left = -169
+limit_top = -221
+limit_right = 210
 limit_bottom = 0
 limit_smoothed = true
 position_smoothing_enabled = true
