@@ -11,5 +11,13 @@ script = ExtResource("1_035ib")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 24.0
-offset_bottom = 24.0
+offset_right = 10.0
+offset_bottom = 10.0
+scale = Vector2(2.2400002, 2.2400002)
+
+[node name="ItemDisplay" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 10.0
+scale = Vector2(2.2400002, 2.2400002)
+expand_mode = 1

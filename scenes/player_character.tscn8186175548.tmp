@@ -72,7 +72,7 @@ position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Inv" parent="CanvasLayer" instance=ExtResource("3_kww55")]
+[node name="Inv_UI" parent="CanvasLayer" instance=ExtResource("3_kww55")]
 offset_left = 1060.0
 offset_top = 13.000001
 offset_right = 1084.0
