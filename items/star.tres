@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bwtl56d3gnugd"]
+
+[ext_resource type="Texture2D" uid="uid://dmi111n40vdbu" path="res://assets/brackeys_platformer_assets/sprites/star.png" id="1_b4db1"]
+[ext_resource type="Script" uid="uid://d0wmeudlik2d6" path="res://scripts/inventory/Item.gd" id="2_rbw2p"]
+
+[resource]
+script = ExtResource("2_rbw2p")
+name = "Star"
+icon = ExtResource("1_b4db1")
+metadata/_custom_type_script = "uid://d0wmeudlik2d6"

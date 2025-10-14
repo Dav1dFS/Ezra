@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 
+@export var inv = Inventory
 @onready var cam: Camera2D = get_node("Camera2D")
 
 func _ready():
