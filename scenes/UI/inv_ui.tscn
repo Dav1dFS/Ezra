@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl7d0eba2uvfw"]
+
+[ext_resource type="Script" uid="uid://g7brkkvgy1jv" path="res://scripts/inventory/inv_ui.gd" id="1_035ib"]
+
+[node name="Inv_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 11.0
+offset_bottom = 11.0
+script = ExtResource("1_035ib")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 10.0
+scale = Vector2(2.2400002, 2.2400002)
+
+[node name="ItemDisplay" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 10.0
+scale = Vector2(2.2400002, 2.2400002)
+expand_mode = 1

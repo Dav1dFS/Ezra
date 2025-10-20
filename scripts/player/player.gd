@@ -2,7 +2,14 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 
+@export var inv: Inventory
 @onready var cam: Camera2D = get_node("Camera2D")
+@onready var slot= $CanvasLayer/Inv
+
+func update_inv():
+	var current_item = inv.get_inventory()
+	slot.update(current_item[0])
+	
 
 func _ready():
 	
@@ -27,5 +34,6 @@ func input_handler():
 	velocity = direction * SPEED
 	
 func _physics_process(_delta):
+	update_inv()
 	input_handler()	
 	move_and_slide()

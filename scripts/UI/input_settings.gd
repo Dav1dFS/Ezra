@@ -52,13 +52,13 @@ func _input(event):
 	
 	
 	if is_remapping:
-		var duplicate= false
+		var dup= false
 		for b in action_list.get_children():
 			var bAction=b.find_child("Label_Input").text
 			if b != remapping_button and  bAction==event.as_text().trim_suffix(" (Physical)"):
-				duplicate=true
+				dup=true
 		if (
-			not duplicate and (
+			not dup and (
 			event is InputEventKey ||
 			(event is InputEventMouseButton && event.pressed))
 		):
