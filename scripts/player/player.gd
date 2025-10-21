@@ -4,6 +4,12 @@ const SPEED = 100.0
 
 @export var inv: Inventory
 @onready var cam: Camera2D = get_node("Camera2D")
+
+# For now, randomly decides which character is on, change later 
+var rndcharacter: int = randi() % 9
+var character_name: String
+
+
 @onready var slot= $CanvasLayer/Inv
 
 func update_inv():
@@ -11,8 +17,14 @@ func update_inv():
 	slot.update(current_item[0])
 	
 
-func _ready():
-	
+func _ready():	
+	print (rndcharacter)
+	if (rndcharacter < 4):
+		character_name = "Ezra"
+	else:
+		character_name = "Birras"
+	print (character_name)
+	Gamestate.character_name = character_name
 	await get_tree().process_frame
 
 	var bottomLeft = get_tree().get_current_scene().get_node_or_null("downLeftLimit")
