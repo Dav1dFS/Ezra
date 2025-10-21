@@ -1,0 +1,32 @@
+{
+  "name": "Frieda",
+  "portrait": "res://assets/friedateste.png",
+  "dialogues": [
+	{
+	  "id": "first_talk_ezra",
+	  "condition": "current_dialogue == 0 and character_name == 'Ezra'",
+	  "lines": [
+		{ "text": "Olá, {character_name}!", "speaker": "Frieda" },
+		{ "text": "Vem para aqui Ezra depressa!", "speaker": "Frieda" },
+		{ "text": "Esconde-te!", "speaker": "Frieda" }
+	  ]
+	},
+	{
+	  "id": "first_talk_birras",
+	  "condition": "current_dialogue == 0 and character_name == 'Birras'",
+	  "lines": [
+		{ "text": "Olá, {character_name}!", "speaker": "Frieda" },
+		{ "text": "Vem para aqui depressa Birras!", "speaker": "Frieda" },
+		{ "text": "Esconde-te!", "speaker": "Frieda" }
+	  ]
+	},
+	{
+	  "id": "second_talk",
+	  "condition": "Gamestate.npc_dialogues_completed.get('Npcteste', false)",
+	  "lines": [
+		{ "text": "Já te avisei, {character_name}!", "speaker": "Frieda" },
+		{ "text": "Agora esconde-te!", "speaker": "Frieda" }
+	  ]
+	}
+  ]
+}

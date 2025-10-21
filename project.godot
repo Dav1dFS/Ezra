@@ -15,6 +15,10 @@ run/main_scene="uid://bmnmagbbjxpm3"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Gamestate="*res://scripts/gamestate.gd"
+
 [dotnet]
 
 project/assembly_name="Ezra"

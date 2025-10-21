@@ -3,9 +3,17 @@ extends CharacterBody2D
 const SPEED = 100.0
 
 @onready var cam: Camera2D = get_node("Camera2D")
+var rndcharacter: int = randi() % 9
+var character_name: String
 
-func _ready():
-	
+func _ready():	
+	print (rndcharacter)
+	if (rndcharacter < 4):
+		character_name = "Ezra"
+	else:
+		character_name = "Birras"
+	print (character_name)
+	Gamestate.character_name = character_name
 	await get_tree().process_frame
 
 	var bottomLeft = get_tree().get_current_scene().get_node_or_null("downLeftLimit")

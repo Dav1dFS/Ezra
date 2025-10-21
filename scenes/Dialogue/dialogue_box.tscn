@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddcft0p2lnsmk"]
+
+[ext_resource type="Script" uid="uid://bi1nsful0mdq5" path="res://scripts/Dialogue/dialogue_box.gd" id="1_2k12t"]
+[ext_resource type="Texture2D" uid="uid://bquqn60vijnf5" path="res://assets/friedateste.png" id="2_0bcj4"]
+[ext_resource type="Texture2D" uid="uid://ci85u46admaqi" path="res://assets/ezrateste.png" id="3_1repb"]
+
+[node name="DialogueBox" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_2k12t")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 100.0
+offset_top = 477.0
+offset_right = 140.0
+offset_bottom = 517.0
+scale = Vector2(24.465757, 3.9400332)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 92.0
+offset_top = 314.0
+offset_right = 620.0
+offset_bottom = 786.0
+scale = Vector2(0.39999992, 0.39999992)
+texture = ExtResource("2_0bcj4")
+flip_h = true
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 124.0
+offset_top = 492.0
+offset_right = 164.0
+offset_bottom = 515.0
+theme_override_font_sizes/font_size = 30
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 127.0
+offset_top = 551.0
+offset_right = 167.0
+offset_bottom = 574.0
+theme_override_font_sizes/font_size = 30
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 882.0
+offset_top = 284.0
+offset_right = 1381.0
+offset_bottom = 784.0
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("3_1repb")
