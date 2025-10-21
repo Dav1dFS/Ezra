@@ -49,10 +49,18 @@ func _on_input_button_pressed(button, action):
 		button.find_child("Label_Input").text = "Press key to bind..."
 		
 func _input(event):
+	
+	
 	if is_remapping:
+		var dup= false
+		for b in action_list.get_children():
+			var bAction=b.find_child("Label_Input").text
+			if b != remapping_button and  bAction==event.as_text().trim_suffix(" (Physical)"):
+				dup=true
 		if (
+			not dup and (
 			event is InputEventKey ||
-			(event is InputEventMouseButton && event.pressed)
+			(event is InputEventMouseButton && event.pressed))
 		):
 			
 			#corrige double click mouse 1 no remapping
@@ -68,7 +76,10 @@ func _input(event):
 			accept_event()
 			
 func _update_action_list(button, event):
+			
 	button.find_child("Label_Input").text = event.as_text().trim_suffix(" Physical")
+	
+	
 	
 func _on_reset_button_pressed():
 	_create_action_list()
