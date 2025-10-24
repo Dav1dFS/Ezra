@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bmnmagbbjxpm3"]
+[gd_scene load_steps=21 format=3 uid="uid://bmnmagbbjxpm3"]
 
 [ext_resource type="Script" uid="uid://bms2jofssj2sc" path="res://scripts/main.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/player_character.tscn" id="1_uwrxv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/Npcs/npcs.gd" id="3_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://b5ui5m6o18t" path="res://scenes/Npcs/npcteste.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemy.tscn" id="8_gee14"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
 
@@ -145,7 +146,7 @@ scale = Vector2(5.6875, 1)
 texture = SubResource("GradientTexture2D_lnu2h")
 
 [node name="Npc2" type="StaticBody2D" parent="."]
-position = Vector2(75, -31)
+position = Vector2(84, -51)
 script = ExtResource("3_u5sy4")
 dialogue_file_path = "res://DialoguesJSON/npcteste2_dialogue.json"
 triggers_player_dialogue = true
@@ -185,3 +186,36 @@ visible = false
 position = Vector2(167, -30)
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_iywne")]
+
+[node name="Enemy" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(109, -130)
+is_moving = true
+initial_direction = 3
+
+[node name="Enemy2" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(-44, -103)
+is_moving = true
+movement_speed = 100.0
+backward_distance = 100.0
+initial_direction = 1
+
+[node name="Enemy3" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(-116, -24)
+is_moving = true
+movement_speed = 25.0
+forward_distance = 50.0
+backward_distance = 0.0
+
+[node name="Enemy4" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(54, -50)
+is_moving = true
+forward_distance = 30.0
+backward_distance = 30.0
+initial_direction = 2
+
+[node name="Enemy5" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(146, -24)
+is_moving = true
+forward_distance = 200.0
+backward_distance = 0.0
+initial_direction = 1
