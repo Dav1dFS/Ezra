@@ -31,13 +31,12 @@ func _show_line():
 		text_label.text = text
 		name_label.text = speaker.capitalize()
 		
-		if speaker == "Omar" or speaker == "Frieda":
-			portrait.visible = true
-			player_portrait.visible = false
-			
-		elif speaker == "Ezra":
+		if speaker == "Ezra":
 			portrait.visible = false
 			player_portrait.visible = true
+		else:
+			portrait.visible = true
+			player_portrait.visible = false
 	else:
 		end_dialogue(true)
 		

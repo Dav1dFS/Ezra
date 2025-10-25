@@ -5,7 +5,7 @@ class_name VisionCone2D
 
 @export_group("Raycast parameters")
 ## How wide the vision cone is in degrees
-@export_range(0, 360) var angle_deg: int = 50
+@export_range(0, 360) var angle_deg: int = 30
 ## Total number of rays that will be shot to cover the angle. Will be distributed at equal distances.
 ## This has the biggest impact on performance in the script.
 ## Have this high enough that it is precise, but low enough that it doesn't affect performance

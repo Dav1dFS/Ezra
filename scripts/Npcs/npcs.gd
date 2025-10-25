@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var dialogue_file_path: String = "res://DialoguesJSON/npcteste_dialogue.json"
+@export var dialogue_file_path: String = "res://DialoguesJSON/pitchNPC1.json"
 @export var triggers_player_dialogue: bool = false
 @onready var interact_label = $Label
 @onready var area = $Area2D
@@ -60,6 +60,7 @@ func start_dialogue():
 
 func _choose_dialogue() -> Dictionary:
 	if not dialogue_data.has("dialogues"):
+		print("not found dialogue with conditions right")
 		return {}
 
 	for d in dialogue_data["dialogues"]:

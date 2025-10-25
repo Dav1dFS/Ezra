@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://qrd46ikxghqo"]
+
+[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_usc7g"]
+[ext_resource type="Texture2D" uid="uid://d0uvbb8kh6hof" path="res://assets/sprites/guards static/g3.png" id="2_usc7g"]
+[ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_yha3f"]
+[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_nlgux"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvwks"]
+radius = 5.0
+height = 34.0
+
+[node name="General" type="CharacterBody2D" node_paths=PackedStringArray("vision_renderer")]
+script = ExtResource("1_usc7g")
+vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
+alert_color = Color(0.69411767, 0.05882353, 0.36862746, 0.36862746)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_usc7g")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.255, 2.07)
+scale = Vector2(1.35, 0.79)
+shape = SubResource("CapsuleShape2D_tvwks")
+
+[node name="VisionCone2D" parent="." instance=ExtResource("3_yha3f")]
+position = Vector2(0, -6)
+rotation = -1.5707964
+
+[node name="MovementDebugDraw" type="Node2D" parent="."]
+script = ExtResource("4_nlgux")
+point_color = Color(1, 0, 0, 0.36862746)
+
+[connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
+[connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]
+
+[editable path="VisionCone2D"]

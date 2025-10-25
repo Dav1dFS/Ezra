@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var alert_color: Color
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+#retirar no futuro
+@onready var spriteChar: Sprite2D = $Sprite2D
 @onready var vision_cone: Node2D = $VisionCone2D
 
 @export_group("Movement")
@@ -30,6 +32,8 @@ var direction_vectors = {
 	Direction.DOWN: Vector2.DOWN
 }
 
+	
+
 func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		print("%s is seeing %s" % [self, body])
@@ -42,8 +46,15 @@ func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 
 func _ready():
 	current_direction = initial_direction as Direction
-
-	animated_sprite.play("default")
+	print(self.name)
+	if self.name=="General":
+		self.vision_cone.angle_deg=100
+		self.vision_cone._angle=deg_to_rad(100)
+		self.vision_cone._angle_half=self.vision_cone._angle/2.
+		self.vision_cone._angular_delta= self.vision_cone._angle / self.vision_cone.ray_count
+		
+		print(self.vision_cone.angle_deg)
+	#animated_sprite.play("default")
 	if is_moving:
 		_calculate_target_position()
 
@@ -58,28 +69,32 @@ func _update_state():
 			Direction.UP: actual_direction = Direction.DOWN
 			Direction.DOWN: actual_direction = Direction.UP
 
-	animated_sprite.rotation = 0
+	#animated_sprite.rotation = 0
 
 	match actual_direction:
 		Direction.RIGHT:
-			animated_sprite.flip_h = false
+			#animated_sprite.flip_h = false
+			spriteChar.frame=3
 			vision_cone.rotation = -PI/2
 			# TODO: animated_sprite.play("moving_right")
 		Direction.LEFT:
-			animated_sprite.flip_h = true
+			#animated_sprite.flip_h = true
+			spriteChar.frame=2
 			vision_cone.rotation = PI/2
 			# TODO: animated_sprite.play("moving_left")
 		Direction.UP:
-			animated_sprite.flip_h = false
+			#animated_sprite.flip_h = false
+			spriteChar.frame=1
 			vision_cone.rotation = PI
 			# TODO: animated_sprite.play("moving_up")
 		Direction.DOWN:
-			animated_sprite.flip_h = false
+			#animated_sprite.flip_h = false
+			spriteChar.frame=0
 			vision_cone.rotation = 0
 			# TODO: animated_sprite.play("moving_down")
 
-	if not animated_sprite.is_playing():
-		animated_sprite.play("default")
+	#if not animated_sprite.is_playing():
+	#	animated_sprite.play("default")
 
 func _calculate_target_position():
 	var direction_vector = direction_vectors[current_direction]

@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
+const SPEED = 70.0
 
 @export var inv: Inventory
 @onready var cam: Camera2D = get_node("Camera2D")
 
 # For now, randomly decides which character is on, change later 
-var rndcharacter: int = randi() % 9
-var character_name: String
+
+var character_name: String ="Ezra"
 
 
 @onready var slot= $CanvasLayer/Inv
@@ -18,11 +18,7 @@ func update_inv():
 	
 
 func _ready():	
-	print (rndcharacter)
-	if (rndcharacter < 4):
-		character_name = "Ezra"
-	else:
-		character_name = "Birras"
+	
 	print (character_name)
 	Gamestate.character_name = character_name
 	await get_tree().process_frame
