@@ -57,16 +57,12 @@ func start_dialogue():
 			line["text"] = line["text"].replace("{character_name}", Gamestate.character_name)
 
 	var dialogue_box = get_tree().get_current_scene().get_node("DialogueBox")
-	if dialogue_to_use.has("effect"):
-		for effect in dialogue_to_use["effect"]:
-			var action=effect.split("_")[0]
-			var path= effect.split("_")[1]
-			if action=="addItem":
-				self.get_node("../Player").inv.add_item(path)
+	
 	var portraitNpc= dialogue_data["portrait"]
 	var portraitPlayer= dialogue_data["portraitPlayer"]
 	dialogue_box.changeImages(portraitNpc, portraitPlayer)
 	dialogue_box.start(dialogue_to_use, self)
+	
 
 
 func _choose_dialogue() -> Dictionary:
@@ -90,6 +86,7 @@ func _choose_dialogue() -> Dictionary:
 
 
 func _on_dialogue_ended(npc_node, fully_completed):
+	
 	if npc_node != self:
 		return
 
@@ -97,5 +94,12 @@ func _on_dialogue_ended(npc_node, fully_completed):
 	interact_label.visible = true
 
 	if fully_completed:
+		var dialogue_to_use=_choose_dialogue()
+		if dialogue_to_use.has("effect"):
+			for effect in dialogue_to_use["effect"]:
+				var action=effect.split("_")[0]
+				var path= effect.split("_")[1]
+				if action=="addItem":
+					self.get_node("../Player").inv.add_item(path)
 		Gamestate.npc_dialogues_completed[self.name] = true
 		current_dialogue += 1

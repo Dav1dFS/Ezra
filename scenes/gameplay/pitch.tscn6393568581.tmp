@@ -191,7 +191,7 @@ texture = SubResource("GradientTexture2D_5eyg2")
 
 [node name="Player" parent="." instance=ExtResource("1_5eyg2")]
 z_index = 3
-position = Vector2(303, 170)
+position = Vector2(412, 196)
 slide_on_ceiling = false
 floor_constant_speed = true
 floor_snap_length = 0.0

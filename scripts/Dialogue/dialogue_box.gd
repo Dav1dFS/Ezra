@@ -55,6 +55,7 @@ func end_dialogue(fully_completed = false):
 	active = false
 	current_line = 0
 	
+	
 	if current_npc:
 		emit_signal("dialogue_ended", current_npc, fully_completed)
 		current_npc = null
