@@ -42,6 +42,7 @@ func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		print("%s is seeing %s" % [self, body])
 		vision_renderer.color = alert_color
+		get_tree().quit()
 
 func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 	if body.name == "Player":

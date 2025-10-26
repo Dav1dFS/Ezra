@@ -57,6 +57,12 @@ func start_dialogue():
 			line["text"] = line["text"].replace("{character_name}", Gamestate.character_name)
 
 	var dialogue_box = get_tree().get_current_scene().get_node("DialogueBox")
+	if dialogue_to_use.has("effect"):
+		for effect in dialogue_to_use["effect"]:
+			var action=effect.split("_")[0]
+			var path= effect.split("_")[1]
+			if action=="addItem":
+				self.get_node("../Player").inv.add_item(path)
 	var portraitNpc= dialogue_data["portrait"]
 	var portraitPlayer= dialogue_data["portraitPlayer"]
 	dialogue_box.changeImages(portraitNpc, portraitPlayer)

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 70.0
 
+
 @export var inv: Inventory
 @onready var cam: Camera2D = get_node("Camera2D")
 
@@ -14,13 +15,22 @@ var character_name: String ="Ezra"
 
 func update_inv():
 	var current_item = inv.get_inventory()
-	slot.update(current_item[0])
+	if current_item.size()>0:
+		print("updating")
+		slot.update(current_item[0])
+
 	
 
 func _ready():	
 	
 	print (character_name)
 	Gamestate.character_name = character_name
+	
+	
+	if inv:
+		print("✅ Connected to inventory:", inv)
+		inv.connect("inventory_changed", Callable(self, "update_inv"))
+		
 	await get_tree().process_frame
 
 	var bottomLeft = get_tree().get_current_scene().get_node_or_null("downLeftLimit")
@@ -42,6 +52,5 @@ func input_handler():
 	velocity = direction * SPEED
 	
 func _physics_process(_delta):
-	update_inv()
 	input_handler()	
 	move_and_slide()
