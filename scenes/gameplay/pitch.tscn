@@ -209,28 +209,28 @@ forward_distance = 120.0
 initial_direction = 3
 
 [node name="Enemy5" parent="." instance=ExtResource("4_1tgnn")]
-position = Vector2(-58, 131)
+position = Vector2(-87, 125)
 is_moving = true
 movement_speed = 30.0
 forward_distance = 120.0
 backward_distance = 30.0
 
 [node name="Enemy6" parent="." instance=ExtResource("4_1tgnn")]
-position = Vector2(-584, 132)
+position = Vector2(-588, 190)
 is_moving = true
 movement_speed = 30.0
 forward_distance = 120.0
 backward_distance = 30.0
 
 [node name="Enemy2" parent="." instance=ExtResource("4_1tgnn")]
-position = Vector2(-295, 53)
+position = Vector2(-342, 55)
 is_moving = true
 movement_speed = 30.0
 forward_distance = 120.0
 backward_distance = 30.0
 
 [node name="General" parent="." instance=ExtResource("5_3ayu6")]
-position = Vector2(-419, -100)
+position = Vector2(-427, -101)
 is_moving = true
 backward_distance = 70.0
 
@@ -238,14 +238,15 @@ backward_distance = 70.0
 position = Vector2(-602, -138)
 
 [node name="Enemy3" parent="." instance=ExtResource("4_1tgnn")]
-position = Vector2(52, -159)
+position = Vector2(52, -144)
 is_moving = true
 movement_speed = 30.0
-forward_distance = 120.0
+forward_distance = 60.0
+backward_distance = 40.0
 initial_direction = 3
 
 [node name="Enemy4" parent="." instance=ExtResource("4_1tgnn")]
-position = Vector2(-476, 23)
+position = Vector2(-473, 37)
 is_moving = true
 movement_speed = 30.0
 forward_distance = 120.0
