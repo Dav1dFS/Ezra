@@ -13,6 +13,11 @@ var current_line = 0
 var active: bool = false
 var current_npc: Node = null
 
+func changeImages(npc, player):
+	self.portrait.texture = load(npc)
+	self.player_portrait.texture=load(player)
+	
+
 func start(dialogue : Dictionary, npc: Node):
 	current_npc = npc
 	visible = true

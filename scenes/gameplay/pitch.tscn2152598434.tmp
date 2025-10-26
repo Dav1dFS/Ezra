@@ -181,8 +181,11 @@ slide_on_ceiling = false
 floor_constant_speed = true
 floor_snap_length = 0.0
 
-[node name="pitchNPC1" parent="." instance=ExtResource("2_2xbg7")]
+[node name="npc1" parent="." instance=ExtResource("2_2xbg7")]
 position = Vector2(258, 149)
+
+[node name="npc2" parent="." instance=ExtResource("2_2xbg7")]
+position = Vector2(408, 171)
 
 [node name="DialogueBox" parent="." instance=ExtResource("3_1tgnn")]
 

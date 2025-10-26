@@ -1,6 +1,7 @@
 {
   "name": "Prisoner",
   "portrait": "res://assets/sprites/prisoners static/pm1.png",
+  "portraitPlayer": "res://assets/sprites/ellen-20251025T173942Z-1-001/ellen/ellen_base.png",
   "dialogues": [
 	{
 	  "id": "first_meeting_ezra",
@@ -14,7 +15,7 @@
 	},
 	{
 	  "id": "second_meeting",
-	  "condition": "Gamestate.npc_dialogues_completed.get('npc1', false) and character_name == 'Ezra'",
+	  "condition": "Gamestate.npc_dialogues_completed.get('pitchNPC1', false) and character_name == 'Ezra'",
 	  "lines": [
 		{ "text": "I wish I could help you, but they will see me", "speaker": "Prisoner" },
 	  ]

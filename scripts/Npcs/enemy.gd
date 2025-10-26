@@ -19,6 +19,10 @@ extends CharacterBody2D
 @onready var target_position = global_position
 @onready var moving_forward = true
 
+var previous_position: Vector2
+var stuck_timer: float = 0.0
+var stuck_threshold: float = 1.0
+
 @onready var original_color = vision_renderer.color if vision_renderer else Color.WHITE
 @onready var rot_start = rotation
 
@@ -46,6 +50,7 @@ func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 
 func _ready():
 	current_direction = initial_direction as Direction
+	previous_position = global_position
 	print(self.name)
 	if self.name=="General":
 		self.vision_cone.angle_deg=100
@@ -110,9 +115,22 @@ func _physics_process(delta: float) -> void:
 		if distance_to_target < 5.0:
 			moving_forward = !moving_forward
 			_calculate_target_position()
+			stuck_timer = 0.0
 		else:
 			var direction = (target_position - global_position).normalized()
 			velocity = direction * movement_speed * delta * 60.0
 			move_and_slide()
+			
+			var movement_distance = global_position.distance_to(previous_position)
+			if movement_distance < 0.5:
+				stuck_timer += delta
+				if stuck_timer >= stuck_threshold:
+					moving_forward = !moving_forward
+					_calculate_target_position()
+					stuck_timer = 0.0
+			else:
+				stuck_timer = 0.0
+
+		previous_position = global_position
 
 	_update_state()

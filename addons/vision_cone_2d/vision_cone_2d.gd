@@ -15,7 +15,7 @@ class_name VisionCone2D
 
 @export_group("Collisions")
 ## What collision layers will block the vision. Have it set to the same layer as your walls, while avoiding things like items or characters
-@export_flags_2d_physics var collision_layer_mask: int = 0
+@export_flags_2d_physics var collision_layer_mask: int = 2
 ## Optional collision shape that the cone will be copied to.
 ## Use this if you want to have logic on things entering the cone (you probably do, unless you're just visualizing the cone without acting on it)
 @export var write_collision_polygon: CollisionPolygon2D
