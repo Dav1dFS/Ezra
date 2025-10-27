@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var dialogue_file_path: String = "res://DialoguesJSON/npcteste_dialogue.json"
+@export var dialogue_file_path: String = "res://DialoguesJSON/"
 @export var triggers_player_dialogue: bool = false
 @onready var interact_label = $Label
 @onready var area = $Area2D
@@ -12,6 +12,8 @@ var current_dialogue: int = 0
 var waiting_for_player: bool = false
 
 func _ready():
+	dialogue_file_path=dialogue_file_path+self.name+".json"
+	print(dialogue_file_path)
 	var file = FileAccess.open(dialogue_file_path, FileAccess.READ)
 	if file:
 		dialogue_data = JSON.parse_string(file.get_as_text())
@@ -49,17 +51,23 @@ func start_dialogue():
 	if dialogue_to_use == null:
 		dialogue_is_on = false
 		return
-
+	print(dialogue_to_use)
 	for line in dialogue_to_use["lines"]:
 		if "text" in line:
 			line["text"] = line["text"].replace("{character_name}", Gamestate.character_name)
 
 	var dialogue_box = get_tree().get_current_scene().get_node("DialogueBox")
+	
+	var portraitNpc= dialogue_data["portrait"]
+	var portraitPlayer= dialogue_data["portraitPlayer"]
+	dialogue_box.changeImages(portraitNpc, portraitPlayer)
 	dialogue_box.start(dialogue_to_use, self)
+	
 
 
 func _choose_dialogue() -> Dictionary:
 	if not dialogue_data.has("dialogues"):
+		print("not found dialogue with conditions right")
 		return {}
 
 	for d in dialogue_data["dialogues"]:
@@ -78,6 +86,7 @@ func _choose_dialogue() -> Dictionary:
 
 
 func _on_dialogue_ended(npc_node, fully_completed):
+	
 	if npc_node != self:
 		return
 
@@ -85,5 +94,12 @@ func _on_dialogue_ended(npc_node, fully_completed):
 	interact_label.visible = true
 
 	if fully_completed:
+		var dialogue_to_use=_choose_dialogue()
+		if dialogue_to_use.has("effect"):
+			for effect in dialogue_to_use["effect"]:
+				var action=effect.split("_")[0]
+				var path= effect.split("_")[1]
+				if action=="addItem":
+					self.get_node("../Player").inv.add_item(path)
 		Gamestate.npc_dialogues_completed[self.name] = true
 		current_dialogue += 1

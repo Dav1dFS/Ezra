@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://duwwo2c1us4qf"]
+
+[ext_resource type="Texture2D" uid="uid://btha5np08srhd" path="res://assets/brackeys_platformer_assets/sprites/teddy.png" id="1_hr2jc"]
+[ext_resource type="Script" uid="uid://d0wmeudlik2d6" path="res://scripts/inventory/Item.gd" id="2_ket0s"]
+
+[resource]
+script = ExtResource("2_ket0s")
+name = "TeddyBear"
+icon = ExtResource("1_hr2jc")
+metadata/_custom_type_script = "uid://d0wmeudlik2d6"

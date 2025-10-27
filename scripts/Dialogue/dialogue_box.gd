@@ -13,6 +13,11 @@ var current_line = 0
 var active: bool = false
 var current_npc: Node = null
 
+func changeImages(npc, player):
+	self.portrait.texture = load(npc)
+	self.player_portrait.texture=load(player)
+	
+
 func start(dialogue : Dictionary, npc: Node):
 	current_npc = npc
 	visible = true
@@ -31,13 +36,12 @@ func _show_line():
 		text_label.text = text
 		name_label.text = speaker.capitalize()
 		
-		if speaker == "Omar" or speaker == "Frieda":
-			portrait.visible = true
-			player_portrait.visible = false
-			
-		elif speaker == "Ezra":
+		if speaker == "Ezra" or speaker =="Ellen":
 			portrait.visible = false
 			player_portrait.visible = true
+		else:
+			portrait.visible = true
+			player_portrait.visible = false
 	else:
 		end_dialogue(true)
 		
@@ -50,6 +54,7 @@ func end_dialogue(fully_completed = false):
 	visible = false
 	active = false
 	current_line = 0
+	
 	
 	if current_npc:
 		emit_signal("dialogue_ended", current_npc, fully_completed)

@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var alert_color: Color
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+#retirar no futuro
+@onready var spriteChar: Sprite2D = $Sprite2D
 @onready var vision_cone: Node2D = $VisionCone2D
 
 @export_group("Movement")
@@ -16,6 +18,10 @@ extends CharacterBody2D
 @onready var start_position = global_position
 @onready var target_position = global_position
 @onready var moving_forward = true
+
+var previous_position: Vector2
+var stuck_timer: float = 0.0
+var stuck_threshold: float = 1.0
 
 @onready var original_color = vision_renderer.color if vision_renderer else Color.WHITE
 @onready var rot_start = rotation
@@ -32,8 +38,19 @@ var direction_vectors = {
 
 func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
+		if body.character_name == "Ellen" and body.has_method("get_is_ability_active") and body.get_is_ability_active():
+			print("%s cannot see %s (Ellen is invisible)" % [self, body])
+			return
+
 		print("%s is seeing %s" % [self, body])
 		vision_renderer.color = alert_color
+
+		# Slow motion effect
+		Engine.time_scale = 0.3
+		await get_tree().create_timer(1.0).timeout
+		Engine.time_scale = 1.0
+
+		get_tree().change_scene_to_file("res://scenes/gameplay/pitch.tscn")
 
 func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
@@ -42,8 +59,16 @@ func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 
 func _ready():
 	current_direction = initial_direction as Direction
+	previous_position = global_position
+	print(self.name)
+	if self.name=="General":
+		self.vision_cone.angle_deg=100
+		self.vision_cone._angle=deg_to_rad(100)
+		self.vision_cone._angle_half=self.vision_cone._angle/2.
+		self.vision_cone._angular_delta= self.vision_cone._angle / self.vision_cone.ray_count
 
-	animated_sprite.play("default")
+		print(self.vision_cone.angle_deg)
+	#animated_sprite.play("default")
 	if is_moving:
 		_calculate_target_position()
 
@@ -58,28 +83,32 @@ func _update_state():
 			Direction.UP: actual_direction = Direction.DOWN
 			Direction.DOWN: actual_direction = Direction.UP
 
-	animated_sprite.rotation = 0
+	#animated_sprite.rotation = 0
 
 	match actual_direction:
 		Direction.RIGHT:
-			animated_sprite.flip_h = false
+			#animated_sprite.flip_h = false
+			spriteChar.frame=3
 			vision_cone.rotation = -PI/2
 			# TODO: animated_sprite.play("moving_right")
 		Direction.LEFT:
-			animated_sprite.flip_h = true
+			#animated_sprite.flip_h = true
+			spriteChar.frame=2
 			vision_cone.rotation = PI/2
 			# TODO: animated_sprite.play("moving_left")
 		Direction.UP:
-			animated_sprite.flip_h = false
+			#animated_sprite.flip_h = false
+			spriteChar.frame=1
 			vision_cone.rotation = PI
 			# TODO: animated_sprite.play("moving_up")
 		Direction.DOWN:
-			animated_sprite.flip_h = false
+			#animated_sprite.flip_h = false
+			spriteChar.frame=0
 			vision_cone.rotation = 0
 			# TODO: animated_sprite.play("moving_down")
 
-	if not animated_sprite.is_playing():
-		animated_sprite.play("default")
+	#if not animated_sprite.is_playing():
+	#	animated_sprite.play("default")
 
 func _calculate_target_position():
 	var direction_vector = direction_vectors[current_direction]
@@ -95,9 +124,22 @@ func _physics_process(delta: float) -> void:
 		if distance_to_target < 5.0:
 			moving_forward = !moving_forward
 			_calculate_target_position()
+			stuck_timer = 0.0
 		else:
 			var direction = (target_position - global_position).normalized()
 			velocity = direction * movement_speed * delta * 60.0
 			move_and_slide()
+			
+			var movement_distance = global_position.distance_to(previous_position)
+			if movement_distance < 0.5:
+				stuck_timer += delta
+				if stuck_timer >= stuck_threshold:
+					moving_forward = !moving_forward
+					_calculate_target_position()
+					stuck_timer = 0.0
+			else:
+				stuck_timer = 0.0
+
+		previous_position = global_position
 
 	_update_state()
