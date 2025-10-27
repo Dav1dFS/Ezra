@@ -36,14 +36,21 @@ var direction_vectors = {
 	Direction.DOWN: Vector2.DOWN
 }
 
-	
-
 func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
+		if body.character_name == "Ellen" and body.has_method("get_is_ability_active") and body.get_is_ability_active():
+			print("%s cannot see %s (Ellen is invisible)" % [self, body])
+			return
+
 		print("%s is seeing %s" % [self, body])
 		vision_renderer.color = alert_color
+
+		# Slow motion effect
+		Engine.time_scale = 0.3
 		await get_tree().create_timer(1.0).timeout
-		get_tree().quit()
+		Engine.time_scale = 1.0
+
+		get_tree().change_scene_to_file("res://scenes/gameplay/pitch.tscn")
 
 func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
@@ -59,7 +66,7 @@ func _ready():
 		self.vision_cone._angle=deg_to_rad(100)
 		self.vision_cone._angle_half=self.vision_cone._angle/2.
 		self.vision_cone._angular_delta= self.vision_cone._angle / self.vision_cone.ray_count
-		
+
 		print(self.vision_cone.angle_deg)
 	#animated_sprite.play("default")
 	if is_moving:

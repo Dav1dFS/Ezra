@@ -4,8 +4,8 @@
   "portraitPlayer": "res://assets/sprites/ellen-20251025T173942Z-1-001/ellen/ellen_base.png",
   "dialogues": [
 	{
-	  "id": "first_meeting_ezra",
-	  "condition": "current_dialogue == 0 and character_name == 'Ezra'",
+	  "id": "first_meeting_Ellen",
+	  "condition": "current_dialogue == 0 and character_name == 'Ellen'",
 	  "lines": [
 		{ "text": "Oh, {character_name}!", "speaker": "Prisoner" },
 		{ "text": "You should watch out! The guards are already doing rounds!", "speaker": "Prisoner" },
@@ -15,16 +15,16 @@
 	},
 	{
 	  "id": "second_meeting",
-	  "condition": "Gamestate.npc_dialogues_completed.get('pitchNPC1', false) and character_name == 'Ezra'",
+	  "condition": "Gamestate.npc_dialogues_completed.get('pitchNPC1', false) and character_name == 'Ellen'",
 	  "lines": [
-		{ "text": "I wish I could help you, but they will see me", "speaker": "Prisoner" },
+		{ "text": "I wish I could help you, but they will see me", "speaker": "Prisoner" }
 	  ]
 	},
 	{
 	  "id": "default",
-	  "condition": "current_dialogue == 1 and character_name == 'Ezra'",
+	  "condition": "current_dialogue == 1 and character_name == 'Ellen'",
 	  "lines": [
-		{ "text": "I wish I could help you, but they will see me", "speaker": "Prisoner" },
+		{ "text": "I wish I could help you, but they will see me", "speaker": "Prisoner" }
 	  ]
 	}]
 }

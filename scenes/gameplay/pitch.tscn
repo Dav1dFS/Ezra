@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://b0u06jma4tqaq"]
 
-[ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/player_character.tscn" id="1_5eyg2"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="1_odyf7"]
 [ext_resource type="PackedScene" uid="uid://5neumxlners6" path="res://scenes/Npcs/Pitch1.tscn" id="2_2xbg7"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="3_1tgnn"]
 [ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemyGuard.tscn" id="4_1tgnn"]
@@ -23,7 +23,7 @@ size = Vector2(480, 20)
 size = Vector2(539, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ayu6"]
-size = Vector2(38.542175, 34.479034)
+size = Vector2(34.3974, 41.16011)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8g3a"]
 size = Vector2(884, 20)
@@ -44,6 +44,7 @@ fill_from = Vector2(1, 0)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 light_mask = 2
 visibility_layer = 2
+collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_55b5w")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
@@ -65,7 +66,7 @@ position = Vector2(-9.5, 224)
 shape = SubResource("RectangleShape2D_2xbg7")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(462, 110)
+position = Vector2(462, 120)
 shape = SubResource("RectangleShape2D_5eyg2")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
@@ -74,12 +75,12 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_55b5w")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-407.3617, 122.13772)
+position = Vector2(-407.09, 129.32957)
 rotation = 0.0052699586
 shape = SubResource("RectangleShape2D_3ayu6")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(61.999996, 124)
+position = Vector2(62, 129)
 rotation = 0.0052699586
 shape = SubResource("RectangleShape2D_3ayu6")
 
@@ -88,7 +89,7 @@ position = Vector2(-206, -208)
 shape = SubResource("RectangleShape2D_m8g3a")
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(54.000015, -61)
+position = Vector2(54, -57)
 rotation = 0.0052699586
 shape = SubResource("RectangleShape2D_3ayu6")
 
@@ -98,14 +99,14 @@ rotation = 0.010539918
 shape = SubResource("RectangleShape2D_odyf7")
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-473, -44)
+position = Vector2(-473, -39)
 rotation = 0.0052699586
 shape = SubResource("RectangleShape2D_3ayu6")
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D"]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-197, 50)
+position = Vector2(-197, 55)
 rotation = 0.0052699586
 shape = SubResource("RectangleShape2D_3ayu6")
 
@@ -190,13 +191,6 @@ position = Vector2(62, 129)
 scale = Vector2(0.5527353, 0.66)
 texture = SubResource("GradientTexture2D_5eyg2")
 
-[node name="Player" parent="." instance=ExtResource("1_5eyg2")]
-z_index = 3
-position = Vector2(303, 170)
-slide_on_ceiling = false
-floor_constant_speed = true
-floor_snap_length = 0.0
-
 [node name="pitchNPC1" parent="." instance=ExtResource("2_2xbg7")]
 position = Vector2(258, 149)
 
@@ -209,12 +203,33 @@ movement_speed = 30.0
 forward_distance = 120.0
 initial_direction = 3
 
+[node name="Enemy" parent="Enemy" instance=ExtResource("4_1tgnn")]
+position = Vector2(-142, -40)
+is_moving = true
+movement_speed = 30.0
+forward_distance = 120.0
+initial_direction = 2
+
 [node name="Enemy5" parent="." instance=ExtResource("4_1tgnn")]
-position = Vector2(-87, 125)
+position = Vector2(-84, 180)
 is_moving = true
 movement_speed = 30.0
 forward_distance = 120.0
 backward_distance = 30.0
+
+[node name="Enemy5" parent="Enemy5" instance=ExtResource("4_1tgnn")]
+position = Vector2(78, -106)
+is_moving = true
+movement_speed = 60.0
+forward_distance = 120.0
+backward_distance = 100.0
+
+[node name="Enemy5" parent="Enemy5/Enemy5" instance=ExtResource("4_1tgnn")]
+position = Vector2(-158, -90)
+is_moving = true
+movement_speed = 60.0
+forward_distance = 120.0
+backward_distance = 100.0
 
 [node name="Enemy6" parent="." instance=ExtResource("4_1tgnn")]
 position = Vector2(-588, 190)
@@ -230,8 +245,17 @@ movement_speed = 30.0
 forward_distance = 120.0
 backward_distance = 30.0
 
+[node name="Enemy2" parent="Enemy2" instance=ExtResource("4_1tgnn")]
+position = Vector2(251, -141)
+is_moving = true
+movement_speed = 30.0
+forward_distance = 120.0
+backward_distance = 30.0
+initial_direction = 1
+
 [node name="General" parent="." instance=ExtResource("5_3ayu6")]
 position = Vector2(-427, -101)
+collision_layer = 0
 is_moving = true
 backward_distance = 70.0
 
@@ -257,3 +281,17 @@ initial_direction = 3
 
 [node name="InputSettings" parent="GUI" instance=ExtResource("7_odyf7")]
 visible = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = 90.0
+offset_top = 159.0
+offset_right = 198.0
+offset_bottom = 208.0
+theme_override_constants/line_spacing = -10
+text = "Press Enter to
+avoid guards"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("1_odyf7")]
+position = Vector2(301, 178)

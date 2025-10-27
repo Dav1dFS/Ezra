@@ -14,6 +14,7 @@ var input_actions = {
 	"move_down" : "Move Down",
 	"move_right" : "Move Right",
 	"interact" : "Interact",
+	"ability" : "Ability",
 }
 
 func _ready():

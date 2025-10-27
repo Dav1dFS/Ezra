@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://wq6bp8e2ao1k" path="res://assets/sprites/prisoners static/pm1.png" id="2_usfu8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usfu8"]
+radius = 20.134228
+height = 42.95302
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2wcbm"]
 radius = 4.1231055

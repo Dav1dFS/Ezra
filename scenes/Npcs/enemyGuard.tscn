@@ -6,26 +6,28 @@
 [ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_movement"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvwks"]
-radius = 5.0
-height = 34.0
+radius = 2.9629629
+height = 22.784811
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("vision_renderer")]
+position = Vector2(0, -16)
 script = ExtResource("1_65c78")
 vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
 alert_color = Color(0.69411767, 0.05882353, 0.36862746, 0.36862746)
 
+[node name="VisionCone2D" parent="." instance=ExtResource("3_jnxau")]
+position = Vector2(0, -6)
+rotation = -1.5707964
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.5, 0)
 texture = ExtResource("2_0mye4")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.255, 2.07)
+position = Vector2(0, 7)
 scale = Vector2(1.35, 0.79)
 shape = SubResource("CapsuleShape2D_tvwks")
-
-[node name="VisionCone2D" parent="." instance=ExtResource("3_jnxau")]
-position = Vector2(0, -6)
-rotation = -1.5707964
 
 [node name="MovementDebugDraw" type="Node2D" parent="."]
 script = ExtResource("4_movement")
