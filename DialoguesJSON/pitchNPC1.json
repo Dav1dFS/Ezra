@@ -1,6 +1,6 @@
 {
   "name": "Prisoner",
-  "portrait": "res://assets/sprites/prisoners static/pm1.png",
+  "portrait": "res://assets/sprites/malePrisoner1.png",
   "portraitPlayer": "res://assets/sprites/ellen-20251025T173942Z-1-001/ellen/ellen_base.png",
   "dialogues": [
 	{

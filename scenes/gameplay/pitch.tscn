@@ -288,10 +288,10 @@ offset_top = 159.0
 offset_right = 198.0
 offset_bottom = 208.0
 theme_override_constants/line_spacing = -10
-text = "Press Enter to
+text = "Press Space to
 avoid guards"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("1_odyf7")]
-position = Vector2(301, 178)
+position = Vector2(312, 178)

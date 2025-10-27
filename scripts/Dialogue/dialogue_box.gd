@@ -36,7 +36,7 @@ func _show_line():
 		text_label.text = text
 		name_label.text = speaker.capitalize()
 		
-		if speaker == "Ezra":
+		if speaker == "Ezra" or speaker =="Ellen":
 			portrait.visible = false
 			player_portrait.visible = true
 		else:
