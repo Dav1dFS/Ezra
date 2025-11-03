@@ -3,6 +3,8 @@ extends "res://scripts/player/player.gd"
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 var is_ability_active: bool = false
 
+@onready var timer: Timer = $Timer
+
 var ellen_sprites = {
 	Direction.DOWN: preload("res://assets/sprites/ellen-20251025T173942Z-1-001/ellen/ellen_base.png"),
 	Direction.UP: preload("res://assets/sprites/ellen-20251025T173942Z-1-001/ellen/ellen_back.png"),
@@ -15,6 +17,9 @@ func get_is_ability_active() -> bool:
 
 func _ready():
 	character_name = "Ellen"
+	timer.wait_time = 3.0
+	timer.one_shot=true
+	timer.connect("timeout",  Callable(self, "_on_timer_timeout"))
 	super._ready()
 
 func _update_sprite_for_direction():
@@ -32,12 +37,24 @@ func input_handler():
 		super.input_handler()
 
 func toggle_transparency_ability():
-	is_ability_active = !is_ability_active
-
 	if is_ability_active:
-		sprite.modulate.a = 0.5
-		velocity = Vector2.ZERO
-		collision_shape.disabled = true
+		deactivate_transparency_ability()
 	else:
-		sprite.modulate.a = 1.0
-		collision_shape.disabled = false
+		activate_transparency_ability()
+		
+func activate_transparency_ability():
+	is_ability_active = true
+	sprite.modulate.a = 0.5
+	velocity = Vector2.ZERO
+	collision_shape.disabled = true
+	timer.start()
+
+func deactivate_transparency_ability():
+	is_ability_active = false
+	sprite.modulate.a = 1.0
+	collision_shape.disabled = false
+	timer.stop()
+	
+	
+func _on_timer_timeout():
+	deactivate_transparency_ability()
