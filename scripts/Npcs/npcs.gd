@@ -1,5 +1,6 @@
 extends Node2D
 
+@export_group("Dialogue")
 @export var dialogue_file_path: String = "res://DialoguesJSON/"
 @export var triggers_player_dialogue: bool = false
 @onready var interact_label = $Label
@@ -12,7 +13,6 @@ var current_dialogue: int = 0
 var waiting_for_player: bool = false
 
 func _ready():
-	dialogue_file_path=dialogue_file_path+self.name+".json"
 	print(dialogue_file_path)
 	var file = FileAccess.open(dialogue_file_path, FileAccess.READ)
 	if file:
