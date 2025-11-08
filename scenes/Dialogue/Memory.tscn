@@ -7,8 +7,8 @@
 size = Vector2(19, 16)
 
 [node name="Memory" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_574ab")
-float_speed = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ac22o")
