@@ -296,4 +296,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("1_odyf7")]
-position = Vector2(312, 178)
+position = Vector2(-619, -100)

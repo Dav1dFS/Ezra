@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dyth5b5cqddme"]
 
 [ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/Npcs/npcs.gd" id="1_ubg4l"]
-[ext_resource type="Texture2D" uid="uid://cw3qnql6rogas" path="res://assets/sprites/prisoners static/pm2.png" id="2_ubg4l"]
+[ext_resource type="Texture2D" uid="uid://1wjw0vciw7qy" path="res://assets/character sprites/prisoners static/pm2.png" id="2_ubg4l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usfu8"]
 radius = 21.47651

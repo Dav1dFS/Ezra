@@ -6,10 +6,10 @@ var is_ability_active: bool = false
 @onready var timer: Timer = $Timer
 
 var ellen_sprites = {
-	Direction.DOWN: preload("res://assets/sprites/ellen-20251025T173942Z-1-001/ellen/ellen_base.png"),
-	Direction.UP: preload("res://assets/sprites/ellen-20251025T173942Z-1-001/ellen/ellen_back.png"),
-	Direction.LEFT: preload("res://assets/sprites/ellen-20251025T173942Z-1-001/ellen/ellen_left.png"),
-	Direction.RIGHT: preload("res://assets/sprites/ellen-20251025T173942Z-1-001/ellen/ellen_right.png")
+	Direction.DOWN: preload("res://assets/character sprites/ellen/ellen_base.png"),
+	Direction.UP: preload("res://assets/character sprites/ellen/ellen_back.png"),
+	Direction.LEFT: preload("res://assets/character sprites/ellen/ellen_left.png"),
+	Direction.RIGHT: preload("res://assets/character sprites/ellen/ellen_right.png")
 }
 
 func get_is_ability_active() -> bool:
