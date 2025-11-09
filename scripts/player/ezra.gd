@@ -1,10 +1,10 @@
 extends "res://scripts/player/player.gd"
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var counter: Control = $GUI/Counter
+
 var is_ability_active: bool = false
 
-@onready var counter: int = 0
-@onready var maxCounter: int = 6
 
 var ellen_sprites = {
 	Direction.DOWN: preload("res://assets/character sprites/ezra/ezra_base.png"),
@@ -22,8 +22,8 @@ func _update_sprite_for_direction():
 		sprite.texture = ellen_sprites[current_direction]
 
 func increment_item_counter():
-	self.counter+=1
 	print("added counter")
-	if self.counter == maxCounter:
-		print("MaxCounter Reached")
+	counter.add_point()
+
+		
 	
