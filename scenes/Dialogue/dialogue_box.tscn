@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddcft0p2lnsmk"]
+[gd_scene load_steps=2 format=3 uid="uid://ddcft0p2lnsmk"]
 
 [ext_resource type="Script" uid="uid://bi1nsful0mdq5" path="res://scripts/Dialogue/dialogue_box.gd" id="1_2k12t"]
-[ext_resource type="Texture2D" uid="uid://bquqn60vijnf5" path="res://assets/friedateste.png" id="2_0bcj4"]
-[ext_resource type="Texture2D" uid="uid://ci85u46admaqi" path="res://assets/ezrateste.png" id="3_1repb"]
 
 [node name="DialogueBox" type="CanvasLayer"]
 visible = false
@@ -21,7 +19,6 @@ offset_top = 314.0
 offset_right = 620.0
 offset_bottom = 786.0
 scale = Vector2(0.39999992, 0.39999992)
-texture = ExtResource("2_0bcj4")
 flip_h = true
 
 [node name="Button" type="Button" parent="."]
@@ -48,4 +45,3 @@ offset_top = 284.0
 offset_right = 1381.0
 offset_bottom = 784.0
 scale = Vector2(0.44, 0.44)
-texture = ExtResource("3_1repb")

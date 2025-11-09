@@ -1,7 +1,7 @@
 {
   "name": "Prisoner",
-  "portrait": "res://assets/sprites/malePrisoner2.png",
-  "portraitPlayer": "res://assets/sprites/ellen-20251025T173942Z-1-001/ellen/ellen_base.png",
+  "portrait": "res://assets/character sprites/prisoners static/priosiner_biggg.png",
+  "portraitPlayer": "res://assets/character sprites/ellen/ellen_base.png",
   "dialogues": [
 	{
 	  "id": "first_meeting_Ellen",

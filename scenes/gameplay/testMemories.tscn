@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkv0jdud5hw3k"]
+
+[ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/MainMap.tscn" id="1_4rq8b"]
+[ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/Dialogue/Memory.tscn" id="2_5ghq1"]
+[ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="3_634dd"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="4_t4id8"]
+
+[node name="TestMemories" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_4rq8b")]
+
+[node name="Memory" parent="." instance=ExtResource("2_5ghq1")]
+position = Vector2(4733, -177)
+dialogue_file_path = "res://DialoguesJSON/memory1.json"
+float_speed = 2.0
+
+[node name="Memory2" parent="." instance=ExtResource("2_5ghq1")]
+position = Vector2(4553, -267)
+dialogue_file_path = "res://DialoguesJSON/memory1.json"
+float_speed = 2.0
+
+[node name="Memory3" parent="." instance=ExtResource("2_5ghq1")]
+position = Vector2(4806, -401)
+dialogue_file_path = "res://DialoguesJSON/memory1.json"
+float_speed = 2.0
+
+[node name="Memory4" parent="." instance=ExtResource("2_5ghq1")]
+position = Vector2(5051, -272)
+dialogue_file_path = "res://DialoguesJSON/memory1.json"
+float_speed = 2.0
+
+[node name="Memory5" parent="." instance=ExtResource("2_5ghq1")]
+position = Vector2(5136, -131)
+dialogue_file_path = "res://DialoguesJSON/memory1.json"
+float_speed = 2.0
+
+[node name="Memory6" parent="." instance=ExtResource("2_5ghq1")]
+position = Vector2(4718, -17)
+dialogue_file_path = "res://DialoguesJSON/memory1.json"
+float_speed = 2.0
+
+[node name="downLeftLimit" type="Marker2D" parent="."]
+position = Vector2(-160, 1792)
+
+[node name="topRightLimit" type="Marker2D" parent="."]
+position = Vector2(5529, -1061)
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_634dd")]
+position = Vector2(4844, 70)
+
+[node name="DialogueBox" parent="." instance=ExtResource("4_t4id8")]
