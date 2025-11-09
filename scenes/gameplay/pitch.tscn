@@ -210,6 +210,13 @@ movement_speed = 30.0
 forward_distance = 120.0
 initial_direction = 2
 
+[node name="Enemy7" parent="." instance=ExtResource("4_1tgnn")]
+position = Vector2(-68, 80)
+is_moving = true
+movement_speed = 60.0
+forward_distance = 120.0
+backward_distance = 100.0
+
 [node name="Enemy5" parent="." instance=ExtResource("4_1tgnn")]
 position = Vector2(-84, 180)
 is_moving = true
@@ -217,15 +224,8 @@ movement_speed = 30.0
 forward_distance = 120.0
 backward_distance = 30.0
 
-[node name="Enemy5" parent="Enemy5" instance=ExtResource("4_1tgnn")]
-position = Vector2(78, -106)
-is_moving = true
-movement_speed = 60.0
-forward_distance = 120.0
-backward_distance = 100.0
-
-[node name="Enemy5" parent="Enemy5/Enemy5" instance=ExtResource("4_1tgnn")]
-position = Vector2(-158, -90)
+[node name="Enemy8" parent="." instance=ExtResource("4_1tgnn")]
+position = Vector2(-164, -16)
 is_moving = true
 movement_speed = 60.0
 forward_distance = 120.0
