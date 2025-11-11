@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkv0jdud5hw3k"]
+[gd_scene load_steps=7 format=3 uid="uid://dkv0jdud5hw3k"]
 
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/MainMap.tscn" id="1_4rq8b"]
 [ext_resource type="Script" uid="uid://bms2jofssj2sc" path="res://scripts/main.gd" id="1_op1or"]
 [ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/Dialogue/Memory.tscn" id="2_5ghq1"]
 [ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="3_634dd"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="4_t4id8"]
-[ext_resource type="PackedScene" path="res://scenes/UI/PauseMenu.tscn" id="5_gsrji"]
-[ext_resource type="PackedScene" uid="uid://ddkqx2brtr8hc" path="res://scenes/UI/InputSettings.tscn" id="6_op1or"]
+[ext_resource type="PackedScene" uid="uid://dle73kkftd1pm" path="res://scenes/UI/PauseMenu.tscn" id="5_gsrji"]
 
 [node name="TestMemories" type="Node2D"]
 script = ExtResource("1_op1or")
@@ -52,7 +51,4 @@ position = Vector2(4844, 70)
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="GUI" instance=ExtResource("5_gsrji")]
-visible = false
-
-[node name="InputSettings" parent="GUI" instance=ExtResource("6_op1or")]
 visible = false

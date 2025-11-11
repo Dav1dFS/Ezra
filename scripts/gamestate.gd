@@ -5,6 +5,8 @@ var character_name: String
 var game_is_paused := false
 var custom_cursor: Texture2D
 var play_time:= 0.0
+var is_talking: bool = false
+var dialogue_locked:= false
 
 func _ready():
 	var img = load("res://assets/character sprites/ezra/ezra_base.png").get_image()
