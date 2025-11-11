@@ -7,7 +7,7 @@ var custom_cursor: Texture2D
 var play_time:= 0.0
 
 func _ready():
-	var img = load("res://assets/ezrateste.png").get_image()
+	var img = load("res://assets/character sprites/ezra/ezra_base.png").get_image()
 	img.resize(32, 32)
 	custom_cursor = ImageTexture.create_from_image(img)
 
