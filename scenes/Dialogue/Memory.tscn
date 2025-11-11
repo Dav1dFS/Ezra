@@ -7,6 +7,7 @@
 size = Vector2(19, 16)
 
 [node name="Memory" type="Area2D"]
+z_index = 2
 collision_mask = 3
 script = ExtResource("1_574ab")
 
@@ -16,3 +17,21 @@ texture = ExtResource("1_ac22o")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_574ab")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -1)
+amount = 19
+lifetime = 0.8200000000000001
+emission_shape = 3
+emission_rect_extents = Vector2(9.495, 7.985)
+spread = 0.0
+gravity = Vector2(0, -50)
+angular_velocity_max = 668.04
+linear_accel_max = 26.8
+angle_min = 148.5
+angle_max = 148.5
+scale_amount_min = 0.0
+scale_amount_max = 2.65
+color = Color(0.21176471, 0.9019608, 0, 0.77254903)
+hue_variation_min = -0.4
+hue_variation_max = -0.3
