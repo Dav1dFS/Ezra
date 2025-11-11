@@ -197,6 +197,7 @@ texture = SubResource("GradientTexture2D_5eyg2")
 
 [node name="pitchNPC1" parent="." instance=ExtResource("2_2xbg7")]
 position = Vector2(258, 149)
+dialogue_file_path = "res://DialoguesJSON/pitchNPC1.json"
 
 [node name="DialogueBox" parent="." instance=ExtResource("3_1tgnn")]
 
@@ -214,6 +215,13 @@ movement_speed = 30.0
 forward_distance = 120.0
 initial_direction = 2
 
+[node name="Enemy7" parent="." instance=ExtResource("4_1tgnn")]
+position = Vector2(-68, 80)
+is_moving = true
+movement_speed = 60.0
+forward_distance = 120.0
+backward_distance = 100.0
+
 [node name="Enemy5" parent="." instance=ExtResource("4_1tgnn")]
 position = Vector2(-84, 180)
 is_moving = true
@@ -221,15 +229,8 @@ movement_speed = 30.0
 forward_distance = 120.0
 backward_distance = 30.0
 
-[node name="Enemy5" parent="Enemy5" instance=ExtResource("4_1tgnn")]
-position = Vector2(78, -106)
-is_moving = true
-movement_speed = 60.0
-forward_distance = 120.0
-backward_distance = 100.0
-
-[node name="Enemy5" parent="Enemy5/Enemy5" instance=ExtResource("4_1tgnn")]
-position = Vector2(-158, -90)
+[node name="Enemy8" parent="." instance=ExtResource("4_1tgnn")]
+position = Vector2(-164, -16)
 is_moving = true
 movement_speed = 60.0
 forward_distance = 120.0
@@ -265,6 +266,7 @@ backward_distance = 70.0
 
 [node name="pitchNPC2" parent="." instance=ExtResource("6_m8g3a")]
 position = Vector2(-602, -138)
+dialogue_file_path = "res://DialoguesJSON/pitchNPC2.json"
 
 [node name="Enemy3" parent="." instance=ExtResource("4_1tgnn")]
 position = Vector2(52, -144)
@@ -301,4 +303,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("1_odyf7")]
-position = Vector2(312, 178)
+position = Vector2(-619, -100)

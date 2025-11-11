@@ -28,6 +28,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="Ezra"
 
+[global_group]
+
+Player=""
+
 [input]
 
 move_up={

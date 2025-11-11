@@ -123,6 +123,7 @@ func _physics_process(delta: float) -> void:
 
 		if distance_to_target < 5.0:
 			moving_forward = !moving_forward
+			await get_tree().create_timer(2.0).timeout
 			_calculate_target_position()
 			stuck_timer = 0.0
 		else:
