@@ -14,27 +14,12 @@ var current_direction: Direction = Direction.DOWN
 var last_movement_direction: Vector2 = Vector2.ZERO
 
 @onready var slot= $GUI/Inv
-@onready var pause_menu = $GUI/InputSettings
-
-var game_is_paused: bool = false
 
 func update_inv():
 	var current_item = inv.get_inventory()
 	if current_item.size()>0:
 		print("updating")
 		slot.update(current_item[0])
-
-func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
-		game_is_paused = !game_is_paused
-		if game_is_paused:
-			Engine.time_scale = 0
-			pause_menu.visible = true
-		else:
-			Engine.time_scale = 1
-			pause_menu.visible = false
-		get_tree().root.get_viewport().set_input_as_handled()
-	
 
 func _ready():	
 	
@@ -70,23 +55,27 @@ func input_handler():
 		update_sprite_direction(direction)
 
 func update_sprite_direction(movement_direction: Vector2):
-	if abs(movement_direction.x) > abs(movement_direction.y):
-		if movement_direction.x > 0:
-			current_direction = Direction.RIGHT
+	if !Gamestate.game_is_paused:
+		if abs(movement_direction.x) > abs(movement_direction.y):
+			if movement_direction.x > 0:
+				current_direction = Direction.RIGHT
+			else:
+				current_direction = Direction.LEFT
 		else:
-			current_direction = Direction.LEFT
-	else:
-		if movement_direction.y < 0:
-			current_direction = Direction.UP
-		else:
-			current_direction = Direction.DOWN
+			if movement_direction.y < 0:
+				current_direction = Direction.UP
+			else:
+				current_direction = Direction.DOWN
 
-	_update_sprite_for_direction()
+		_update_sprite_for_direction()
 
 # Virtual method for child classes to override
 func _update_sprite_for_direction():
 	pass
 	
 func _physics_process(_delta):
-	input_handler()	
+	if Gamestate.game_is_paused or get_tree().paused:
+		return
+
+	input_handler()
 	move_and_slide()

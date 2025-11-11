@@ -19,12 +19,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -379.0
+offset_left = -200.0
 offset_top = -210.0
-offset_right = 379.0
+offset_right = 558.0
 offset_bottom = 210.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.7200012, 0.7200012)
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2

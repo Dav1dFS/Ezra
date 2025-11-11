@@ -1,16 +1,17 @@
 extends Node2D
 
-@onready var pause_menu = $GUI/InputSettings
+@onready var pause_menu = $GUI/PauseMenu
 
-var game_is_paused: bool = false
-
+func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
-		game_is_paused = !game_is_paused
-		if game_is_paused:
-			Engine.time_scale = 0
-			pause_menu.visible = true
+		Gamestate.toggle_pause()
+
+		if Gamestate.game_is_paused:
+			pause_menu.show_menu()
 		else:
-			Engine.time_scale = 1
-			pause_menu.visible = false
+			pause_menu.hide_menu()
+
 		get_tree().root.get_viewport().set_input_as_handled()
