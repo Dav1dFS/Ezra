@@ -41,5 +41,6 @@ position = Vector2(5529, -1061)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("3_634dd")]
 position = Vector2(4844, 70)
+character_name = ""
 
 [node name="DialogueBox" parent="." instance=ExtResource("4_t4id8")]
