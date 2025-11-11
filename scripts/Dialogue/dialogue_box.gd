@@ -22,6 +22,7 @@ func start(dialogue : Dictionary, npc: Node):
 	current_npc = npc
 	visible = true
 	active = true
+	Gamestate.is_talking = true
 	
 	lines = dialogue.get("lines", [])
 	current_line = 0
@@ -45,16 +46,37 @@ func _show_line():
 	else:
 		end_dialogue(true)
 		
-func _process(delta):
-	if active and Input.is_action_just_pressed("interact"):
-		_show_line()
+func _input(event):
+	if not active:
+		return
+
+	if event.is_pressed() and (event is InputEventKey or event is InputEventMouseButton):
+
+		if event is InputEventKey:
+			var blocked_keys = [
+				KEY_W, KEY_A, KEY_S, KEY_D,
+				KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT
+			]
+			if event.physical_keycode in blocked_keys:
+				return
+
+			if event.physical_keycode == KEY_Z:
+				current_line = max(current_line - 1, 0)
+				_show_line()
+				return
+
 		current_line += 1
-	
+		_show_line()
+		
 func end_dialogue(fully_completed = false):
 	visible = false
 	active = false
+	Gamestate.is_talking = false
 	current_line = 0
 	
+	Gamestate.dialogue_locked = true
+	await get_tree().create_timer(0.1).timeout
+	Gamestate.dialogue_locked = false
 	
 	if current_npc:
 		emit_signal("dialogue_ended", current_npc, fully_completed)
