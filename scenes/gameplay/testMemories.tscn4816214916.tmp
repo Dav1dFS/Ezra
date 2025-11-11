@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/Dialogue/Memory.tscn" id="2_5ghq1"]
 [ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="3_634dd"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="4_t4id8"]
-[ext_resource type="PackedScene" uid="uid://dle73kkftd1pm" path="res://scenes/UI/PauseMenu.tscn" id="5_gsrji"]
+[ext_resource type="PackedScene" path="res://scenes/UI/PauseMenu.tscn" id="5_gsrji"]
 [ext_resource type="PackedScene" uid="uid://ddkqx2brtr8hc" path="res://scenes/UI/InputSettings.tscn" id="6_op1or"]
 
-[node name="Scene" type="Node2D"]
+[node name="TestMemories" type="Node2D"]
 script = ExtResource("1_op1or")
 
 [node name="TileMap" parent="." instance=ExtResource("1_4rq8b")]
@@ -46,6 +46,7 @@ position = Vector2(5529, -1061)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("3_634dd")]
 position = Vector2(4844, 70)
+character_name = ""
 
 [node name="DialogueBox" parent="." instance=ExtResource("4_t4id8")]
 
