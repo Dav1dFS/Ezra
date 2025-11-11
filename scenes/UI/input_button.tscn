@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://btt5ujresd30t"]
+[gd_scene load_steps=4 format=3 uid="uid://btt5ujresd30t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hfvn"]
 bg_color = Color(0, 0, 0, 0.39215687)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpb43"]
 bg_color = Color(1, 1, 1, 0.39215687)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dihbt"]
+content_margin_left = 25.0
+content_margin_right = 25.0
+bg_color = Color(0.6159996, 0.10691456, 1, 0.47058824)
 
 [node name="Input_Button" type="Button"]
 custom_minimum_size = Vector2(0, 50)
@@ -47,5 +52,6 @@ mouse_filter = 1
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_dihbt")
 text = "Input Key"
 vertical_alignment = 1

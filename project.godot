@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 Gamestate="*res://scripts/gamestate.gd"
 
+[display]
+
+window/size/mode=1
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Ezra"

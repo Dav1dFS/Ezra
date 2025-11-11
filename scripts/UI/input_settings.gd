@@ -49,9 +49,7 @@ func _on_input_button_pressed(button, action):
 		remapping_button = button
 		button.find_child("Label_Input").text = "Press key to bind..."
 		
-func _input(event):
-	
-	
+func _input(event):	
 	if is_remapping:
 		var dup= false
 		for b in action_list.get_children():
@@ -64,7 +62,6 @@ func _input(event):
 			(event is InputEventMouseButton && event.pressed))
 		):
 			
-			#corrige double click mouse 1 no remapping
 			if event is InputEventMouseButton && event.double_click:
 				event.double_click = false
 				
