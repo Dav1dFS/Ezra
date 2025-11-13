@@ -31,7 +31,7 @@ position = Vector2(5051, -272)
 dialogue_file_path = "res://DialoguesJSON/memory1.json"
 
 [node name="Memory5" parent="." groups=["Memories"] instance=ExtResource("2_5ghq1")]
-position = Vector2(5136, -131)
+position = Vector2(5098, -270)
 dialogue_file_path = "res://DialoguesJSON/memory1.json"
 
 [node name="Memory6" parent="." groups=["Memories"] instance=ExtResource("2_5ghq1")]
