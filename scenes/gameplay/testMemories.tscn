@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkv0jdud5hw3k"]
+[gd_scene load_steps=7 format=3 uid="uid://dkv0jdud5hw3k"]
 
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/MainMap.tscn" id="1_4rq8b"]
 [ext_resource type="Script" uid="uid://bms2jofssj2sc" path="res://scripts/main.gd" id="1_op1or"]
@@ -52,7 +52,4 @@ position = Vector2(4844, 70)
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="GUI" instance=ExtResource("5_gsrji")]
-visible = false
-
-[node name="InputSettings" parent="GUI" instance=ExtResource("6_op1or")]
 visible = false

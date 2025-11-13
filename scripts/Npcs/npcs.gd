@@ -40,7 +40,7 @@ func on_body_exited(body):
 		
 func _process(delta):
 	if player_in_range and Input.is_action_just_pressed("interact"):
-		if !dialogue_is_on:
+		if !dialogue_is_on and not Gamestate.dialogue_locked:
 			start_dialogue()
 		
 func start_dialogue():
