@@ -3,7 +3,7 @@ extends "res://scripts/player/player.gd"
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var counter: Control = $GUI/Counter
 @onready var memories: Array[Node] =  self.get_tree().get_nodes_in_group("Memories")
-
+@export var max_value: int = 10
 
 
 var is_ability_active: bool = false
