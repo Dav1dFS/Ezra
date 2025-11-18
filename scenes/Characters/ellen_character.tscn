@@ -9,15 +9,22 @@ radius = 4.0
 height = 20.0
 
 [node name="Player" instance=ExtResource("1_base")]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("2_ellen")
 character_name = "Ellen"
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
-position = Vector2(-0.5, -16)
+y_sort_enabled = true
+position = Vector2(-0.5, -8)
 texture = ExtResource("3_ellen_sprite")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, -7.5)
+y_sort_enabled = true
+position = Vector2(0, 0.5)
 shape = SubResource("CapsuleShape2D_ellen")
+
+[node name="Camera2D" parent="." index="2"]
+position = Vector2(0, -10)
 
 [node name="Timer" type="Timer" parent="." index="4"]

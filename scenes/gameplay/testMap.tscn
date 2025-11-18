@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu8e67s8dyqra"]
+
+[ext_resource type="Script" uid="uid://bms2jofssj2sc" path="res://scripts/main.gd" id="1_t3jtu"]
+[ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/MainMap.tscn" id="2_m0fr0"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="5_t8lv5"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_ysyyb"]
+[ext_resource type="PackedScene" uid="uid://dle73kkftd1pm" path="res://scenes/UI/PauseMenu.tscn" id="6_ak013"]
+
+[node name="Scene" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_t3jtu")
+
+[node name="Player" parent="." instance=ExtResource("5_t8lv5")]
+z_index = 1
+position = Vector2(4835, 1112)
+
+[node name="TileMap" parent="." instance=ExtResource("2_m0fr0")]
+
+[node name="downLeftLimit" type="Marker2D" parent="."]
+position = Vector2(-160, 1792)
+
+[node name="topRightLimit" type="Marker2D" parent="."]
+position = Vector2(5529, -1061)
+
+[node name="DialogueBox" parent="." instance=ExtResource("5_ysyyb")]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="GUI" instance=ExtResource("6_ak013")]
+visible = false
