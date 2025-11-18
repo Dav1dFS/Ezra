@@ -1,0 +1,29 @@
+{
+  "name": "Frieda",
+  "portrait": "res://assets/character sprites/frieda/frieda_base.png",
+  "portraitPlayer": "res://assets/character sprites/ezra/ezra_base.png",
+  "dialogues": [
+	{
+	  "id": "first_line_Frieda",
+	  "condition": "current_dialogue == 0 and character_name == 'Ezra' and not Gamestate.can_control_frieda",
+	  "lines": [
+		{ "text": "So this is Frieda", "speaker": "Ezra" },
+		{ "text": "I need to look around some more", "speaker": "Ezra" }
+	  ]
+	},
+	{
+	  "id": "default",
+	  "condition": "current_dialogue >= 1 and character_name == 'Ezra' and not Gamestate.can_control_frieda",
+	  "lines": [
+		{ "text": "FOCUS EZRA!", "speaker": "Ezra" }
+	  ]
+	},
+	{
+	  "id": "default_controlable",
+	  "condition": "Gamestate.can_control_frieda and not Gamestate.frieda_control_line_shown",
+	  "lines": [
+		{ "text": "Alright, lets do this", "speaker": "Ezra" }
+	  ]
+	}
+	]
+}

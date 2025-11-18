@@ -7,6 +7,10 @@ var custom_cursor: Texture2D
 var play_time:= 0.0
 var is_talking: bool = false
 var dialogue_locked:= false
+var ellen_night1_intro_done: bool = false
+var memory_zoom_enabled := false
+var can_control_frieda: bool = false
+var frieda_control_line_shown: bool = false
 
 func _ready():
 	var img = load("res://assets/character sprites/ezra/ezra_base.png").get_image()
