@@ -11,6 +11,8 @@ var dialogue_data : Dictionary
 var dialogue_is_on: bool = false
 var current_dialogue: int = 0
 var waiting_for_player: bool = false
+var from_cutscene: bool = false
+var current_dialogue_id: String = ""
 
 func _ready():
 	print(dialogue_file_path)
@@ -25,6 +27,7 @@ func _ready():
 	dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
 	
 func on_body_entered(body):
+	print("ENTER:", body.name, body.get_class())
 	if body.name == "Player":
 		player_in_range = true
 		interact_label.visible = true
@@ -44,6 +47,7 @@ func _process(delta):
 			start_dialogue()
 		
 func start_dialogue():
+	print("NPC(", name, "): start_dialogue. from_cutscene =", from_cutscene)
 	dialogue_is_on = true
 	interact_label.visible = false
 	var dialogue_to_use = _choose_dialogue()
@@ -51,6 +55,9 @@ func start_dialogue():
 	if dialogue_to_use == null:
 		dialogue_is_on = false
 		return
+		
+	current_dialogue_id = dialogue_to_use.get("id", "")
+	
 	print(dialogue_to_use)
 	for line in dialogue_to_use["lines"]:
 		if "text" in line:
@@ -76,8 +83,8 @@ func _choose_dialogue() -> Dictionary:
 		var expr = Expression.new()
 		var parse_error = expr.parse(condition, ["current_dialogue", "Gamestate", "character_name"])
 		if parse_error == OK:
-			var result = expr.execute([current_dialogue, Gamestate, Gamestate.character_name])
-			if result:
+			var result = expr.execute([current_dialogue, Gamestate, Gamestate.character_name], self)
+			if typeof(result) == TYPE_BOOL and result:
 				return d
 		else:
 			push_warning("Erro a interpretar a condicao: %s" % condition)
@@ -86,14 +93,24 @@ func _choose_dialogue() -> Dictionary:
 
 
 func _on_dialogue_ended(npc_node, fully_completed):
+	print("NPC(", name, "): _on_dialogue_ended. from_cutscene =", from_cutscene)
 	
 	if npc_node != self:
 		return
 
 	dialogue_is_on = false
-	interact_label.visible = true
+	
+	if not from_cutscene:
+		interact_label.visible = true
+		Gamestate.is_talking = false
+	else:
+		interact_label.visible = false
+		from_cutscene = false
 
 	if fully_completed:
+		if name == "Frieda" and current_dialogue_id == "default_controlable":
+			Gamestate.frieda_control_line_shown = true
+			
 		var dialogue_to_use=_choose_dialogue()
 		if dialogue_to_use.has("effect"):
 			for effect in dialogue_to_use["effect"]:
