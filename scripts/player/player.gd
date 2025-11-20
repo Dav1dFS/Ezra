@@ -29,6 +29,7 @@ func _ready():
 	if inv:
 		print("✅ Connected to inventory:", inv)
 		inv.connect("inventory_changed", Callable(self, "update_inv"))
+		update_inv()
 		
 	await get_tree().process_frame
 
