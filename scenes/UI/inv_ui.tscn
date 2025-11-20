@@ -8,7 +8,8 @@
 [node name="Inv_UI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 11.0
+offset_left = -31.0
+offset_right = -20.0
 offset_bottom = 11.0
 script = ExtResource("1_035ib")
 
@@ -24,6 +25,7 @@ z_index = 2
 layout_mode = 0
 offset_right = 22.0
 offset_bottom = 22.0
+scale = Vector2(1.3571432, 1.3571432)
 texture = ExtResource("2_ojm5p")
 expand_mode = 1
 
@@ -31,9 +33,9 @@ expand_mode = 1
 z_index = 1
 layout_mode = 0
 offset_top = -3.0
-offset_right = 10.0
-offset_bottom = 7.0
-scale = Vector2(2.2400002, 2.2400002)
+offset_right = 19.642857
+offset_bottom = 16.642857
+scale = Vector2(1.5200005, 1.5200005)
 texture = ExtResource("3_satu2")
 expand_mode = 1
 
@@ -41,5 +43,6 @@ expand_mode = 1
 layout_mode = 0
 offset_right = 22.0
 offset_bottom = 22.0
+scale = Vector2(1.3571432, 1.3571432)
 texture = ExtResource("3_dm4hg")
 expand_mode = 1
