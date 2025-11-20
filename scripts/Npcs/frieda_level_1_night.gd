@@ -119,5 +119,6 @@ func _on_fade_to_black_done() -> void:
 
 	await get_tree().create_timer(3.0).timeout
 	day_label.visible = false
-
 	get_tree().change_scene_to_file(next_scene_path)
+	Gamestate.is_talking = false
+	Gamestate.dialogue_locked = false

@@ -39,7 +39,7 @@ func increment_item_counter():
 	
 func _process(delta: float) -> void:
 	#print(memories)
-	if Gamestate.is_talking:
+	if Gamestate.is_talking or Gamestate.dialogue_locked:
 		return
 	if not Gamestate.memory_zoom_enabled:
 		return
