@@ -25,6 +25,7 @@ func _ready():
 	
 	print (character_name)
 	Gamestate.character_name = character_name
+	slot.character(character_name)
 	
 	if inv:
 		print("✅ Connected to inventory:", inv)
