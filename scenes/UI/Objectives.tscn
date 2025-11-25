@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cc30oib385qaq" path="res://scripts/inventory/ezra_counter.gd" id="1_f4pa3"]
 [ext_resource type="Texture2D" uid="uid://cuho8t4f0o2bn" path="res://assets/items_sprites/paper.png" id="2_jldal"]
-[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_tgyfl"]
+[ext_resource type="FontFile" uid="uid://bjrn6qv2lityd" path="res://assets/fonts/edit-undo/editundo.ttf" id="3_f4pa3"]
 
 [node name="Inv_UI" type="Control"]
 layout_mode = 3
@@ -36,6 +36,7 @@ offset_top = 30.0
 offset_right = 352.87637
 offset_bottom = 53.0
 scale = Vector2(3.8979275, 3.8979275)
-theme_override_fonts/font = ExtResource("3_tgyfl")
+theme_override_fonts/font = ExtResource("3_f4pa3")
+theme_override_font_sizes/font_size = 18
 text = "0/6"
 vertical_alignment = 1
