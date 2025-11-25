@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cobyoa4qajsn1"]
+
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/characters/ellen_character.tscn" id="1_840yb"]
+[ext_resource type="PackedScene" uid="uid://br3gpnhtkafbd" path="res://scenes/npcs/friendly/characters/ellenNPC.tscn" id="2_3qrxl"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="3_dialogue"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_840yb")]
+position = Vector2(0, -24)
+rotation = -0.0009387911
+
+[node name="Ellen NPC" parent="." instance=ExtResource("2_3qrxl")]
+position = Vector2(56, -24)
+rotation = -0.0002527622
+dialogue_file = "res://DialoguesJSON/NewDialoguesTemplate.json"
+npc_portrait = "uid://bbvyp32os1srn"
+
+[node name="DialogueBox" parent="." instance=ExtResource("3_dialogue")]

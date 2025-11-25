@@ -27,7 +27,7 @@ func _update_sprite_for_direction():
 		sprite.texture = ellen_sprites[current_direction]
 
 func _input(event):
-	if !Gamestate.is_talking:
+	if !Gamestate.dialogue_locked:
 		if event.is_action_pressed("ability"):
 			toggle_transparency_ability()
 

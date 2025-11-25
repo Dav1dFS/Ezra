@@ -22,7 +22,7 @@ func start(dialogue : Dictionary, npc: Node):
 	current_npc = npc
 	visible = true
 	active = true
-	Gamestate.is_talking = true
+	Gamestate.dialogue_locked = true
 	
 	lines = dialogue.get("lines", [])
 	current_line = 0
@@ -32,15 +32,29 @@ func _show_line():
 	if current_line < lines.size():
 		var line_data = lines [current_line]
 		var text = line_data.get("text", "")
-		var speaker = line_data.get("speaker", "")
-		
+		var speaker = line_data.get("speaker")  # Can be null, string, or empty
+
 		text_label.text = text
-		name_label.text = speaker.capitalize()
-		
-		if speaker == "Ezra" or speaker =="Ellen":
+
+		# Handle different speaker types
+		if speaker == null:
+			# Null speaker = narration (no portrait, no name)
+			name_label.text = ""
+			portrait.visible = false
+			player_portrait.visible = false
+		elif speaker == "":
+			# Empty speaker = also treat as narration
+			name_label.text = ""
+			portrait.visible = false
+			player_portrait.visible = false
+		elif speaker == "Player" or speaker == "Ezra" or speaker == "Ellen" or speaker == "Birras":
+			# Player speaking
+			name_label.text = speaker.capitalize()
 			portrait.visible = false
 			player_portrait.visible = true
 		else:
+			# NPC speaking
+			name_label.text = speaker.capitalize()
 			portrait.visible = true
 			player_portrait.visible = false
 	else:
@@ -71,7 +85,6 @@ func _input(event):
 func end_dialogue(fully_completed = false):
 	visible = false
 	active = false
-	Gamestate.is_talking = false
 	current_line = 0
 	
 	Gamestate.dialogue_locked = true
