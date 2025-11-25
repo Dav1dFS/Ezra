@@ -2,6 +2,7 @@ extends "res://scripts/player/player.gd"
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 var is_ability_active: bool = false
+@onready var counter: Control = $GUI/objective
 
 @onready var timer: Timer = $Timer
 
@@ -21,6 +22,9 @@ func _ready():
 	timer.one_shot=true
 	timer.connect("timeout",  Callable(self, "_on_timer_timeout"))
 	super._ready()
+
+func changeObjective(text:String):
+	counter.updateObjective(text)
 
 func _update_sprite_for_direction():
 	if ellen_sprites.has(current_direction):

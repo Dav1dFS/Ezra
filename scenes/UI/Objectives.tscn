@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://2b5a7qw3sl3"]
+
+[ext_resource type="Script" uid="uid://cc30oib385qaq" path="res://scripts/inventory/ezra_counter.gd" id="1_f4pa3"]
+[ext_resource type="Texture2D" uid="uid://cuho8t4f0o2bn" path="res://assets/items_sprites/paper.png" id="2_jldal"]
+[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_tgyfl"]
+
+[node name="Inv_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 11.0
+offset_bottom = 11.0
+script = ExtResource("1_f4pa3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -49.0
+offset_right = -39.0
+offset_bottom = 10.0
+scale = Vector2(2.2400002, 2.2400002)
+
+[node name="ItemDisplay" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 10.999996
+offset_right = 3.9999924
+offset_bottom = 20.999996
+scale = Vector2(12.371283, 13.065289)
+texture = ExtResource("2_jldal")
+expand_mode = 1
+
+[node name="CounterLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 30.0
+offset_right = 352.87637
+offset_bottom = 53.0
+scale = Vector2(3.8979275, 3.8979275)
+theme_override_fonts/font = ExtResource("3_tgyfl")
+text = "0/6"
+vertical_alignment = 1
