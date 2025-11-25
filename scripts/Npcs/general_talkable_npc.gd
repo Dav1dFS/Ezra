@@ -3,8 +3,6 @@ extends Node2D
 @export var npc_name: String = "NPC"
 @export_file("*.json") var dialogue_file: String
 @export_file("*.png") var npc_portrait: String
-@export var player_portrait_ezra: String = "res://assets/character sprites/ezra/ezra_base.png"
-@export var player_portrait_ellen: String = "res://assets/character sprites/ellen/ellen_base.png"
 @export var triggers_player_dialogue: bool = false
 
 # Node references
@@ -12,6 +10,7 @@ extends Node2D
 @onready var interact_label = $PlayerInteractionLabel
 
 # State variables
+var player_portrait_ezra: String = "res://assets/character sprites/ezra/ezra_base.png"
 var player_in_range: bool = false
 var dialogue_data: Dictionary
 var dialogue_is_on: bool = false
@@ -138,7 +137,6 @@ func _on_body_entered(body: Node):
 			interact_label.visible = true
 
 func _process_dialogue(dialogue: Dictionary) -> Dictionary:
-	"""Filter out mid_action lines and process text replacements"""
 	var processed = dialogue.duplicate(true)
 	var filtered_lines = []
 

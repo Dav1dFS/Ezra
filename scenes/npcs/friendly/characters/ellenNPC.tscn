@@ -8,7 +8,9 @@ radius = 6.0
 height = 15.0
 
 [node name="Ellen NPC" instance=ExtResource("1_pf625")]
-character_name = "Ellen"
+position = Vector2(-1, 0)
+npc_name = "Ellen"
+npc_portrait = "uid://bbvyp32os1srn"
 
 [node name="EllenBase" type="Sprite2D" parent="." index="0"]
 position = Vector2(-0.5, -16)

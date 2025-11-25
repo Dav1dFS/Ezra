@@ -8,7 +8,8 @@ radius = 4.0
 height = 18.0
 
 [node name="Frieda NPC" instance=ExtResource("1_phv5v")]
-character_name = "Frieda"
+npc_name = "Frieda"
+npc_portrait = "uid://igii0hb2mb2m"
 
 [node name="FriedaBase" type="Sprite2D" parent="." index="0"]
 position = Vector2(-0.5, -16)

@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bmnmagbbjxpm3"]
+[gd_scene load_steps=14 format=3 uid="uid://bmnmagbbjxpm3"]
 
 [ext_resource type="Script" uid="uid://bms2jofssj2sc" path="res://scripts/main.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/characters/player_character.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://ddkqx2brtr8hc" path="res://scenes/UI/InputSettings.tscn" id="2_yqjtg"]
-[ext_resource type="Texture2D" path="res://assets/brackeys_platformer_assets/sprites/knight.png" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/npcs/npcs.gd" id="3_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/npcs/enemies/enemyGuard.tscn" id="8_gee14"]
@@ -30,42 +29,6 @@ fill_from = Vector2(1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwrxv"]
 size = Vector2(8, 10)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u5sy4"]
-atlas = ExtResource("3_p57ef")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gee14"]
-atlas = ExtResource("3_p57ef")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
-atlas = ExtResource("3_p57ef")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vtaks"]
-atlas = ExtResource("3_p57ef")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_kvpfn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u5sy4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gee14")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0tnpc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vtaks")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5sy4"]
 radius = 13.038404
@@ -164,13 +127,6 @@ offset_bottom = -8.0
 theme_override_font_sizes/font_size = 6
 text = "Press E to Interact"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Npc2"]
-position = Vector2(0, -12)
-sprite_frames = SubResource("SpriteFrames_kvpfn")
-autoplay = "default"
-frame_progress = 0.38159746
-flip_h = true
-
 [node name="Area2D" type="Area2D" parent="Npc2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Npc2/Area2D"]
@@ -181,9 +137,6 @@ shape = SubResource("CircleShape2D_u5sy4")
 
 [node name="InputSettings" parent="GUI" instance=ExtResource("2_yqjtg")]
 visible = false
-
-[node name="Npcteste" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(167, -30)
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_iywne")]
 
