@@ -8,10 +8,9 @@
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pgdsa"]
 cull_mode = 1
-polygon = PackedVector2Array(0.47757894, 0, -1.7300689, 1.2105255, -1.9278486, 1.3026314, -1.9171576, 1.8157902, 0.47757894, 3.3684235, 49.740734, 35.368423, -1.3825492, 3.0417652, -2.3093565, 1.8133354, -2.1667705, 0.76039314, 49.056522, -30.315792)
+polygon = PackedVector2Array(0.47757894, 0, -0.20663154, 1.6842117, 0.47757894, 3.3684235, 49.740734, 35.368423, -8.666666, 10.105263, -8.666666, 0, -9.388888, -15.157894, 49.056522, -30.315792)
 
 [sub_resource type="Gradient" id="Gradient_kjesm"]
-interpolation_mode = 2
 offsets = PackedFloat32Array(0.46, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
@@ -28,7 +27,6 @@ radius = 2.9629629
 height = 22.784811
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("vision_renderer")]
-y_sort_enabled = true
 position = Vector2(0, -16)
 script = ExtResource("1_65c78")
 vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
@@ -36,13 +34,12 @@ alert_color = Color(0.69411767, 0.05882353, 0.36862746, 0.36862746)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 0
-y_sort_enabled = true
-position = Vector2(0, -6.3699455)
+position = Vector2(0, -1)
 texture = ExtResource("2_0mye4")
 hframes = 4
 
 [node name="VisionCone2D" parent="." instance=ExtResource("3_jnxau")]
-position = Vector2(0.217, 1.4450545)
+position = Vector2(0, -6)
 rotation = -1.5707964
 
 [node name="VisionConeRenderer" parent="VisionCone2D" index="0"]
@@ -55,34 +52,26 @@ visible = false
 visible = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="VisionCone2D"]
-z_index = 3
-y_sort_enabled = true
 position = Vector2(1, 0.302)
 rotation = 1.5707964
 scale = Vector2(1.4615386, 0.59375)
 occluder = SubResource("OccluderPolygon2D_pgdsa")
 
 [node name="PointLight2D" type="PointLight2D" parent="VisionCone2D"]
-z_index = 3
-y_sort_enabled = true
-position = Vector2(0.09375021, -1.984375)
+position = Vector2(0.9999992, 19.499992)
 rotation = 1.5707964
 scale = Vector2(1.8589745, 0.59375)
-range_z_min = 0
-range_z_max = 0
 shadow_enabled = true
-shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_lf20i")
-offset = Vector2(11.557108, -1.5263157)
 script = ExtResource("4_kjesm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.6300545)
+position = Vector2(0, 7)
 scale = Vector2(1.35, 0.79)
 shape = SubResource("CapsuleShape2D_tvwks")
 
 [node name="MovementDebugDraw" type="Node2D" parent="."]
-position = Vector2(36, -13.369946)
+position = Vector2(36, -8)
 script = ExtResource("4_movement")
 point_color = Color(1, 0, 0, 0.36862746)
 

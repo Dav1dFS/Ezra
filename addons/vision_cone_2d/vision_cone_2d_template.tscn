@@ -21,4 +21,3 @@ polygon = PackedVector2Array(0, 0, 0, 0, 0, 0)
 
 [node name="DebugDraw" type="Node2D" parent="."]
 script = ExtResource("2_opycg")
-
