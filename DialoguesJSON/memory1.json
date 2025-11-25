@@ -1,0 +1,17 @@
+{
+  "name": "Prisoner",
+  "portrait": "res://assets/character sprites/prisoners static/priosiner_big.png",
+  "portraitPlayer": "res://assets/character sprites/ezra/ezra_base.png",
+  "dialogues": [
+	{
+	  "id": "memory",
+	  "condition": "character_name == 'Ezra'",
+	  "lines": [
+		{ "text": "Oh, {character_name}!", "speaker": "Prisoner" },
+		{ "text": "You should watch out! The guards are already doing rounds!", "speaker": "Prisoner" },
+		{"text": "If you want to hide somewhere safe, talk with Ruben." , "speaker":"Prisoner"},
+		{"text": "He is out there" , "speaker":"Prisoner"}
+	  ]
+	}
+  ]
+}

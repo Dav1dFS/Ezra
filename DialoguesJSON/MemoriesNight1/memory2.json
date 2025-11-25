@@ -7,11 +7,10 @@
 	  "id": "memory2",
 	  "condition": "character_name == 'Ezra'",
 	  "lines": [
-		{ "text": "The moment her town was captured, 
-		she saved some women from being executed at the spot.", "speaker": "Frieda" },
+		{ "text": "The moment her town was captured, she saved some women from being executed at the spot.", "speaker": "Frieda" },
 		{ "text": "Wow Frieda sure helped a lot of people.", "speaker": "Ezra" },
 		{"text": "Hmm i should search for the last piece" , "speaker":"Ezra"}
 	  ]
-	},
-	]
+	}
+  ]
 }

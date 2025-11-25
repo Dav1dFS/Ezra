@@ -7,11 +7,10 @@
 	  "id": "memory3",
 	  "condition": "character_name == 'Ezra'",
 	  "lines": [
-		{ "text": "Frieda's compassion for children in the camp and her dream
-		of one day working with children", "speaker": "Frieda" },
+		{ "text": "Frieda's compassion for children in the camp and her dream of one day working with children", "speaker": "Frieda" },
 		{ "text": "Frieda sounds amazing", "speaker": "Ezra" },
 		{"text": "I need to go look for her quickly" , "speaker":"Ezra"}
 	  ]
-	},
-	]
+	}
+  ]
 }

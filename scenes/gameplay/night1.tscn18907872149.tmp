@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://bms2jofssj2sc" path="res://scripts/main.gd" id="1_cedyq"]
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/MainMap.tscn" id="2_4ov1t"]
 [ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/Dialogue/Memory.tscn" id="3_u6i4i"]
-[ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="4_t5b4k"]
+[ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/characters/ezra_character.tscn" id="4_t5b4k"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_3fgql"]
 [ext_resource type="PackedScene" uid="uid://dle73kkftd1pm" path="res://scenes/UI/PauseMenu.tscn" id="6_blula"]
-[ext_resource type="PackedScene" uid="uid://bm3yfkddsvryw" path="res://scenes/Npcs/Ellen_level_1_night.tscn" id="7_4ov1t"]
+[ext_resource type="PackedScene" uid="uid://bm3yfkddsvryw" path="res://scenes/npcs/Ellen_level_1_night.tscn" id="7_4ov1t"]
 [ext_resource type="Script" uid="uid://ddduf3o4tlfgt" path="res://scripts/night1_cutscene_controller.gd" id="8_u6i4i"]
 
 [sub_resource type="FontVariation" id="FontVariation_u6i4i"]
