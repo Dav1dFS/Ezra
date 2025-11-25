@@ -17,8 +17,9 @@ func changeImages(npc, player):
 	self.portrait.texture = load(npc)
 	self.player_portrait.texture=load(player)
 	
-
 func start(dialogue : Dictionary, npc: Node):
+	Gamestate.is_talking = true
+	Gamestate.dialogue_locked = true
 	current_npc = npc
 	visible = true
 	active = true
@@ -69,7 +70,7 @@ func _input(event):
 		if event is InputEventKey:
 			var blocked_keys = [
 				KEY_W, KEY_A, KEY_S, KEY_D,
-				KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT
+				KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_ESCAPE
 			]
 			if event.physical_keycode in blocked_keys:
 				return
@@ -87,8 +88,8 @@ func end_dialogue(fully_completed = false):
 	active = false
 	current_line = 0
 	
-	Gamestate.dialogue_locked = true
 	await get_tree().create_timer(0.1).timeout
+	Gamestate.is_talking = false
 	Gamestate.dialogue_locked = false
 	
 	if current_npc:

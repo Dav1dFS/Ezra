@@ -25,10 +25,12 @@ func _ready():
 	
 	print (character_name)
 	Gamestate.character_name = character_name
+	slot.character(character_name)
 	
 	if inv:
 		print("✅ Connected to inventory:", inv)
 		inv.connect("inventory_changed", Callable(self, "update_inv"))
+		update_inv()
 		
 	await get_tree().process_frame
 

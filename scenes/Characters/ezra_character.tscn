@@ -30,6 +30,7 @@ shader_parameter/vignette_color = Color(0, 0, 0, 1)
 z_index = 2
 collision_layer = 2
 script = ExtResource("2_qm0pf")
+max_value = 3
 inv = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]

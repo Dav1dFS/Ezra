@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=3 format=3 uid="uid://c2pw7d2t47c3s"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=4 format=3 uid="uid://c2pw7d2t47c3s"]
 
 [ext_resource type="Script" uid="uid://d0wmeudlik2d6" path="res://scripts/inventory/Item.gd" id="1_rguco"]
+[ext_resource type="Resource" uid="uid://duwwo2c1us4qf" path="res://items/teddy.tres" id="2_rguco"]
 [ext_resource type="Script" uid="uid://dvds6cy42uden" path="res://scripts/inventory/inventory.gd" id="3_sx86g"]
 
 [resource]
 script = ExtResource("3_sx86g")
+current_items = Array[ExtResource("1_rguco")]([ExtResource("2_rguco")])
 metadata/_custom_type_script = "uid://dvds6cy42uden"

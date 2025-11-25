@@ -118,29 +118,30 @@ func _calculate_target_position():
 		target_position = start_position + direction_vector * (-backward_distance)
 
 func _physics_process(delta: float) -> void:
-	if is_moving:
-		var distance_to_target = global_position.distance_to(target_position)
+	if !Gamestate.game_is_paused:
+		if is_moving:
+			var distance_to_target = global_position.distance_to(target_position)
 
-		if distance_to_target < 5.0:
-			moving_forward = !moving_forward
-			await get_tree().create_timer(2.0).timeout
-			_calculate_target_position()
-			stuck_timer = 0.0
-		else:
-			var direction = (target_position - global_position).normalized()
-			velocity = direction * movement_speed * delta * 60.0
-			move_and_slide()
-			
-			var movement_distance = global_position.distance_to(previous_position)
-			if movement_distance < 0.5:
-				stuck_timer += delta
-				if stuck_timer >= stuck_threshold:
-					moving_forward = !moving_forward
-					_calculate_target_position()
-					stuck_timer = 0.0
-			else:
+			if distance_to_target < 5.0:
+				moving_forward = !moving_forward
+				await get_tree().create_timer(2.0).timeout
+				_calculate_target_position()
 				stuck_timer = 0.0
+			else:
+				var direction = (target_position - global_position).normalized()
+				velocity = direction * movement_speed * delta * 60.0
+				move_and_slide()
+				
+				var movement_distance = global_position.distance_to(previous_position)
+				if movement_distance < 0.5:
+					stuck_timer += delta
+					if stuck_timer >= stuck_threshold:
+						moving_forward = !moving_forward
+						_calculate_target_position()
+						stuck_timer = 0.0
+				else:
+					stuck_timer = 0.0
 
-		previous_position = global_position
+			previous_position = global_position
 
-	_update_state()
+		_update_state()

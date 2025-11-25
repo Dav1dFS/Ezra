@@ -1,0 +1,16 @@
+{
+  "name": "Ezra",
+  "portrait": "res://assets/character sprites/frieda/frieda_base.png",
+  "portraitPlayer": "res://assets/character sprites/ezra/ezra_base.png",
+  "dialogues": [
+	{
+	  "id": "memory1",
+	  "condition": "character_name == 'Ezra'",
+	  "lines": [
+		{ "text": "Frieda's life as a public seer,reading peoples hands", "speaker": "Frieda" },
+		{ "text": "So, this was what Frieda was doing before all this..", "speaker": "Ezra" },
+		{"text": "Hmm i should look around some more" , "speaker":"Ezra"}
+	  ]
+	}
+]
+}
