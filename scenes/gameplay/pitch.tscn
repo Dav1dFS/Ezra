@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://b0u06jma4tqaq"]
 
-[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/characters/ellen_character.tscn" id="1_odyf7"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="1_odyf7"]
 [ext_resource type="Script" uid="uid://bms2jofssj2sc" path="res://scripts/main.gd" id="1_rsygn"]
 [ext_resource type="PackedScene" uid="uid://5neumxlners6" path="res://scenes/Npcs/Pitch1.tscn" id="2_2xbg7"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="3_1tgnn"]

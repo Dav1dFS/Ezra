@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://qrd46ikxghqo"]
 
-[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/npcs/enemy.gd" id="1_usc7g"]
+[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_usc7g"]
 [ext_resource type="Texture2D" uid="uid://ceep5fqe2fmc3" path="res://assets/character sprites/guards static/g3.png" id="3_usc7g"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_yha3f"]
-[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/npcs/movement_editor_helper.gd" id="4_nlgux"]
+[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_nlgux"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvwks"]
 radius = 2.774074

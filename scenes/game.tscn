@@ -1,10 +1,10 @@
 [gd_scene load_steps=22 format=3 uid="uid://bmnmagbbjxpm3"]
 
 [ext_resource type="Script" uid="uid://bms2jofssj2sc" path="res://scripts/main.gd" id="1_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/characters/player_character.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/Characters/player_character.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://ddkqx2brtr8hc" path="res://scenes/UI/InputSettings.tscn" id="2_yqjtg"]
 [ext_resource type="Texture2D" path="res://assets/brackeys_platformer_assets/sprites/knight.png" id="3_p57ef"]
-[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/npcs/npcs.gd" id="3_u5sy4"]
+[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/Npcs/npcs.gd" id="3_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://b5ui5m6o18t" path="res://scenes/Npcs/npcTalk.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemyGuard.tscn" id="8_gee14"]
