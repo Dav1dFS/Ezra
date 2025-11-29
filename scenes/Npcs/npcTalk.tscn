@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5ui5m6o18t"]
 
-[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/Npcs/npcs.gd" id="1_hy43w"]
+[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/npcs/npcs.gd" id="1_hy43w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_edoqt"]
 

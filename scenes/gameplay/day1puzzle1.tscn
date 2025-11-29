@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/MainMap.tscn" id="1_ms1cr"]
 [ext_resource type="Script" uid="uid://dd4id7br4hm7x" path="res://scripts/day_1_puzzle_1.gd" id="1_yothf"]
-[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="2_axa8k"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/characters/ellen_character.tscn" id="2_axa8k"]
 [ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemyGuard.tscn" id="3_nobpu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yothf"]

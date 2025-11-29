@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bm3yfkddsvryw"]
 
-[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/Npcs/npcs.gd" id="1_ispic"]
+[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/npcs/npcs.gd" id="1_ispic"]
 [ext_resource type="Texture2D" uid="uid://c8kvq3jk1rjhg" path="res://assets/character sprites/main characters/ellen.png" id="2_ispic"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usfu8"]
