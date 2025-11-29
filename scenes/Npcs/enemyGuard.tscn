@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://rq853mcdau80"]
+[gd_scene load_steps=11 format=3 uid="uid://rq853mcdau80"]
 
 [ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_65c78"]
 [ext_resource type="Texture2D" uid="uid://bursog8awn2t" path="res://assets/character sprites/guards static/g2.png" id="2_0mye4"]
@@ -26,6 +26,9 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvwks"]
 radius = 2.9629629
 height = 22.784811
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kjesm"]
+radius = 5.6000237
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("vision_renderer")]
 y_sort_enabled = true
@@ -85,6 +88,13 @@ shape = SubResource("CapsuleShape2D_tvwks")
 position = Vector2(36, -13.369946)
 script = ExtResource("4_movement")
 point_color = Color(1, 0, 0, 0.36862746)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0.3152008, 2.3954964)
+scale = Vector2(2.395, 1.545)
+shape = SubResource("CircleShape2D_kjesm")
 
 [connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]

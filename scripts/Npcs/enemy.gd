@@ -22,7 +22,7 @@ extends CharacterBody2D
 var previous_position: Vector2
 var stuck_timer: float = 0.0
 var stuck_threshold: float = 1.0
-
+var player_detected = false
 @onready var original_color = vision_renderer.color if vision_renderer else Color.WHITE
 @onready var rot_start = rotation
 
@@ -41,9 +41,32 @@ func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 		if body.character_name == "Ellen" and body.has_method("get_is_ability_active") and body.get_is_ability_active():
 			print("%s cannot see %s (Ellen is invisible)" % [self, body])
 			return
-
+		
 		print("%s is seeing %s" % [self, body])
 		vision_renderer.color = alert_color
+		player_detected = true
+		##Switch to face player if too close
+		var to_player = body.global_position - global_position
+		var angle = to_player.angle() 
+		if abs(angle) < PI/4:
+			print("right")
+			current_direction=Direction.RIGHT
+			spriteChar.frame=3
+			vision_cone.rotation = -PI/2
+		elif abs(angle - PI) < PI/4 or abs(angle + PI) < PI/4:
+			current_direction=Direction.LEFT
+			spriteChar.frame=2
+			vision_cone.rotation = PI/2
+		elif angle < 0:
+			current_direction=Direction.UP
+			spriteChar.frame=1
+			vision_cone.rotation = PI
+		else:
+			current_direction=Direction.DOWN
+			spriteChar.frame=0
+			vision_cone.rotation = 0
+		moving_forward=false
+		is_moving=false
 
 		# Slow motion effect
 		Engine.time_scale = 0.3
@@ -60,6 +83,7 @@ func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 func _ready():
 	current_direction = initial_direction as Direction
 	previous_position = global_position
+	$DetectionArea.body_entered.connect(_on_vision_cone_area_body_entered)
 	print(self.name)
 	if self.name=="General":
 		self.vision_cone.angle_deg=100
@@ -76,7 +100,7 @@ func _update_state():
 
 	var actual_direction = current_direction
 
-	if not moving_forward:
+	if not moving_forward and not player_detected:
 		match current_direction:
 			Direction.RIGHT: actual_direction = Direction.LEFT
 			Direction.LEFT: actual_direction = Direction.RIGHT
