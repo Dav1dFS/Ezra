@@ -76,7 +76,7 @@ func _update_sprite_for_direction():
 	pass
 	
 func _physics_process(_delta):
-	if Gamestate.game_is_paused or get_tree().paused or Gamestate.is_talking:
+	if Gamestate.game_is_paused or get_tree().paused or Gamestate.dialogue_locked:
 		return
 
 	input_handler()

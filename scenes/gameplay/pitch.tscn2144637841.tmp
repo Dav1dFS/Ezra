@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://b0u06jma4tqaq"]
 
 [ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/player_character.tscn" id="1_5eyg2"]
-[ext_resource type="PackedScene" uid="uid://5neumxlners6" path="res://scenes/Npcs/Pitch1.tscn" id="2_2xbg7"]
+[ext_resource type="PackedScene" uid="uid://5neumxlners6" path="res://scenes/npcs/Pitch1.tscn" id="2_2xbg7"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="3_1tgnn"]
-[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemyGuard.tscn" id="4_1tgnn"]
-[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/Npcs/enemyGeneral.tscn" id="5_3ayu6"]
+[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/npcs/enemyGuard.tscn" id="4_1tgnn"]
+[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/npcs/enemyGeneral.tscn" id="5_3ayu6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_55b5w"]
 

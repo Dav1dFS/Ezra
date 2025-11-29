@@ -1,4 +1,4 @@
-extends "res://scripts/Npcs/npcs.gd"
+extends "res://scripts/npcs/npcs.gd"
 
 @onready var ability_label: Label = $Label2
 @onready var ability_progress: TextureProgressBar = $AbilityProgress
