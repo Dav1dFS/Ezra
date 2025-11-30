@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://rigk7iiiey25"]
 
-[ext_resource type="Script" uid="uid://boiknnwxihnqo" path="res://scripts/npcs/general_talkable_npc.gd" id="1_tteq1"]
+[ext_resource type="Script" uid="uid://boiknnwxihnqo" path="res://scripts/Npcs/general_talkable_npc.gd" id="1_tteq1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uhn7n"]
 radius = 21.47651
