@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://m3d38ksq3ja1"]
+[gd_scene load_steps=13 format=3 uid="uid://m3d38ksq3ja1"]
 
 [ext_resource type="Script" uid="uid://brog7m5vcrmdh" path="res://scripts/day_1_puzzle_2.gd" id="1_c5o0j"]
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/MainMap.tscn" id="2_c5o0j"]
 [ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="3_jej5n"]
-[ext_resource type="PackedScene" uid="uid://t338q36tsqx8" path="res://scenes/Npcs/enemyGuard.tscn" id="4_y0wut"]
+[ext_resource type="PackedScene" uid="uid://t338q36tsqx8" path="res://scenes/Npcs/enemies/enemyGuard.tscn" id="4_y0wut"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_rwttn"]
 [ext_resource type="Shader" uid="uid://p1ew2mo3oin0" path="res://scripts/shaders/fogDay.gdshader" id="6_c5o0j"]
 [ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/Npcs/friendly/characters/friedaNPC.tscn" id="7_jej5n"]
 [ext_resource type="PackedScene" uid="uid://bpu0qf8tao73y" path="res://scenes/Npcs/friendly/characters/ruthNPC.tscn" id="8_y0wut"]
+[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/Npcs/enemies/enemyGeneral.tscn" id="9_rwttn"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_c5o0j"]
 
@@ -47,7 +48,7 @@ position = Vector2(3434.9653, 2813.318)
 position = Vector2(5421.1245, 166.75366)
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
-position = Vector2(4748.7266, 2456.2134)
+position = Vector2(4780.9385, 2423.3347)
 
 [node name="Enemy" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(4369.1475, 1399.5707)
@@ -178,3 +179,9 @@ position = Vector2(4495.5527, 288.93042)
 npc_name = "Miss Ruth"
 dialogue_file = "res://DialoguesJSON/day_1/miss_ruth_meeting.json"
 npc_portrait = "uid://d11imkedd5ajh"
+
+[node name="General" parent="." instance=ExtResource("9_rwttn")]
+position = Vector2(4390.1206, 724.7095)
+is_moving = true
+forward_distance = 600.0
+initial_direction = 2

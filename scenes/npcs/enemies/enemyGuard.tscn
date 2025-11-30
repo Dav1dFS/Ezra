@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://rq853mcdau80"]
+[gd_scene load_steps=11 format=3 uid="uid://t338q36tsqx8"]
 
 [ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_65c78"]
 [ext_resource type="Texture2D" uid="uid://bursog8awn2t" path="res://assets/character sprites/guards static/g2.png" id="2_0mye4"]
@@ -8,7 +8,7 @@
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pgdsa"]
 cull_mode = 1
-polygon = PackedVector2Array(0.47757894, 0, -1.7300689, 1.2105255, -1.9278486, 1.3026314, -1.9171576, 1.8157902, 0.47757894, 3.3684235, 49.740734, 35.368423, -1.3825492, 3.0417652, -2.3093565, 1.8133354, -2.1667705, 0.76039314, 49.056522, -30.315792)
+polygon = PackedVector2Array(0.47757894, 0, -1.7300689, 1.2105255, -1.9278486, 1.3026314, -1.9171576, 1.8157902, 0.47757894, 3.3684235, 0.3291053, 4.3030643, -1.3825492, 3.0417652, -2.3093565, 1.8133354, -2.1667705, 0.76039314, 0.3291053, -0.74956703)
 
 [sub_resource type="Gradient" id="Gradient_kjesm"]
 interpolation_mode = 2
