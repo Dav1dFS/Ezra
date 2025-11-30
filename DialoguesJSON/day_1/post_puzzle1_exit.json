@@ -1,27 +1,26 @@
 {
-    "dialogues": [
-        {
-            "condition": "default",
-            "mid_action": false,
-            "lines": [
-                {"speaker": "Frieda", "text": "Girl, let's get out of here. They will be busy for a while."},
-                {"mid_action": "ellen_frieda_exit"},
-                {"speaker": "Ellen", "text": "Thank you, Lady. Thank you so much."},
-                {"speaker": "Frieda", "text": "You look so bad, sweet girl."},
-                {"speaker": "Frieda", "text": "Find Miss Ruth, she will take good care of you."},
-                {"speaker": "Frieda", "text": "She might be at the gates at the top of this section."},
-                {"speaker": "Frieda", "text": "Tell her I sent you."},
-                {"speaker": "Ellen", "text": "Lady, I'm too scared."},
-                {"speaker": "Frieda", "text": "Frieda, call me Frieda. You can do it, sweetie."},
-                {"speaker": "Ezra", "text": "Ellen is going to need my help."}
-            ]
-        },
-        {
-            "condition": "repetition",
-            "mid_action": false,
-            "lines": [
-                {"speaker": "Frieda", "text": "Remember to find Miss Ruth at the gates up ahead."}
-            ]
-        }
-    ]
+	"dialogues": [
+		{
+			"condition": "default",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Frieda", "text": "Girl, get out of here. They will be busy for a while."},
+				{"speaker": "Ellen", "text": "Thank you, Lady. Thank you so much."},
+				{"speaker": "Frieda", "text": "You look so bad, sweet girl."},
+				{"speaker": "Frieda", "text": "Find Miss Ruth, she will take good care of you."},
+				{"speaker": "Frieda", "text": "She might be at the gates at the top of this section."},
+				{"speaker": "Frieda", "text": "Tell her I sent you."},
+				{"speaker": "Ellen", "text": "Lady, I'm too scared."},
+				{"speaker": "Frieda", "text": "Frieda, call me Frieda. You can do it, sweetie."},
+				{"speaker": "Ezra", "text": "Ellen is going to need my help."}
+			]
+		},
+		{
+			"condition": "repetition",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Frieda", "text": "Remember to find Miss Ruth at the gates up ahead."}
+			]
+		}
+	]
 }

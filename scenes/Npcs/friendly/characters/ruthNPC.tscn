@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://f3qo7r6kimms"]
+[gd_scene load_steps=4 format=3 uid="uid://bpu0qf8tao73y"]
 
-[ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/Npcs/friendly/general_talkable_npc.tscn" id="1_phv5v"]
-[ext_resource type="Texture2D" uid="uid://igii0hb2mb2m" path="res://assets/character sprites/frieda/frieda_base.png" id="2_w6bjl"]
+[ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/Npcs/friendly/general_talkable_npc.tscn" id="1_d65lc"]
+[ext_resource type="Texture2D" uid="uid://d11imkedd5ajh" path="res://assets/character sprites/velhinhaGoat/velhinha.png" id="2_d65lc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_isp7f"]
 radius = 4.0
 height = 18.0
 
-[node name="Frieda NPC" instance=ExtResource("1_phv5v")]
+[node name="Frieda NPC" instance=ExtResource("1_d65lc")]
 npc_name = "Frieda"
 npc_portrait = "uid://igii0hb2mb2m"
 
 [node name="FriedaBase" type="Sprite2D" parent="." index="0"]
 position = Vector2(-0.5, -6)
-texture = ExtResource("2_w6bjl")
+texture = ExtResource("2_d65lc")
 
 [node name="PlayerInteractionArea" parent="." index="1"]
 position = Vector2(0, 10)
