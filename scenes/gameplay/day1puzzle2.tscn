@@ -47,7 +47,7 @@ position = Vector2(3434.9653, 2813.318)
 position = Vector2(5421.1245, 166.75366)
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
-position = Vector2(4107.2695, 1125.3606)
+position = Vector2(3872.747, 2442.0027)
 
 [node name="Enemy" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(4369.1475, 1399.5707)
@@ -64,6 +64,30 @@ dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
 npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 forward_distance = 1000.0
+backward_distance = 0.0
+
+[node name="Enemy11" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3858.7808, 2380.626)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 50.0
+backward_distance = 0.0
+
+[node name="Enemy12" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3845.7979, 1064.7435)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 50.0
+backward_distance = 0.0
+
+[node name="Enemy13" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(4777.131, 1066.6504)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 50.0
 backward_distance = 0.0
 
 [node name="Enemy7" parent="." instance=ExtResource("4_y0wut")]
