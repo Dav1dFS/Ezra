@@ -18,7 +18,7 @@ texture = ExtResource("2_w6bjl")
 [node name="PlayerInteractionArea" parent="." index="1"]
 position = Vector2(0, 10)
 
-[node name="Area2D" type="Area2D" parent="." index="3"]
+[node name="Area2D" type="CharacterBody2D" parent="." index="3"]
 position = Vector2(0, 10)
 disable_mode = 1
 
