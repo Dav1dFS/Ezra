@@ -3,6 +3,7 @@ extends Node2D
 @export var npc_name: String = "NPC"
 @export_file("*.json") var dialogue_file: String
 @export_file("*.png") var npc_portrait: String
+@export_file("*.png") var npc_sprite: String
 @export var triggers_player_dialogue: bool = false
 
 # Node references
@@ -24,7 +25,8 @@ func _ready():
 
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exited)
-
+	if npc_sprite:
+		$FriedaBase.texture=load(npc_sprite)
 	_connect_to_dialogue_box()
 
 	# if npc_name and not Gamestate.npc_dialogues_completed.has(npc_name):
