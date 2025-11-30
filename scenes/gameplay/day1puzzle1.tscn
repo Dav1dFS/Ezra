@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://og4f6vjkiaap"]
+[gd_scene load_steps=7 format=3 uid="uid://og4f6vjkiaap"]
 
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/MainMap.tscn" id="1_ms1cr"]
-[ext_resource type="Script" uid="uid://dd4id7br4hm7x" path="res://scripts/day_1_puzzle_1.gd" id="1_yothf"]
+[ext_resource type="Script" path="res://scripts/day_1_puzzle_1.gd" id="1_yothf"]
 [ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="2_axa8k"]
 [ext_resource type="PackedScene" uid="uid://t338q36tsqx8" path="res://scenes/Npcs/enemyGuard.tscn" id="3_nobpu"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_bngp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yothf"]
 size = Vector2(68.94043, 44.0354)
@@ -36,61 +37,85 @@ position = Vector2(5099, 1597)
 
 [node name="Enemy" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4889, 1664)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 initial_direction = 3
 
 [node name="Enemy4" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4739.558, 1879.015)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 forward_distance = 700.0
 initial_direction = 3
 
 [node name="Enemy12" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4545.826, 2012.5454)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 forward_distance = 700.0
 initial_direction = 3
 
 [node name="Enemy6" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4881, 2089)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 forward_distance = 700.0
 initial_direction = 3
 
 [node name="Enemy11" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4989.189, 2218.9775)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 forward_distance = 700.0
 initial_direction = 3
 
 [node name="Enemy7" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(5095, 2146)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 forward_distance = 700.0
 initial_direction = 3
 
 [node name="Enemy2" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4980, 1669)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 
 [node name="Enemy5" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4566, 1889)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 
 [node name="Enemy8" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4898, 1929)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 
 [node name="Enemy9" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4647, 2086)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 
 [node name="Enemy10" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4746.1733, 2300.876)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 
 [node name="Enemy3" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4578, 1792)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 forward_distance = 450.0
 
@@ -100,3 +125,5 @@ position = Vector2(4786.015, 2389.6248)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
 position = Vector2(30.405762, -43.079346)
 shape = SubResource("RectangleShape2D_yothf")
+
+[node name="DialogueBox" parent="." instance=ExtResource("5_bngp2")]

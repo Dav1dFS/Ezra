@@ -18,6 +18,7 @@ var current_dialogue_index: int = 0
 var dialogue_completed: bool = false
 var current_player: Node = null
 
+
 func _ready():
 	_load_dialogue_file()
 
