@@ -14,5 +14,9 @@ func add_point():
 	current += 1
 	update_label()
 
+func set_value(value: int):
+	current = value
+	update_label()
+
 func update_label():
 	label.text = str(current) + "/" + str(max_value)

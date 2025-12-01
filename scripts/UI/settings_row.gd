@@ -3,9 +3,9 @@ extends HBoxContainer
 var options: Array[String] = []
 var current_index := 0
 
-@onready var value_label = $ScreenMode
-@onready var left_arrow  = $LeftArrow
-@onready var right_arrow = $RightArrow
+@onready var value_label = $DisplayRow/DisplayRow/ScreenMode
+@onready var left_arrow  = $DisplayRow/LeftArrow
+@onready var right_arrow = $DisplayRow/RightArrow
 
 signal value_changed(value: String)
 

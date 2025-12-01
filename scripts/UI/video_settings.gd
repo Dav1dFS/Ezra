@@ -46,9 +46,9 @@ func _ready():
 func _on_display_mode_changed(value: String):
 	_pending_display_mode = value
 
-	var left_arrow = resolution_row.get_node("LeftArrow")
-	var right_arrow = resolution_row.get_node("RightArrow")
-	var label = resolution_row.get_node("ScreenMode")
+	var left_arrow = resolution_row.get_node("DisplayRow/LeftArrow")
+	var right_arrow = resolution_row.get_node("DisplayRow/RightArrow")
+	var label = resolution_row.get_node("DisplayRow/DisplayRow/ScreenMode")
 
 	if value == "Fullscreen":
 		
