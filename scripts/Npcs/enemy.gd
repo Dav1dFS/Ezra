@@ -10,7 +10,18 @@ extends CharacterBody2D
 #
 
 @onready var vision_cone: Node2D = $VisionCone2D
-
+@export_group("Dialogue")
+@export var npc_name: String = "Guard"
+@export_file("*.json") var dialogue_file: String
+@export_file("*.png") var npc_portrait: String
+@export var triggers_player_dialogue: bool = false
+var player_portrait_ezra: String = "res://assets/character sprites/ezra/ezra_base.png"
+var player_in_range: bool = false
+var dialogue_data: Dictionary
+var dialogue_is_on: bool = false
+var current_dialogue_index: int = 0
+var dialogue_completed: bool = false
+var current_player: Node = null
 @export_group("Movement")
 @export var is_moving = false
 @export var movement_speed = 50.0
@@ -25,7 +36,7 @@ extends CharacterBody2D
 var previous_position: Vector2
 var stuck_timer: float = 0.0
 var stuck_threshold: float = 1.0
-
+var player_detected = false
 @onready var original_color = vision_renderer.color if vision_renderer else Color.WHITE
 @onready var rot_start = rotation
 
@@ -39,21 +50,42 @@ var direction_vectors = {
 	Direction.DOWN: Vector2.DOWN
 }
 
+
+
 func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		if body.character_name == "Ellen" and body.has_method("get_is_ability_active") and body.get_is_ability_active():
 			print("%s cannot see %s (Ellen is invisible)" % [self, body])
 			return
-
+		
 		print("%s is seeing %s" % [self, body])
 		vision_renderer.color = alert_color
+		player_detected = true
+		##Switch to face player if too close
+		var to_player = body.global_position - global_position
+		var angle = to_player.angle() 
+		if abs(angle) < PI/4:
+			print("right")
+			current_direction=Direction.RIGHT
+			spriteChar.frame=3
+			vision_cone.rotation = -PI/2
+		elif abs(angle - PI) < PI/4 or abs(angle + PI) < PI/4:
+			current_direction=Direction.LEFT
+			spriteChar.frame=2
+			vision_cone.rotation = PI/2
+		elif angle < 0:
+			current_direction=Direction.UP
+			spriteChar.frame=1
+			vision_cone.rotation = PI
+		else:
+			current_direction=Direction.DOWN
+			spriteChar.frame=0
+			vision_cone.rotation = 0
+		moving_forward=false
+		is_moving=false
 
 		# Slow motion effect
-		Engine.time_scale = 0.3
-		await get_tree().create_timer(1.0).timeout
-		Engine.time_scale = 1.0
-
-		get_tree().change_scene_to_file("res://scenes/gameplay/pitch.tscn")
+		start_dialogue()
 
 func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
@@ -63,7 +95,9 @@ func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 func _ready():
 	current_direction = initial_direction as Direction
 	previous_position = global_position
+	$DetectionArea.body_entered.connect(_on_vision_cone_area_body_entered)
 	print(self.name)
+	_load_dialogue_file()
 	if self.name=="General":
 		self.vision_cone.angle_deg=100
 		self.vision_cone._angle=deg_to_rad(100)
@@ -79,7 +113,7 @@ func _update_state():
 
 	var actual_direction = current_direction
 
-	if not moving_forward:
+	if not moving_forward and not player_detected:
 		match current_direction:
 			Direction.RIGHT: actual_direction = Direction.LEFT
 			Direction.LEFT: actual_direction = Direction.RIGHT
@@ -148,3 +182,117 @@ func _physics_process(delta: float) -> void:
 			previous_position = global_position
 
 		_update_state()
+		
+		
+		
+##dialogue
+func _process_dialogue(dialogue: Dictionary) -> Dictionary:
+	var processed = dialogue.duplicate(true)
+	var filtered_lines = []
+
+	for line in dialogue.get("lines", []):
+		# Skip mid_action lines (for future cutscene implementation)
+		if line.has("mid_action"):
+			continue
+
+		# Process regular dialogue lines
+		if line.has("text"):
+			var processed_line = line.duplicate()
+			# Replace character name placeholder
+			if "{character_name}" in processed_line["text"]:
+				processed_line["text"] = processed_line["text"].replace("{character_name}", Gamestate.character_name)
+			filtered_lines.append(processed_line)
+
+	processed["lines"] = filtered_lines
+	return processed
+	
+func _load_dialogue_file():
+	if dialogue_file.is_empty():
+		push_error("Dialogue file path is empty for NPC: " + npc_name)
+		return
+
+	var file = FileAccess.open(dialogue_file, FileAccess.READ)
+	if file:
+		var json_text = file.get_as_text()
+		file.close()
+
+		var json = JSON.new()
+		var parse_result = json.parse(json_text)
+
+		if parse_result == OK:
+			dialogue_data = json.data
+		else:
+			push_error("Failed to parse JSON for NPC %s: %s" % [npc_name, json.get_error_message()])
+	else:
+		push_error("Failed to load dialogue file: " + dialogue_file)
+		
+		
+func start_dialogue():
+	var dialogue_to_use = _choose_dialogue()
+
+	if dialogue_to_use.is_empty():
+		print("No valid dialogue found for NPC: " + npc_name)
+		return
+
+	dialogue_is_on = true
+	Gamestate.dialogue_locked = true
+
+	# Filter out mid_action lines
+	var processed_dialogue = _process_dialogue(dialogue_to_use)
+
+	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+	if not dialogue_box:
+		push_error("DialogueBox not found in scene!")
+		dialogue_is_on = false
+		Gamestate.dialogue_locked = false
+		return
+
+	if not dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
+		dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
+
+	# Get player portrait safely
+	var player_portrait = ""
+	if current_player:
+		var sprite = current_player.get_node_or_null("Sprite2D")
+		if sprite and sprite.texture:
+			player_portrait = sprite.texture.resource_path
+
+	# Use default if no portrait found
+	if player_portrait == "":
+		player_portrait = player_portrait_ezra  # Default to Ezra
+
+	dialogue_box.changeImages(npc_portrait, player_portrait)
+	dialogue_box.start(processed_dialogue, self)
+
+func _choose_dialogue() -> Dictionary:
+	var dialogues = dialogue_data.get("dialogues", [])
+	print(dialogues)
+
+	var is_completed = Gamestate.npc_dialogues_completed.get(npc_name, false)
+
+	for dialogue in dialogues:
+		var condition = dialogue.get("condition", "default")
+
+		if condition == "default" and not is_completed:
+			return dialogue
+		elif condition == "repetition" and is_completed:
+			return dialogue
+		elif condition != "default" and condition != "repetition":
+			continue
+
+	return {}
+	
+func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
+	if npc_node != self:
+		return
+
+	dialogue_is_on = false
+	Gamestate.dialogue_locked = false
+
+	if fully_completed:
+		Gamestate.npc_dialogues_completed[npc_name] = true
+		dialogue_completed = true
+		current_dialogue_index += 1
+		
+
+		get_tree().change_scene_to_file("res://scenes/gameplay/pitch.tscn")

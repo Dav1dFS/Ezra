@@ -1,29 +1,29 @@
 {
-    "dialogues": [
-        {
-            "condition": "default",
-            "mid_action": true,
-            "lines": [
-                {"speaker": "NPC", "text": "Hello there, traveler!"},
-                {"mid_action": "wave_hand"},
-                {"speaker": null, "text": "Door opens with a creak."},
-                {"speaker": "Player", "text": "Good day!"},
-                {"speaker": "NPC", "text": "Welcome to our village."},
-                {"mid_action": "smile"},
-                {"speaker": null, "text": "The NPC smiles warmly."},
-                {"speaker": "NPC", "text": "It's a beautiful day, isn't it?"},
-                {"speaker": "Player", "text": "Hi! What can you tell me about this place?"},
-                {"speaker": "NPC", "text": "This village has a rich history dating back centuries..."}
-            ]
-        },
-        {
-            "condition": "repetition",
-            "mid_action": false,
-            "lines": [
-                {"speaker": "NPC", "text": "Thank you for helping us!"},
-                {"speaker": "Player", "text": "It was my pleasure."},
-                {"speaker": "NPC", "text": "Feel free to visit anytime."}
-            ]
-        }
-    ]
+	"dialogues": [
+		{
+			"condition": "default",
+			"mid_action": true,
+			"lines": [
+				{"speaker": "NPC", "text": "Hello there, traveler!"},
+				{"mid_action": "wave_hand"},
+				{"speaker": null, "text": "Door opens with a creak."},
+				{"speaker": "Player", "text": "Good day!"},
+				{"speaker": "NPC", "text": "Welcome to our village."},
+				{"mid_action": "smile"},
+				{"speaker": null, "text": "The NPC smiles warmly."},
+				{"speaker": "NPC", "text": "It's a beautiful day, isn't it?"},
+				{"speaker": "Player", "text": "Hi! What can you tell me about this place?"},
+				{"speaker": "NPC", "text": "This village has a rich history dating back centuries..."}
+			]
+		},
+		{
+			"condition": "repetition",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "NPC", "text": "Thank you for helping us!"},
+				{"speaker": "Player", "text": "It was my pleasure."},
+				{"speaker": "NPC", "text": "Feel free to visit anytime."}
+			]
+		}
+	]
 }
