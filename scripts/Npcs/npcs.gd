@@ -52,8 +52,9 @@ func start_dialogue():
 	interact_label.visible = false
 	var dialogue_to_use = _choose_dialogue()
 	
-	if dialogue_to_use == null:
+	if dialogue_to_use == null or dialogue_to_use.is_empty():
 		dialogue_is_on = false
+		push_warning("NPC(%s): No dialogue found! Gamestate.character_name='%s', current_dialogue=%d" % [name, Gamestate.character_name, current_dialogue])
 		return
 		
 	current_dialogue_id = dialogue_to_use.get("id", "")

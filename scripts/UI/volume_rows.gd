@@ -2,8 +2,8 @@ extends HBoxContainer
 
 signal volume_changed(value: float)
 
-@onready var slider: HSlider = $HSlider
-@onready var value_label: Label = $Value
+@onready var slider = $DisplayRow/DisplayRow/HSlider
+@onready var value_label = $DisplayRow/Value
 
 func _ready():
 	slider.min_value = 0.0
