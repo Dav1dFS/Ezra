@@ -20,6 +20,7 @@ func _ready():
 	character_name = "Ellen"
 	timer.wait_time = 3.0
 	timer.one_shot=true
+	collision_shape.disabled=false
 	timer.connect("timeout",  Callable(self, "_on_timer_timeout"))
 	super._ready()
 

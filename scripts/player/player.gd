@@ -16,10 +16,11 @@ var last_movement_direction: Vector2 = Vector2.ZERO
 
 @onready var slot= $GUI/Inv
 
-func update_inv():
-	var current_item = inv.get_inventory()
-	if current_item.size()>0:
-		slot.update(current_item[0])
+func update_inv(item:Item):
+	if not item:
+		slot.update(null)
+	else:
+		slot.update(item)
 
 func _ready():
 	add_to_group("player")
@@ -37,7 +38,7 @@ func _ready():
 	if inv:
 		print("✅ Connected to inventory:", inv)
 		inv.connect("inventory_changed", Callable(self, "update_inv"))
-		update_inv()
+		update_inv(null)
 		
 	await get_tree().process_frame
 

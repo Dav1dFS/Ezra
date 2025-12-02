@@ -3,11 +3,14 @@ extends Node2D
 @export var npc_name: String = "NPC"
 @export_file("*.json") var dialogue_file: String
 @export_file("*.png") var npc_portrait: String
+@export_file("*.png") var npc_sprite: String
 @export var triggers_player_dialogue: bool = false
 
 # Node references
 @onready var area = $PlayerInteractionArea
 @onready var interact_label = $PlayerInteractionLabel
+
+signal checkpoint()
 
 # State variables
 var player_portrait_ezra: String = "res://assets/character sprites/ezra/ezra_base.png"
@@ -24,7 +27,8 @@ func _ready():
 
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exited)
-
+	if npc_sprite:
+		$FriedaBase.texture=load(npc_sprite)
 	_connect_to_dialogue_box()
 
 	# if npc_name and not Gamestate.npc_dialogues_completed.has(npc_name):
@@ -144,7 +148,12 @@ func _process_dialogue(dialogue: Dictionary) -> Dictionary:
 	for line in dialogue.get("lines", []):
 		# Skip mid_action lines (for future cutscene implementation)
 		if line.has("mid_action"):
-			continue
+			var processed_line=line.duplicate()
+			print("here")
+			if "checkpoint" in processed_line["mid_action"] :
+				print(processed_line["mid_action"])
+				emit_signal("checkpoint")
+				
 
 		# Process regular dialogue lines
 		if line.has("text"):
