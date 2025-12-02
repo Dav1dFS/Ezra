@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://fl413olbj1s"]
 
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/MainMap.tscn" id="1_ms1cr"]
-[ext_resource type="Script" path="res://scripts/day_1_puzzle_1.gd" id="1_yothf"]
-[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/characters/ellen_character.tscn" id="2_axa8k"]
+[ext_resource type="Script" uid="uid://dd4id7br4hm7x" path="res://scripts/day_1_puzzle_1.gd" id="1_yothf"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="2_axa8k"]
 [ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemies/enemyGuard.tscn" id="3_nobpu"]
-[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_bngp2"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_bngp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yothf"]
 size = Vector2(68.94043, 44.0354)
@@ -33,7 +33,7 @@ position = Vector2(4524, 2330)
 position = Vector2(5141, 1557)
 
 [node name="Player" parent="." instance=ExtResource("2_axa8k")]
-position = Vector2(4988.9277, 1884.3173)
+position = Vector2(5111.2314, 1582.3073)
 
 [node name="Enemy" parent="." instance=ExtResource("3_nobpu")]
 position = Vector2(4889, 1664)
