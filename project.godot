@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="Ezra"
+run/main_scene="uid://mliottlwd112"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Gamestate="*res://scripts/gamestate.gd"
+SaveManager="*res://scripts/save_manager.gd"
 
 [display]
 

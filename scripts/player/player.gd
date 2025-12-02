@@ -6,6 +6,7 @@ const SPEED = 70.0
 @export var inv: Inventory
 @onready var cam: Camera2D = get_node("Camera2D")
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var pause_menu = $PauseLayer/PauseMenu
 
 @export var character_name: String =""
 
@@ -21,11 +22,18 @@ func update_inv(item:Item):
 	else:
 		slot.update(item)
 
-func _ready():	
-	
-	print (character_name)
-	Gamestate.character_name = character_name
-	slot.character(character_name)
+func _ready():
+	add_to_group("player")
+
+	# Only set character_name if NOT loading a save (SaveManager will restore it)
+	if not SaveManager.is_loading:
+		print(character_name)
+		Gamestate.character_name = character_name
+	else:
+		# When loading, use the character name from save data
+		print("Loading save - using saved character_name:", Gamestate.character_name)
+
+	slot.character(Gamestate.character_name)
 	
 	if inv:
 		print("✅ Connected to inventory:", inv)
@@ -76,7 +84,12 @@ func _update_sprite_for_direction():
 	pass
 	
 func _physics_process(_delta):
-	if Gamestate.game_is_paused or get_tree().paused or Gamestate.dialogue_locked:
+	if Input.is_action_just_pressed("pause") and not Gamestate.game_is_paused:
+		Gamestate.toggle_pause()
+		pause_menu.show_menu()
+		get_tree().root.get_viewport().set_input_as_handled()
+
+	if Gamestate.dialogue_locked:
 		return
 
 	input_handler()
