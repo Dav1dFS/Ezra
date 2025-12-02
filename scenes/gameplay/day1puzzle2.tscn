@@ -1,0 +1,218 @@
+[gd_scene load_steps=15 format=3 uid="uid://m3d38ksq3ja1"]
+
+[ext_resource type="Script" uid="uid://brog7m5vcrmdh" path="res://scripts/day_1_puzzle_2.gd" id="1_c5o0j"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="3_jej5n"]
+[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemies/enemyGuard.tscn" id="4_y0wut"]
+[ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/Npcs/friendly/characters/randNPC.tscn" id="5_fh8rj"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_rwttn"]
+[ext_resource type="Shader" uid="uid://p1ew2mo3oin0" path="res://scripts/shaders/fogDay.gdshader" id="6_c5o0j"]
+[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/Npcs/friendly/characters/friedaNPC.tscn" id="7_jej5n"]
+[ext_resource type="PackedScene" uid="uid://bpu0qf8tao73y" path="res://scenes/Npcs/friendly/characters/ruthNPC.tscn" id="8_y0wut"]
+[ext_resource type="PackedScene" uid="uid://bsud5g344nrs3" path="res://scenes/gameplay/MainMapFinal.tscn" id="9_fh8rj"]
+[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/Npcs/enemies/enemyGeneral.tscn" id="9_rwttn"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rwttn"]
+frequency = 0.0002
+fractal_gain = 0.67
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jej5n"]
+width = 61
+height = 55
+noise = SubResource("FastNoiseLite_rwttn")
+seamless = true
+invert = true
+in_3d_space = true
+as_normal_map = true
+seamless_blend_skirt = 0.255
+bump_strength = 7.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jej5n"]
+shader = ExtResource("6_c5o0j")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jej5n")
+shader_parameter/smoke_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/distortion_speed = 1.01600004826
+shader_parameter/density = 0.4250000201875
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwttn"]
+size = Vector2(68.94043, 23.729858)
+
+[node name="Day1Puzzle1" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(-196, -251)
+script = ExtResource("1_c5o0j")
+
+[node name="downLeftLimit" type="Marker2D" parent="."]
+position = Vector2(3101.4653, 2504.9849)
+
+[node name="topRightLimit" type="Marker2D" parent="."]
+position = Vector2(3994.1248, 1584.7534)
+
+[node name="Player" parent="." instance=ExtResource("3_jej5n")]
+position = Vector2(3754.4133, 2230.9326)
+
+[node name="Enemy" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3578.1475, 2118.0708)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 200.0
+backward_distance = 100.0
+initial_direction = 3
+
+[node name="Enemy3" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3177.73, 2315.3792)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 1000.0
+backward_distance = 0.0
+
+[node name="Enemy11" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3463.7808, 2469.2927)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 50.0
+backward_distance = 0.0
+
+[node name="Enemy12" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3345.7979, 1646.7437)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 50.0
+backward_distance = 0.0
+
+[node name="Enemy7" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3127.388, 2279.6125)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+backward_distance = 0.0
+initial_direction = 3
+
+[node name="Enemy8" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3126.6277, 1897.1821)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+backward_distance = 0.0
+initial_direction = 3
+
+[node name="Enemy9" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3511.195, 1630.3497)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+backward_distance = 0.0
+
+[node name="Enemy10" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3629.0886, 1630.3497)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+backward_distance = 0.0
+initial_direction = 1
+
+[node name="Enemy4" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3178.1965, 2334.0396)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 1000.0
+backward_distance = 0.0
+
+[node name="Enemy5" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3181.1843, 1927.8336)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 800.0
+backward_distance = 0.0
+
+[node name="Enemy14" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3181.1843, 1927.8336)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 800.0
+backward_distance = 0.0
+
+[node name="Enemy6" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3872.651, 1955.4943)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 800.0
+backward_distance = 0.0
+initial_direction = 1
+
+[node name="Enemy2" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3553.1426, 2117.6616)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 200.0
+backward_distance = 100.0
+initial_direction = 3
+
+[node name="Enemy13" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3954.1426, 2275.6616)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 200.0
+backward_distance = 200.0
+initial_direction = 3
+
+[node name="DialogueBox" parent="." instance=ExtResource("5_rwttn")]
+
+[node name="Rand1" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3229.2751, 1693.3629)
+npc_name = "Dui"
+dialogue_file = "res://DialoguesJSON/day_1/rand1.json"
+npc_portrait = "uid://cx6wuyqhojwly"
+npc_sprite = "uid://cmtmyhbcomdsf"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jej5n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -248.0
+offset_top = -92.0
+offset_right = 1032.0
+offset_bottom = 628.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+modulate = Color(0.2548901, 0.25670886, 0.28151357, 1)
+top_level = true
+z_index = 2
+color = Color(0.65012825, 0.6501283, 0.6501282, 1)
+
+[node name="Frieda NPC" parent="." instance=ExtResource("7_jej5n")]
+y_sort_enabled = true
+position = Vector2(3781.7373, 2212.5105)
+dialogue_file = "res://DialoguesJSON/day_1/post_puzzle1_exit.json"
+
+[node name="Frieda NPC2" parent="." instance=ExtResource("8_y0wut")]
+position = Vector2(3811.886, 1639.5969)
+npc_name = "Miss Ruth"
+dialogue_file = "res://DialoguesJSON/day_1/miss_ruth_meeting.json"
+npc_portrait = "uid://d11imkedd5ajh"
+
+[node name="General" parent="." instance=ExtResource("9_rwttn")]
+position = Vector2(3564.6206, 1895.7095)
+is_moving = true
+forward_distance = 300.0
+initial_direction = 2
+
+[node name="TileMap2" parent="." instance=ExtResource("9_fh8rj")]
+
+[node name="Checkpoint" type="Area2D" parent="."]
+position = Vector2(3748.0151, 2228.2915)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
+position = Vector2(30.405762, -32.926514)
+shape = SubResource("RectangleShape2D_rwttn")
+disabled = true

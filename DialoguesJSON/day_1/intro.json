@@ -1,31 +1,31 @@
 {
-    "dialogues": [
-        {
-            "condition": "automatic_intro",
-            "mid_action": false,
-            "lines": [
-                {"speaker": "Ellen", "text": "My belly hurts. I want some bread. I need to find something soon."},
-                {"speaker": "Ellen", "text": "If only Ezra were here to help me now."},
-                {"mid_action": "erza_appears"},
-                {"speaker": "Ezra", "text": "If only Ellen could see that I'm right here."},
-                {"speaker": "Ezra", "text": "This can't continue like this. Ellen is slowly getting weaker."},
-                {"speaker": "Ezra", "text": "I need to find a way to save them from these monsters."},
-                {"mid_action": "frieda_at_the_door"},
-                {"speaker": "Frieda", "text": "Who is there?"},
-                {"mid_action": "frieda_gets_closer"},
-                {"speaker": "Frieda", "text": "Who are you? Are you the one the guards have been looking for these days?"},
-                {"speaker": "Ellen", "text": "Lady, don't tell them I'm here, please."},
-                {"speaker": "Frieda", "text": "I'm not telling anyone anything. Who are you, child?"},
-                {"speaker": "Ellen", "text": "I'm Ellen. I have been hiding from those monsters since they took my brother."},
-                {"speaker": "Frieda", "text": "You are indeed the girl they have been looking for."},
-                {"speaker": "Frieda", "text": "Don't worry, I'm not going to tell them anything, but you have to be silent; they come here often."},
-                {"mid_action": "guards_searching_ellen"},
-                {"speaker": "Frieda", "text": "Girl! Quick! Hide!"},
-                {"speaker": "Ellen", "text": "I'm too scared. Lady, help me."},
-                {"speaker": "Ezra", "text": "I have to help Ellen."},
-                {"mid_action": "ezra_possesses_ellen"},
-                {"speaker": "General", "text": "Woman, come here and get out of the way. We are searching this place from top to bottom."}
-            ]
-        }
-    ]
+	"dialogues": [
+		{
+			"condition": "automatic_intro",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Ellen", "text": "My belly hurts. I want some bread. I need to find something soon."},
+				{"speaker": "Ellen", "text": "If only Ezra were here to help me now."},
+				{"mid_action": "erza_appears"},
+				{"speaker": "Ezra", "text": "If only Ellen could see that I'm right here."},
+				{"speaker": "Ezra", "text": "This can't continue like this. Ellen is slowly getting weaker."},
+				{"speaker": "Ezra", "text": "I need to find a way to save them from these monsters."},
+				{"mid_action": "frieda_at_the_door"},
+				{"speaker": "Frieda", "text": "Who is there?"},
+				{"mid_action": "frieda_gets_closer"},
+				{"speaker": "Frieda", "text": "Who are you? Are you the one the guards have been looking for these days?"},
+				{"speaker": "Ellen", "text": "Lady, don't tell them I'm here, please."},
+				{"speaker": "Frieda", "text": "I'm not telling anyone anything. Who are you, child?"},
+				{"speaker": "Ellen", "text": "I'm Ellen. I have been hiding from those monsters since they took my brother."},
+				{"speaker": "Frieda", "text": "You are indeed the girl they have been looking for."},
+				{"speaker": "Frieda", "text": "Don't worry, I'm not going to tell them anything, but you have to be silent; they come here often."},
+				{"mid_action": "guards_searching_ellen"},
+				{"speaker": "Frieda", "text": "Girl! Quick! Hide!"},
+				{"speaker": "Ellen", "text": "I'm too scared. Lady, help me."},
+				{"speaker": "Ezra", "text": "I have to help Ellen."},
+				{"mid_action": "ezra_possesses_ellen"},
+				{"speaker": "General", "text": "Woman, come here and get out of the way. We are searching this place from top to bottom."}
+			]
+		}
+	]
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://crx5k8n7j2mp8"]
+[gd_scene load_steps=7 format=3 uid="uid://crx5k8n7j2mp8"]
 
 [ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/Characters/player_character.tscn" id="1_base"]
 [ext_resource type="Script" uid="uid://c402qiye5sjjl" path="res://scripts/player/ellen.gd" id="2_ellen"]
@@ -9,9 +9,13 @@
 radius = 5.0
 height = 14.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wsosn"]
+polygon = PackedVector2Array(0, 6, -4, 6, -5, -14, -1, -17, 2, -17, 6, -15, 5, 6)
+
 [node name="Player" instance=ExtResource("1_base")]
 z_as_relative = false
 y_sort_enabled = true
+disable_mode = 1
 script = ExtResource("2_ellen")
 character_name = "Ellen"
 
@@ -38,3 +42,6 @@ offset_right = 17.72419
 offset_bottom = -7.375372
 
 [node name="Timer" type="Timer" parent="." index="4"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="5"]
+occluder = SubResource("OccluderPolygon2D_wsosn")

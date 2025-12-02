@@ -2,13 +2,13 @@ extends HBoxContainer
 
 signal gamma_changed(value: float)
 
-@onready var slider = $HSlider
-@onready var value_label = $Value
+@onready var slider = $DisplayRow/DisplayRow/HSlider
+@onready var value_label = $DisplayRow/Value
 
 func _ready():
 	slider.min_value = 0.7  
 	slider.max_value = 2.0
-	slider.step = 0.1         
+	slider.step = 0.1
 	slider.value = 1.0
 	value_label.text = str(round(slider.value * 100) / 100.0)
 

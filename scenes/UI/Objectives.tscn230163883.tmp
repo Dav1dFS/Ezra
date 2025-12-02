@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://2b5a7qw3sl3"]
+
+[ext_resource type="Script" uid="uid://cc30oib385qaq" path="res://scripts/inventory/ezra_counter.gd" id="1_f4pa3"]
+[ext_resource type="Texture2D" uid="uid://xpwktqpbmc48" path="res://assets/items_sprites/warningSign.png" id="2_f4pa3"]
+[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_jldal"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f4pa3"]
+font = ExtResource("3_jldal")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Inv_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 11.0
+offset_bottom = 11.0
+script = ExtResource("1_f4pa3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -49.0
+offset_right = -39.0
+offset_bottom = 10.0
+scale = Vector2(2.2400002, 2.2400002)
+
+[node name="ItemDisplay" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 25.000002
+offset_right = 4.0232124
+offset_bottom = 35.023216
+scale = Vector2(12.371283, 13.065289)
+texture = ExtResource("2_f4pa3")
+expand_mode = 1
+
+[node name="CounterLabel" type="Label" parent="."]
+texture_repeat = 1
+layout_mode = 0
+offset_left = 94.0
+offset_top = 58.0
+offset_right = 119.0
+offset_bottom = 74.0
+scale = Vector2(3.8979275, 3.8979275)
+theme_override_fonts/font = ExtResource("3_jldal")
+theme_override_font_sizes/font_size = 16
+text = "0/6"
+label_settings = SubResource("LabelSettings_f4pa3")
+vertical_alignment = 1
+text_direction = 1

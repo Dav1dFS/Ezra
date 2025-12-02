@@ -25,6 +25,7 @@ func _ready():
 	character_name = "Ezra"
 	super._ready()
 	original_zoom = cam.zoom.x
+	counter.max_value=max_value
 
 func _update_sprite_for_direction():
 	if ellen_sprites.has(current_direction):

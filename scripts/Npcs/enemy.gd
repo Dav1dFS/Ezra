@@ -3,9 +3,12 @@ extends CharacterBody2D
 @export var vision_renderer: Polygon2D
 @export var alert_color: Color
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D")
+
 #retirar no futuro
 @onready var spriteChar: Sprite2D = $Sprite2D
+#
+
 @onready var vision_cone: Node2D = $VisionCone2D
 @export_group("Dialogue")
 @export var npc_name: String = "Guard"

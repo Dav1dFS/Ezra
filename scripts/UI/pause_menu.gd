@@ -1,39 +1,33 @@
 extends Control
 
-@onready var left_column = $LeftColumn
-@onready var middle_column = $MiddleColumn
-@onready var video_column = $VideoSettingsColumn
-@onready var audio_column = $AudioSettingsColumn
-@onready var controls_column = $ControlsColumn
-@onready var middle_color = $ColorRect2
-@onready var right_color = $ColorRect3
 @onready var play_duration = $PlayDuration
+@onready var settings = $Settings
+@onready var saving_options = $SavingOptions
 
 var _menu_tween : Tween
 
 func _ready():
-	for node in [middle_column, video_column, audio_column, controls_column, middle_color, right_color]:
-		node.visible = false
-		node.modulate.a = 0.0
-	modulate.a = 0.0
-	visible = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	
+
 func _process(_delta):
 	if visible:
-		play_duration.text = "Play duration: " + Gamestate.get_formatted_play_time()	
+		play_duration.text = "Play duration: " + Gamestate.get_formatted_play_time()
 
-func fade_in(node: CanvasItem, duration := 0.3):
-	node.visible = true
-	var tween = create_tween()
-	tween.set_ignore_time_scale(true)
-	tween.tween_property(node, "modulate:a", 1.0, duration)
+func _close_submenus():
+	if settings.visible:
+		settings.close_settings()
+	if saving_options.visible:
+		saving_options.close_saving_options()
 
-func fade_out(node: CanvasItem, duration := 0.3):
-	var tween = create_tween()
-	tween.set_ignore_time_scale(true)
-	tween.tween_property(node, "modulate:a", 0.0, duration)
-	tween.finished.connect(func(): node.visible = false)
+func _unhandled_input(event):
+	if visible and event.is_action_pressed("pause"):
+		if settings.visible:
+			settings.close_settings()
+		elif saving_options.visible:
+			saving_options.close_saving_options()
+		else:
+			hide_menu()
+		get_viewport().set_input_as_handled()
 
 func show_menu():
 	visible = true
@@ -46,57 +40,50 @@ func show_menu():
 func hide_menu():
 	if _menu_tween and _menu_tween.is_running():
 		_menu_tween.kill()
-	_menu_tween = create_tween()
-	_menu_tween.set_ignore_time_scale(true)
+	_menu_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	_menu_tween.tween_property(self, "modulate:a", 0.0, 0.25)
-	_menu_tween.finished.connect(func(): visible = false)
+	_menu_tween.finished.connect(func():
+		visible = false
+		Gamestate.toggle_pause()
+		_close_submenus()
+	)
 
-func close_menu():
+func _on_resume_game_pressed() -> void:
 	hide_menu()
-	Gamestate.toggle_pause()
 
-func show_middle_column():
-	fade_in(middle_column)
-	fade_in(middle_color)
 
-func hide_middle_column():
-	fade_out(middle_column)
-	fade_out(video_column)
-	fade_out(controls_column)
-	fade_out(middle_color)
-
-func show_video_column():
-	if audio_column.visible:
-		fade_out(audio_column)
-	if controls_column.visible:
-		fade_out(controls_column)
-	fade_in(video_column)
-	fade_in(right_color)
-
-func show_controls_column():
-	if video_column.visible:
-		fade_out(video_column)
-	if audio_column.visible:
-		fade_out(audio_column)
-	fade_in(controls_column)
-	fade_in(right_color)
-
-func show_audio_column():
-	if video_column.visible:
-		fade_out(video_column)
-	if controls_column.visible:
-		fade_out(controls_column)
-	fade_in(audio_column)
-	fade_in(right_color)
-
-func back_pressed():
-	if video_column.visible:
-		fade_out(video_column)
-	elif controls_column.visible:
-		fade_out(controls_column)
-	elif audio_column.visible:
-		fade_out(audio_column)
+func _on_save_game_pressed() -> void:
+	if !saving_options.visible:
+		_close_submenus()
+		await get_tree().create_timer(0.1).timeout
+		saving_options.open_saving_options(saving_options.action_types.SAVE)
 	else:
-		fade_out(middle_column)
-		fade_out(middle_color)
-	fade_out(right_color)
+		saving_options.close_saving_options()
+
+
+func _on_load_game_pressed() -> void:
+	if !saving_options.visible:
+		_close_submenus()
+		await get_tree().create_timer(0.1).timeout
+		saving_options.open_saving_options(saving_options.action_types.LOAD)
+	else:
+		saving_options.close_saving_options()
+
+
+func _on_options_pressed() -> void:
+	if !settings.visible:
+		_close_submenus()
+		await get_tree().create_timer(0.1).timeout
+		settings.open_settings()
+	else:
+		settings.close_settings()
+
+
+func _on_exit_menu_pressed() -> void:
+	get_tree().paused = false
+	Gamestate.game_is_paused = false
+	get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
+
+
+func _on_exit_desktop_pressed() -> void:
+	get_tree().quit()

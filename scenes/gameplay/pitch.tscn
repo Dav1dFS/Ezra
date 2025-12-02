@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0u06jma4tqaq"]
+[gd_scene load_steps=19 format=3 uid="uid://b0u06jma4tqaq"]
 
-[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/characters/ellen_character.tscn" id="1_odyf7"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="1_odyf7"]
 [ext_resource type="Script" uid="uid://bms2jofssj2sc" path="res://scripts/main.gd" id="1_rsygn"]
-[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="3_1tgnn"]
-[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/npcs/enemies/enemyGuard.tscn" id="4_1tgnn"]
-[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/npcs/enemies/enemyGeneral.tscn" id="5_3ayu6"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="3_1tgnn"]
+[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemies/enemyGuard.tscn" id="4_1tgnn"]
+[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/Npcs/enemies/enemyGeneral.tscn" id="5_3ayu6"]
 [ext_resource type="PackedScene" uid="uid://dle73kkftd1pm" path="res://scenes/UI/PauseMenu.tscn" id="7_5ev3n"]
 [ext_resource type="PackedScene" uid="uid://ddkqx2brtr8hc" path="res://scenes/UI/InputSettings.tscn" id="7_odyf7"]
+[ext_resource type="PackedScene" uid="uid://5neumxlners6" path="res://scenes/Npcs/Pitch1.tscn" id="8_rsygn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_55b5w"]
 
@@ -294,3 +295,6 @@ vertical_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("1_odyf7")]
 position = Vector2(344, 180)
+
+[node name="Npcteste" parent="." instance=ExtResource("8_rsygn")]
+position = Vector2(298, 169)
