@@ -1,0 +1,25 @@
+{
+	"dialogues": [
+		{
+			"condition": "default",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Ezra", "text": "So, this is Frieda.. what kind of person is she?"}
+			]
+		},
+		{
+			"condition": "all_collected",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Ezra", "text": "Here goes nothing!"}
+			]
+		},
+		{
+			"condition": "repetition",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Ezra", "text": "Focus, Ezra!"}
+			]
+		}
+	]
+}

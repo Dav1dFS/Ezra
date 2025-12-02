@@ -16,35 +16,38 @@ offset_right = 11.0
 offset_bottom = 11.0
 script = ExtResource("1_f4pa3")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -49.0
-offset_right = -39.0
-offset_bottom = 10.0
-scale = Vector2(2.2400002, 2.2400002)
-
 [node name="ItemDisplay" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -6.0
-offset_top = 25.000002
-offset_right = 4.0232124
-offset_bottom = 35.023216
+offset_left = 1023.99994
+offset_top = 11.000001
+offset_right = 1034.0
+offset_bottom = 21.0
 scale = Vector2(12.371283, 13.065289)
 texture = ExtResource("2_f4pa3")
 expand_mode = 1
 
+[node name="ObjectiveLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 30.0
+offset_right = 311.8765
+offset_bottom = 53.0
+scale = Vector2(3.8979275, 3.8979275)
+theme_override_fonts/font = ExtResource("3_f4pa3")
+theme_override_font_sizes/font_size = 18
+text = "Objective"
+vertical_alignment = 1
+
 [node name="CounterLabel" type="Label" parent="."]
 texture_repeat = 1
 layout_mode = 0
-offset_left = 94.0
-offset_top = 58.0
-offset_right = 119.0
-offset_bottom = 74.0
+offset_left = 907.0
+offset_top = 30.0
+offset_right = 1156.8763
+offset_bottom = 53.0
 scale = Vector2(3.8979275, 3.8979275)
-theme_override_fonts/font = ExtResource("3_jldal")
-theme_override_font_sizes/font_size = 16
-text = "0/6"
-label_settings = SubResource("LabelSettings_f4pa3")
+theme_override_fonts/font = ExtResource("3_f4pa3")
+theme_override_font_sizes/font_size = 18
+text = "0/3"
 vertical_alignment = 1
 text_direction = 1

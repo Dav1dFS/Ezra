@@ -35,7 +35,7 @@ position = Vector2(0, -10)
 offset_left = 1042.0001
 offset_right = 1066.0001
 
-[node name="objective" parent="GUI" index="2" instance=ExtResource("4_wsosn")]
+[node name="objective" parent="GUI" index="1" instance=ExtResource("4_wsosn")]
 offset_left = 6.7241898
 offset_top = -18.375372
 offset_right = 17.72419

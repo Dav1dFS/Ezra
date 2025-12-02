@@ -16,14 +16,6 @@ offset_right = 11.0
 offset_bottom = 11.0
 script = ExtResource("1_cwiv3")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -49.0
-offset_right = -39.0
-offset_bottom = 10.0
-scale = Vector2(2.2400002, 2.2400002)
-
 [node name="ItemDisplay" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = -70.0

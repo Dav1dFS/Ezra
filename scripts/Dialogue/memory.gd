@@ -1,100 +1,151 @@
 extends Area2D
 
 @export_group("Dialogue")
-@export var dialogue_file_path: String = "res://DialoguesJSON/"
+@export var dialogue_file_path: String = "res://DialoguesJSON/MemoriesNight1/night1_memories.json"
+@export var level_id: String = "level1" # identifica o nível para contar as memórias
 @export var triggers_player_dialogue: bool = false
-@export var float_speed: float = 2.0  
-@export var float_amplitude: float =6.0  
+@export var float_speed: float = 2.0
+@export var float_amplitude: float = 6.0
+
+@export var particle_scene: PackedScene        
+@export var particles_per_second: float = 1.0 
+@export var particle_speed: float = 25.0 
 
 var start_position: Vector2
-var player: Node = null
+var player: Node2D = null
+var time_since_last_particle: float = 0.0
 
-var dialogue_data : Dictionary
+var dialogue_data: Dictionary = {}
 var dialogue_is_on: bool = false
 var current_dialogue: int = 0
-var waiting_for_player: bool = false
 
 func _ready():
 	start_position = global_position
 	connect("body_entered", Callable(self, "_on_body_entered"))
+
+	# Procura o player na cena
+	player = get_tree().get_current_scene().get_node_or_null("Player")
+	if not player:
+		push_warning("Player não encontrado! Partículas não irão funcionar.")
+
+	# Carrega JSON de diálogos
+	if dialogue_file_path == "":
+		push_error("dialogue_file_path está vazio!")
+		return
+
 	var file = FileAccess.open(dialogue_file_path, FileAccess.READ)
-	if file:
-		dialogue_data = JSON.parse_string(file.get_as_text())
+	if not file:
+		push_error("Não foi possível abrir o ficheiro: %s" % dialogue_file_path)
+		return
 
+	var json = JSON.new()
+	var parse_err = json.parse(file.get_as_text())
+	file.close()
+	if parse_err == OK:
+		dialogue_data = json.data
+	else:
+		push_error("Falha a parsear JSON em %s: %s" % [dialogue_file_path, json.get_error_message()])
 
-func _process(delta):
-	var time_ms=Time.get_ticks_msec()
-	var time_s=time_ms/1000.0
-	global_position.y = start_position.y + sin(time_s * float_speed) * float_amplitude
+func _process(delta: float) -> void:
+	# Flutuação do item
+	global_position.y = start_position.y + sin(Time.get_ticks_msec() / 1000.0 * float_speed) * float_amplitude
 
-func _on_body_entered(body):
-	if body.is_in_group("Player"): 
+	# Gera partículas guiadas para o player
+	if player and particle_scene:
+		time_since_last_particle += delta
+		if time_since_last_particle >= 1.0 / particles_per_second:
+			time_since_last_particle = 0.0
+			var particle = particle_scene.instantiate()
+			get_tree().get_current_scene().add_child(particle)
+			particle.global_position = global_position
+			particle.target = player
+			particle.speed = particle_speed
+
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group("Player"):
 		player = body
 		_collect_item()
 
-func _collect_item():
-	if player.has_method("increment_item_counter"):
+func _collect_item() -> void:
+	# Notifica o player
+	if player and player.has_method("increment_item_counter"):
 		player.increment_item_counter()
-		start_dialogue()
-	else:
-		print("Player missing 'increment_item_counter' method!")
 
+	_increment_memories_count()
+	start_dialogue()
 	queue_free()
 
+func _increment_memories_count() -> void:
+	if not ("memories_collected" in Gamestate) or typeof(Gamestate.memories_collected) != TYPE_DICTIONARY:
+		Gamestate.memories_collected = {}
 
-# Example of start_dialogue() from your snippet
-func start_dialogue():
-	var dialogue_is_on = true
-	var dialogue_to_use = _choose_dialogue()
-	
-	if dialogue_to_use == null:
+	var current_count: int = 0
+	if level_id in Gamestate.memories_collected:
+		current_count = int(Gamestate.memories_collected[level_id])
+
+	current_count += 1
+	Gamestate.memories_collected[level_id] = current_count
+
+func start_dialogue() -> void:
+	dialogue_is_on = true
+	var collected: int = 0
+	if "memories_collected" in Gamestate and typeof(Gamestate.memories_collected) == TYPE_DICTIONARY and level_id in Gamestate.memories_collected:
+		collected = int(Gamestate.memories_collected[level_id])
+	var dialogue_to_use: Dictionary = _choose_dialogue_for_collected(collected)
+	if dialogue_to_use == {}:
 		dialogue_is_on = false
 		return
 
-	print(dialogue_to_use)
-	for line in dialogue_to_use["lines"]:
-		if "text" in line:
-			line["text"] = line["text"].replace("{character_name}", Gamestate.character_name)
+	var lines_arr: Array = dialogue_to_use.get("lines", [])
+	for i in range(lines_arr.size()):
+		var line = lines_arr[i]
+		if typeof(line) == TYPE_DICTIONARY and line.has("text"):
+			line["text"] = str(line["text"]).replace("{character_name}", str(Gamestate.character_name))
+			lines_arr[i] = line
+	dialogue_to_use["lines"] = lines_arr
 
-	var dialogue_box = get_tree().get_current_scene().get_node("DialogueBox")
-	
-	var portraitNpc = dialogue_data["portrait"]
-	var portraitPlayer = dialogue_data["portraitPlayer"]
-	dialogue_box.changeImages(portraitNpc, portraitPlayer)
-	dialogue_box.start(dialogue_to_use, self)
-
-func _choose_dialogue() -> Dictionary:
-	if not dialogue_data.has("dialogues"):
-		print("not found dialogue with conditions right")
-		return {}
-
-	for d in dialogue_data["dialogues"]:
-		var condition = d.get("condition", "false")
-
-		var expr = Expression.new()
-		var parse_error = expr.parse(condition, ["current_dialogue", "Gamestate", "character_name"])
-		if parse_error == OK:
-			var result = expr.execute([current_dialogue, Gamestate, Gamestate.character_name])
-			if result:
-				return d
-		else:
-			push_warning("Erro a interpretar a condicao: %s" % condition)
-
-	return {}
-
-func _on_dialogue_ended(npc_node, fully_completed):
-	if npc_node != self:
+	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+	if not dialogue_box:
+		push_warning("DialogueBox não encontrado na cena.")
+		dialogue_is_on = false
 		return
 
-	dialogue_is_on = false
+	if not dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
+		dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
+	dialogue_box.start(dialogue_to_use, self)
 
-	if fully_completed:
-		var dialogue_to_use = _choose_dialogue()
-		if dialogue_to_use.has("effect"):
-			for effect in dialogue_to_use["effect"]:
-				var action = effect.split("_")[0]
-				var path = effect.split("_")[1]
-				if action == "addItem":
-					self.get_node("../Player").inv.add_item(path)
-		Gamestate.npc_dialogues_completed[self.name] = true
-		current_dialogue += 1
+func _choose_dialogue_for_collected(collected: int) -> Dictionary:
+	if dialogue_data == {} or not dialogue_data.has("dialogues"):
+		return {}
+
+	var dialogues: Array = dialogue_data.get("dialogues", [])
+	for d in dialogues:
+		var cond_text: String = str(d.get("condition", "default")).strip_edges()
+		if cond_text == "" or cond_text == "default":
+			continue
+		var expr = Expression.new()
+		var err = expr.parse(cond_text, ["collected", "Gamestate", "character_name"])
+		if err != OK:
+			push_warning("Erro a parsear condition '%s' : %s" % [cond_text, str(err)])
+			continue
+		var raw_result = expr.execute([collected, Gamestate, Gamestate.character_name])
+		if bool(raw_result):
+			return d
+	for d in dialogues:
+		var cond_text: String = str(d.get("condition", "default")).strip_edges()
+		if cond_text == "default":
+			return d
+	return {}
+
+func _on_dialogue_ended(npc_node: Node, fully_completed: bool) -> void:
+	if npc_node != self:
+		return
+	dialogue_is_on = false
+	if "npc_dialogues_completed" not in Gamestate:
+		Gamestate.npc_dialogues_completed = {}
+	Gamestate.npc_dialogues_completed[self.name] = true
+	current_dialogue += 1
+
+	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+	if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
+		dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)
