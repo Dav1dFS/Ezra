@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://t5axmw5yx5dl"]
+[gd_scene load_steps=10 format=3 uid="uid://t5axmw5yx5dl"]
 
-[ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/characters/player_character.tscn" id="1_83tdx"]
+[ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/Characters/player_character.tscn" id="1_83tdx"]
 [ext_resource type="Script" uid="uid://bgk2b1ql6834e" path="res://scripts/player/ezra.gd" id="2_qm0pf"]
 [ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character sprites/ezra/ezra_base.png" id="3_0uvh5"]
 [ext_resource type="Shader" uid="uid://cskovea21mids" path="res://scripts/shaders/ezra_character.gdshader" id="4_rir7v"]
-[ext_resource type="PackedScene" uid="uid://bjyexeg0dxrac" path="res://scenes/UI/ezraCounter.tscn" id="4_v2jhp"]
 [ext_resource type="Shader" uid="uid://c6ehp4sd405we" path="res://scripts/shaders/dark.gdshader" id="5_swecp"]
+[ext_resource type="PackedScene" uid="uid://2b5a7qw3sl3" path="res://scenes/UI/Objectives.tscn" id="6_v2jhp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2jhp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_swecp"]
 shader = ExtResource("4_rir7v")
@@ -16,7 +18,9 @@ shader_parameter/timeOffset = 1.77
 shader_parameter/timeRate = 0.765
 shader_parameter/noiseAmmount = -0.265
 shader_parameter/offsetX = 1.205
-shader_parameter/flickerT = 0.48
+shader_parameter/flickerT = 0.495
+shader_parameter/solid_radius = 0.13
+shader_parameter/dither_amount = 15.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v2jhp"]
 shader = ExtResource("5_swecp")
@@ -38,19 +42,17 @@ z_index = 1
 position = Vector2(0, -9)
 texture = ExtResource("3_0uvh5")
 
-[node name="Camera2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_v2jhp")
+
+[node name="Camera2D" parent="." index="2"]
 zoom = Vector2(3.06, 3.06)
 
-[node name="Counter" parent="GUI" index="0" instance=ExtResource("4_v2jhp")]
-offset_left = 942.0
-offset_top = -13.0
-offset_right = 953.0
-offset_bottom = -2.0
-
-[node name="Inv" parent="GUI" index="1"]
+[node name="Inv" parent="GUI" index="0"]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="GUI" index="3"]
+[node name="ColorRect" type="ColorRect" parent="GUI" index="1"]
 z_index = -2
 material = SubResource("ShaderMaterial_swecp")
 anchors_preset = 15
@@ -59,7 +61,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect2" type="ColorRect" parent="GUI" index="4"]
+[node name="ColorRect2" type="ColorRect" parent="GUI" index="2"]
 z_index = -3
 material = SubResource("ShaderMaterial_v2jhp")
 anchors_preset = 15
@@ -67,3 +69,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Objective" parent="GUI" index="3" instance=ExtResource("6_v2jhp")]
+offset_left = 6.7241898
+offset_top = -18.375372
+offset_right = 17.72419
+offset_bottom = -7.375372

@@ -1,0 +1,32 @@
+{
+  "dialogues": [
+	{
+	  "condition": "collected == 1",
+	  "mid_action": false,
+	  "lines": [
+		{"speaker": "Ezra", "text": "I found one memory... I should keep searching."}
+	  ]
+	},
+	{
+	  "condition": "collected == 2",
+	  "mid_action": false,
+	  "lines": [
+		{"speaker": "Ezra", "text": "Two memories collected. I'm getting closer."}
+	  ]
+	},
+	{
+	  "condition": "collected >= 3",
+	  "mid_action": false,
+	  "lines": [
+		{"speaker": "Ezra", "text": "Ahh — I found them all. I need to go back to Frieda."}
+	  ]
+	},
+	{
+	  "condition": "default",
+	  "mid_action": false,
+	  "lines": [
+		{"speaker": null, "text": ""}
+	  ]
+	}
+  ]
+}

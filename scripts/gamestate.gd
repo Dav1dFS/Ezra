@@ -1,5 +1,6 @@
 extends Node
 
+var memories_collected: Dictionary = {}
 var npc_dialogues_completed = {}
 var character_name: String
 var game_is_paused := false
