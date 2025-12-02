@@ -20,6 +20,7 @@ var dialogue_is_on: bool = false
 var current_dialogue_index: int = 0
 var dialogue_completed: bool = false
 var current_player: Node = null
+var is_cutscene_dialogue: bool = false
 
 
 func _ready():
@@ -62,6 +63,11 @@ func _load_dialogue_file():
 func _connect_to_dialogue_box():
 	pass
 
+func start_dialogue_from_cutscene(player_node: Node = null):
+	is_cutscene_dialogue = true
+	current_player = player_node
+	start_dialogue()
+	
 func start_dialogue():
 	var dialogue_to_use = _choose_dialogue()
 
@@ -126,7 +132,7 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	dialogue_is_on = false
 	Gamestate.dialogue_locked = false
 
-	if player_in_range:
+	if player_in_range and not is_cutscene_dialogue:
 		interact_label.visible = true
 
 	if fully_completed:
