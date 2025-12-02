@@ -1,0 +1,23 @@
+{
+	"dialogues": [
+		{
+			"condition": "default",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Jordyn", "text": "Dirty, right? But its good, girl."},
+				{"speaker": "Ellen", "text": "No... thank you"},
+				{"speaker": "Jordyn", "text": "The kitchen is right outside."},
+				{"speaker": "Jordyn", "text": "So the guards just throw their leftovers here."},
+				{"speaker": "Ellen", "text": "..."},
+				{"speaker": "Jordyn", "text": "Judge all you want. It's still better than water soup."},
+			]
+		},
+		{
+			"condition": "repetition",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Jordyn", "text": "They throw so many good stuff away..."}
+			]
+		}
+	]
+}

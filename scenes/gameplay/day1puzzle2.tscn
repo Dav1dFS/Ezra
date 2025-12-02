@@ -34,7 +34,7 @@ shader_parameter/distortion_speed = 1.01600004826
 shader_parameter/density = 0.4250000201875
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwttn"]
-size = Vector2(68.94043, 23.729858)
+size = Vector2(21.403442, 23.729858)
 
 [node name="Day1Puzzle1" type="Node2D"]
 y_sort_enabled = true
@@ -48,10 +48,10 @@ position = Vector2(3101.4653, 2504.9849)
 position = Vector2(3994.1248, 1584.7534)
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
-position = Vector2(3754.4133, 2230.9326)
+position = Vector2(3828.8706, 2222.7556)
 
 [node name="Enemy" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3578.1475, 2118.0708)
+position = Vector2(3574.5112, 2091.707)
 dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
 npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
@@ -60,7 +60,7 @@ backward_distance = 100.0
 initial_direction = 3
 
 [node name="Enemy3" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3177.73, 2315.3792)
+position = Vector2(3154.0935, 2322.6519)
 dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
 npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
@@ -84,14 +84,14 @@ forward_distance = 50.0
 backward_distance = 0.0
 
 [node name="Enemy7" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3127.388, 2279.6125)
+position = Vector2(3126.735, 2276.566)
 dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
 npc_portrait = "uid://durs75xmm7uy3"
 backward_distance = 0.0
 initial_direction = 3
 
 [node name="Enemy8" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3126.6277, 1897.1821)
+position = Vector2(3127.2805, 1891.7413)
 dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
 npc_portrait = "uid://durs75xmm7uy3"
 backward_distance = 0.0
@@ -111,12 +111,13 @@ backward_distance = 0.0
 initial_direction = 1
 
 [node name="Enemy4" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3178.1965, 2334.0396)
+position = Vector2(3820.924, 2349.4941)
 dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
 npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
 forward_distance = 1000.0
 backward_distance = 0.0
+initial_direction = 1
 
 [node name="Enemy5" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3181.1843, 1927.8336)
@@ -131,11 +132,61 @@ position = Vector2(3181.1843, 1927.8336)
 dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
 npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
-forward_distance = 800.0
+forward_distance = 1200.0
+backward_distance = 0.0
+
+[node name="Enemy18" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(2652.1863, 1915.6262)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 1200.0
+backward_distance = 0.0
+
+[node name="Enemy19" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(2668.5142, 1927.1549)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 1200.0
+backward_distance = 0.0
+
+[node name="Enemy20" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(2652.3916, 1936.5627)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+forward_distance = 1200.0
+backward_distance = 0.0
+
+[node name="Enemy15" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3346.3252, 1857.9951)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+movement_speed = 30.0
+backward_distance = 20.0
+
+[node name="Enemy16" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3771.283, 1859.7069)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+movement_speed = 30.0
+forward_distance = 30.0
+backward_distance = 0.0
+
+[node name="Enemy17" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3349.689, 2207.4)
+dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+npc_portrait = "uid://durs75xmm7uy3"
+is_moving = true
+movement_speed = 30.0
+forward_distance = 30.0
 backward_distance = 0.0
 
 [node name="Enemy6" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3872.651, 1955.4943)
+position = Vector2(3881.7417, 1987.7257)
 dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
 npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
@@ -144,7 +195,7 @@ backward_distance = 0.0
 initial_direction = 1
 
 [node name="Enemy2" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3553.1426, 2117.6616)
+position = Vector2(3549.5063, 2091.2979)
 dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
 npc_portrait = "uid://durs75xmm7uy3"
 is_moving = true
@@ -163,12 +214,26 @@ initial_direction = 3
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_rwttn")]
 
-[node name="Rand1" parent="." instance=ExtResource("5_fh8rj")]
+[node name="Jordyn" parent="." instance=ExtResource("5_fh8rj")]
 position = Vector2(3229.2751, 1693.3629)
-npc_name = "Dui"
+npc_name = "Jordyn"
 dialogue_file = "res://DialoguesJSON/day_1/rand1.json"
 npc_portrait = "uid://cx6wuyqhojwly"
 npc_sprite = "uid://cmtmyhbcomdsf"
+
+[node name="Lilah" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3632.994, 2257.33)
+npc_name = "Lilah"
+dialogue_file = "res://DialoguesJSON/day_1/Lilah1.json"
+npc_portrait = "uid://r7o3ewcwk124"
+npc_sprite = "uid://r7o3ewcwk124"
+
+[node name="Talia" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3655.7212, 1777.6606)
+npc_name = "Tlia"
+dialogue_file = "res://DialoguesJSON/day_1/Talia1.json"
+npc_portrait = "uid://c4u2ikdw4i2a2"
+npc_sprite = "uid://c4u2ikdw4i2a2"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -192,17 +257,17 @@ color = Color(0.65012825, 0.6501283, 0.6501282, 1)
 
 [node name="Frieda NPC" parent="." instance=ExtResource("7_jej5n")]
 y_sort_enabled = true
-position = Vector2(3781.7373, 2212.5105)
+position = Vector2(3793.0554, 2206.8125)
 dialogue_file = "res://DialoguesJSON/day_1/post_puzzle1_exit.json"
 
 [node name="Frieda NPC2" parent="." instance=ExtResource("8_y0wut")]
-position = Vector2(3811.886, 1639.5969)
+position = Vector2(3802.0894, 1625.6018)
 npc_name = "Miss Ruth"
 dialogue_file = "res://DialoguesJSON/day_1/miss_ruth_meeting.json"
 npc_portrait = "uid://d11imkedd5ajh"
 
 [node name="General" parent="." instance=ExtResource("9_rwttn")]
-position = Vector2(3564.6206, 1895.7095)
+position = Vector2(3597.5247, 1831.1508)
 is_moving = true
 forward_distance = 300.0
 initial_direction = 2
@@ -213,6 +278,6 @@ initial_direction = 2
 position = Vector2(3748.0151, 2228.2915)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
-position = Vector2(30.405762, -32.926514)
+position = Vector2(45.023193, -32.926514)
 shape = SubResource("RectangleShape2D_rwttn")
 disabled = true

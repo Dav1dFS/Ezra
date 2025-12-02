@@ -1,0 +1,24 @@
+{
+	"dialogues": [
+		{
+			"condition": "default",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Woman", "text": "Oh sweetie, you are not suposed to be here!"},
+				{"speaker": "Ellen", "text": "Are you Miss... Ruth?"},
+				{"speaker": "Lilah", "text": "No, sweetie, my name is Lilah, why?"},
+				{"speaker": "Ellen", "text": "I must find her..."},
+				{"speaker": "Lilah", "text": "I wish I could help you. But beware with the general."},
+				{"speaker": "Ellen", "text": "General?"},
+				{"speaker": "Lilah", "text": "Yes, his eyes are very sharp, he is up ahead!"},
+			]
+		},
+		{
+			"condition": "repetition",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Lilah", "text": "Stay hidden, sweetie!"}
+			]
+		}
+	]
+}

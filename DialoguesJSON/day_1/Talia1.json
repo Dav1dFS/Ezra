@@ -1,0 +1,21 @@
+{
+	"dialogues": [
+		{
+			"condition": "default",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Woman", "text": "Eva? Is that you?!?"},
+				{"speaker": "Ellen", "text": "No..."},
+				{"speaker": "Woman", "text": "Eva! **Grabs your hand**"},
+				{"speaker": "Ellen", "text": "No, I'm not Eva! Let me go! "},
+			]
+		},
+		{
+			"condition": "repetition",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Woman", "text": "You look so much like her..."}
+			]
+		}
+	]
+}
