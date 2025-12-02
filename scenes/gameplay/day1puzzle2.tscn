@@ -48,7 +48,7 @@ position = Vector2(3101.4653, 2504.9849)
 position = Vector2(3994.1248, 1584.7534)
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
-position = Vector2(3169.216, 1997.3613)
+position = Vector2(3828.8706, 2222.7556)
 
 [node name="Enemy" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3574.5112, 2091.707)
@@ -261,7 +261,7 @@ position = Vector2(3793.0554, 2206.8125)
 dialogue_file = "res://DialoguesJSON/day_1/post_puzzle1_exit.json"
 
 [node name="Frieda NPC2" parent="." instance=ExtResource("8_y0wut")]
-position = Vector2(3811.886, 1639.5969)
+position = Vector2(3802.0894, 1625.6018)
 npc_name = "Miss Ruth"
 dialogue_file = "res://DialoguesJSON/day_1/miss_ruth_meeting.json"
 npc_portrait = "uid://d11imkedd5ajh"
