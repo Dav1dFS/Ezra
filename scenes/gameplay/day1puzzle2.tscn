@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://m3d38ksq3ja1"]
+[gd_scene load_steps=15 format=3 uid="uid://m3d38ksq3ja1"]
 
 [ext_resource type="Script" uid="uid://brog7m5vcrmdh" path="res://scripts/day_1_puzzle_2.gd" id="1_c5o0j"]
 [ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="3_jej5n"]
 [ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemies/enemyGuard.tscn" id="4_y0wut"]
+[ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/Npcs/friendly/characters/randNPC.tscn" id="5_fh8rj"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_rwttn"]
 [ext_resource type="Shader" uid="uid://p1ew2mo3oin0" path="res://scripts/shaders/fogDay.gdshader" id="6_c5o0j"]
 [ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/Npcs/friendly/characters/friedaNPC.tscn" id="7_jej5n"]
@@ -12,7 +13,6 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rwttn"]
 frequency = 0.0002
-fractal_octaves = 10
 fractal_gain = 0.67
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jej5n"]
@@ -162,6 +162,13 @@ backward_distance = 200.0
 initial_direction = 3
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_rwttn")]
+
+[node name="Rand1" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3229.2751, 1693.3629)
+npc_name = "Dui"
+dialogue_file = "res://DialoguesJSON/day_1/rand1.json"
+npc_portrait = "uid://cx6wuyqhojwly"
+npc_sprite = "uid://cmtmyhbcomdsf"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
