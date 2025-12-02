@@ -10,6 +10,8 @@ extends Node2D
 @onready var area = $PlayerInteractionArea
 @onready var interact_label = $PlayerInteractionLabel
 
+signal checkpoint()
+
 # State variables
 var player_portrait_ezra: String = "res://assets/character sprites/ezra/ezra_base.png"
 var player_in_range: bool = false
@@ -146,7 +148,12 @@ func _process_dialogue(dialogue: Dictionary) -> Dictionary:
 	for line in dialogue.get("lines", []):
 		# Skip mid_action lines (for future cutscene implementation)
 		if line.has("mid_action"):
-			continue
+			var processed_line=line.duplicate()
+			print("here")
+			if "checkpoint" in processed_line["mid_action"] :
+				print(processed_line["mid_action"])
+				emit_signal("checkpoint")
+				
 
 		# Process regular dialogue lines
 		if line.has("text"):
