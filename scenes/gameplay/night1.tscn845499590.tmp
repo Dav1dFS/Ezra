@@ -75,6 +75,7 @@ position = Vector2(5934, 185)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("4_t5b4k")]
 position = Vector2(4877, 1808)
+max_value = 6
 character_name = "Ezra"
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_3fgql")]

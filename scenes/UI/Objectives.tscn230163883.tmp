@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2b5a7qw3sl3"]
 
-[ext_resource type="Script" uid="uid://cjy48m21lwh51" path="res://scripts/inventory/objective.gd" id="1_f4pa3"]
+[ext_resource type="Script" uid="uid://cc30oib385qaq" path="res://scripts/inventory/ezra_counter.gd" id="1_f4pa3"]
 [ext_resource type="Texture2D" uid="uid://xpwktqpbmc48" path="res://assets/items_sprites/warningSign.png" id="2_f4pa3"]
 [ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_jldal"]
 
