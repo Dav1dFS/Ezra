@@ -7,8 +7,8 @@ extends Node2D
 @export var triggers_player_dialogue: bool = false
 
 # Node references
-@onready var area = $Area2D
-@onready var interact_label = $Label
+@onready var area = $PlayerInteractionArea
+@onready var interact_label = $PlayerInteractionLabel
 
 signal checkpoint()
 
@@ -20,7 +20,6 @@ var dialogue_is_on: bool = false
 var current_dialogue_index: int = 0
 var dialogue_completed: bool = false
 var current_player: Node = null
-var is_cutscene_dialogue: bool = false
 
 
 func _ready():
@@ -31,9 +30,6 @@ func _ready():
 	if npc_sprite:
 		$FriedaBase.texture=load(npc_sprite)
 	_connect_to_dialogue_box()
-	
-	if interact_label:
-		interact_label.visible = false
 
 	# if npc_name and not Gamestate.npc_dialogues_completed.has(npc_name):
 	# 	Gamestate.npc_dialogues_completed[npc_name] = false
@@ -66,11 +62,6 @@ func _load_dialogue_file():
 func _connect_to_dialogue_box():
 	pass
 
-func start_dialogue_from_cutscene(player_node: Node = null):
-	is_cutscene_dialogue = true
-	current_player = player_node
-	start_dialogue()
-	
 func start_dialogue():
 	var dialogue_to_use = _choose_dialogue()
 
@@ -79,10 +70,7 @@ func start_dialogue():
 		return
 
 	dialogue_is_on = true
-	
-	if interact_label and not is_cutscene_dialogue:
-		interact_label.visible = false
-		
+	interact_label.visible = false
 	Gamestate.dialogue_locked = true
 
 	# Filter out mid_action lines
@@ -100,8 +88,7 @@ func start_dialogue():
 		dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
 
 	# Get player portrait safely
-	var player_portrait = player_portrait_ezra # default
-	
+	var player_portrait = ""
 	if current_player:
 		var sprite = current_player.get_node_or_null("Sprite2D")
 		if sprite and sprite.texture:
@@ -139,7 +126,7 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	dialogue_is_on = false
 	Gamestate.dialogue_locked = false
 
-	if player_in_range and interact_label and not is_cutscene_dialogue:
+	if player_in_range:
 		interact_label.visible = true
 
 	if fully_completed:

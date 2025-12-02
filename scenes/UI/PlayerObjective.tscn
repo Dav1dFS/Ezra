@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjyexeg0dxrac"]
+
+[ext_resource type="Script" uid="uid://cjy48m21lwh51" path="res://scripts/inventory/objective.gd" id="1_hscb5"]
+[ext_resource type="Texture2D" uid="uid://xpwktqpbmc48" path="res://assets/items_sprites/warningSign.png" id="2_hscb5"]
+[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_s51aj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6jumr"]
+font = ExtResource("3_s51aj")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Inv_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 11.0
+offset_bottom = 11.0
+script = ExtResource("1_hscb5")
+
+[node name="ItemDisplay" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -22.0
+offset_top = 10.999997
+offset_right = -12.000008
+offset_bottom = 20.999996
+scale = Vector2(12.371283, 13.065289)
+texture = ExtResource("2_hscb5")
+expand_mode = 1
+
+[node name="CounterLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 32.0
+offset_right = 113.0
+offset_bottom = 55.0
+scale = Vector2(3.8979275, 3.8979275)
+theme_override_fonts/font = ExtResource("3_s51aj")
+text = "0/6"
+label_settings = SubResource("LabelSettings_6jumr")
+vertical_alignment = 1

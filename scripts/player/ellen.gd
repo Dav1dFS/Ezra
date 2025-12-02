@@ -2,7 +2,7 @@ extends "res://scripts/player/player.gd"
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 var is_ability_active: bool = false
-@onready var counter: Control = $GUI/objective
+@onready var counter: Control = $GUI/Objective
 
 @onready var timer: Timer = $Timer
 
