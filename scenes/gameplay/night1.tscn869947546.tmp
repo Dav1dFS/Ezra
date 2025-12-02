@@ -1,15 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1lfv8eimewo0"]
+[gd_scene load_steps=21 format=3 uid="uid://d1lfv8eimewo0"]
 
 [ext_resource type="Script" uid="uid://2oyly7cd8uus" path="res://scripts/night_1_root.gd" id="1_bqncc"]
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/MainMap.tscn" id="2_4ov1t"]
 [ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/Dialogue/Memory.tscn" id="3_u6i4i"]
-[ext_resource type="PackedScene" uid="uid://cbyffikw81yby" path="res://scenes/Npcs/friendly/others/particle_trail.tscn" id="4_i0mio"]
 [ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="4_t5b4k"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_3fgql"]
 [ext_resource type="PackedScene" uid="uid://dle73kkftd1pm" path="res://scenes/UI/PauseMenu.tscn" id="6_blula"]
 [ext_resource type="PackedScene" uid="uid://bm3yfkddsvryw" path="res://scenes/Npcs/enemies/Ellen_level_1_night.tscn" id="7_4ov1t"]
-[ext_resource type="Script" uid="uid://boiknnwxihnqo" path="res://scripts/Npcs/general_talkable_npc.gd" id="8_dkx5u"]
-[ext_resource type="Script" uid="uid://ddduf3o4tlfgt" path="res://scripts/cutscene_manager.gd" id="8_u6i4i"]
+[ext_resource type="Script" uid="uid://ddduf3o4tlfgt" path="res://scripts/night1_cutscene_controller.gd" id="8_u6i4i"]
 [ext_resource type="PackedScene" uid="uid://bd4qxu1apradq" path="res://scenes/Npcs/enemies/Frieda_level_1_night.tscn" id="9_t5b4k"]
 [ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/Npcs/frieda_npc.gd" id="10_3fgql"]
 [ext_resource type="Texture2D" uid="uid://cd85becst2y5y" path="res://assets/greycircle.png" id="11_jcha6"]
@@ -60,15 +58,14 @@ layer_0/tile_data = PackedInt32Array(524226, 0, 15, 589762, 0, 15, 655298, 0, 15
 
 [node name="Memory" parent="." groups=["Memories"] instance=ExtResource("3_u6i4i")]
 position = Vector2(4874, 2193)
-particle_scene = ExtResource("4_i0mio")
 
 [node name="Memory2" parent="." groups=["Memories"] instance=ExtResource("3_u6i4i")]
-position = Vector2(4551, 1809)
-particle_scene = ExtResource("4_i0mio")
+position = Vector2(4603, 1808)
+dialogue_file_path = "res://DialoguesJSON/MemoriesNight1/memory2.json"
 
 [node name="Memory3" parent="." groups=["Memories"] instance=ExtResource("3_u6i4i")]
-position = Vector2(3957, 2047)
-particle_scene = ExtResource("4_i0mio")
+position = Vector2(4150, 1811)
+dialogue_file_path = "res://DialoguesJSON/MemoriesNight1/memory3.json"
 
 [node name="downLeftLimit" type="Marker2D" parent="."]
 position = Vector2(2572, 2488)
@@ -78,7 +75,6 @@ position = Vector2(5934, 185)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("4_t5b4k")]
 position = Vector2(4877, 1808)
-collision_mask = 2
 character_name = "Ezra"
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_3fgql")]
@@ -95,7 +91,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TransitionLabel" type="Label" parent="GUI"]
+[node name="NightLabel" type="Label" parent="GUI"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -114,24 +110,37 @@ theme_override_font_sizes/font_size = 120
 text = "NIGHT 1"
 horizontal_alignment = 1
 
+[node name="Day2Label" type="Label" parent="GUI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -253.0
+offset_top = -82.5
+offset_right = 253.0
+offset_bottom = 82.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.96769565, 0.33296132, 1)
+theme_override_fonts/font = SubResource("FontVariation_u6i4i")
+theme_override_font_sizes/font_size = 120
+text = "DAY 2"
+horizontal_alignment = 1
+
 [node name="PauseMenu" parent="GUI" instance=ExtResource("6_blula")]
 visible = false
 
 [node name="Ellen" parent="." instance=ExtResource("7_4ov1t")]
 position = Vector2(4994, 2044)
-script = ExtResource("8_dkx5u")
-npc_name = "Ellen"
-dialogue_file = "res://DialoguesJSON/ellen_night1.json"
-npc_portrait = "uid://bbvyp32os1srn"
-npc_sprite = ""
 
-[node name="CutsceneController" type="Node2D" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box", "fade_rect", "transition_label")]
+[node name="CutsceneController" type="Node2D" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box", "fade_rect", "night_label")]
 script = ExtResource("8_u6i4i")
 target_npc = NodePath("../Ellen")
 dialogue_box = NodePath("../DialogueBox")
 fade_rect = NodePath("../GUI/FadeRect")
-transition_label = NodePath("../GUI/TransitionLabel")
-transition_text = "NIGHT 1"
+night_label = NodePath("../GUI/NightLabel")
 
 [node name="CutsceneCamera2D" type="Camera2D" parent="CutsceneController"]
 
@@ -140,12 +149,11 @@ position = Vector2(4999, 1821)
 script = ExtResource("10_3fgql")
 ability_hold_time = 3.0
 fade_rect = NodePath("../GUI/FadeRect")
-day_label = NodePath("../GUI/TransitionLabel")
+day_label = NodePath("../GUI/Day2Label")
 next_scene_path = "res://scenes/gameplay/pitch.tscn"
-npc_name = "Frieda"
-dialogue_file = "res://DialoguesJSON/frieda_night1.json"
-npc_portrait = "uid://igii0hb2mb2m"
-npc_sprite = ""
+npc_name = "NPC"
+dialogue_file = ""
+npc_portrait = ""
 
 [node name="Label2" type="Label" parent="Frieda"]
 visible = false
@@ -176,10 +184,9 @@ tint_progress = Color(0.8285668, 9.62615e-07, 0.43747923, 1)
 
 [node name="FogWalls" type="Node2D" parent="."]
 
-[node name="TopWall" type="StaticBody2D" parent="FogWalls" node_paths=PackedStringArray("player")]
+[node name="TopWall" type="StaticBody2D" parent="FogWalls"]
 position = Vector2(4750, 1525)
 script = ExtResource("12_bqncc")
-player = NodePath("../../Player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FogWalls/TopWall"]
 position = Vector2(-410, -169)
@@ -202,12 +209,11 @@ offset_right = -1303.0
 offset_bottom = -343.0
 scale = Vector2(47.11999, 10.239988)
 
-[node name="LeftWall" type="StaticBody2D" parent="FogWalls" node_paths=PackedStringArray("player")]
+[node name="LeftWall" type="StaticBody2D" parent="FogWalls"]
 position = Vector2(3484.9998, 836.9999)
 rotation = -1.5745151
 scale = Vector2(1.4399976, 1.4399976)
 script = ExtResource("12_bqncc")
-player = NodePath("../../Player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FogWalls/LeftWall"]
 position = Vector2(-410, -169)
@@ -230,12 +236,11 @@ collision_mask = 3
 position = Vector2(-9, 16)
 shape = SubResource("RectangleShape2D_bqncc")
 
-[node name="RightWall" type="StaticBody2D" parent="FogWalls" node_paths=PackedStringArray("player")]
+[node name="RightWall" type="StaticBody2D" parent="FogWalls"]
 position = Vector2(5784, 828.99994)
 rotation = -1.5745151
 scale = Vector2(1.4399976, 1.4399976)
 script = ExtResource("12_bqncc")
-player = NodePath("../../Player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FogWalls/RightWall"]
 position = Vector2(-410, -169)
@@ -258,10 +263,9 @@ collision_mask = 3
 position = Vector2(-9, 16)
 shape = SubResource("RectangleShape2D_bqncc")
 
-[node name="DownWall" type="StaticBody2D" parent="FogWalls" node_paths=PackedStringArray("player")]
+[node name="DownWall" type="StaticBody2D" parent="FogWalls"]
 position = Vector2(4842, 2943)
 script = ExtResource("12_bqncc")
-player = NodePath("../../Player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FogWalls/DownWall"]
 position = Vector2(-410, -169)

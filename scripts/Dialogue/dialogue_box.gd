@@ -23,7 +23,6 @@ func start(dialogue : Dictionary, npc: Node):
 	current_npc = npc
 	visible = true
 	active = true
-	Gamestate.dialogue_locked = true
 	
 	lines = dialogue.get("lines", [])
 	current_line = 0
@@ -48,7 +47,7 @@ func _show_line():
 			name_label.text = ""
 			portrait.visible = false
 			player_portrait.visible = false
-		elif speaker == "Player" or speaker == "Ezra" or speaker == "Ellen" or speaker == "Birras":
+		elif speaker == "Player" or speaker == "Ezra" or speaker == "Ellen":
 			# Player speaking
 			name_label.text = speaker.capitalize()
 			portrait.visible = false
