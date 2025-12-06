@@ -94,7 +94,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -182,7 +182,8 @@ inv = null
 z_index = 1
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_rvnwh")
-animation = &"up"
+animation = &"down"
+frame_progress = 0.011279252
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -7)
