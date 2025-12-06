@@ -8,7 +8,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_6jumr"]
 font = ExtResource("4_ymnwc")
 font_size = 180
-outline_size = 4
+outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Inv_UI" type="Control"]
@@ -19,6 +19,7 @@ offset_bottom = 11.0
 script = ExtResource("1_hscb5")
 
 [node name="ItemDisplay" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -22.0
 offset_top = 10.999997
@@ -37,5 +38,17 @@ offset_bottom = 226.0
 scale = Vector2(0.30438846, 0.3574461)
 theme_override_fonts/font = ExtResource("3_s51aj")
 text = "0/6"
+label_settings = SubResource("LabelSettings_6jumr")
+vertical_alignment = 1
+
+[node name="icon" type="Label" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 31.000004
+offset_right = 357.0
+offset_bottom = 225.0
+scale = Vector2(0.47776598, 0.5610449)
+theme_override_fonts/font = ExtResource("3_s51aj")
+text = "!"
 label_settings = SubResource("LabelSettings_6jumr")
 vertical_alignment = 1
