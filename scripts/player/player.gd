@@ -93,7 +93,20 @@ func _physics_process(_delta):
 		get_tree().root.get_viewport().set_input_as_handled()
 
 	if Gamestate.dialogue_locked:
+		velocity = Vector2.ZERO
+		sprite.stop()
 		return
 
-	input_handler()
+	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var target_velocity = direction * SPEED
+
+	# Smooth interpolation
+	velocity = velocity.lerp(target_velocity, 0.2)
+	
+	if direction != Vector2.ZERO:
+		update_sprite_direction(direction)
+		sprite.play("walk")
+	else:
+		sprite.stop()
+
 	move_and_slide()
