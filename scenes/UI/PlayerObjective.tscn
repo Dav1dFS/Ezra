@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjyexeg0dxrac"]
+[gd_scene load_steps=6 format=3 uid="uid://bjyexeg0dxrac"]
 
 [ext_resource type="Script" uid="uid://cjy48m21lwh51" path="res://scripts/inventory/objective.gd" id="1_hscb5"]
 [ext_resource type="Texture2D" uid="uid://xpwktqpbmc48" path="res://assets/items_sprites/warningSign.png" id="2_hscb5"]
 [ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_s51aj"]
+[ext_resource type="FontFile" uid="uid://dyj1vdec1wq05" path="res://assets/fonts/Deutsch.ttf" id="4_ymnwc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6jumr"]
-font = ExtResource("3_s51aj")
+font = ExtResource("4_ymnwc")
 font_size = 180
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -29,11 +30,11 @@ expand_mode = 1
 
 [node name="CounterLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 73.0
-offset_top = 32.0
-offset_right = 113.0
-offset_bottom = 55.0
-scale = Vector2(3.8979275, 3.8979275)
+offset_left = 68.0
+offset_top = 46.0
+offset_right = 349.0
+offset_bottom = 226.0
+scale = Vector2(0.30438846, 0.3574461)
 theme_override_fonts/font = ExtResource("3_s51aj")
 text = "0/6"
 label_settings = SubResource("LabelSettings_6jumr")
