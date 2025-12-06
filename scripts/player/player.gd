@@ -5,7 +5,7 @@ const SPEED = 70.0
 
 @export var inv: Inventory
 @onready var cam: Camera2D = get_node("Camera2D")
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var pause_menu = $PauseLayer/PauseMenu
 
 @export var character_name: String =""
@@ -59,10 +59,13 @@ func _ready():
 func input_handler():
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * SPEED
-
+	
 	if direction != Vector2.ZERO:
 		last_movement_direction = direction
 		update_sprite_direction(direction)
+	else:
+		sprite.stop()
+		return
 
 func update_sprite_direction(movement_direction: Vector2):
 	if !Gamestate.game_is_paused:

@@ -14,11 +14,11 @@ var original_zoom: float
 var final_zoom_done: bool = false
 var zoom_speed: float = 0.02
 
-var ellen_sprites = {
-	Direction.DOWN: preload("res://assets/character sprites/ezra/ezra_base.png"),
-	Direction.UP: preload("res://assets/character sprites/ezra/ezra_back.png"),
-	Direction.LEFT: preload("res://assets/character sprites/ezra/ezra_left.png"),
-	Direction.RIGHT: preload("res://assets/character sprites/ezra/ezra_right.png")
+var ellen_anims = {
+	Direction.DOWN: "down",
+	Direction.UP: "up",
+	Direction.LEFT: "left",
+	Direction.RIGHT: "right"
 }
 
 func _ready():
@@ -27,8 +27,8 @@ func _ready():
 	original_zoom = cam.zoom.x
 
 func _update_sprite_for_direction():
-	if ellen_sprites.has(current_direction):
-		sprite.texture = ellen_sprites[current_direction]
+	if ellen_anims.has(current_direction):
+		sprite.play(ellen_anims[current_direction])
 
 func increment_item_counter():
 	print("added counter")

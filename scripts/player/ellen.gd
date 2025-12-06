@@ -6,11 +6,11 @@ var is_ability_active: bool = false
 
 @onready var timer: Timer = $Timer
 
-var ellen_sprites = {
-	Direction.DOWN: preload("res://assets/character sprites/ellen/ellen_base.png"),
-	Direction.UP: preload("res://assets/character sprites/ellen/ellen_back.png"),
-	Direction.LEFT: preload("res://assets/character sprites/ellen/ellen_left.png"),
-	Direction.RIGHT: preload("res://assets/character sprites/ellen/ellen_right.png")
+var ellen_anims = {
+	Direction.DOWN: "down",
+	Direction.UP: "up",
+	Direction.LEFT: "left",
+	Direction.RIGHT: "right"
 }
 
 func get_is_ability_active() -> bool:
@@ -28,8 +28,8 @@ func changeObjective(text:String):
 	counter.updateObjective(text)
 
 func _update_sprite_for_direction():
-	if ellen_sprites.has(current_direction):
-		sprite.texture = ellen_sprites[current_direction]
+	if ellen_anims.has(current_direction):
+		sprite.play(ellen_anims[current_direction])
 
 func _input(event):
 	if !Gamestate.dialogue_locked:
