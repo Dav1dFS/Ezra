@@ -105,8 +105,10 @@ func _physics_process(_delta):
 	
 	if direction != Vector2.ZERO:
 		update_sprite_direction(direction)
-		sprite.play("walk")
 	else:
-		sprite.stop()
-
+		if can_update_animations():
+			sprite.stop()
 	move_and_slide()
+
+func can_update_animations() -> bool:
+	return true
