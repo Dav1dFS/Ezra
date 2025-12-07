@@ -48,7 +48,7 @@ position = Vector2(3101.4653, 2504.9849)
 position = Vector2(3994.1248, 1584.7534)
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
-position = Vector2(3828.8706, 2222.7556)
+position = Vector2(3764.3962, 2220.8628)
 
 [node name="Enemy" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3574.5112, 2091.707)
@@ -267,7 +267,7 @@ dialogue_file = "res://DialoguesJSON/day_1/miss_ruth_meeting.json"
 npc_portrait = "uid://d11imkedd5ajh"
 
 [node name="General" parent="." instance=ExtResource("9_rwttn")]
-position = Vector2(3597.5247, 1831.1508)
+position = Vector2(3588.8318, 1833.0135)
 is_moving = true
 forward_distance = 300.0
 initial_direction = 2

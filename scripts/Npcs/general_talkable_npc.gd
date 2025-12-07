@@ -94,14 +94,18 @@ func start_dialogue():
 		dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
 
 	# Get player portrait safely
-	var player_portrait = ""
+	var player_portrait = null
 	if current_player:
 		var sprite = current_player.get_node_or_null("Sprite2D")
-		if sprite and sprite.texture:
-			player_portrait = sprite.texture.resource_path
+		var frameIndex= sprite.get_frame()
+		var animation=sprite.animation
+		var frames=sprite.get_sprite_frames()
+		var tex=frames.get_frame_texture(animation,frameIndex)
+		if tex:
+			player_portrait = tex
 
 	# Use default if no portrait found
-	if player_portrait == "":
+	if not player_portrait :
 		player_portrait = player_portrait_ezra  # Default to Ezra
 
 	dialogue_box.changeImages(npc_portrait, player_portrait)

@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://qrd46ikxghqo"]
 
 [ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_usc7g"]
-[ext_resource type="Script" path="res://scripts/Npcs/point_light_2d.gd" id="3_qdcv3"]
+[ext_resource type="Script" uid="uid://cpjxtgasr1fqo" path="res://scripts/Npcs/point_light_2d.gd" id="3_qdcv3"]
 [ext_resource type="Texture2D" uid="uid://ceep5fqe2fmc3" path="res://assets/character sprites/guards static/g3.png" id="3_usc7g"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_yha3f"]
 [ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_nlgux"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tx05f"]
 cull_mode = 1
-polygon = PackedVector2Array(0.22875057, -3.7933807, -1.9727317, 0.8940048, -1.8976371, 1.5409737, -1.8319296, 2.0724106, 0.61802995, 7.3405876, -2.0759869, 2.0030937, -2.3093565, 1.8133354, -2.1667705, 0.76039314, -0.4140109, -4.6503906)
+polygon = PackedVector2Array(1.1226686, -1.710556, -1.9727317, 0.8940048, -1.8976371, 1.5409737, -1.8319296, 2.0724106, 1.1681019, 3.82518, -2.0759869, 2.0030937, -2.3093565, 1.8133354, -2.1667705, 0.76039314, -0.4140109, -4.6503906)
 
 [sub_resource type="Gradient" id="Gradient_kjesm"]
 interpolation_mode = 2
@@ -49,10 +49,50 @@ visible = false
 [node name="VisionConeArea" parent="VisionCone2D" index="1"]
 visible = false
 
+[node name="VisionConeCollider" parent="VisionCone2D/VisionConeArea" index="0"]
+visible = false
+
 [node name="DebugDraw" parent="VisionCone2D" index="2"]
 visible = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="VisionCone2D"]
+visible = false
+z_index = 3
+y_sort_enabled = true
+position = Vector2(1, 0.302)
+scale = Vector2(1.4615386, 0.59375)
+occluder = SubResource("OccluderPolygon2D_tx05f")
+
+[node name="PointLight2D" type="PointLight2D" parent="VisionCone2D"]
+visible = false
+z_index = 3
+y_sort_enabled = true
+position = Vector2(0.30248806, 0.56150436)
+scale = Vector2(1.8589745, 1.6337507)
+range_z_min = 0
+range_z_max = 0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_e2ie0")
+offset = Vector2(11.444821, -3.0846193)
+script = ExtResource("3_qdcv3")
+
+[node name="FlashlightBob" parent="." instance=ExtResource("3_yha3f")]
+position = Vector2(-0.057308197, -10.98584)
+rotation = -1.5707964
+script = null
+
+[node name="VisionConeRenderer" parent="FlashlightBob" index="0"]
+visible = false
+
+[node name="VisionConeArea" parent="FlashlightBob" index="1"]
+visible = false
+
+[node name="DebugDraw" parent="FlashlightBob" index="2"]
+visible = false
+script = null
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="FlashlightBob"]
 z_index = 3
 y_sort_enabled = true
 position = Vector2(1, 0.302)
@@ -60,10 +100,10 @@ rotation = 1.5707964
 scale = Vector2(1.4615386, 0.59375)
 occluder = SubResource("OccluderPolygon2D_tx05f")
 
-[node name="PointLight2D" type="PointLight2D" parent="VisionCone2D"]
+[node name="PointLight2D" type="PointLight2D" parent="FlashlightBob"]
 z_index = 3
 y_sort_enabled = true
-position = Vector2(0.09375021, -1.984375)
+position = Vector2(0.30248806, 0.56150436)
 rotation = 1.5707964
 scale = Vector2(1.8589745, 1.6337507)
 range_z_min = 0
@@ -71,10 +111,11 @@ range_z_max = 0
 shadow_enabled = true
 shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_e2ie0")
-offset = Vector2(11.557108, -1.5263157)
+offset = Vector2(11.444821, -3.0846193)
 script = ExtResource("3_qdcv3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
 position = Vector2(-0.5573082, -4.98584)
 texture = ExtResource("3_usc7g")
 hframes = 4
@@ -99,5 +140,8 @@ shape = SubResource("CircleShape2D_mm8ar")
 
 [connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]
+[connection signal="body_entered" from="FlashlightBob/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
+[connection signal="body_exited" from="FlashlightBob/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]
 
 [editable path="VisionCone2D"]
+[editable path="FlashlightBob"]

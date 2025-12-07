@@ -5,7 +5,7 @@ const SPEED = 70.0
 
 @export var inv: Inventory
 @onready var cam: Camera2D = get_node("Camera2D")
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var pause_menu = $PauseLayer/PauseMenu
 
 @export var character_name: String =""
@@ -59,10 +59,13 @@ func _ready():
 func input_handler():
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * SPEED
-
+	
 	if direction != Vector2.ZERO:
 		last_movement_direction = direction
 		update_sprite_direction(direction)
+	else:
+		sprite.stop()
+		return
 
 func update_sprite_direction(movement_direction: Vector2):
 	if !Gamestate.game_is_paused:
@@ -90,7 +93,22 @@ func _physics_process(_delta):
 		get_tree().root.get_viewport().set_input_as_handled()
 
 	if Gamestate.dialogue_locked:
+		velocity = Vector2.ZERO
+		sprite.stop()
 		return
 
-	input_handler()
+	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var target_velocity = direction * SPEED
+
+	# Smooth interpolation
+	velocity = velocity.lerp(target_velocity, 0.2)
+	
+	if direction != Vector2.ZERO:
+		update_sprite_direction(direction)
+	else:
+		if can_update_animations():
+			sprite.stop()
 	move_and_slide()
+
+func can_update_animations() -> bool:
+	return true

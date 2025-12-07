@@ -40,6 +40,13 @@ var player_detected = false
 @onready var original_color = vision_renderer.color if vision_renderer else Color.WHITE
 @onready var rot_start = rotation
 
+@onready var flashlight = $FlashlightBob  
+var flashlight_bob = 0.0
+var flashlight_bob_speed = 2.5
+var flashlight_bob_amount = 1.0
+var flashlight_base_y := 0.0   
+
+
 # Direction system
 enum Direction { RIGHT, LEFT, UP, DOWN }
 var current_direction: Direction
@@ -93,21 +100,34 @@ func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 		vision_renderer.color = original_color
 
 func _ready():
+	flashlight_base_y = flashlight.position.y
 	current_direction = initial_direction as Direction
 	previous_position = global_position
 	$DetectionArea.body_entered.connect(_on_vision_cone_area_body_entered)
 	print(self.name)
 	_load_dialogue_file()
-	if self.name=="General":
+	if "General" in self.name:
 		self.vision_cone.angle_deg=100
 		self.vision_cone._angle=deg_to_rad(100)
 		self.vision_cone._angle_half=self.vision_cone._angle/2.
 		self.vision_cone._angular_delta= self.vision_cone._angle / self.vision_cone.ray_count
-
 		print(self.vision_cone.angle_deg)
+		flashlight_bob_amount =3.0
 	#animated_sprite.play("default")
 	if is_moving:
 		_calculate_target_position()
+
+
+func _update_flashlight_bobbing(delta):
+	if is_moving and (current_direction == Direction.RIGHT or current_direction == Direction.LEFT):
+		flashlight_bob += delta * flashlight_bob_speed
+		var offset = sin(flashlight_bob) * flashlight_bob_amount
+		flashlight.position.y = lerp(flashlight.position.y, flashlight_base_y + offset, delta * 10.0)
+	else:
+		flashlight.position.y = lerp(flashlight.position.y, flashlight_base_y, delta * 10.0)
+
+
+
 
 func _update_state():
 
@@ -156,6 +176,8 @@ func _calculate_target_position():
 
 func _physics_process(delta: float) -> void:
 	if !Gamestate.game_is_paused:
+		check_detection_area()
+		check_vision_cone()
 		if is_moving:
 			var distance_to_target = global_position.distance_to(target_position)
 
@@ -180,8 +202,9 @@ func _physics_process(delta: float) -> void:
 					stuck_timer = 0.0
 
 			previous_position = global_position
-
 		_update_state()
+		flashlight.rotation = vision_cone.rotation
+		_update_flashlight_bobbing(delta)
 		
 		
 		
@@ -296,3 +319,80 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 		
 
 		get_tree().change_scene_to_file("res://scenes/gameplay/pitch.tscn")
+
+func check_detection_area():
+	var bodies = $DetectionArea.get_overlapping_bodies()
+
+	for body in bodies:
+		if body.name == "Player" and not player_detected:
+			if body.character_name == "Ellen" and body.get_is_ability_active():
+				continue
+			print("%s is seeing %s" % [self, body])
+			vision_renderer.color = alert_color
+			player_detected = true
+			##Switch to face player if too close
+			var to_player = body.global_position - global_position
+			var angle = to_player.angle() 
+			if abs(angle) < PI/4:
+				print("right")
+				current_direction=Direction.RIGHT
+				spriteChar.frame=3
+				vision_cone.rotation = -PI/2
+			elif abs(angle - PI) < PI/4 or abs(angle + PI) < PI/4:
+				current_direction=Direction.LEFT
+				spriteChar.frame=2
+				vision_cone.rotation = PI/2
+			elif angle < 0:
+				current_direction=Direction.UP
+				spriteChar.frame=1
+				vision_cone.rotation = PI
+			else:
+				current_direction=Direction.DOWN
+				spriteChar.frame=0
+				vision_cone.rotation = 0
+			moving_forward=false
+			is_moving=false
+
+			# Slow motion effect
+			start_dialogue()
+			break
+
+
+
+func check_vision_cone():
+	var bodies = $VisionCone2D/VisionConeArea.get_overlapping_bodies()
+
+	for body in bodies:
+		if body.name == "Player" and not player_detected:
+		
+			if body.character_name == "Ellen" and body.get_is_ability_active():
+				continue
+			print("%s is seeing %s" % [self, body])
+			vision_renderer.color = alert_color
+			player_detected = true
+			##Switch to face player if too close
+			var to_player = body.global_position - global_position
+			var angle = to_player.angle() 
+			if abs(angle) < PI/4:
+				print("right")
+				current_direction=Direction.RIGHT
+				spriteChar.frame=3
+				vision_cone.rotation = -PI/2
+			elif abs(angle - PI) < PI/4 or abs(angle + PI) < PI/4:
+				current_direction=Direction.LEFT
+				spriteChar.frame=2
+				vision_cone.rotation = PI/2
+			elif angle < 0:
+				current_direction=Direction.UP
+				spriteChar.frame=1
+				vision_cone.rotation = PI
+			else:
+				current_direction=Direction.DOWN
+				spriteChar.frame=0
+				vision_cone.rotation = 0
+			moving_forward=false
+			is_moving=false
+
+			# Slow motion effect
+			start_dialogue()
+			break

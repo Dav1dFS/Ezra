@@ -15,7 +15,10 @@ var current_npc: Node = null
 
 func changeImages(npc, player):
 	self.portrait.texture = load(npc)
-	self.player_portrait.texture=load(player)
+	if player is Object:
+		self.player_portrait.texture=player
+	else:
+		self.player_portrait.texture=load(player)
 	
 func start(dialogue : Dictionary, npc: Node):
 	Gamestate.is_talking = true
