@@ -176,6 +176,8 @@ func _calculate_target_position():
 
 func _physics_process(delta: float) -> void:
 	if !Gamestate.game_is_paused:
+		check_detection_area()
+		check_vision_cone()
 		if is_moving:
 			var distance_to_target = global_position.distance_to(target_position)
 
@@ -317,3 +319,80 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 		
 
 		get_tree().change_scene_to_file("res://scenes/gameplay/pitch.tscn")
+
+func check_detection_area():
+	var bodies = $DetectionArea.get_overlapping_bodies()
+
+	for body in bodies:
+		if body.name == "Player" and not player_detected:
+			if body.character_name == "Ellen" and body.get_is_ability_active():
+				continue
+			print("%s is seeing %s" % [self, body])
+			vision_renderer.color = alert_color
+			player_detected = true
+			##Switch to face player if too close
+			var to_player = body.global_position - global_position
+			var angle = to_player.angle() 
+			if abs(angle) < PI/4:
+				print("right")
+				current_direction=Direction.RIGHT
+				spriteChar.frame=3
+				vision_cone.rotation = -PI/2
+			elif abs(angle - PI) < PI/4 or abs(angle + PI) < PI/4:
+				current_direction=Direction.LEFT
+				spriteChar.frame=2
+				vision_cone.rotation = PI/2
+			elif angle < 0:
+				current_direction=Direction.UP
+				spriteChar.frame=1
+				vision_cone.rotation = PI
+			else:
+				current_direction=Direction.DOWN
+				spriteChar.frame=0
+				vision_cone.rotation = 0
+			moving_forward=false
+			is_moving=false
+
+			# Slow motion effect
+			start_dialogue()
+			break
+
+
+
+func check_vision_cone():
+	var bodies = $VisionCone2D/VisionConeArea.get_overlapping_bodies()
+
+	for body in bodies:
+		if body.name == "Player" and not player_detected:
+		
+			if body.character_name == "Ellen" and body.get_is_ability_active():
+				continue
+			print("%s is seeing %s" % [self, body])
+			vision_renderer.color = alert_color
+			player_detected = true
+			##Switch to face player if too close
+			var to_player = body.global_position - global_position
+			var angle = to_player.angle() 
+			if abs(angle) < PI/4:
+				print("right")
+				current_direction=Direction.RIGHT
+				spriteChar.frame=3
+				vision_cone.rotation = -PI/2
+			elif abs(angle - PI) < PI/4 or abs(angle + PI) < PI/4:
+				current_direction=Direction.LEFT
+				spriteChar.frame=2
+				vision_cone.rotation = PI/2
+			elif angle < 0:
+				current_direction=Direction.UP
+				spriteChar.frame=1
+				vision_cone.rotation = PI
+			else:
+				current_direction=Direction.DOWN
+				spriteChar.frame=0
+				vision_cone.rotation = 0
+			moving_forward=false
+			is_moving=false
+
+			# Slow motion effect
+			start_dialogue()
+			break

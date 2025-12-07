@@ -79,6 +79,7 @@ visible = false
 
 [node name="VisionConeArea" parent="VisionCone2D" index="1"]
 visible = false
+monitorable = true
 
 [node name="DebugDraw" parent="VisionCone2D" index="2"]
 visible = false

@@ -344,7 +344,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -509,7 +509,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"left",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -538,7 +538,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"right",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -623,7 +623,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"up",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwiox"]
@@ -644,7 +644,8 @@ character_name = "Ellen"
 y_sort_enabled = true
 position = Vector2(-0.5, -8)
 sprite_frames = SubResource("SpriteFrames_myuhx")
-animation = &"down"
+animation = &"up"
+frame_progress = 0.39999884
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 1)
