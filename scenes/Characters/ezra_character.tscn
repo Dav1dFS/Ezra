@@ -94,7 +94,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -184,6 +184,7 @@ path_update_distance = 24.0
 direction_change_threshold = 0.25
 target_npc = NodePath("")
 target_npc_gamestate_flag = "can_control_frieda"
+footprint_side_offset = 6.0
 inv = null
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." index="0"]
@@ -191,7 +192,6 @@ z_index = 1
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_rvnwh")
 animation = &"down"
-frame_progress = 0.011279252
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -7)
