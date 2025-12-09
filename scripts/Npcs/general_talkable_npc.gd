@@ -5,6 +5,7 @@ extends Node2D
 @export_file("*.png") var npc_portrait: String
 @export_file("*.png") var npc_sprite: String
 @export var triggers_player_dialogue: bool = false
+@export var all_collected_gamestate_flag: String = ""
 
 # Node references
 @onready var area = $PlayerInteractionArea
@@ -21,7 +22,6 @@ var current_dialogue_index: int = 0
 var dialogue_completed: bool = false
 var current_player: Node = null
 var is_cutscene_dialogue: bool = false
-
 
 func _ready():
 	_load_dialogue_file()
@@ -113,18 +113,25 @@ func start_dialogue():
 
 func _choose_dialogue() -> Dictionary:
 	var dialogues = dialogue_data.get("dialogues", [])
-
 	var is_completed = Gamestate.npc_dialogues_completed.get(npc_name, false)
+	
+	var all_memories_collected = false
+	if not all_collected_gamestate_flag.is_empty() and all_collected_gamestate_flag in Gamestate:
+		all_memories_collected = Gamestate.get(all_collected_gamestate_flag) == true
 
 	for dialogue in dialogues:
 		var condition = dialogue.get("condition", "default")
-
+		if condition == "all_collected" and all_memories_collected:
+			return dialogue
+	
+	# Depois verifica default e repetition
+	for dialogue in dialogues:
+		var condition = dialogue.get("condition", "default")
+		
 		if condition == "default" and not is_completed:
 			return dialogue
 		elif condition == "repetition" and is_completed:
 			return dialogue
-		elif condition != "default" and condition != "repetition":
-			continue
 
 	return {}
 
@@ -140,9 +147,14 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 		interact_label.visible = true
 
 	if fully_completed:
-		Gamestate.npc_dialogues_completed[npc_name] = true
-		dialogue_completed = true
-		current_dialogue_index += 1
+		var all_memories_collected = false
+		if not all_collected_gamestate_flag.is_empty() and all_collected_gamestate_flag in Gamestate:
+			all_memories_collected = Gamestate.get(all_collected_gamestate_flag) == true
+			
+		if not all_memories_collected:
+			Gamestate.npc_dialogues_completed[npc_name] = true
+			dialogue_completed = true
+			current_dialogue_index += 1
 
 func _on_body_entered(body: Node):
 	if body.name == "Player":

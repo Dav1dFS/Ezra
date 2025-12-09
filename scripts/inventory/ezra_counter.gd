@@ -21,30 +21,34 @@ func _ready():
 
 	update_counter()
 
-# Atualiza o texto do objetivo
-func updateObjective(text: String) -> void:
+func updateObjective(text: String):
 	current_objective = text
 	update_label()
 
-func update_label() -> void:
+func update_label():
 	label.text = str(current_objective)
 
-# Atualiza o contador de itens recolhidos
-func update_counter() -> void:
+func update_counter():
 	counter.text = str(items_collected) + "/" + str(total_items)
 
-# Chamado quando se recolhe um item
-func add_point() -> void:
+func add_point():
 	items_collected += 1
 	update_counter()
 
 	if items_collected >= total_items:
-		Gamestate.can_control_frieda = true
+		var target_flag = ""
+		if player_node and "target_npc_gamestate_flag" in player_node:
+			target_flag = player_node.target_npc_gamestate_flag
+		
+		# Ativa a flag configurada no Player
+		if not target_flag.is_empty() and target_flag in Gamestate:
+			Gamestate.set(target_flag, true)
+			print("Activated flag: ", target_flag)
+		
 		Gamestate.npc_dialogues_completed["EzraCounter"] = items_collected
 		_trigger_found_all_dialogue()
 
-# Dispara o diálogo de "encontrei todos" quando recolhidos todos os itens
-func _trigger_found_all_dialogue() -> void:
+func _trigger_found_all_dialogue():
 	if dialogue_box == null:
 		push_warning("DialogueBox não encontrado na cena!")
 		return
@@ -55,19 +59,16 @@ func _trigger_found_all_dialogue() -> void:
 		]
 	}
 
-	# Inicia diálogo
 	dialogue_box.start(dialogue_data, self)
 
 	# Conecta signal com uma função separada para evitar CONNECT_ONE_SHOT em lambda
 	if not dialogue_box.dialogue_ended.is_connected(_on_found_all_dialogue_ended):
 		dialogue_box.dialogue_ended.connect(_on_found_all_dialogue_ended)
 
-# Handler do signal
-func _on_found_all_dialogue_ended(npc_node: Node, fully_completed: bool) -> void:
+func _on_found_all_dialogue_ended(npc_node: Node, fully_completed: bool):
 	if npc_node != self:
 		return
 	print("Found all dialogue completed!")
-	Gamestate.can_control_frieda = true
 
 	# Remove a conexão para simular CONNECT_ONE_SHOT
 	var dialogue_box_local = dialogue_box
