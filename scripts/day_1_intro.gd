@@ -36,7 +36,6 @@ func _ready():
 	dialogue_box.mid_action_triggered.connect(_on_mid_action)
 
 func _on_mid_action(action_name: String):
-	print("Cutscene Manager received mid_action:", action_name)
 	match action_name:
 		"erza_appears":
 			_action_ezra_appears()

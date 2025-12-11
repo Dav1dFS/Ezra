@@ -15,7 +15,6 @@ var from_cutscene: bool = false
 var current_dialogue_id: String = ""
 
 func _ready():
-	print(dialogue_file_path)
 	var file = FileAccess.open(dialogue_file_path, FileAccess.READ)
 	if file:
 		dialogue_data = JSON.parse_string(file.get_as_text())
@@ -27,7 +26,6 @@ func _ready():
 	dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
 	
 func on_body_entered(body):
-	print("ENTER:", body.name, body.get_class())
 	if body.name == "Player":
 		player_in_range = true
 		interact_label.visible = true
@@ -47,7 +45,6 @@ func _process(_delta):
 			start_dialogue()
 		
 func start_dialogue():
-	print("NPC(", name, "): start_dialogue. from_cutscene =", from_cutscene)
 	dialogue_is_on = true
 	interact_label.visible = false
 	var dialogue_to_use = _choose_dialogue()
@@ -59,7 +56,6 @@ func start_dialogue():
 		
 	current_dialogue_id = dialogue_to_use.get("id", "")
 	
-	print(dialogue_to_use)
 	for line in dialogue_to_use["lines"]:
 		if "text" in line:
 			line["text"] = line["text"].replace("{character_name}", Gamestate.character_name)
@@ -75,7 +71,7 @@ func start_dialogue():
 
 func _choose_dialogue() -> Dictionary:
 	if not dialogue_data.has("dialogues"):
-		print("not found dialogue with conditions right")
+		push_warning("NPC(%s): No 'dialogues' key found in dialogue data!" % name)
 		return {}
 
 	for d in dialogue_data["dialogues"]:
@@ -94,8 +90,6 @@ func _choose_dialogue() -> Dictionary:
 
 
 func _on_dialogue_ended(npc_node, fully_completed):
-	print("NPC(", name, "): _on_dialogue_ended. from_cutscene =", from_cutscene)
-	
 	if npc_node != self:
 		return
 

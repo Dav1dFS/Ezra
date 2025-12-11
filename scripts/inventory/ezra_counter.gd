@@ -43,7 +43,6 @@ func add_point():
 		# Ativa a flag configurada no Player
 		if not target_flag.is_empty() and target_flag in Gamestate:
 			Gamestate.set(target_flag, true)
-			print("Activated flag: ", target_flag)
 		
 		Gamestate.npc_dialogues_completed["EzraCounter"] = items_collected
 		_trigger_found_all_dialogue()
@@ -68,7 +67,6 @@ func _trigger_found_all_dialogue():
 func _on_found_all_dialogue_ended(npc_node: Node):
 	if npc_node != self:
 		return
-	print("Found all dialogue completed!")
 
 	# Remove a conexão para simular CONNECT_ONE_SHOT
 	var dialogue_box_local = dialogue_box

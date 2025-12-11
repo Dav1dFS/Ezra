@@ -1,7 +1,6 @@
 extends "res://scripts/player/player.gd"
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var counter: Control = $GUI/Objective
 @onready var timer: Timer = $Timer
 
 var is_ability_active: bool = false
@@ -64,7 +63,6 @@ func toggle_transparency_ability():
 func activate_transparency_ability():
 	is_ability_active = true
 	if HideEllen_anims.has(current_direction):
-		print(HideEllen_anims[current_direction])
 		sprite.play(HideEllen_anims[current_direction])
 
 	

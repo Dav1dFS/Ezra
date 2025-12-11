@@ -104,7 +104,6 @@ func _reset_ability_charge():
 
 func _on_ability_fully_charged():
 	_reset_ability_charge()
-	print("Frieda ability activated!")
 	Gamestate.is_talking = true
 	Gamestate.dialogue_locked = true
 	_start_day2_transition()
@@ -140,7 +139,6 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	
 	if all_memories_collected and fully_completed and not all_collected_dialogue_shown:
 		all_collected_dialogue_shown = true
-		print("All collected dialogue shown! Ability now available.")
 		
 		if glowrect:
 			glowrect.visible = true

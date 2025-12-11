@@ -72,7 +72,7 @@ func start_dialogue():
 	var dialogue_to_use = _choose_dialogue()
 
 	if dialogue_to_use.is_empty():
-		print("No valid dialogue found for NPC: " + npc_name)
+		push_warning("No valid dialogue found for NPC: " + npc_name)
 		return
 
 	dialogue_is_on = true

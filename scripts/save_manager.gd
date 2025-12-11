@@ -97,7 +97,6 @@ func save_game(slot_index: int) -> bool:
 	file.close()
 
 	current_slot = slot_index
-	print("SaveManager: Game saved to slot ", slot_index)
 	return true
 
 # Create a new game in a specific slot
@@ -147,7 +146,6 @@ func load_game(slot_index: int) -> bool:
 
 	get_tree().node_added.connect(_on_node_added_after_load)
 
-	print("SaveManager: Game loaded from slot ", slot_index)
 	return true
 
 func _get_current_scene_path() -> String:
@@ -206,7 +204,6 @@ func _restore_player_state(node: Node, save_data: Dictionary):
 		var counter = node.get_node_or_null("GUI/Counter")
 		if counter and counter.has_method("set_value"):
 			counter.set_value(memories)
-			print("SaveManager: Restored collected_memories =", memories)
 
 	if "inv" in node and node.inv:
 		node.inv.current_items.clear()
@@ -220,7 +217,6 @@ func _restore_player_state(node: Node, save_data: Dictionary):
 		node.inv.inventory_changed.emit()
 
 	is_loading = false  # Clear loading flag after restoration is complete
-	print("SaveManager: Player state restored")
 
 func delete_save(slot_index: int) -> bool:
 	var path = _get_save_path(slot_index)

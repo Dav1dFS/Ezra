@@ -57,22 +57,18 @@ var direction_vectors = {
 	Direction.DOWN: Vector2.DOWN
 }
 
-
-
 func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		if body.character_name == "Ellen" and body.has_method("get_is_ability_active") and body.get_is_ability_active():
-			print("%s cannot see %s (Ellen is invisible)" % [self, body])
 			return
 		
-		print("%s is seeing %s" % [self, body])
 		vision_renderer.color = alert_color
 		player_detected = true
+
 		##Switch to face player if too close
 		var to_player = body.global_position - global_position
 		var angle = to_player.angle() 
 		if abs(angle) < PI/4:
-			print("right")
 			current_direction=Direction.RIGHT
 			spriteChar.frame=3
 			vision_cone.rotation = -PI/2
@@ -96,7 +92,6 @@ func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 
 func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		print("%s stopped seeing %s" % [self, body])
 		vision_renderer.color = original_color
 
 func _ready():
@@ -104,14 +99,12 @@ func _ready():
 	current_direction = initial_direction as Direction
 	previous_position = global_position
 	$DetectionArea.body_entered.connect(_on_vision_cone_area_body_entered)
-	print(self.name)
 	_load_dialogue_file()
 	if "General" in self.name:
 		self.vision_cone.angle_deg=100
 		self.vision_cone._angle=deg_to_rad(100)
 		self.vision_cone._angle_half=self.vision_cone._angle/2.
 		self.vision_cone._angular_delta= self.vision_cone._angle / self.vision_cone.ray_count
-		print(self.vision_cone.angle_deg)
 		flashlight_bob_amount =3.0
 	#animated_sprite.play("default")
 	if is_moving:
@@ -254,7 +247,7 @@ func start_dialogue():
 	var dialogue_to_use = _choose_dialogue()
 
 	if dialogue_to_use.is_empty():
-		print("No valid dialogue found for NPC: " + npc_name)
+		push_warning("No valid dialogue found for NPC: " + npc_name)
 		return
 
 	dialogue_is_on = true
@@ -278,7 +271,6 @@ func start_dialogue():
 
 func _choose_dialogue() -> Dictionary:
 	var dialogues = dialogue_data.get("dialogues", [])
-	print(dialogues)
 
 	var is_completed = Gamestate.npc_dialogues_completed.get(npc_name, false)
 
@@ -316,14 +308,12 @@ func check_detection_area():
 		if body.name == "Player" and not player_detected:
 			if body.character_name == "Ellen" and body.get_is_ability_active():
 				continue
-			print("%s is seeing %s" % [self, body])
 			vision_renderer.color = alert_color
 			player_detected = true
 			##Switch to face player if too close
 			var to_player = body.global_position - global_position
 			var angle = to_player.angle() 
 			if abs(angle) < PI/4:
-				print("right")
 				current_direction=Direction.RIGHT
 				spriteChar.frame=3
 				vision_cone.rotation = -PI/2
@@ -356,14 +346,12 @@ func check_vision_cone():
 		
 			if body.character_name == "Ellen" and body.get_is_ability_active():
 				continue
-			print("%s is seeing %s" % [self, body])
 			vision_renderer.color = alert_color
 			player_detected = true
 			##Switch to face player if too close
 			var to_player = body.global_position - global_position
 			var angle = to_player.angle() 
 			if abs(angle) < PI/4:
-				print("right")
 				current_direction=Direction.RIGHT
 				spriteChar.frame=3
 				vision_cone.rotation = -PI/2

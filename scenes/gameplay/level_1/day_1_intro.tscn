@@ -46,7 +46,7 @@ collision_layer = 3
 
 [node name="EllenNPC" parent="." instance=ExtResource("5_282ja")]
 position = Vector2(4845, 2304)
-dialogue_file = "res://dialogues/day_1/intro.json"
+dialogue_file = "res://dialogues/day_1/day_1_intro.json"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ellen": ExtResource("7_1ao5p"),
 "Ezra": ExtResource("6_pte20"),

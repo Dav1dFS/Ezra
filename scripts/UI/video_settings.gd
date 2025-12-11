@@ -70,7 +70,6 @@ func _on_resolution_changed(value: String):
 
 func _on_gamma_changed(value: float):
 	_pending_gamma = clamp(value, 0.7, 2.0)
-	print(_pending_gamma)
 
 func _on_fps_changed(value: int):
 	_pending_fps = value

@@ -7,7 +7,7 @@ const SPEED = 70.0
 @onready var cam: Camera2D = get_node("Camera2D")
 @onready var sprite: AnimatedSprite2D = $Base
 @onready var pause_menu = $PauseLayer/PauseMenu
-@onready var objective: Control = $GUI/Objective
+@onready var objective: Control = $GUI/PlayerObjective
 @onready var inventory = $GUI/Inventory
 
 @export var character_name: String =""
@@ -28,16 +28,11 @@ func _ready():
 
 	# Only set character_name if NOT loading a save (SaveManager will restore it)
 	if not SaveManager.is_loading:
-		print(character_name)
 		Gamestate.character_name = character_name
-	else:
-		# When loading, use the character name from save data
-		print("Loading save - using saved character_name:", Gamestate.character_name)
 
 	inventory.update_pocket(Gamestate.character_name)
 	
 	if inv:
-		print("✅ Connected to inventory:", inv)
 		inv.connect("inventory_changed", Callable(self, "update_inv"))
 		update_inv(null)
 		
