@@ -696,7 +696,7 @@ visible = false
 position = Vector2(4992, 2047)
 script = ExtResource("8_dkx5u")
 npc_name = "Ellen"
-dialogue_file = "res://DialoguesJSON/ellen_night1.json"
+dialogue_file = "res://dialogues/ellen_night1.json"
 all_collected_gamestate_flag = ""
 
 [node name="CutsceneController" type="Node2D" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box", "fade_rect", "transition_label")]
@@ -718,7 +718,7 @@ day_label = NodePath("../GUI/TransitionLabel")
 next_scene_path = "res://scenes/gameplay/pitch.tscn"
 npc_gamestate_flag = "can_control_frieda"
 npc_name = "Frieda"
-dialogue_file = "res://DialoguesJSON/frieda_night1.json"
+dialogue_file = "res://dialogues/frieda_night1.json"
 all_collected_gamestate_flag = ""
 
 [node name="Label2" type="Label" parent="Frieda"]

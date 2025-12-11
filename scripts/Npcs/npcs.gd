@@ -1,7 +1,7 @@
 extends Node2D
 
 @export_group("Dialogue")
-@export var dialogue_file_path: String = "res://DialoguesJSON/"
+@export var dialogue_file_path: String = "res://dialogues/"
 @export var triggers_player_dialogue: bool = false
 @onready var interact_label = $Label
 @onready var area = $Area2D

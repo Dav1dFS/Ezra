@@ -35,7 +35,7 @@ position = Vector2(0, -16)
 script = ExtResource("1_usc7g")
 vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
 alert_color = Color(0.69411767, 0.05882353, 0.36862746, 0.36862746)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 backward_distance = 100.0
 
 [node name="VisionCone2D" parent="." instance=ExtResource("3_yha3f")]

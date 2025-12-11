@@ -1,7 +1,7 @@
 extends Area2D
 
 @export_group("Dialogue")
-@export var dialogue_file_path: String = "res://DialoguesJSON/MemoriesNight1/night1_memories.json"
+@export var dialogue_file_path: String = "res://dialogues/MemoriesNight1/night1_memories.json"
 @export var level_id: String = "level1" # identifica o nível para contar as memórias
 @export var triggers_player_dialogue: bool = false
 @export var float_speed: float = 2.0
@@ -41,7 +41,7 @@ func _ready():
 	else:
 		push_error("Falha a parsear JSON em %s: %s" % [dialogue_file_path, json.get_error_message()])
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Flutuação do item
 	global_position.y = start_position.y + sin(Time.get_ticks_msec() / 1000.0 * float_speed) * float_amplitude
 

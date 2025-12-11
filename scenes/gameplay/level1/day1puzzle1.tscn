@@ -38,86 +38,86 @@ position = Vector2(5111.2314, 1582.3073)
 
 [node name="Enemy" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4889, 1664)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 initial_direction = 3
 
 [node name="Enemy4" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4739.558, 1879.015)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 forward_distance = 550.0
 initial_direction = 3
 
 [node name="Enemy13" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4761.558, 1700.015)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 forward_distance = 700.0
 initial_direction = 3
 
 [node name="Enemy12" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4545.826, 2012.5454)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 forward_distance = 700.0
 initial_direction = 3
 
 [node name="Enemy6" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4857, 2030)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 forward_distance = 200.0
 initial_direction = 3
 
 [node name="Enemy11" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4989.189, 2218.9775)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 forward_distance = 700.0
 initial_direction = 3
 
 [node name="Enemy7" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(5095, 2146)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 forward_distance = 700.0
 initial_direction = 3
 
 [node name="Enemy2" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4980, 1669)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 
 [node name="Enemy5" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4566, 1889)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 
 [node name="Enemy8" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4898, 1929)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 
 [node name="Enemy9" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4647, 2086)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 
 [node name="Enemy10" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4813, 2277)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 
 [node name="Enemy14" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4706.2056, 1567.8878)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 forward_distance = 250.0
 
 [node name="Enemy3" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4578, 1792)
-dialogue_file = "res://DialoguesJSON/GameOverGuard.json"
+dialogue_file = "res://dialogues/GameOverGuard.json"
 is_moving = true
 forward_distance = 450.0
 
