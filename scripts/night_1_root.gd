@@ -6,7 +6,7 @@ func _ready():
 	$Player.changeObjective("Collect all Memories")
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Gamestate.can_control_frieda:
 		$Player.changeObjective("Find Frieda")
 		memories.visible = false

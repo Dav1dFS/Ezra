@@ -11,8 +11,8 @@ func update(item: Item):
 		item_icon.visible=true
 		item_icon.texture = item.icon
 		
-func character(char: String):
-	if char=="Ellen":
+func character(character_name: String):
+	if character_name=="Ellen":
 		pocket_Up.texture=load("res://assets/items_sprites/ellenUp.png")
 		pocket_Down.texture=load("res://assets/items_sprites/ellenDown.png")
 	else:

@@ -35,8 +35,8 @@ func _process(delta):
 		
 func get_formatted_play_time() -> String:
 	var total_seconds = int(play_time)
-	var hours = total_seconds / 3600
-	var minutes = (total_seconds % 3600) / 60
+	var hours = total_seconds / 3600.0
+	var minutes = (total_seconds % 3600) / 60.0
 	var seconds = total_seconds % 60
 	return "%02dh %02dm %02ds" % [hours, minutes, seconds]
 

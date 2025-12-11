@@ -35,7 +35,7 @@ func _ready():
 	else:
 		show_side(1)
 
-func _process(delta: float):
+func _process(_delta: float):
 	if _fading:
 		return
 

@@ -130,7 +130,7 @@ func _update_footprint_path_to_target(npc: Node2D):
 		_spawn_footprint_path_to(npc)
 		return
 
-func get_zoom_from_distance(distance: float, delta: float):
+func get_zoom_from_distance(distance: float, _delta: float):
 	var target_zoom: float
 	var min_dist = 150.0
 	var max_dist = 500.0
