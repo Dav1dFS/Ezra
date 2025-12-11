@@ -108,7 +108,7 @@ func create_new_game(slot_index: int) -> bool:
 	current_slot = slot_index
 
 	# Change to the starting scene
-	get_tree().change_scene_to_file("res://scenes/gameplay/level1/day_1_intro.tscn")
+	get_tree().change_scene_to_file("res://scenes/gameplay/level_1/day_1_intro.tscn")
 
 	return true
 
@@ -142,7 +142,7 @@ func load_game(slot_index: int) -> bool:
 	_pending_load_data = save_data
 	current_slot = slot_index
 
-	var scene_path = save_data.get("current_scene", "res://scenes/gameplay/night1.tscn")
+	var scene_path = save_data.get("current_scene", "res://scenes/gameplay/level_1/night_1.tscn")
 	get_tree().change_scene_to_file(scene_path)
 
 	get_tree().node_added.connect(_on_node_added_after_load)

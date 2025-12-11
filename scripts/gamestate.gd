@@ -14,7 +14,7 @@ var can_control_frieda: bool = false
 var frieda_control_line_shown: bool = false
 
 func _ready():
-	var img = load("res://assets/character sprites/ezra/ezra_base.png").get_image()
+	var img = load("res://assets/character_sprites/ezra/ezra_base.png").get_image()
 	img.resize(32, 32)
 	custom_cursor = ImageTexture.create_from_image(img)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

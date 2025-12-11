@@ -1,11 +1,10 @@
 extends "res://scripts/player/player.gd"
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-var is_ability_active: bool = false
 @onready var counter: Control = $GUI/Objective
-
 @onready var timer: Timer = $Timer
 
+var is_ability_active: bool = false
 var ellen_anims = {
 	Direction.DOWN: "down",
 	Direction.UP: "up",
@@ -30,16 +29,13 @@ func get_is_ability_active() -> bool:
 	return is_ability_active
 
 func _ready():
+	super._ready()
 	character_name = "Ellen"
 	timer.wait_time = 1.5
 	timer.one_shot=true
 	shakes=false
 	collision_shape.disabled=false
 	timer.connect("timeout",  Callable(self, "_on_timer_timeout"))
-	super._ready()
-
-func changeObjective(text:String):
-	counter.updateObjective(text)
 
 func _update_sprite_for_direction():
 	if is_ability_active:

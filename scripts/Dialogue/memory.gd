@@ -1,8 +1,8 @@
 extends Area2D
 
 @export_group("Dialogue")
-@export var dialogue_file_path: String = "res://dialogues/MemoriesNight1/night1_memories.json"
-@export var level_id: String = "level1" # identifica o nível para contar as memórias
+@export var dialogue_file_path: String = "res://dialogues/memories_night_1/night1_memories.json"
+@export var level_id: String = "level1"
 @export var triggers_player_dialogue: bool = false
 @export var float_speed: float = 2.0
 @export var float_amplitude: float = 6.0

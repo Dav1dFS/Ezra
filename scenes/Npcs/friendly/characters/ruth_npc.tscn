@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpu0qf8tao73y"]
+
+[ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/npcs/friendly/general_talkable_npc.tscn" id="1_d65lc"]
+[ext_resource type="Texture2D" uid="uid://d11imkedd5ajh" path="res://assets/character_sprites/miss_ruth/miss_ruth.png" id="2_d65lc"]
+[ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="2_iy5dx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_isp7f"]
+radius = 4.0
+height = 18.0
+
+[node name="Ruth NPC" instance=ExtResource("1_d65lc")]
+npc_name = "Miss Ruth"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ezra": ExtResource("2_iy5dx"),
+"Miss Ruth": ExtResource("2_d65lc")
+})
+
+[node name="Base" type="Sprite2D" parent="." index="0"]
+position = Vector2(0, -6)
+texture = ExtResource("2_d65lc")
+
+[node name="PlayerInteractionArea" parent="." index="1"]
+position = Vector2(0, 10)
+
+[node name="Area2D" type="CharacterBody2D" parent="." index="3"]
+position = Vector2(0, 10)
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_isp7f")

@@ -1,7 +1,7 @@
 {
   "name": "Prisoner",
-  "portrait": "res://assets/character sprites/prisoners static/priosiner_big.png",
-  "portraitPlayer": "res://assets/character sprites/ezra/ezra_base.png",
+  "portrait": "res://assets/character_sprites/prisoners_static/priosiner_big.png",
+  "portraitPlayer": "res://assets/character_sprites/ezra/ezra_base.png",
   "dialogues": [
 	{
 	  "id": "memory",

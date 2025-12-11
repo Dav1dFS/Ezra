@@ -12,10 +12,10 @@ extends CharacterBody2D
 @onready var vision_cone: Node2D = $VisionCone2D
 @export_group("Dialogue")
 @export var npc_name: String = "Guard"
-@export_file("*.json") var dialogue_file: String
+@export_file("*.json") var dialogue_file: String = "res://dialogues/game_over_guard.json"
 @export_file("*.png") var npc_portrait: String
 @export var triggers_player_dialogue: bool = false
-var player_portrait_ezra: String = "res://assets/character sprites/ezra/ezra_base.png"
+var player_portrait_ezra: String = "res://assets/character_sprites/ezra/ezra_base.png"
 var player_in_range: bool = false
 var dialogue_data: Dictionary
 var dialogue_is_on: bool = false

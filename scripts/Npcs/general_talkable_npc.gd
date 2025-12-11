@@ -3,7 +3,7 @@ extends Node2D
 @export var npc_name: String = "NPC"
 @export_file("*.json") var dialogue_file: String
 @export var speaker_portraits: Dictionary[String, Texture2D] = {
-	"Ezra": preload("res://assets/character sprites/ezra/ezra_base.png"),
+	"Ezra": preload("res://assets/character_sprites/ezra/ezra_base.png"),
 }
 @export var triggers_player_dialogue: bool = false
 @export var override_base_sprite: Texture2D = null

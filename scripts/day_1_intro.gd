@@ -162,4 +162,4 @@ func _action_ezra_possesses_ellen():
 func _action_next_scene():
 	await get_tree().create_timer(0.5).timeout
 
-	get_tree().change_scene_to_file("res://scenes/gameplay/level1/day1puzzle1.tscn")
+	get_tree().change_scene_to_file("res://scenes/gameplay/level_1/day_1_puzzle_1.tscn")

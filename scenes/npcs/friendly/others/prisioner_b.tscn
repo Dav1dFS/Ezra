@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1myt0vft2x58"]
 
 [ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/npcs/friendly/general_talkable_npc.tscn" id="1_r5wv7"]
-[ext_resource type="Texture2D" uid="uid://1wjw0vciw7qy" path="res://assets/character sprites/prisoners static/pm2.png" id="2_25xbr"]
-[ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character sprites/ezra/ezra_base.png" id="2_ewor0"]
-[ext_resource type="Texture2D" uid="uid://dhsix2mkoyeqa" path="res://assets/character sprites/prisoners static/pm2b.png" id="3_qa7tl"]
+[ext_resource type="Texture2D" uid="uid://1wjw0vciw7qy" path="res://assets/character_sprites/prisoners_static/pm2.png" id="2_25xbr"]
+[ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="2_ewor0"]
+[ext_resource type="Texture2D" uid="uid://dhsix2mkoyeqa" path="res://assets/character_sprites/prisoners_static/pm2b.png" id="3_qa7tl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r5wv7"]
 radius = 3.712297

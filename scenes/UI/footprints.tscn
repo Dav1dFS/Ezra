@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbyffikw81yby"]
 
 [ext_resource type="Script" uid="uid://fa46084lixde" path="res://scripts/footprint.gd" id="1_je50w"]
-[ext_resource type="Texture2D" uid="uid://dr4idskl1qqac" path="res://assets/environment sprites & tiles/left_footstep.png" id="2_dhwo4"]
-[ext_resource type="Texture2D" uid="uid://cpxf1jqqcpvu6" path="res://assets/environment sprites & tiles/right_footstep.png" id="3_b0asd"]
+[ext_resource type="Texture2D" uid="uid://dr4idskl1qqac" path="res://assets/environment_sprites_tiles/left_footstep.png" id="2_dhwo4"]
+[ext_resource type="Texture2D" uid="uid://cpxf1jqqcpvu6" path="res://assets/environment_sprites_tiles/right_footstep.png" id="3_b0asd"]
 
 [node name="Footprints" type="Node2D"]
 script = ExtResource("1_je50w")

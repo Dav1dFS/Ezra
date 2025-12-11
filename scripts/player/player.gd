@@ -7,6 +7,7 @@ const SPEED = 70.0
 @onready var cam: Camera2D = get_node("Camera2D")
 @onready var sprite: AnimatedSprite2D = $Base
 @onready var pause_menu = $PauseLayer/PauseMenu
+@onready var objective: Control = $GUI/Objective
 
 @export var character_name: String =""
 
@@ -55,6 +56,9 @@ func _ready():
 		cam.limit_bottom = int(pos1.y)
 	else:
 		push_warning("Limit1 or Limit2 not found in scene!")
+
+func changeObjective(text: String):
+	objective.updateObjective(text)
 
 func input_handler():
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")

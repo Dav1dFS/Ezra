@@ -1,0 +1,11 @@
+{
+	"dialogues": [
+		{
+			"condition": "default",
+			"lines": [
+				{"speaker": "Guard", "text": "You there! Stop! You think you can get away with that?!?"},
+				{"speaker": "Ezra", "text": "No, they got us!"}
+			]
+		}
+	]
+}

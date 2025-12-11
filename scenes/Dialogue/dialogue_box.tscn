@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bi1nsful0mdq5" path="res://scripts/dialogue/dialogue_box.gd" id="1_2k12t"]
 
-[node name="DialogueBox" type="CanvasLayer"]
+[node name="Dialogue Box" type="CanvasLayer"]
 visible = false
 script = ExtResource("1_2k12t")
 

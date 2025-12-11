@@ -13,4 +13,4 @@ func checkpoint(body: Node2D):
 		await get_tree().create_timer(1.0).timeout
 		Engine.time_scale = 1.0
 
-		get_tree().change_scene_to_file("res://scenes/gameplay/level1/day1puzzle2.tscn")
+		get_tree().change_scene_to_file("res://scenes/gameplay/level_1/day_1_puzzle_2.tscn")

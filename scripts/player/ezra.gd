@@ -2,7 +2,6 @@ extends "res://scripts/player/player.gd"
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var memories: Array[Node] = get_tree().get_nodes_in_group("Memories")
-@onready var objective: Control = $GUI/Objective
 
 @export var max_value: int = 3
 @export var footprint_scene: PackedScene
@@ -38,8 +37,8 @@ var ellen_anims = {
 }
 
 func _ready():
-	character_name = "Ezra"
 	super._ready()
+	character_name = "Ezra"
 	original_zoom = cam.zoom.x
 	_last_path_player_pos = global_position
 	_prev_player_pos = global_position
@@ -164,9 +163,6 @@ func _apply_final_zoom(delta: float):
 		cam.zoom.x = target_zoom
 		cam.zoom.y = target_zoom
 		final_zoom_done = true
-
-func changeObjective(text: String):
-	objective.updateObjective(text)
 
 func _get_nearest_memory_to_position(pos: Vector2) -> Node2D:
 	var best: Node2D = null
