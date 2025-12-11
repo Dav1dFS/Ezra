@@ -1,7 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0ssl5qu7xexp"]
+[gd_scene load_steps=10 format=3 uid="uid://bd4qxu1apradq"]
 
-[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/npcs/npcs.gd" id="1_rolu6"]
+[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/Npcs/npcs.gd" id="1_rolu6"]
+[ext_resource type="Shader" uid="uid://cku83md4wcs5r" path="res://scripts/shaders/memory_halo.gdshader" id="2_4tb5i"]
 [ext_resource type="Texture2D" uid="uid://b1om6rvm46is" path="res://assets/character sprites/main characters/frieda.png" id="2_rolu6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdyvl"]
+shader = ExtResource("2_4tb5i")
+shader_parameter/glow_color = Color(6.738305e-07, 0.6649367, 0.7501924, 1)
+shader_parameter/glow_size = 0.50000002049012
+shader_parameter/glow_intensity = 0.400000019
+shader_parameter/edge_softness = 0.010000000475
+
+[sub_resource type="Gradient" id="Gradient_4tb5i"]
+colors = PackedColorArray(0, 0.6666667, 0.7490196, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nk81a"]
+gradient = SubResource("Gradient_4tb5i")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usfu8"]
 radius = 20.134228
@@ -23,13 +41,37 @@ radius = 4.1231055
 script = ExtResource("1_rolu6")
 dialogue_file_path = "res://DialoguesJSON/frieda_night_1.json"
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_qdyvl")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -41.0
+offset_right = 25.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, -14)
+color = Color(0, 0.6666667, 0.7490196, 1)
+shadow_color = Color(0.047058824, 0.047058824, 0.047058824, 0.8352941)
+texture = SubResource("GradientTexture2D_nk81a")
+texture_scale = 1.5
+
 [node name="Base" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
 texture = ExtResource("2_rolu6")
 hframes = 4
 
 [node name="PlayerInteractionArea" type="Area2D" parent="."]
-collision_mask = 3
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteractionArea"]
 position = Vector2(0, -16.000002)

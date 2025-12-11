@@ -2,7 +2,6 @@
 	"dialogues": [
 		{
 			"condition": "default",
-			"mid_action": true,
 			"lines": [
 				{
 					"speaker": "Ellen",

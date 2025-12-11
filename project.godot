@@ -32,6 +32,7 @@ project/assembly_name="Ezra"
 [global_group]
 
 Player=""
+Memories=""
 
 [input]
 

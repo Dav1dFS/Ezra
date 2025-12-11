@@ -20,23 +20,57 @@ vec4 lerp(vec4 col1, vec4 col2, float t) {
 }
 
 void fragment() {
+	// mistura de cor igual ao original
 	COLOR = lerp(color1, color2, texture(noise, UV).r);
 
+	// distância radial ao centro (0 = centro)
 	float center_dist = distance(UV, vec2(0.5, 0.5));
-	float dist = 1.0 - sqrt(pow(UV.x - 0.5, 2.0) + pow(UV.y - 0.5, 2.0));
 
+	// --- ajustes súbitos mas mínimos ---
+	// reduz a amplitude do pulso para não abrir tanto
+	const float pulse_scale_factor = 0.15;
+	const float speed_multiplier = 3.0;
+
+	// PULSE (expansão/contração uniforme) — mais suave e mais rápido
+	float pulse = 1.0 + sin(TIME * (timeRate * speed_multiplier) + timeOffset) * (noiseAmmount * pulse_scale_factor);
+	pulse = max(pulse, 0.01);
+
+	// flicker global (mantive a tua amostragem temporal)
 	float flickerValue = texture(noise, vec2(TIME + timeOffset, (TIME + timeOffset) * 0.9)).r;
 	if (flickerValue > flickerT) {
-		dist *= flickerValue / (1.0 - flickerT) * 0.62;
+		pulse *= flickerValue / (1.0 - flickerT) * 0.62;
 	}
 
-	if (center_dist <= solid_radius) {
+	// escalamos a coordenada radial pelo inverso do pulse (mantém o perfil, só muda escala)
+	float scaled_center_dist = center_dist / pulse;
+	scaled_center_dist = clamp(scaled_center_dist, 0.0, 1.0);
+
+	// dist = 1.0 no centro, decresce para a borda (mesmo perfil)
+	float dist = 1.0 - scaled_center_dist;
+
+	// Boost suave de cor no centro para recuperar vibrância
+	// smoothstep dá uma transição suave em torno do solid_radius
+	float centerBoost = smoothstep(solid_radius * 0.0, solid_radius, 1.0 - scaled_center_dist) * 0.35;
+	// aplicamos o boost RGB sem tocar no alpha ainda
+	COLOR.rgb = COLOR.rgb * (1.0 + centerBoost);
+
+	// Dentro do raio sólido (usando o raio "real" escalado pelo pulse)
+	if (center_dist <= solid_radius * pulse) {
 		COLOR.a *= dist + brightness;
 	} else {
-		COLOR.a *= dist + cos(UV.x * 10.0 + TIME * timeRate + timeOffset + offsetX) * 0.02 + brightness + cos(TIME * timeRate * 2.0 + timeOffset * 2.0) * 0.03;
-		COLOR.a = (COLOR.a * (2.0 - noiseAmmount) + texture(noise, vec2(UV.x + timeOffset * -0.1 + TIME * timeRate * -0.1 + offsetX, UV.y) + brightness * 4.0).r * noiseAmmount) / 2.0;
-		COLOR.a = round(COLOR.a * dither_amount) / dither_amount;
+		// Fora do raio sólido: atenuação radial com mistura de ruído estático
+		float a = dist + brightness;
+
+		// ruído estático em UV para variação, sem deslocamento temporal
+		float noiseSample = texture(noise, UV).r;
+		a = (a * (2.0 - noiseAmmount) + noiseSample * noiseAmmount) / 2.0;
+
+		// dither/quantização como no original
+		a = round(a * dither_amount) / dither_amount;
+
+		COLOR.a *= a;
 	}
 
+	// clamp final
 	COLOR.a = clamp(COLOR.a, 0.0, 1.0);
 }

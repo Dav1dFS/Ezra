@@ -94,7 +94,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -168,7 +168,7 @@ shader_parameter/timeRate = 0.765
 shader_parameter/noiseAmmount = -0.265
 shader_parameter/offsetX = 1.205
 shader_parameter/flickerT = 0.495
-shader_parameter/solid_radius = 0.13
+shader_parameter/solid_radius = 0.1
 shader_parameter/dither_amount = 15.1
 
 [node name="Player" instance=ExtResource("1_83tdx")]
@@ -176,6 +176,15 @@ z_index = 2
 collision_layer = 2
 script = ExtResource("2_qm0pf")
 max_value = 3
+footprint_scene = null
+footprints_step_distance = 18.0
+footprints_per_second = 6.0
+max_path_length = 2000.0
+path_update_distance = 24.0
+direction_change_threshold = 0.25
+target_npc = NodePath("")
+target_npc_gamestate_flag = "can_control_frieda"
+footprint_side_offset = 6.0
 inv = null
 character_name = "Ezra"
 
@@ -184,7 +193,6 @@ z_index = 1
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_rvnwh")
 animation = &"down"
-frame_progress = 0.011279252
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -7)

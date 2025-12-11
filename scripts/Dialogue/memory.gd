@@ -7,13 +7,8 @@ extends Area2D
 @export var float_speed: float = 2.0
 @export var float_amplitude: float = 6.0
 
-@export var particle_scene: PackedScene        
-@export var particles_per_second: float = 1.0 
-@export var particle_speed: float = 25.0 
-
 var start_position: Vector2
 var player: Node2D = null
-var time_since_last_particle: float = 0.0
 
 var dialogue_data: Dictionary = {}
 var dialogue_is_on: bool = false
@@ -49,17 +44,6 @@ func _ready():
 func _process(delta: float) -> void:
 	# Flutuação do item
 	global_position.y = start_position.y + sin(Time.get_ticks_msec() / 1000.0 * float_speed) * float_amplitude
-
-	# Gera partículas guiadas para o player
-	if player and particle_scene:
-		time_since_last_particle += delta
-		if time_since_last_particle >= 1.0 / particles_per_second:
-			time_since_last_particle = 0.0
-			var particle = particle_scene.instantiate()
-			get_tree().get_current_scene().add_child(particle)
-			particle.global_position = global_position
-			particle.target = player
-			particle.speed = particle_speed
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
