@@ -7,10 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/characters/ezra_character.tscn" id="4_t5b4k"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_3fgql"]
 [ext_resource type="PackedScene" uid="uid://dle73kkftd1pm" path="res://scenes/UI/pause_menu.tscn" id="6_blula"]
-[ext_resource type="PackedScene" uid="uid://bhuhxtvhfa757" path="res://scenes/npcs/enemies/Ellen_level_1_night.tscn" id="7_4ov1t"]
+[ext_resource type="PackedScene" uid="uid://br3gpnhtkafbd" path="res://scenes/npcs/friendly/characters/ellen_npc.tscn" id="7_4ov1t"]
 [ext_resource type="Script" uid="uid://boiknnwxihnqo" path="res://scripts/npcs/general_talkable_npc.gd" id="8_dkx5u"]
 [ext_resource type="Script" uid="uid://ddduf3o4tlfgt" path="res://scripts/cutscene_manager.gd" id="8_u6i4i"]
-[ext_resource type="PackedScene" uid="uid://bd4qxu1apradq" path="res://scenes/npcs/enemies/Frieda_level_1_night.tscn" id="9_t5b4k"]
+[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/npcs/friendly/characters/frieda_npc.tscn" id="9_t5b4k"]
+[ext_resource type="PackedScene" uid="uid://cg8nkwvp2h5y1" path="res://scenes/npcs/effects/npc_glow.tscn" id="9_glow"]
 [ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/npcs/frieda_npc.gd" id="10_3fgql"]
 [ext_resource type="Texture2D" uid="uid://cd85becst2y5y" path="res://assets/grey_circle.png" id="11_jcha6"]
 [ext_resource type="Script" uid="uid://coqhlnyc6ddrp" path="res://scripts/fog_wall.gd" id="12_bqncc"]
@@ -755,6 +756,8 @@ fill_mode = 4
 texture_under = ExtResource("11_jcha6")
 texture_progress = ExtResource("11_jcha6")
 tint_progress = Color(0.8285668, 9.62615e-07, 0.43747923, 1)
+
+[node name="NpcGlow" parent="Frieda" instance=ExtResource("9_glow")]
 
 [node name="FogWalls" type="Node2D" parent="."]
 script = ExtResource("12_bqncc")

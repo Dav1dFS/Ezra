@@ -2,8 +2,9 @@ extends "res://scripts/npcs/general_talkable_npc.gd"
 
 @onready var ability_label: Label = $Label2
 @onready var ability_progress: TextureProgressBar = $AbilityProgress
-@onready var glowrect: ColorRect = $ColorRect
-@onready var pointlight: PointLight2D = $PointLight2D
+
+var glowrect: ColorRect
+var pointlight: PointLight2D
 
 @export var ability_hold_time: float = 3.0
 @export var fade_rect: ColorRect
@@ -17,6 +18,12 @@ var all_collected_dialogue_shown: bool = false
 func _ready():
 	super._ready()
 
+	glowrect = find_child("GlowRect", true, false) as ColorRect
+	if not glowrect:
+		glowrect = get_node_or_null("ColorRect") as ColorRect
+
+	pointlight = find_child("PointLight2D", true, false) as PointLight2D
+
 	if ability_label:
 		ability_label.visible = false
 	if ability_progress:
@@ -24,7 +31,7 @@ func _ready():
 		ability_progress.min_value = 0.0
 		ability_progress.max_value = ability_hold_time
 		ability_progress.value = 0.0
-	
+
 	if glowrect:
 		glowrect.visible = false
 	if pointlight:
