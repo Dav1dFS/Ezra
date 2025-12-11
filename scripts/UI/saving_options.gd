@@ -31,7 +31,6 @@ func _ready():
 	for node in [middle_color, right_color]:
 		node.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	# Connect slot signals
 	for slot in slots:
 		slot.slot_selected.connect(_on_slot_selected)
 
@@ -39,29 +38,17 @@ func open_saving_options(action: int = action_types.CREATE):
 	visible = true
 	current_action_type = action
 
-	# Refresh all slot info before displaying
 	for slot in slots:
 		slot.refresh_slot_info()
 
 	for node in nodes:
-		fade_in(node)
+		UIUtils.fade_in(node)
 
 func close_saving_options():
 	for node in nodes:
-		fade_out(node)
+		UIUtils.fade_out(node)
 	await get_tree().create_timer(0.3).timeout
 	visible = false
-
-func fade_in(node: CanvasItem, duration := 0.3):
-	node.visible = true
-	var tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	tween.tween_property(node, "modulate:a", 1.0, duration)
-
-func fade_out(node: CanvasItem, duration := 0.3):
-	var tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	tween.tween_property(node, "modulate:a", 0.0, duration)
-	if node is not ColorRect:
-		tween.finished.connect(func(): node.visible = false)
 
 func _on_slot_selected(slot_index: int):
 	var success = false
@@ -69,22 +56,18 @@ func _on_slot_selected(slot_index: int):
 
 	match action:
 		action_types.CREATE:
-			# Scene will change, don't call close_saving_options after
 			SaveManager.create_new_game(slot_index)
 			return
 		action_types.SAVE:
 			success = SaveManager.save_game(slot_index)
 			if success:
-				# Refresh slot info to show updated data
 				for slot in slots:
 					slot.refresh_slot_info()
 		action_types.LOAD:
-			# Scene will change, don't call close_saving_options after
 			SaveManager.load_game(slot_index)
 			return
 
 	action_completed.emit(success)
 
-	# Only close for SAVE action (CREATE and LOAD change scenes)
 	if success:
 		close_saving_options()
