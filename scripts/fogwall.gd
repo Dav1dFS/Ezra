@@ -49,7 +49,7 @@ func _show_dialogue():
 	Gamestate.is_talking = true
 	dialogue_box.start(dialogue, self)
 
-func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
+func _on_dialogue_ended(npc_node: Node):
 	if npc_node != self:
 		return
 

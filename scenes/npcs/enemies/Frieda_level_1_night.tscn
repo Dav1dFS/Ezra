@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bd4qxu1apradq"]
 
-[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/Npcs/npcs.gd" id="1_rolu6"]
+[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/npcs/npcs.gd" id="1_rolu6"]
 [ext_resource type="Shader" uid="uid://cku83md4wcs5r" path="res://scripts/shaders/memory_halo.gdshader" id="2_4tb5i"]
 [ext_resource type="Texture2D" uid="uid://b1om6rvm46is" path="res://assets/character sprites/main characters/frieda.png" id="2_rolu6"]
 

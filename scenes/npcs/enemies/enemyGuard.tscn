@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/npcs/enemy.gd" id="1_65c78"]
 [ext_resource type="Texture2D" uid="uid://bursog8awn2t" path="res://assets/character sprites/guards static/g2.png" id="2_0mye4"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_jnxau"]
-[ext_resource type="Script" path="res://scripts/Npcs/point_light_2d.gd" id="4_kjesm"]
+[ext_resource type="Script" path="res://scripts/npcs/point_light_2d.gd" id="4_kjesm"]
 [ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/npcs/movement_editor_helper.gd" id="4_movement"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pgdsa"]

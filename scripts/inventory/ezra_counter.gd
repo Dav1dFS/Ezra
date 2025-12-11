@@ -65,7 +65,7 @@ func _trigger_found_all_dialogue():
 	if not dialogue_box.dialogue_ended.is_connected(_on_found_all_dialogue_ended):
 		dialogue_box.dialogue_ended.connect(_on_found_all_dialogue_ended)
 
-func _on_found_all_dialogue_ended(npc_node: Node, fully_completed: bool):
+func _on_found_all_dialogue_ended(npc_node: Node):
 	if npc_node != self:
 		return
 	print("Found all dialogue completed!")

@@ -1,4 +1,4 @@
-extends "res://scripts/Npcs/general_talkable_npc.gd"
+extends "res://scripts/npcs/general_talkable_npc.gd"
 
 @onready var ability_label: Label = $Label2
 @onready var ability_progress: TextureProgressBar = $AbilityProgress
@@ -18,7 +18,7 @@ var all_collected_dialogue_shown: bool = false
 func _ready():
 	super._ready()
 	
-	all_collected_gamestate_flag = npc_gamestate_flag
+	super().all_collected_gamestate_flag = npc_gamestate_flag
 	
 	if ability_label:
 		ability_label.visible = false
@@ -133,8 +133,10 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 		return
 	
 	var all_memories_collected = false
-	if not all_collected_gamestate_flag.is_empty() and all_collected_gamestate_flag in Gamestate:
-		all_memories_collected = Gamestate.get(all_collected_gamestate_flag) == true
+
+	## TODO: Fix this.
+	# if not super().all_collected_gamestate_flag == "" and super().all_collected_gamestate_flag in Gamestate:
+	# 	all_memories_collected = Gamestate.get(super().all_collected_gamestate_flag) == true
 	
 	if all_memories_collected and fully_completed and not all_collected_dialogue_shown:
 		all_collected_dialogue_shown = true

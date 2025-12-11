@@ -41,7 +41,7 @@ func on_body_exited(body):
 		if dialogue_box.active:
 			dialogue_box.end_dialogue()
 		
-func _process(delta):
+func _process(_delta):
 	if player_in_range and Input.is_action_just_pressed("interact"):
 		if !dialogue_is_on and not Gamestate.dialogue_locked:
 			start_dialogue()
