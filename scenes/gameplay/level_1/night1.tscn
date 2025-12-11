@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bd4qxu1apradq" path="res://scenes/npcs/enemies/Frieda_level_1_night.tscn" id="9_t5b4k"]
 [ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/npcs/frieda_npc.gd" id="10_3fgql"]
 [ext_resource type="Texture2D" uid="uid://cd85becst2y5y" path="res://assets/grey_circle.png" id="11_jcha6"]
-[ext_resource type="Script" uid="uid://coqhlnyc6ddrp" path="res://scripts/fogwall.gd" id="12_bqncc"]
+[ext_resource type="Script" uid="uid://coqhlnyc6ddrp" path="res://scripts/fog_wall.gd" id="12_bqncc"]
 [ext_resource type="Shader" path="res://scripts/shaders/fog.gdshader" id="12_jcha6"]
 [ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="13_fcljn"]
 [ext_resource type="Texture2D" uid="uid://dqmfjansghrhc" path="res://assets/example_tile_map/tiles.png" id="16_x5hnv"]
@@ -697,7 +697,7 @@ visible = false
 position = Vector2(4992, 2047)
 script = ExtResource("8_dkx5u")
 npc_name = "Ellen"
-dialogue_file = "res://dialogues/ellen_night1.json"
+dialogue_file = "res://dialogues/night_1/night_1_ellen.json"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ezra": ExtResource("13_fcljn")
 })
@@ -723,7 +723,7 @@ day_label = NodePath("../GUI/TransitionLabel")
 next_scene_path = "res://scenes/gameplay/pitch.tscn"
 npc_gamestate_flag = "can_control_frieda"
 npc_name = "Frieda"
-dialogue_file = "res://dialogues/frieda_night1.json"
+dialogue_file = "res://dialogues/night_1/night_1_frieda.json"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ezra": ExtResource("13_fcljn")
 })

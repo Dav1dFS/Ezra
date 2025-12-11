@@ -40,14 +40,14 @@ func _on_body_entered(body: Node, push_direction: Vector2):
 
 func _show_dialogue():
 	if dialogue_box == null:
-		push_warning("FogWall: DialogueBox não encontrado.")
+		push_warning("Fog Wall: DialogueBox não encontrado.")
 		return
-	var dialogue := {
+	
+	Gamestate.is_talking = true
+	dialogue_box.start({
 		"id": "fog_wall_block",
 		"lines": [{"text": message, "speaker": Gamestate.character_name}]
-	}
-	Gamestate.is_talking = true
-	dialogue_box.start(dialogue, self)
+	}, self)
 
 func _on_dialogue_ended(npc_node: Node):
 	if npc_node != self:

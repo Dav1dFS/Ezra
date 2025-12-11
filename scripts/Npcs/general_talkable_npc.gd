@@ -5,69 +5,36 @@ extends Node2D
 @export var speaker_portraits: Dictionary[String, Texture2D] = {
 	"Ezra": preload("res://assets/character_sprites/ezra/ezra_base.png"),
 }
-@export var triggers_player_dialogue: bool = false
 @export var override_base_sprite: Texture2D = null
 @export var all_collected_gamestate_flag: String = ""
 
-# Node references
 @onready var sprite = $Base
 @onready var area = $PlayerInteractionArea
 @onready var interact_label = $PlayerInteractionLabel
 
-# State variables
 var player_in_range: bool = false
-var dialogue_data: Dictionary
 var dialogue_is_on: bool = false
-var current_dialogue_index: int = 0
-var dialogue_completed: bool = false
-var current_player: Node = null
 var is_cutscene_dialogue: bool = false
+var dialogue_handler := DialogueHandler.new()
 
 func _ready():
-	if override_base_sprite != null:
+	if override_base_sprite != null and sprite:
 		sprite.texture = override_base_sprite
-		
-	if dialogue_file != "":
-		_load_dialogue_file()
 
+	if dialogue_file != "":
+		dialogue_handler.load_dialogue_file(dialogue_file)
 		area.body_entered.connect(_on_body_entered)
 		area.body_exited.connect(_on_body_exited)
-
-		_connect_to_dialogue_box()
 
 func _process(_delta):
 	if player_in_range and Input.is_action_just_pressed("interact"):
 		if not dialogue_is_on and not Gamestate.dialogue_locked:
 			start_dialogue()
 
-func _load_dialogue_file():
-	if dialogue_file.is_empty():
-		push_error("Dialogue file path is empty for NPC: " + npc_name)
-		return
-
-	var file = FileAccess.open(dialogue_file, FileAccess.READ)
-	if file:
-		var json_text = file.get_as_text()
-		file.close()
-
-		var json = JSON.new()
-		var parse_result = json.parse(json_text)
-
-		if parse_result == OK:
-			dialogue_data = json.data
-		else:
-			push_error("Failed to parse JSON for NPC %s: %s" % [npc_name, json.get_error_message()])
-	else:
-		push_error("Failed to load dialogue file: " + dialogue_file)
-
-func _connect_to_dialogue_box():
-	pass
-
-func start_dialogue_from_cutscene(player_node: Node = null):
+func start_dialogue_from_cutscene(_player_node: Node = null):
 	is_cutscene_dialogue = true
-	current_player = player_node
 	start_dialogue()
-	
+
 func start_dialogue():
 	var dialogue_to_use = _choose_dialogue()
 
@@ -76,16 +43,18 @@ func start_dialogue():
 		return
 
 	dialogue_is_on = true
-	interact_label.visible = false
+	if interact_label:
+		interact_label.visible = false
 	Gamestate.dialogue_locked = true
 
-	var processed_dialogue = _process_dialogue(dialogue_to_use)
+	var processed_dialogue = dialogue_handler.process_dialogue(dialogue_to_use)
 
 	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 	if not dialogue_box:
 		push_error("DialogueBox not found in scene!")
 		dialogue_is_on = false
-		interact_label.visible = true
+		if interact_label:
+			interact_label.visible = true
 		Gamestate.dialogue_locked = false
 		return
 
@@ -96,29 +65,14 @@ func start_dialogue():
 	dialogue_box.start(processed_dialogue, self)
 
 func _choose_dialogue() -> Dictionary:
-	var dialogues = dialogue_data.get("dialogues", [])
-	var is_completed = Gamestate.npc_dialogues_completed.get(npc_name, false)
-	
-	var all_memories_collected = false
-	if not all_collected_gamestate_flag.is_empty() and all_collected_gamestate_flag in Gamestate:
-		all_memories_collected = Gamestate.get(all_collected_gamestate_flag) == true
+	# Custom condition checker for all_collected flag
+	var custom_check = func(condition: String) -> bool:
+		if condition == "all_collected":
+			if not all_collected_gamestate_flag.is_empty() and all_collected_gamestate_flag in Gamestate:
+				return Gamestate.get(all_collected_gamestate_flag) == true
+		return false
 
-	for dialogue in dialogues:
-		var condition = dialogue.get("condition", "default")
-		if condition == "all_collected" and all_memories_collected:
-			return dialogue
-	
-	# Depois verifica default e repetition
-	for dialogue in dialogues:
-		var condition = dialogue.get("condition", "default")
-		
-		if condition == "default" and not is_completed:
-			return dialogue
-		elif condition == "repetition" and is_completed:
-			return dialogue
-
-	return {}
-
+	return dialogue_handler.choose_dialogue(npc_name, custom_check)
 
 func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	if npc_node != self:
@@ -127,48 +81,28 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	dialogue_is_on = false
 	Gamestate.dialogue_locked = false
 
-	if player_in_range and not is_cutscene_dialogue:
+	if player_in_range and not is_cutscene_dialogue and interact_label:
 		interact_label.visible = true
 
 	if fully_completed:
 		var all_memories_collected = false
 		if not all_collected_gamestate_flag.is_empty() and all_collected_gamestate_flag in Gamestate:
 			all_memories_collected = Gamestate.get(all_collected_gamestate_flag) == true
-			
+
 		if not all_memories_collected:
-			Gamestate.npc_dialogues_completed[npc_name] = true
-			dialogue_completed = true
-			current_dialogue_index += 1
+			dialogue_handler.mark_completed(npc_name)
 
 func _on_body_entered(body: Node):
 	if body.name == "Player":
 		player_in_range = true
-		current_player = body
-		if not dialogue_is_on:
+		if not dialogue_is_on and interact_label:
 			interact_label.visible = true
-
-func _process_dialogue(dialogue: Dictionary) -> Dictionary:
-	var processed = dialogue.duplicate(true)
-	var filtered_lines = []
-
-	for line in dialogue.get("lines", []):
-		var processed_line = line.duplicate()
-
-		# Replace character name placeholder in text
-		if processed_line.has("text") and "{character_name}" in processed_line["text"]:
-			processed_line["text"] = processed_line["text"].replace("{character_name}", Gamestate.character_name)
-
-		# Keep all lines (including mid_action lines)
-		filtered_lines.append(processed_line)
-
-	processed["lines"] = filtered_lines
-	return processed
 
 func _on_body_exited(body: Node):
 	if body.name == "Player":
 		player_in_range = false
-		current_player = null
-		interact_label.visible = false
+		if interact_label:
+			interact_label.visible = false
 
 		# Don't end dialogue if it's a cutscene dialogue
 		if dialogue_is_on and not is_cutscene_dialogue:

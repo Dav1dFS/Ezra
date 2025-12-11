@@ -8,7 +8,6 @@ var custom_cursor: Texture2D
 var play_time:= 0.0
 var is_talking: bool = false
 var dialogue_locked:= false
-var ellen_night1_intro_done: bool = false
 var memory_zoom_enabled := false
 var can_control_frieda: bool = false
 var frieda_control_line_shown: bool = false
@@ -75,7 +74,6 @@ func reset_to_defaults() -> void:
 	npc_dialogues_completed = {}
 	character_name = ""
 	play_time = 0.0
-	ellen_night1_intro_done = false
 	memory_zoom_enabled = false
 	can_control_frieda = false
 	frieda_control_line_shown = false

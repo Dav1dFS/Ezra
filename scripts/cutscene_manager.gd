@@ -21,7 +21,7 @@ extends Node2D
 @export var label_display_time: float = 3.0
 
 @export_group("Gamestate Flags")
-@export var cutscene_flag_name: String = "ellen_night1_intro_done"
+@export var cutscene_flag_name: String = "night1_intro_done"
 
 @export_group("GUI Elements to Hide")
 @export var hide_objective: bool = true

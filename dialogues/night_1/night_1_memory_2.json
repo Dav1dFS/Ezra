@@ -1,0 +1,19 @@
+{
+  "dialogues": [
+	{
+	  "condition": "default",
+	  "mid_action": false,
+	  "lines": [
+		{"speaker": "Panicked Villager", "text": "They'll kill them Frieda! Please, don't go near the soldiers!"},
+		{"speaker": "Frieda", "text": "I can't stay hidden while others die."},
+		{"speaker": "Panicked Villager", "text": "But you'll die too!"},
+		{"speaker": "Frieda", "text": "So be it! Maybe, just maybe, they'll listen if someone steps forward unarmed."},
+		{"speaker": "Panicked Villager", "text": "You're insane."},
+		{"speaker": "Frieda", "text": "I guess i am."},
+		{"speaker": "Ezra", "text": "This seems to be during a riot... when she stopped innocent women from being executed."},
+		{"speaker": "Ezra", "text": "She stepped in without hesitation. That kind of bravery isn't common."},
+		{"speaker": "Ezra", "text": "I need to understand who she really was."}
+	  ]
+	}
+  ]
+}
