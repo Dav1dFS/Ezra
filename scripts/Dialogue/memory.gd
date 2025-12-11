@@ -38,7 +38,6 @@ func _collect_item() -> void:
 
 	_increment_memories_count()
 	start_dialogue()
-	queue_free()
 
 func _increment_memories_count() -> void:
 	if not ("memories_collected" in Gamestate) or typeof(Gamestate.memories_collected) != TYPE_DICTIONARY:
@@ -84,10 +83,12 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool = true) -> void:
 	if npc_node != self:
 		return
 
+	# Disconnect signal
+	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+	if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
+		dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)
+
 	if fully_completed:
 		dialogue_handler.mark_completed(self.name)
 
-		# Disconnect signal after completion
-		var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
-		if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
-			dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)
+	queue_free()

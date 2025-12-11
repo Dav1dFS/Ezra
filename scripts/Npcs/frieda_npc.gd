@@ -9,7 +9,6 @@ extends "res://scripts/npcs/general_talkable_npc.gd"
 @export var fade_rect: ColorRect
 @export var day_label: Label
 @export var next_scene_path: String = "res://scenes/gameplay/pitch.tscn"
-@export var npc_gamestate_flag: String = "can_control_frieda"
 
 var ability_timer: float = 0.0
 var ability_holding: bool = false
@@ -17,9 +16,7 @@ var all_collected_dialogue_shown: bool = false
 
 func _ready():
 	super._ready()
-	
-	super().all_collected_gamestate_flag = npc_gamestate_flag
-	
+
 	if ability_label:
 		ability_label.visible = false
 	if ability_progress:
@@ -77,13 +74,13 @@ func _process(delta: float):
 				start_dialogue()
 
 func _can_use_ability() -> bool:
-	if npc_gamestate_flag.is_empty():
+	if all_collected_gamestate_flag.is_empty():
 		return false
-	
-	if not npc_gamestate_flag in Gamestate:
+
+	if not all_collected_gamestate_flag in Gamestate:
 		return false
-	
-	return Gamestate.get(npc_gamestate_flag) == true
+
+	return Gamestate.get(all_collected_gamestate_flag) == true
 
 func _on_body_entered(body: Node):
 	super._on_body_entered(body)
@@ -132,11 +129,9 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 		return
 	
 	var all_memories_collected = false
+	if not all_collected_gamestate_flag.is_empty() and all_collected_gamestate_flag in Gamestate:
+		all_memories_collected = Gamestate.get(all_collected_gamestate_flag) == true
 
-	## TODO: Fix this.
-	# if not super().all_collected_gamestate_flag == "" and super().all_collected_gamestate_flag in Gamestate:
-	# 	all_memories_collected = Gamestate.get(super().all_collected_gamestate_flag) == true
-	
 	if all_memories_collected and fully_completed and not all_collected_dialogue_shown:
 		all_collected_dialogue_shown = true
 		

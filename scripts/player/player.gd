@@ -15,6 +15,17 @@ const SPEED = 70.0
 enum Direction { RIGHT, LEFT, UP, DOWN }
 var current_direction: Direction = Direction.DOWN
 var last_movement_direction: Vector2 = Vector2.ZERO
+var is_ability_active: bool = false
+
+var base_anims = {
+	Direction.DOWN: "down",
+	Direction.UP: "up",
+	Direction.LEFT: "left",
+	Direction.RIGHT: "right"
+}
+
+func get_is_ability_active() -> bool:
+	return is_ability_active
 
 
 func update_inv(item:Item):
@@ -26,7 +37,6 @@ func update_inv(item:Item):
 func _ready():
 	add_to_group("player")
 
-	# Only set character_name if NOT loading a save (SaveManager will restore it)
 	if not SaveManager.is_loading:
 		Gamestate.character_name = character_name
 
@@ -81,9 +91,10 @@ func update_sprite_direction(movement_direction: Vector2):
 
 		_update_sprite_for_direction()
 
-# Virtual method for child classes to override
+# Virtual method - child classes can override for custom behavior
 func _update_sprite_for_direction():
-	pass
+	if base_anims.has(current_direction):
+		sprite.play(base_anims[current_direction])
 	
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("pause") and not Gamestate.game_is_paused:

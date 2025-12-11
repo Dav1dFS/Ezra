@@ -19,7 +19,6 @@ var _last_path_player_pos: Vector2
 var _current_path_target: Node2D = null
 var _last_dir_vector: Vector2 = Vector2.ZERO
 var _prev_player_pos: Vector2 = Vector2.ZERO
-var is_ability_active: bool = false
 var max_zoom: float = 5.0
 var min_zoom: float = 2.0
 var close_mem: Node = null
@@ -27,14 +26,7 @@ var collected_memories: int = 0
 var original_zoom: float
 var final_zoom_done: bool = false
 var zoom_speed: float = 0.02
-var _tracking_npc: bool = false 
-
-var ellen_anims = {
-	Direction.DOWN: "down",
-	Direction.UP: "up",
-	Direction.LEFT: "left",
-	Direction.RIGHT: "right"
-}
+var _tracking_npc: bool = false
 
 func _ready():
 	super._ready()
@@ -42,10 +34,6 @@ func _ready():
 	original_zoom = cam.zoom.x
 	_last_path_player_pos = global_position
 	_prev_player_pos = global_position
-
-func _update_sprite_for_direction():
-	if ellen_anims.has(current_direction):
-		sprite.play(ellen_anims[current_direction])
 
 func increment_item_counter():
 	memories.erase(close_mem)

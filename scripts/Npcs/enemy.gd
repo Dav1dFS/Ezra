@@ -199,7 +199,6 @@ func start_dialogue():
 		return
 
 	dialogue_is_on = true
-	Gamestate.dialogue_locked = true
 
 	var processed_dialogue = dialogue_handler.process_dialogue(dialogue_to_use)
 
@@ -207,21 +206,26 @@ func start_dialogue():
 	if not dialogue_box:
 		push_error("DialogueBox not found in scene!")
 		dialogue_is_on = false
-		Gamestate.dialogue_locked = false
 		return
 
 	if not dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 		dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
 
-	dialogue_box.changeImages(npc_portrait)
+	if npc_portrait and not npc_portrait.is_empty():
+		var portraits = {npc_name: load(npc_portrait)}
+		dialogue_box.set_speaker_portraits(portraits)
 	dialogue_box.start(processed_dialogue, self)
 
 func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	if npc_node != self:
 		return
 
+	# Disconnect signal
+	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+	if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
+		dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)
+
 	dialogue_is_on = false
-	Gamestate.dialogue_locked = false
 
 	if fully_completed:
 		dialogue_handler.mark_completed(npc_name)

@@ -3,29 +3,19 @@ extends "res://scripts/player/player.gd"
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var timer: Timer = $Timer
 
-var is_ability_active: bool = false
-var ellen_anims = {
-	Direction.DOWN: "down",
-	Direction.UP: "up",
-	Direction.LEFT: "left",
-	Direction.RIGHT: "right"
-}
-var HideEllen_anims = {
+@onready var HideEllen_anims = {
 	Direction.DOWN: "hideD",
 	Direction.UP: "hideU",
 	Direction.LEFT: "hideL",
 	Direction.RIGHT: "hideR"
 }
-var ShakeEllen_anims = {
+@onready var ShakeEllen_anims = {
 	Direction.DOWN: "shakeD",
 	Direction.UP: "shakeU",
 	Direction.LEFT: "shakeL",
 	Direction.RIGHT: "shakeR"
 }
 var shakes
-
-func get_is_ability_active() -> bool:
-	return is_ability_active
 
 func _ready():
 	super._ready()
@@ -40,8 +30,8 @@ func _update_sprite_for_direction():
 	if is_ability_active:
 		velocity = Vector2.ZERO
 	else:
-		if ellen_anims.has(current_direction):
-			sprite.play(ellen_anims[current_direction])
+		if base_anims.has(current_direction):
+			sprite.play(base_anims[current_direction])
 
 func _input(event):
 	if !Gamestate.dialogue_locked:
@@ -76,41 +66,31 @@ func activate_transparency_ability():
 func can_update_animations() -> bool:
 	return not is_ability_active
 
-
-func deactivate_transparency_ability():
-	if shakes:
-		sprite.modulate.a = 1.0
-		collision_shape.disabled = false
-		$LightOccluder2D.visible=true
-		timer.stop()
-		shakes=false
-		if HideEllen_anims.has(current_direction):
-			var anim=HideEllen_anims[current_direction] + "_back"
-			sprite.play(anim)
-			await sprite.animation_finished
-			is_ability_active = false
-			sprite.play(HideEllen_anims[current_direction])
-	else:
-		timer.stop()
-		timer.start()
-		shakes=true
-		if ShakeEllen_anims.has(current_direction):
-			sprite.play(ShakeEllen_anims[current_direction])
-			
-func manual_deactivate_transparency_ability():
+func _restore_visibility():
 	sprite.modulate.a = 1.0
 	collision_shape.disabled = false
-	$LightOccluder2D.visible=true
+	$LightOccluder2D.visible = true
 	timer.stop()
-	shakes=false
+	shakes = false
 	if HideEllen_anims.has(current_direction):
-		var anim=HideEllen_anims[current_direction] + "_back"
+		var anim = HideEllen_anims[current_direction] + "_back"
 		sprite.play(anim)
 		await sprite.animation_finished
 		is_ability_active = false
 		sprite.play(HideEllen_anims[current_direction])
 
+func deactivate_transparency_ability():
+	if shakes:
+		_restore_visibility()
+	else:
+		timer.stop()
+		timer.start()
+		shakes = true
+		if ShakeEllen_anims.has(current_direction):
+			sprite.play(ShakeEllen_anims[current_direction])
 
-	
+func manual_deactivate_transparency_ability():
+	_restore_visibility()
+
 func _on_timer_timeout():
 	deactivate_transparency_ability()

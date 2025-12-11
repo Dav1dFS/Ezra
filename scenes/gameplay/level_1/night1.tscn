@@ -721,14 +721,13 @@ ability_hold_time = 3.0
 fade_rect = NodePath("../GUI/FadeRect")
 day_label = NodePath("../GUI/TransitionLabel")
 next_scene_path = "res://scenes/gameplay/pitch.tscn"
-npc_gamestate_flag = "can_control_frieda"
 npc_name = "Frieda"
 dialogue_file = "res://dialogues/night_1/night_1_frieda.json"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ezra": ExtResource("13_fcljn")
 })
 override_base_sprite = null
-all_collected_gamestate_flag = ""
+all_collected_gamestate_flag = "can_control_frieda"
 
 [node name="Label2" type="Label" parent="Frieda"]
 visible = false

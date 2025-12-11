@@ -5,7 +5,7 @@ extends CanvasLayer
 @onready var text_label = $Label2
 @onready var text_bg = $Panel
 
-signal dialogue_ended(npc_node)
+signal dialogue_ended(npc_node, fully_completed: bool)
 signal mid_action_triggered(action_name: String)
 
 var lines : Array = []
