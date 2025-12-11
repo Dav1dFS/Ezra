@@ -209,9 +209,11 @@ func start_dialogue():
 	if not dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 		dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
 
-	if npc_portrait and not npc_portrait.is_empty():
-		var portraits = {npc_name: load(npc_portrait)}
-		dialogue_box.set_speaker_portraits(portraits)
+	dialogue_box.set_speaker_portraits({
+			"Guard": load(npc_portrait),
+			"General": load(npc_portrait),
+			"Ezra": preload("res://assets/character_sprites/ezra/ezra_base.png"),
+		})
 	dialogue_box.start(processed_dialogue, self)
 
 func _on_dialogue_ended(npc_node: Node, fully_completed: bool):

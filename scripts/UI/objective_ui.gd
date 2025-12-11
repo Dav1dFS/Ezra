@@ -1,11 +1,14 @@
 extends Node
 
+@export var show_counter: bool = true
+
 var current_objective: String = ""
 var items_collected: int = 0
 var total_items: int = 0
 
 @onready var label: Label = $ObjectiveLabel
 @onready var counter: Label = $CounterLabel
+@onready var item_display: TextureRect = $ItemDisplay
 @onready var dialogue_box: CanvasLayer = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 
 var player_node: Node = null
@@ -13,13 +16,20 @@ var player_node: Node = null
 func _ready():
 	# Inicializa objetivo e contador
 	update_label()
+	_apply_counter_visibility()
 	await get_tree().process_frame
 
 	player_node = get_tree().get_first_node_in_group("Player")
-	if player_node and "max_value" in player_node:
+	if show_counter and player_node and "max_value" in player_node:
 		total_items = player_node.max_value
 
 	update_counter()
+
+func _apply_counter_visibility():
+	if counter:
+		counter.visible = show_counter
+	if item_display:
+		item_display.visible = show_counter
 
 func updateObjective(text: String):
 	current_objective = text
@@ -29,9 +39,12 @@ func update_label():
 	label.text = str(current_objective)
 
 func update_counter():
-	counter.text = str(items_collected) + "/" + str(total_items)
+	if show_counter and counter:
+		counter.text = str(items_collected) + "/" + str(total_items)
 
 func add_point():
+	if not show_counter:
+		return
 	items_collected += 1
 	update_counter()
 

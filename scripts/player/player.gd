@@ -7,7 +7,7 @@ const SPEED = 70.0
 @onready var cam: Camera2D = get_node("Camera2D")
 @onready var sprite: AnimatedSprite2D = $Base
 @onready var pause_menu = $PauseLayer/PauseMenu
-@onready var objective: Control = $GUI/PlayerObjective
+@onready var objective: Control = $GUI/Objective
 @onready var inventory = $GUI/Inventory
 
 @export var character_name: String =""

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://t6g4s16ddx38" path="res://scripts/player/player.gd" id="1_6r27q"]
 [ext_resource type="Resource" uid="uid://c2pw7d2t47c3s" path="res://scripts/inventory/playerInv.tres" id="2_4h0vy"]
 [ext_resource type="PackedScene" uid="uid://dl7d0eba2uvfw" path="res://scenes/UI/inventory_ui.tscn" id="3_kww55"]
-[ext_resource type="PackedScene" uid="uid://bjyexeg0dxrac" path="res://scenes/UI/player_objective.tscn" id="4_hfyxy"]
+[ext_resource type="PackedScene" uid="uid://2b5a7qw3sl3" path="res://scenes/UI/objective_ui.tscn" id="4_hfyxy"]
 [ext_resource type="PackedScene" uid="uid://dle73kkftd1pm" path="res://scenes/UI/pause_menu.tscn" id="5_hfyxy"]
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
@@ -29,7 +29,8 @@ offset_right = 1084.0
 offset_bottom = 37.0
 scale = Vector2(3.3036156, 3.3036156)
 
-[node name="PlayerObjective" parent="GUI" instance=ExtResource("4_hfyxy")]
+[node name="Objective" parent="GUI" instance=ExtResource("4_hfyxy")]
+show_counter = false
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 layer = 100

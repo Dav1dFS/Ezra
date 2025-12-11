@@ -20,7 +20,7 @@ const SHAKE_DURATION: float = 0.3
 const SHAKE_STRENGTH: float = 5.0
 
 func _ready():
-	player.changeObjective("Talk to Ellen")
+	player.get_node("GUI").get_node("Objective").visible = false
 
 	# Store initial positions
 	ellen_initial_pos = ellen_character.global_position
