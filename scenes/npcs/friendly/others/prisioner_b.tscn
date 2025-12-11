@@ -10,20 +10,19 @@ radius = 3.712297
 height = 7.424594
 
 [node name="PrisionerB" instance=ExtResource("1_r5wv7")]
-position = Vector2(-0.5, 0)
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ezra": ExtResource("2_ewor0"),
 "PrisionerB": ExtResource("3_qa7tl")
 })
 
 [node name="Base" type="Sprite2D" parent="." index="0"]
-position = Vector2(0, -16)
+position = Vector2(-0.5, -16)
 texture = ExtResource("2_25xbr")
 hframes = 4
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2(0.5, -8)
+position = Vector2(0, -8)
 scale = Vector2(1, 2.155)
 shape = SubResource("CapsuleShape2D_r5wv7")

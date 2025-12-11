@@ -41,8 +41,11 @@ radius = 4.1231055
 script = ExtResource("1_rolu6")
 dialogue_file_path = "res://dialogues/frieda_night_1.json"
 
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("2_rolu6")
+hframes = 4
+
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_qdyvl")
 anchors_preset = 7
 anchor_left = 0.5
@@ -50,31 +53,24 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -25.0
-offset_top = -41.0
+offset_top = -25.0
 offset_right = 25.0
-offset_bottom = 9.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(0, -14)
 color = Color(0, 0.6666667, 0.7490196, 1)
 shadow_color = Color(0.047058824, 0.047058824, 0.047058824, 0.8352941)
 texture = SubResource("GradientTexture2D_nk81a")
 texture_scale = 1.5
-
-[node name="Base" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
-texture = ExtResource("2_rolu6")
-hframes = 4
 
 [node name="PlayerInteractionArea" type="Area2D" parent="."]
 collision_layer = 128
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteractionArea"]
-position = Vector2(0, -16.000002)
+position = Vector2(0, 4)
 scale = Vector2(0.745, 1.075)
 shape = SubResource("CapsuleShape2D_usfu8")
 one_way_collision_margin = 94.5
@@ -97,6 +93,6 @@ horizontal_alignment = 1
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -11.999999)
+position = Vector2(0, 8.000003)
 scale = Vector2(1, 2.155)
 shape = SubResource("CircleShape2D_2wcbm")

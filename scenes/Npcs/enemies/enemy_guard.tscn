@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://rq853mcdau80"]
+[gd_scene load_steps=10 format=3 uid="uid://rq853mcdau80"]
 
 [ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/npcs/enemy.gd" id="1_65c78"]
 [ext_resource type="Texture2D" uid="uid://bursog8awn2t" path="res://assets/character_sprites/guards_static/g2.png" id="2_0mye4"]
@@ -31,7 +31,6 @@ radius = 5.6000237
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("vision_renderer")]
 y_sort_enabled = true
-position = Vector2(0, -16)
 script = ExtResource("1_65c78")
 vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
 alert_color = Color(0.69411767, 0.05882353, 0.36862746, 0.36862746)

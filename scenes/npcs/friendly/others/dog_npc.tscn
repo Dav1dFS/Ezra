@@ -16,7 +16,7 @@ speaker_portraits = Dictionary[String, Texture2D]({
 })
 
 [node name="Base" type="Sprite2D" parent="." index="0"]
-position = Vector2(0, -16)
+position = Vector2(-0.5, -16)
 texture = ExtResource("2_x37u2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]

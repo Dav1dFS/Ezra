@@ -16,14 +16,10 @@ speaker_portraits = Dictionary[String, Texture2D]({
 })
 
 [node name="Base" type="Sprite2D" parent="." index="0"]
-position = Vector2(0, -6)
+position = Vector2(0.5, -16)
 texture = ExtResource("2_d65lc")
 
-[node name="PlayerInteractionArea" parent="." index="1"]
-position = Vector2(0, 10)
-
 [node name="Area2D" type="CharacterBody2D" parent="." index="3"]
-position = Vector2(0, 10)
 disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]

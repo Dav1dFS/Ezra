@@ -38,8 +38,9 @@ size = Vector2(21.403442, 23.729858)
 
 [node name="Day1Puzzle2" type="Node2D"]
 y_sort_enabled = true
-position = Vector2(-196, -251)
 script = ExtResource("1_c5o0j")
+
+[node name="MainMapFinal" parent="." instance=ExtResource("9_fh8rj")]
 
 [node name="DownLeftLimit" type="Marker2D" parent="."]
 position = Vector2(3101.4653, 2504.9849)
@@ -222,8 +223,6 @@ position = Vector2(3588.8318, 1833.0135)
 is_moving = true
 forward_distance = 300.0
 initial_direction = 2
-
-[node name="MainMapFinal" parent="." instance=ExtResource("9_fh8rj")]
 
 [node name="Checkpoint" type="Area2D" parent="."]
 position = Vector2(3748.0151, 2228.2915)
