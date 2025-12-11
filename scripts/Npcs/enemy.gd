@@ -6,12 +6,10 @@ extends CharacterBody2D
 @onready var spriteChar: Sprite2D = $Base
 @onready var vision_cone: Node2D = $VisionCone2D
 
-@export_group("Dialogue")
 @export var npc_name: String = "Guard"
 @export_file("*.json") var dialogue_file: String = "res://dialogues/game_over_guard.json"
 @export_file("*.png") var npc_portrait: String
 
-@export_group("Movement")
 @export var is_moving = false
 @export var movement_speed = 50.0
 @export var forward_distance = 100.0

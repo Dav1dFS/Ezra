@@ -1,8 +1,7 @@
 extends Area2D
 
-@export_group("Dialogue")
-@export var dialogue_file_path: String = "res://dialogues/memories_night_1/night1_memories.json"
-@export var level_id: String = "level1"
+@export var dialogue_file_path: String
+@export var level_id: String
 @export var float_speed: float = 2.0
 @export var float_amplitude: float = 6.0
 

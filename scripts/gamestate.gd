@@ -1,16 +1,15 @@
 extends Node
 
 var memories_collected: Dictionary = {}
-var npc_dialogues_completed = {}
+var npc_dialogues_completed: Dictionary = {}
 var character_name: String
 var game_is_paused := false
 var custom_cursor: Texture2D
 var play_time:= 0.0
 var is_talking: bool = false
-var dialogue_locked:= false
+var dialogue_locked := false
 var memory_zoom_enabled := false
 var can_control_frieda: bool = false
-var frieda_control_line_shown: bool = false
 
 func _ready():
 	var img = load("res://assets/character_sprites/ezra/ezra_base.png").get_image()
@@ -67,12 +66,12 @@ func load_save_data(data: Dictionary) -> void:
 	dialogue_locked = false
 
 func reset_to_defaults() -> void:
+	memories_collected = {}
 	npc_dialogues_completed = {}
 	character_name = ""
 	play_time = 0.0
 	memory_zoom_enabled = false
 	can_control_frieda = false
-	frieda_control_line_shown = false
 	game_is_paused = false
 	is_talking = false
 	dialogue_locked = false
