@@ -62,30 +62,34 @@ func _start_intro():
 
 	Gamestate.is_talking = true
 	Gamestate.dialogue_locked = true
-	
+
 	if disable_memory_zoom:
 		Gamestate.memory_zoom_enabled = false
-	
+
 	# Hide UI elements
 	if hide_objective and objective:
 		objective.visible = false
 	if hide_green_aura and green_aura:
 		green_aura.visible = false
-	
-	# Setup cutscene camera
-	cutscene_camera.global_position = target_npc.global_position
-	cutscene_camera.zoom = initial_zoom
-	cutscene_camera.make_current()
-	
-	# Setup fade
+
+	# Setup fade - start fully black
 	dialogue_box.visible = false
 	fade_rect.visible = true
 	fade_rect.modulate.a = 1.0
-	
-	if transition_label:
+
+	# Show transition label on black screen
+	if transition_label and not transition_text.is_empty():
+		transition_label.text = transition_text
+		transition_label.visible = true
+		await get_tree().create_timer(label_display_time).timeout
 		transition_label.visible = false
-	
-	# Fade in
+
+	# Setup cutscene camera while still black
+	cutscene_camera.global_position = target_npc.global_position
+	cutscene_camera.zoom = initial_zoom
+	cutscene_camera.make_current()
+
+	# Fade in to cutscene
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade_rect, "modulate:a", 0.0, fade_in_duration)
 	tween.finished.connect(_on_initial_fade_in_finished)
@@ -110,7 +114,7 @@ func _on_zoom_finished():
 	else:
 		push_error("Target NPC doesn't have start_dialogue_from_cutscene method!")
 
-func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
+func _on_dialogue_ended(npc_node: Node, fully_completed: bool = true):
 	if not running:
 		return
 	
@@ -118,10 +122,11 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 		return
 	
 	# Set completion flag
-	if cutscene_flag_name in Gamestate:
-		Gamestate.set(cutscene_flag_name, true)
+	if fully_completed:
+		if cutscene_flag_name in Gamestate:
+			Gamestate.set(cutscene_flag_name, true)
 	
-	_start_fade_sequence()
+		_start_fade_sequence()
 
 func _start_fade_sequence() -> void:
 	fade_rect.visible = true
@@ -130,29 +135,18 @@ func _start_fade_sequence() -> void:
 	if transition_label:
 		transition_label.visible = false
 	
-	# Fade to black
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade_rect, "modulate:a", 1.0, fade_out_duration)
 	tween.finished.connect(_on_fade_to_black_done)
 
 func _on_fade_to_black_done() -> void:
-	# Return camera to player
 	if previous_camera:
 		previous_camera.make_current()
 	cutscene_camera.enabled = false
-	
-	# Show transition label
-	if transition_label and not transition_text.is_empty():
-		transition_label.text = transition_text
-		transition_label.visible = true
-		await get_tree().create_timer(label_display_time).timeout
-		transition_label.visible = false
-	
-	# Restore UI elements
+
 	if hide_green_aura and green_aura:
 		green_aura.visible = true
-	
-	# Fade back in
+
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade_rect, "modulate:a", 0.0, fade_in_duration)
 	tween.finished.connect(_on_fade_in_finished)
@@ -160,11 +154,9 @@ func _on_fade_to_black_done() -> void:
 func _on_fade_in_finished() -> void:
 	fade_rect.visible = false
 	
-	# Restore UI
 	if hide_objective and objective:
 		objective.visible = true
 	
-	# Unlock player controls
 	Gamestate.is_talking = false
 	Gamestate.dialogue_locked = false
 	

@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bm3yfkddsvryw"]
+[gd_scene load_steps=6 format=3 uid="uid://bhuhxtvhfa757"]
 
-[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/Npcs/npcs.gd" id="1_ispic"]
+[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/npcs/npcs.gd" id="1_ispic"]
 [ext_resource type="Texture2D" uid="uid://c8kvq3jk1rjhg" path="res://assets/character sprites/main characters/ellen.png" id="2_ispic"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usfu8"]
@@ -23,7 +23,7 @@ radius = 4.1231055
 script = ExtResource("1_ispic")
 dialogue_file_path = "res://DialoguesJSON/ellen_night_1.json"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Base" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
 texture = ExtResource("2_ispic")
 hframes = 4

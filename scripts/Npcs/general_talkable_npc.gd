@@ -2,18 +2,18 @@ extends Node2D
 
 @export var npc_name: String = "NPC"
 @export_file("*.json") var dialogue_file: String
-@export_file("*.png") var npc_portrait: String
-@export_file("*.png") var npc_sprite: String
+@export var speaker_portraits: Dictionary[String, Texture2D] = {
+	"Ezra": preload("res://assets/character sprites/ezra/ezra_base.png"),
+}
 @export var triggers_player_dialogue: bool = false
+@export var override_base_sprite: Texture2D = null
 
 # Node references
+@onready var sprite = $Base
 @onready var area = $PlayerInteractionArea
 @onready var interact_label = $PlayerInteractionLabel
 
-signal checkpoint()
-
 # State variables
-var player_portrait_ezra: String = "res://assets/character sprites/ezra/ezra_base.png"
 var player_in_range: bool = false
 var dialogue_data: Dictionary
 var dialogue_is_on: bool = false
@@ -24,16 +24,16 @@ var is_cutscene_dialogue: bool = false
 
 
 func _ready():
-	_load_dialogue_file()
+	if override_base_sprite != null:
+		sprite.texture = override_base_sprite
+		
+	if dialogue_file != "":
+		_load_dialogue_file()
 
-	area.body_entered.connect(_on_body_entered)
-	area.body_exited.connect(_on_body_exited)
-	if npc_sprite:
-		$FriedaBase.texture=load(npc_sprite)
-	_connect_to_dialogue_box()
+		area.body_entered.connect(_on_body_entered)
+		area.body_exited.connect(_on_body_exited)
 
-	# if npc_name and not Gamestate.npc_dialogues_completed.has(npc_name):
-	# 	Gamestate.npc_dialogues_completed[npc_name] = false
+		_connect_to_dialogue_box()
 
 func _process(_delta):
 	if player_in_range and Input.is_action_just_pressed("interact"):
@@ -79,7 +79,6 @@ func start_dialogue():
 	interact_label.visible = false
 	Gamestate.dialogue_locked = true
 
-	# Filter out mid_action lines
 	var processed_dialogue = _process_dialogue(dialogue_to_use)
 
 	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
@@ -93,22 +92,7 @@ func start_dialogue():
 	if not dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 		dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
 
-	# Get player portrait safely
-	var player_portrait = null
-	if current_player:
-		var sprite = current_player.get_node_or_null("Sprite2D")
-		var frameIndex= sprite.get_frame()
-		var animation=sprite.animation
-		var frames=sprite.get_sprite_frames()
-		var tex=frames.get_frame_texture(animation,frameIndex)
-		if tex:
-			player_portrait = tex
-
-	# Use default if no portrait found
-	if not player_portrait :
-		player_portrait = player_portrait_ezra  # Default to Ezra
-
-	dialogue_box.changeImages(npc_portrait, player_portrait)
+	dialogue_box.set_speaker_portraits(speaker_portraits)
 	dialogue_box.start(processed_dialogue, self)
 
 func _choose_dialogue() -> Dictionary:
@@ -156,22 +140,14 @@ func _process_dialogue(dialogue: Dictionary) -> Dictionary:
 	var filtered_lines = []
 
 	for line in dialogue.get("lines", []):
-		# Skip mid_action lines (for future cutscene implementation)
-		if line.has("mid_action"):
-			var processed_line=line.duplicate()
-			print("here")
-			if "checkpoint" in processed_line["mid_action"] :
-				print(processed_line["mid_action"])
-				emit_signal("checkpoint")
-				
+		var processed_line = line.duplicate()
 
-		# Process regular dialogue lines
-		if line.has("text"):
-			var processed_line = line.duplicate()
-			# Replace character name placeholder
-			if "{character_name}" in processed_line["text"]:
-				processed_line["text"] = processed_line["text"].replace("{character_name}", Gamestate.character_name)
-			filtered_lines.append(processed_line)
+		# Replace character name placeholder in text
+		if processed_line.has("text") and "{character_name}" in processed_line["text"]:
+			processed_line["text"] = processed_line["text"].replace("{character_name}", Gamestate.character_name)
+
+		# Keep all lines (including mid_action lines)
+		filtered_lines.append(processed_line)
 
 	processed["lines"] = filtered_lines
 	return processed
@@ -182,7 +158,8 @@ func _on_body_exited(body: Node):
 		current_player = null
 		interact_label.visible = false
 
-		if dialogue_is_on:
+		# Don't end dialogue if it's a cutscene dialogue
+		if dialogue_is_on and not is_cutscene_dialogue:
 			var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 			if dialogue_box and dialogue_box.active:
 				dialogue_box.end_dialogue()

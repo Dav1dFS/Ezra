@@ -1,24 +1,22 @@
 extends CanvasLayer
 
 @onready var portrait = $TextureRect
-@onready var player_portrait = $TextureRect2
 @onready var name_label = $Label
 @onready var text_label = $Label2
 @onready var text_bg = $Panel
 
 signal dialogue_ended(npc_node)
+signal mid_action_triggered(action_name: String)
 
 var lines : Array = []
 var current_line = 0
 var active: bool = false
+var waiting_for_action: bool = false
 var current_npc: Node = null
+var speaker_portraits: Dictionary = {}
 
-func changeImages(npc, player):
-	self.portrait.texture = load(npc)
-	if player is Object:
-		self.player_portrait.texture=player
-	else:
-		self.player_portrait.texture=load(player)
+func set_speaker_portraits(portraits: Dictionary):
+	speaker_portraits = portraits
 	
 func start(dialogue : Dictionary, npc: Node):
 	Gamestate.is_talking = true
@@ -33,50 +31,53 @@ func start(dialogue : Dictionary, npc: Node):
 	
 func _show_line():
 	if current_line < lines.size():
-		var line_data = lines [current_line]
-		var text = line_data.get("text", "")
-		var speaker = line_data.get("speaker")  # Can be null, string, or empty
+		var line_data = lines[current_line]
 
+		# Check for mid_action
+		if line_data.has("mid_action"):
+			var action_name = line_data.get("mid_action")
+			waiting_for_action = true
+			visible = false
+			emit_signal("mid_action_triggered", action_name)
+			return
+
+		var text = line_data.get("text", "")
+		var speaker = line_data.get("speaker")
+
+		visible = true
 		text_label.text = text
 
-		# Handle different speaker types
+		# Handle speaker and portrait
 		if speaker == null:
-			# Null speaker = narration (no portrait, no name)
 			name_label.text = ""
 			portrait.visible = false
-			player_portrait.visible = false
-		elif speaker == "":
-			# Empty speaker = also treat as narration
-			name_label.text = ""
-			portrait.visible = false
-			player_portrait.visible = false
-		elif speaker == "Player" or speaker == "Ezra" or speaker == "Ellen":
-			# Player speaking
-			name_label.text = speaker.capitalize()
-			portrait.visible = false
-			player_portrait.visible = true
 		else:
-			# NPC speaking
 			name_label.text = speaker.capitalize()
-			portrait.visible = true
-			player_portrait.visible = false
+			# Get portrait texture from speaker_portraits dictionary
+			if speaker_portraits.has(speaker):
+				portrait.texture = speaker_portraits[speaker]
+				portrait.visible = true
+			else:
+				portrait.visible = false
 	else:
 		end_dialogue(true)
+
+func continue_after_action():
+	waiting_for_action = false
+	current_line += 1
+	_show_line()
 		
 func _input(event):
-	if not active:
+	if not active or waiting_for_action:
 		return
 
 	if event.is_pressed() and (event is InputEventKey or event is InputEventMouseButton):
 
 		if event is InputEventKey:
-			var blocked_keys = [
+			if event.physical_keycode in [
 				KEY_W, KEY_A, KEY_S, KEY_D,
 				KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_ESCAPE
-			]
-			if event.physical_keycode in blocked_keys:
-				return
-
+			]: return
 			if event.physical_keycode == KEY_Z:
 				current_line = max(current_line - 1, 0)
 				_show_line()

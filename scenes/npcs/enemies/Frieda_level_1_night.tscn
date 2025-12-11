@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd4qxu1apradq"]
+[gd_scene load_steps=6 format=3 uid="uid://b0ssl5qu7xexp"]
 
-[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/Npcs/npcs.gd" id="1_rolu6"]
+[ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/npcs/npcs.gd" id="1_rolu6"]
 [ext_resource type="Texture2D" uid="uid://b1om6rvm46is" path="res://assets/character sprites/main characters/frieda.png" id="2_rolu6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usfu8"]
@@ -23,7 +23,7 @@ radius = 4.1231055
 script = ExtResource("1_rolu6")
 dialogue_file_path = "res://DialoguesJSON/frieda_night_1.json"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Base" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
 texture = ExtResource("2_rolu6")
 hframes = 4

@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D")
 
 #retirar no futuro
-@onready var spriteChar: Sprite2D = $Sprite2D
+@onready var spriteChar: Sprite2D = $Base
 #
 
 @onready var vision_cone: Node2D = $VisionCone2D
@@ -273,18 +273,7 @@ func start_dialogue():
 	if not dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 		dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
 
-	# Get player portrait safely
-	var player_portrait = ""
-	if current_player:
-		var sprite = current_player.get_node_or_null("Sprite2D")
-		if sprite and sprite.texture:
-			player_portrait = sprite.texture.resource_path
-
-	# Use default if no portrait found
-	if player_portrait == "":
-		player_portrait = player_portrait_ezra  # Default to Ezra
-
-	dialogue_box.changeImages(npc_portrait, player_portrait)
+	dialogue_box.changeImages(npc_portrait)
 	dialogue_box.start(processed_dialogue, self)
 
 func _choose_dialogue() -> Dictionary:

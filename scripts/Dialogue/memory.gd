@@ -137,15 +137,16 @@ func _choose_dialogue_for_collected(collected: int) -> Dictionary:
 			return d
 	return {}
 
-func _on_dialogue_ended(npc_node: Node, fully_completed: bool) -> void:
+func _on_dialogue_ended(npc_node: Node, fully_completed: bool = true) -> void:
 	if npc_node != self:
 		return
 	dialogue_is_on = false
 	if "npc_dialogues_completed" not in Gamestate:
 		Gamestate.npc_dialogues_completed = {}
-	Gamestate.npc_dialogues_completed[self.name] = true
-	current_dialogue += 1
+	if fully_completed:
+		Gamestate.npc_dialogues_completed[self.name] = true
+		current_dialogue += 1
 
-	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
-	if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
-		dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)
+		var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+		if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
+			dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)

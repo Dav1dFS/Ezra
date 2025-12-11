@@ -5,7 +5,7 @@ const SPEED = 70.0
 
 @export var inv: Inventory
 @onready var cam: Camera2D = get_node("Camera2D")
-@onready var sprite: AnimatedSprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Base
 @onready var pause_menu = $PauseLayer/PauseMenu
 
 @export var character_name: String =""

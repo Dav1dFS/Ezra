@@ -1,15 +1,15 @@
 [gd_scene load_steps=15 format=3 uid="uid://m3d38ksq3ja1"]
 
 [ext_resource type="Script" uid="uid://brog7m5vcrmdh" path="res://scripts/day_1_puzzle_2.gd" id="1_c5o0j"]
-[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="3_jej5n"]
-[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemies/enemyGuard.tscn" id="4_y0wut"]
-[ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/Npcs/friendly/characters/randNPC.tscn" id="5_fh8rj"]
-[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_rwttn"]
-[ext_resource type="Shader" uid="uid://p1ew2mo3oin0" path="res://scripts/shaders/fogDay.gdshader" id="6_c5o0j"]
-[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/Npcs/friendly/characters/friedaNPC.tscn" id="7_jej5n"]
-[ext_resource type="PackedScene" uid="uid://bpu0qf8tao73y" path="res://scenes/Npcs/friendly/characters/ruthNPC.tscn" id="8_y0wut"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/characters/ellen_character.tscn" id="3_jej5n"]
+[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/npcs/enemies/enemyGuard.tscn" id="4_y0wut"]
+[ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/npcs/friendly/characters/randomNPC.tscn" id="5_fh8rj"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_rwttn"]
+[ext_resource type="Shader" path="res://scripts/shaders/fogDay.gdshader" id="6_c5o0j"]
+[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/npcs/friendly/characters/friedaNPC.tscn" id="7_jej5n"]
+[ext_resource type="PackedScene" uid="uid://bpu0qf8tao73y" path="res://scenes/npcs/friendly/characters/ruthNPC.tscn" id="8_y0wut"]
 [ext_resource type="PackedScene" uid="uid://bsud5g344nrs3" path="res://scenes/gameplay/MainMapFinal.tscn" id="9_fh8rj"]
-[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/Npcs/enemies/enemyGeneral.tscn" id="9_rwttn"]
+[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/npcs/enemies/enemyGeneral.tscn" id="9_rwttn"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rwttn"]
 frequency = 0.0002
@@ -219,21 +219,18 @@ position = Vector2(3229.2751, 1693.3629)
 npc_name = "Jordyn"
 dialogue_file = "res://DialoguesJSON/day_1/rand1.json"
 npc_portrait = "uid://cx6wuyqhojwly"
-npc_sprite = "uid://cmtmyhbcomdsf"
 
 [node name="Lilah" parent="." instance=ExtResource("5_fh8rj")]
 position = Vector2(3632.994, 2257.33)
 npc_name = "Lilah"
 dialogue_file = "res://DialoguesJSON/day_1/Lilah1.json"
 npc_portrait = "uid://r7o3ewcwk124"
-npc_sprite = "uid://r7o3ewcwk124"
 
 [node name="Talia" parent="." instance=ExtResource("5_fh8rj")]
 position = Vector2(3655.7212, 1777.6606)
-npc_name = "Tlia"
+npc_name = "Talia"
 dialogue_file = "res://DialoguesJSON/day_1/Talia1.json"
 npc_portrait = "uid://c4u2ikdw4i2a2"
-npc_sprite = "uid://c4u2ikdw4i2a2"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

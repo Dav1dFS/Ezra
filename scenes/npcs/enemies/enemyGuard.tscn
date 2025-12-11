@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://rq853mcdau80"]
 
-[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_65c78"]
+[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/npcs/enemy.gd" id="1_65c78"]
 [ext_resource type="Texture2D" uid="uid://bursog8awn2t" path="res://assets/character sprites/guards static/g2.png" id="2_0mye4"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_jnxau"]
-[ext_resource type="Script" uid="uid://cpjxtgasr1fqo" path="res://scripts/Npcs/point_light_2d.gd" id="4_kjesm"]
-[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_movement"]
+[ext_resource type="Script" path="res://scripts/Npcs/point_light_2d.gd" id="4_kjesm"]
+[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/npcs/movement_editor_helper.gd" id="4_movement"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pgdsa"]
 cull_mode = 1
@@ -37,7 +37,7 @@ script = ExtResource("1_65c78")
 vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
 alert_color = Color(0.69411767, 0.05882353, 0.36862746, 0.36862746)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Base" type="Sprite2D" parent="."]
 light_mask = 0
 y_sort_enabled = true
 position = Vector2(0, -6.3699455)
@@ -90,6 +90,7 @@ scale = Vector2(1.35, 0.79)
 shape = SubResource("CapsuleShape2D_tvwks")
 
 [node name="MovementDebugDraw" type="Node2D" parent="."]
+visibility_layer = 31
 position = Vector2(0, 2)
 script = ExtResource("4_movement")
 point_color = Color(1, 0, 0, 0.36862746)
