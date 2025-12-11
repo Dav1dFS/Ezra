@@ -78,8 +78,7 @@ func _on_toggled_show_fps(enabled: bool):
 	_pending_show_fps = enabled
 
 func _process(_delta: float):
-	if fps_label and fps_label.visible:
-		fps_label.text = str(Engine.get_frames_per_second()) + " FPS"
+	UIUtils.update_fps_label(fps_label)
 
 func _on_apply_pressed():
 	_apply_settings(

@@ -33,11 +33,7 @@ func _process(delta):
 		play_time += delta
 		
 func get_formatted_play_time() -> String:
-	var total_seconds = int(play_time)
-	var hours = total_seconds / 3600.0
-	var minutes = (total_seconds % 3600) / 60.0
-	var seconds = total_seconds % 60
-	return "%02dh %02dm %02ds" % [hours, minutes, seconds]
+	return UIUtils.format_play_time(play_time)
 
 # Properties to exclude from save (runtime-only or non-serializable)
 const _EXCLUDED_PROPERTIES := [

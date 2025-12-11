@@ -55,11 +55,7 @@ func get_slot_info(slot_index: int) -> Dictionary:
 
 # Format play time for display
 func format_play_time(play_time: float) -> String:
-	var total_seconds: int = int(play_time)
-	var hours = total_seconds / 3600.0
-	var minutes = (total_seconds % 3600) / 60.0
-	var seconds: int = total_seconds % 60
-	return "%02dh %02dm %02ds" % [hours, minutes, seconds]
+	return UIUtils.format_play_time(play_time)
 
 # Format timestamp for display
 func format_timestamp(timestamp: int) -> String:

@@ -20,8 +20,7 @@ func _close_menus():
 	await get_tree().create_timer(0.3).timeout
 
 func _process(_delta: float):
-	if fps_label and fps_label.visible:
-		fps_label.text = str(Engine.get_frames_per_second()) + " FPS"
+	UIUtils.update_fps_label(fps_label)
 
 
 func _on_resume_game_pressed() -> void:
