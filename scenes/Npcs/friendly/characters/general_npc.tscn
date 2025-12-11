@@ -7,7 +7,7 @@
 radius = 4.0
 height = 18.0
 
-[node name="RandomNPC" instance=ExtResource("1_k2fap")]
+[node name="GeneralNPC" instance=ExtResource("1_k2fap")]
 
 [node name="Base" type="Sprite2D" parent="." index="0"]
 position = Vector2(-0.5, -6)

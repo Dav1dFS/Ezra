@@ -567,7 +567,7 @@ sources/1 = SubResource("TileSetAtlasSource_dhoxv")
 pattern_0 = SubResource("TileMapPattern_55oj5")
 pattern_1 = SubResource("TileMapPattern_m3jbt")
 
-[node name="TileMap" type="TileMap"]
+[node name="MainMap" type="TileMap"]
 y_sort_enabled = true
 position = Vector2(-16, 0)
 tile_set = SubResource("TileSet_lgknp")
@@ -591,8 +591,8 @@ layer_5/name = "GroundDEck22"
 layer_5/y_sort_enabled = true
 layer_5/tile_data = PackedInt32Array(1310874, 393217, 3, 1376410, 393217, 4, 1310875, 458753, 3, 1376411, 458753, 4, 1310877, 393217, 3, 1376413, 393217, 4, 1310878, 458753, 3, 1376414, 458753, 4, 1507482, 393217, 3, 1573018, 393217, 4, 1507483, 458753, 3, 1573019, 458753, 4, 1507485, 393217, 3, 1573021, 393217, 4, 1507486, 458753, 3, 1573022, 458753, 4, 1704090, 393217, 3, 1769626, 393217, 4, 1704091, 458753, 3, 1769627, 458753, 4, 1704093, 393217, 3, 1769629, 393217, 4, 1704094, 458753, 3, 1769630, 458753, 4, 1900698, 393217, 3, 1966234, 393217, 4, 1900699, 458753, 3, 1966235, 458753, 4, 1900701, 393217, 3, 1900702, 458753, 3, 1966238, 458753, 4, 1966237, 393217, 4)
 
-[node name="downLeftLimit" type="Marker2D" parent="."]
+[node name="DownLeftLimit" type="Marker2D" parent="."]
 position = Vector2(-160, 1792)
 
-[node name="topRightLimit" type="Marker2D" parent="."]
+[node name="TopRightLimit" type="Marker2D" parent="."]
 position = Vector2(5529, -1061)

@@ -8,7 +8,7 @@
 radius = 3.248259
 height = 6.496518
 
-[node name="Dog NPC" instance=ExtResource("1_rtvmv")]
+[node name="DogNPC" instance=ExtResource("1_rtvmv")]
 npc_name = "Dog"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Dog": ExtResource("2_x37u2"),

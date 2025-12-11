@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cs1enye5vjrjk" path="res://assets/items_sprites/pocketDown.png" id="3_dm4hg"]
 [ext_resource type="Texture2D" uid="uid://bqb4mcqc0ye85" path="res://assets/items_sprites/scissors.png" id="3_satu2"]
 
-[node name="Inv_UI" type="Control"]
+[node name="InventoryUI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -31.0

@@ -11,7 +11,7 @@ content_margin_left = 25.0
 content_margin_right = 25.0
 bg_color = Color(0.6159996, 0.10691456, 1, 0.47058824)
 
-[node name="Input_Button" type="Button"]
+[node name="InputButton" type="Button"]
 custom_minimum_size = Vector2(0, 50)
 anchors_preset = 10
 anchor_right = 1.0
@@ -36,7 +36,7 @@ theme_override_constants/margin_bottom = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Label_Action" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 25
@@ -48,7 +48,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Label_Input" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="LabelInput" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 25

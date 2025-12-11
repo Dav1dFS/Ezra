@@ -1,8 +1,8 @@
 extends Node2D
 
 @onready var player: Node2D = $Player
-@onready var ellen_character: Node2D = $"Ellen NPC"
-@onready var frieda_character: Node2D = $"Frieda NPC"
+@onready var ellen_character: Node2D = $"EllenNPC"
+@onready var frieda_character: Node2D = $"FriedaNPC"
 @onready var general_character: Node2D = $"General"
 @onready var dialogue_box: CanvasLayer = $DialogueBox
 @onready var cutscene_camera: Camera2D = $CutsceneController/CutsceneCamera2D

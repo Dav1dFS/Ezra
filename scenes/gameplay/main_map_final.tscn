@@ -592,7 +592,7 @@ sources/1 = SubResource("TileSetAtlasSource_dhoxv")
 pattern_0 = SubResource("TileMapPattern_55oj5")
 pattern_1 = SubResource("TileMapPattern_m3jbt")
 
-[node name="TileMap" type="TileMap"]
+[node name="MainMapFinal" type="TileMap"]
 y_sort_enabled = true
 position = Vector2(-31, 0)
 tile_set = SubResource("TileSet_lgknp")
@@ -615,8 +615,8 @@ layer_4/tile_data = PackedInt32Array(3670132, 655361, 5, 3604596, 655361, 5, 353
 layer_5/name = "GroundDEck22"
 layer_5/y_sort_enabled = true
 
-[node name="downLeftLimit" type="Marker2D" parent="."]
+[node name="DownLeftLimit" type="Marker2D" parent="."]
 position = Vector2(-160, 1792)
 
-[node name="topRightLimit" type="Marker2D" parent="."]
+[node name="TopRightLimit" type="Marker2D" parent="."]
 position = Vector2(5529, -1061)

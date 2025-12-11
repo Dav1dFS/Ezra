@@ -36,15 +36,15 @@ shader_parameter/density = 0.4250000201875
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwttn"]
 size = Vector2(21.403442, 23.729858)
 
-[node name="Day1Puzzle1" type="Node2D"]
+[node name="Day1Puzzle2" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(-196, -251)
 script = ExtResource("1_c5o0j")
 
-[node name="downLeftLimit" type="Marker2D" parent="."]
+[node name="DownLeftLimit" type="Marker2D" parent="."]
 position = Vector2(3101.4653, 2504.9849)
 
-[node name="topRightLimit" type="Marker2D" parent="."]
+[node name="TopRightLimit" type="Marker2D" parent="."]
 position = Vector2(3994.1248, 1584.7534)
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
@@ -180,9 +180,8 @@ npc_name = "Jordyn"
 dialogue_file = "res://dialogues/day_1/day_1_jordyn.json"
 
 [node name="Lilah" parent="." instance=ExtResource("5_fh8rj")]
-position = Vector2(3632.994, 2257.33)
-npc_name = "Lilah"
 position = Vector2(3802.0894, 1625.6018)
+npc_name = "Lilah"
 dialogue_file = "res://dialogues/day_1/day_1_lilah.json"
 
 [node name="Talia" parent="." instance=ExtResource("5_fh8rj")]
@@ -210,13 +209,12 @@ top_level = true
 z_index = 2
 color = Color(0.65012825, 0.6501283, 0.6501282, 1)
 
-[node name="Frieda NPC" parent="." instance=ExtResource("7_jej5n")]
+[node name="FriedaNPC" parent="." instance=ExtResource("7_jej5n")]
 y_sort_enabled = true
 position = Vector2(3793.0554, 2206.8125)
 dialogue_file = "res://dialogues/day_1/day_1_post_puzzle1_exit.json"
 
-[node name="Frieda NPC2" parent="." instance=ExtResource("8_y0wut")]
-npc_name = "Miss Ruth"
+[node name="FriedaNPC2" parent="." instance=ExtResource("8_y0wut")]
 dialogue_file = "res://dialogues/day_1/day_1_miss_ruth.json"
 
 [node name="General" parent="." instance=ExtResource("9_rwttn")]
@@ -225,7 +223,7 @@ is_moving = true
 forward_distance = 300.0
 initial_direction = 2
 
-[node name="TileMap2" parent="." instance=ExtResource("9_fh8rj")]
+[node name="MainMapFinal" parent="." instance=ExtResource("9_fh8rj")]
 
 [node name="Checkpoint" type="Area2D" parent="."]
 position = Vector2(3748.0151, 2228.2915)

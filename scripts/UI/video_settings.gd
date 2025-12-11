@@ -7,7 +7,7 @@ extends VBoxContainer
 @onready var show_fps_row = $TopGroup/ShowFpsRow
 @onready var buttons_row = $BottomGroup/ResetApplyRow
 @onready var gamma_overlay = get_tree().get_root().find_child("GammaRect", true, false)
-@onready var fps_label = get_tree().get_root().find_child("FpsLabel", true, false)
+@onready var fps_label = get_tree().get_root().find_child("FPSLabel", true, false)
 
 var display_modes = ["Windowed", "Fullscreen", "Borderless"]
 var resolutions = ["1152x648", "1280x720", "1600x900", "1920x1080"]

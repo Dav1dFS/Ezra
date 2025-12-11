@@ -8,7 +8,7 @@
 radius = 4.0
 height = 18.0
 
-[node name="Ruth NPC" instance=ExtResource("1_d65lc")]
+[node name="RuthNPC" instance=ExtResource("1_d65lc")]
 npc_name = "Miss Ruth"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ezra": ExtResource("2_iy5dx"),

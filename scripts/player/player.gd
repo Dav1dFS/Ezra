@@ -8,6 +8,7 @@ const SPEED = 70.0
 @onready var sprite: AnimatedSprite2D = $Base
 @onready var pause_menu = $PauseLayer/PauseMenu
 @onready var objective: Control = $GUI/Objective
+@onready var inventory = $GUI/Inventory
 
 @export var character_name: String =""
 
@@ -15,13 +16,12 @@ enum Direction { RIGHT, LEFT, UP, DOWN }
 var current_direction: Direction = Direction.DOWN
 var last_movement_direction: Vector2 = Vector2.ZERO
 
-@onready var slot= $GUI/Inv
 
 func update_inv(item:Item):
 	if not item:
-		slot.update(null)
+		inventory.update(null)
 	else:
-		slot.update(item)
+		inventory.update(item)
 
 func _ready():
 	add_to_group("player")
@@ -34,7 +34,7 @@ func _ready():
 		# When loading, use the character name from save data
 		print("Loading save - using saved character_name:", Gamestate.character_name)
 
-	slot.character(Gamestate.character_name)
+	inventory.update_pocket(Gamestate.character_name)
 	
 	if inv:
 		print("✅ Connected to inventory:", inv)
@@ -43,8 +43,8 @@ func _ready():
 		
 	await get_tree().process_frame
 
-	var bottomLeft = get_tree().get_current_scene().get_node_or_null("downLeftLimit")
-	var topRight = get_tree().get_current_scene().get_node_or_null("topRightLimit")
+	var bottomLeft = get_tree().get_current_scene().get_node_or_null("DownLeftLimit")
+	var topRight = get_tree().get_current_scene().get_node_or_null("TopRightLimit")
 
 	if bottomLeft and topRight:
 		var pos1 = bottomLeft.global_position

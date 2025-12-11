@@ -16,7 +16,7 @@ outline_color = Color(0, 0, 0, 1)
 font = ExtResource("5_ume2u")
 font_size = 180
 
-[node name="Player Objective" type="Control"]
+[node name="ObjectiveUI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 11.0
@@ -57,12 +57,12 @@ text = "Objective"
 label_settings = SubResource("LabelSettings_4lg62")
 vertical_alignment = 1
 
-[node name="icon" type="Label" parent="."]
+[node name="Icon" type="Label" parent="."]
 layout_mode = 0
-offset_left = 15.0
-offset_top = 13.000015
-offset_right = 590.0
-offset_bottom = 207.00002
+offset_left = 81.0
+offset_top = -12.999996
+offset_right = 656.0
+offset_bottom = 181.0
 scale = Vector2(0.5371709, 0.69748664)
 theme_override_fonts/font = ExtResource("3_jldal")
 theme_override_font_sizes/font_size = 18

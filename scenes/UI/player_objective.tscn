@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bjyexeg0dxrac"]
 
-[ext_resource type="Script" uid="uid://cjy48m21lwh51" path="res://scripts/inventory/objective.gd" id="1_hscb5"]
+[ext_resource type="Script" path="res://scripts/inventory/objective.gd" id="1_hscb5"]
 [ext_resource type="Texture2D" uid="uid://xpwktqpbmc48" path="res://assets/items_sprites/warningSign.png" id="2_hscb5"]
 [ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_s51aj"]
 [ext_resource type="FontFile" uid="uid://dyj1vdec1wq05" path="res://assets/fonts/Deutsch.ttf" id="4_ymnwc"]
@@ -11,7 +11,7 @@ font_size = 180
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Inv_UI" type="Control"]
+[node name="PlayerObjective" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 11.0

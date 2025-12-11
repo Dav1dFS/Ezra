@@ -1,6 +1,6 @@
 extends Control
 
-@onready var fps_label = get_tree().get_root().find_child("FpsLabel", true, false)
+@onready var fps_label = get_tree().get_root().find_child("FPSLabel", true, false)
 @onready var settings = $Settings
 @onready var saving_options = $SavingOptions
 

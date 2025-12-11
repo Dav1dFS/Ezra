@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://mliottlwd112"]
 
-[ext_resource type="Script" path="res://scripts/UI/main_menu.gd" id="1_11hie"]
+[ext_resource type="Script" uid="uid://d0484gje3r5pg" path="res://scripts/UI/main_menu.gd" id="1_11hie"]
 [ext_resource type="Shader" uid="uid://i67thunpog4c" path="res://scripts/UI/gammashader.gdshader" id="2_3h7gc"]
 [ext_resource type="Script" uid="uid://cfaqs65xqthbw" path="res://scripts/UI/buttons.gd" id="3_4vh8y"]
 [ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_b1p1q"]
@@ -85,7 +85,7 @@ mouse_filter = 2
 color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 
-[node name="FpsLabel" type="Label" parent="CanvasLayer"]
+[node name="FPSLabel" type="Label" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_top = 0.96300006
 anchor_right = 0.036000002
@@ -207,7 +207,6 @@ anchor_left = 0.22200002
 anchor_right = 1.0
 offset_left = 0.25598145
 offset_right = 0.0
-grow_horizontal = 2
 
 [node name="SavingOptions" parent="." instance=ExtResource("6_s7yn2")]
 layout_mode = 1
