@@ -9,7 +9,6 @@ var pointlight: PointLight2D
 @export var ability_hold_time: float = 3.0
 @export var fade_rect: ColorRect
 @export var day_label: Label
-@export var next_scene_path: String = "res://scenes/gameplay/pitch.tscn"
 
 var ability_timer: float = 0.0
 var ability_holding: bool = false
@@ -125,7 +124,6 @@ func _on_fade_to_black_done():
 	day_label.visible = true
 	await get_tree().create_timer(3.0).timeout
 	day_label.visible = false
-	get_tree().change_scene_to_file(next_scene_path)
 	Gamestate.is_talking = false
 	Gamestate.dialogue_locked = false
 

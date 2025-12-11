@@ -1,15 +1,13 @@
 extends Control
 
-@onready var item_icon: TextureRect = $ItemDisplay
+@onready var item_display: TextureRect = $ItemDisplay
 @onready var pocket_Up: TextureRect = $uiUp
 @onready var pocket_Down: TextureRect = $uiDow
 
 func update(item: Item):
-	if !item:
-		item_icon.visible=false
-	else:
-		item_icon.visible=true
-		item_icon.texture = item.icon
+	item_display.visible = item != null
+	if item:
+		item_display.texture = item.icon
 		
 func update_pocket(character_name: String):
 	if character_name=="Ellen":

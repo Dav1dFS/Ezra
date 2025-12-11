@@ -34,22 +34,19 @@ func _process(delta):
 func get_formatted_play_time() -> String:
 	return UIUtils.format_play_time(play_time)
 
-# Properties to exclude from save (runtime-only or non-serializable)
 const _EXCLUDED_PROPERTIES := [
-	"custom_cursor",      # Texture, recreated on _ready
-	"game_is_paused",     # Runtime state, reset on load
-	"is_talking",         # Runtime state, reset on load
-	"dialogue_locked",    # Runtime state, reset on load
+	"custom_cursor",
+	"game_is_paused",
+	"is_talking",
+	"dialogue_locked",
 ]
 
 func get_save_data() -> Dictionary:
 	var data := {}
 	for property in get_property_list():
 		var prop_name: String = property["name"]
-		# Skip built-in properties, private, and excluded ones
 		if prop_name.begins_with("_") or prop_name in _EXCLUDED_PROPERTIES:
 			continue
-		# Only save user-defined variables (PROPERTY_USAGE_SCRIPT_VARIABLE)
 		if property["usage"] & PROPERTY_USAGE_SCRIPT_VARIABLE:
 			data[prop_name] = get(prop_name)
 	return data
@@ -60,7 +57,6 @@ func load_save_data(data: Dictionary) -> void:
 			continue
 		if key in self:
 			set(key, data[key])
-	# Reset runtime states
 	game_is_paused = false
 	is_talking = false
 	dialogue_locked = false

@@ -1,12 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://t5axmw5yx5dl"]
+[gd_scene load_steps=26 format=3 uid="uid://t5axmw5yx5dl"]
 
 [ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/characters/player_character.tscn" id="1_83tdx"]
 [ext_resource type="Script" uid="uid://bgk2b1ql6834e" path="res://scripts/player/ezra.gd" id="2_qm0pf"]
 [ext_resource type="Texture2D" uid="uid://bff14d23i5fei" path="res://assets/animation_sheets/ezra_anim.png" id="3_0umtt"]
 [ext_resource type="Shader" uid="uid://cskovea21mids" path="res://scripts/shaders/ezra_character.gdshader" id="4_rir7v"]
-[ext_resource type="PackedScene" uid="uid://dle73kkftd1pm" path="res://scenes/UI/pause_menu.tscn" id="5_fle2e"]
 [ext_resource type="Shader" uid="uid://c6ehp4sd405we" path="res://scripts/shaders/dark.gdshader" id="5_swecp"]
-[ext_resource type="PackedScene" uid="uid://2b5a7qw3sl3" path="res://scenes/UI/objective_ui.tscn" id="6_0umtt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1nf0e"]
 atlas = ExtResource("3_0umtt")
@@ -204,10 +202,7 @@ zoom = Vector2(3.06, 3.06)
 [node name="Inventory" parent="GUI" index="0"]
 visible = false
 
-[node name="PauseMenu" parent="GUI" index="1" instance=ExtResource("5_fle2e")]
-visible = false
-
-[node name="ColorRect2" type="ColorRect" parent="GUI" index="2"]
+[node name="ColorRect2" type="ColorRect" parent="GUI" index="1"]
 z_index = -3
 material = SubResource("ShaderMaterial_v2jhp")
 anchors_preset = 15
@@ -216,9 +211,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Objective" parent="GUI" index="3" instance=ExtResource("6_0umtt")]
-
-[node name="ColorRect" type="ColorRect" parent="GUI" index="4"]
+[node name="ColorRect" type="ColorRect" parent="GUI" index="2"]
 z_index = -2
 material = SubResource("ShaderMaterial_swecp")
 anchors_preset = 15

@@ -31,7 +31,6 @@ func _on_slider_released(value_changed: bool):
 func _update_label(value: float):
 	value_label.text = _format_value(value)
 
-# Virtual method - override in child classes for custom formatting
 func _format_value(value: float) -> String:
 	return str(int(value))
 

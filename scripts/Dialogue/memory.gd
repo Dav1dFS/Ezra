@@ -8,7 +8,6 @@ extends Area2D
 var start_position: Vector2
 var player: Node2D = null
 
-# Dialogue handler for shared logic
 var dialogue_handler := DialogueHandler.new()
 
 func _ready():
@@ -23,7 +22,6 @@ func _ready():
 		dialogue_handler.load_dialogue_file(dialogue_file_path)
 
 func _process(_delta: float) -> void:
-	# Floating animation
 	global_position.y = start_position.y + sin(Time.get_ticks_msec() / 1000.0 * float_speed) * float_amplitude
 
 func _on_body_entered(body: Node) -> void:
@@ -50,13 +48,11 @@ func _increment_memories_count() -> void:
 	Gamestate.memories_collected[level_id] = current_count
 
 func start_dialogue() -> void:
-	# Get collected count for this level
 	var collected: int = 0
 	if "memories_collected" in Gamestate and typeof(Gamestate.memories_collected) == TYPE_DICTIONARY:
 		if level_id in Gamestate.memories_collected:
 			collected = int(Gamestate.memories_collected[level_id])
 
-	# Use expression-based dialogue selection with collected count
 	var variables = {
 		"collected": collected,
 		"Gamestate": Gamestate,
@@ -82,7 +78,6 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool = true) -> void:
 	if npc_node != self:
 		return
 
-	# Disconnect signal
 	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 	if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 		dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)

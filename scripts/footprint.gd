@@ -81,7 +81,6 @@ func _update_alpha_based_on_player_distance():
 	var calculated_alpha = lerp(max_alpha, min_alpha, t)
 	var final_alpha = max(calculated_alpha, min_alpha)
 	
-	# Aplica a ambos os sprites
 	if left_sprite:
 		var m = left_sprite.modulate
 		m.a = final_alpha

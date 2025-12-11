@@ -18,7 +18,6 @@ var _player_ref: Node = null
 var _push_direction: Vector2 = Vector2.ZERO
 
 func _ready():
-	# Conecta cada parede ao mesmo handler mas com direção correspondente
 	left_wall.body_entered.connect(func(body): _on_body_entered(body, Vector2.RIGHT))
 	right_wall.body_entered.connect(func(body): _on_body_entered(body, Vector2.LEFT))
 	top_wall.body_entered.connect(func(body): _on_body_entered(body, Vector2.DOWN))

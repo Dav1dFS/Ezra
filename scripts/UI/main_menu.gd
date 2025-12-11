@@ -20,7 +20,6 @@ func _process(_delta: float):
 
 func _on_resume_game_pressed() -> void:
 	if SaveManager.has_any_save() and SaveManager.current_slot > 0:
-		# Scene will change immediately, no need to close menus
 		SaveManager.load_game(SaveManager.current_slot)
 	else:
 		_on_load_game_pressed()

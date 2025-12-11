@@ -33,7 +33,6 @@ func _show_line():
 	if current_line < lines.size():
 		var line_data = lines[current_line]
 
-		# Check for mid_action
 		if line_data.has("mid_action"):
 			var action_name = line_data.get("mid_action")
 			waiting_for_action = true
@@ -47,13 +46,11 @@ func _show_line():
 		visible = true
 		text_label.text = text
 
-		# Handle speaker and portrait
 		if speaker == null:
 			name_label.text = ""
 			portrait.visible = false
 		else:
 			name_label.text = speaker.capitalize()
-			# Get portrait texture from speaker_portraits dictionary
 			if speaker_portraits.has(speaker):
 				portrait.texture = speaker_portraits[speaker]
 				portrait.visible = true

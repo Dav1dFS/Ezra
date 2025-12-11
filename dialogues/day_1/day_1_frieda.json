@@ -4,7 +4,6 @@
 			"condition": "default",
 			"mid_action": false,
 			"lines": [
-				{"speaker": "Frieda", "text": "Girl, get out of here. They will be busy for a while."},
 				{"speaker": "Ellen", "text": "Thank you, Lady. Thank you so much."},
 				{"speaker": "Frieda", "text": "You look so bad, sweet girl."},
 				{"speaker": "Frieda", "text": "Find Miss Ruth, she will take good care of you."},

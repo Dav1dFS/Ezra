@@ -32,6 +32,8 @@ func _process(_delta):
 			start_dialogue()
 
 func start_dialogue_from_cutscene(_player_node: Node = null):
+	if dialogue_file == "":
+		return
 	is_cutscene_dialogue = true
 	start_dialogue()
 
@@ -64,7 +66,6 @@ func start_dialogue():
 	dialogue_box.start(processed_dialogue, self)
 
 func _choose_dialogue() -> Dictionary:
-	# Custom condition checker for all_collected flag
 	var custom_check = func(condition: String) -> bool:
 		if condition == "all_collected":
 			if not all_collected_gamestate_flag.is_empty() and all_collected_gamestate_flag in Gamestate:
@@ -77,7 +78,6 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	if npc_node != self:
 		return
 
-	# Disconnect signal
 	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 	if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 		dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)
@@ -107,7 +107,6 @@ func _on_body_exited(body: Node):
 		if interact_label:
 			interact_label.visible = false
 
-		# Don't end dialogue if it's a cutscene dialogue
 		if dialogue_is_on and not is_cutscene_dialogue:
 			var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 			if dialogue_box and dialogue_box.active:

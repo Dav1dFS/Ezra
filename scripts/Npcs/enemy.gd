@@ -26,6 +26,7 @@ var previous_position: Vector2
 var stuck_timer: float = 0.0
 var stuck_threshold: float = 1.0
 var player_detected = false
+var is_turning: bool = false
 var flashlight_bob = 0.0
 var flashlight_bob_speed = 2.5
 var flashlight_bob_amount = 1.0
@@ -33,7 +34,6 @@ var flashlight_base_y := 0.0
 var dialogue_is_on: bool = false
 var dialogue_handler := DialogueHandler.new()
 
-# Direction system
 enum Direction { RIGHT, LEFT, UP, DOWN }
 var current_direction: Direction
 var direction_vectors = {
@@ -70,7 +70,8 @@ func _physics_process(delta: float) -> void:
 	if is_moving:
 		_process_movement(delta)
 
-	_update_state()
+	if not is_turning:
+		_update_state()
 	flashlight.rotation = vision_cone.rotation
 	_update_flashlight_bobbing(delta)
 
@@ -78,12 +79,10 @@ func _check_for_player():
 	if player_detected:
 		return
 
-	# Check detection area
 	for body in $DetectionArea.get_overlapping_bodies():
 		if _handle_player_detected(body):
 			return
 
-	# Check vision cone
 	for body in $VisionCone2D/VisionConeArea.get_overlapping_bodies():
 		if _handle_player_detected(body):
 			return
@@ -92,7 +91,6 @@ func _handle_player_detected(body: Node) -> bool:
 	if body.name != "Player":
 		return false
 
-	# Check Ellen's invisibility ability
 	if body.character_name == "Ellen" and body.has_method("get_is_ability_active"):
 		if body.get_is_ability_active():
 			return false
@@ -120,6 +118,9 @@ func _face_player(body: Node):
 
 func _set_direction(dir: Direction):
 	current_direction = dir
+	_apply_visual_direction(dir)
+
+func _apply_visual_direction(dir: Direction):
 	match dir:
 		Direction.RIGHT:
 			spriteChar.frame = 3
@@ -134,17 +135,51 @@ func _set_direction(dir: Direction):
 			spriteChar.frame = 0
 			vision_cone.rotation = 0
 
+func _get_opposite_direction(dir: Direction) -> Direction:
+	match dir:
+		Direction.RIGHT: return Direction.LEFT
+		Direction.LEFT: return Direction.RIGHT
+		Direction.UP: return Direction.DOWN
+		Direction.DOWN: return Direction.UP
+	return dir
+
+func _get_next_direction_clockwise(dir: Direction) -> Direction:
+	match dir:
+		Direction.DOWN: return Direction.LEFT
+		Direction.LEFT: return Direction.UP
+		Direction.UP: return Direction.RIGHT
+		Direction.RIGHT: return Direction.DOWN
+	return dir
+
+func _rotate_in_place():
+	var start_dir = current_direction
+	var end_dir = _get_opposite_direction(current_direction)
+	var rotation_time := 0.3
+
+	var intermediate_dir = _get_next_direction_clockwise(start_dir)
+
+	_apply_visual_direction(intermediate_dir)
+	await get_tree().create_timer(rotation_time).timeout
+
+	_apply_visual_direction(end_dir)
+	await get_tree().create_timer(rotation_time).timeout
+
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	_handle_player_detected(body)
 
 func _process_movement(delta: float):
+	if is_turning:
+		return
+
 	var distance_to_target = global_position.distance_to(target_position)
 
 	if distance_to_target < 5.0:
+		is_turning = true
 		moving_forward = !moving_forward
-		await get_tree().create_timer(2.0).timeout
+		await _rotate_in_place()
 		_calculate_target_position()
 		stuck_timer = 0.0
+		is_turning = false
 	else:
 		var direction = (target_position - global_position).normalized()
 		velocity = direction * movement_speed * delta * 60.0
@@ -170,16 +205,16 @@ func _calculate_target_position():
 		target_position = start_position + direction_vector * (-backward_distance)
 
 func _update_state():
-	var actual_direction = current_direction
+	var visual_direction = current_direction
 
 	if not moving_forward and not player_detected:
 		match current_direction:
-			Direction.RIGHT: actual_direction = Direction.LEFT
-			Direction.LEFT: actual_direction = Direction.RIGHT
-			Direction.UP: actual_direction = Direction.DOWN
-			Direction.DOWN: actual_direction = Direction.UP
+			Direction.RIGHT: visual_direction = Direction.LEFT
+			Direction.LEFT: visual_direction = Direction.RIGHT
+			Direction.UP: visual_direction = Direction.DOWN
+			Direction.DOWN: visual_direction = Direction.UP
 
-	_set_direction(actual_direction)
+	_apply_visual_direction(visual_direction)
 
 func _update_flashlight_bobbing(delta):
 	if is_moving and (current_direction == Direction.RIGHT or current_direction == Direction.LEFT):
@@ -220,7 +255,6 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	if npc_node != self:
 		return
 
-	# Disconnect signal
 	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 	if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 		dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)
@@ -229,4 +263,14 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 
 	if fully_completed:
 		dialogue_handler.mark_completed(npc_name)
-		get_tree().change_scene_to_file("res://scenes/gameplay/pitch.tscn")
+		_restart_level()
+
+
+func _restart_level():
+	var current_scene = get_tree().get_current_scene()
+	var cutscene_controller = current_scene.get_node_or_null("CutsceneController")
+
+	if cutscene_controller and cutscene_controller.has_method("scene_fade_out"):
+		await cutscene_controller.scene_fade_out()
+
+	get_tree().reload_current_scene()

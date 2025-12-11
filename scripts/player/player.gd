@@ -28,11 +28,8 @@ func get_is_ability_active() -> bool:
 	return is_ability_active
 
 
-func update_inv(item:Item):
-	if not item:
-		inventory.update(null)
-	else:
-		inventory.update(item)
+func update_inventory(item: Item):
+	inventory.update(item)
 
 func _ready():
 	add_to_group("player")
@@ -43,8 +40,8 @@ func _ready():
 	inventory.update_pocket(Gamestate.character_name)
 	
 	if inv:
-		inv.connect("inventory_changed", Callable(self, "update_inv"))
-		update_inv(null)
+		inv.connect("inventory_changed", Callable(self, "update_inventory"))
+		update_inventory(null)
 		
 	await get_tree().process_frame
 
@@ -91,7 +88,6 @@ func update_sprite_direction(movement_direction: Vector2):
 
 		_update_sprite_for_direction()
 
-# Virtual method - child classes can override for custom behavior
 func _update_sprite_for_direction():
 	if base_anims.has(current_direction):
 		sprite.play(base_anims[current_direction])
@@ -110,7 +106,6 @@ func _physics_process(_delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var target_velocity = direction * SPEED
 
-	# Smooth interpolation
 	velocity = velocity.lerp(target_velocity, 0.2)
 	
 	if direction != Vector2.ZERO:

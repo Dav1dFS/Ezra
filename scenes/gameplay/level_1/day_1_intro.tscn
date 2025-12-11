@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cls8ikqvlrma5"]
+[gd_scene load_steps=13 format=3 uid="uid://cls8ikqvlrma5"]
 
 [ext_resource type="Script" uid="uid://co627c0mvwblv" path="res://scripts/day_1_intro.gd" id="1_282ja"]
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/main_map.tscn" id="2_282ja"]
@@ -8,13 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="6_pte20"]
 [ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/npcs/friendly/characters/frieda_npc.tscn" id="6_vy4kv"]
 [ext_resource type="Texture2D" uid="uid://bbvyp32os1srn" path="res://assets/character_sprites/ellen/ellen_base.png" id="7_1ao5p"]
-[ext_resource type="Script" uid="uid://ddduf3o4tlfgt" path="res://scripts/cutscene_manager.gd" id="7_cutscene"]
 [ext_resource type="Texture2D" uid="uid://igii0hb2mb2m" path="res://assets/character_sprites/frieda/frieda_base.png" id="8_62cim"]
 [ext_resource type="Texture2D" uid="uid://7wu3dx2fnuct" path="res://assets/character_sprites/guards_static/guard_biggg.png" id="9_7x5xa"]
 [ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/npcs/friendly/characters/general_npc.tscn" id="9_ydfot"]
-
-[sub_resource type="FontVariation" id="FontVariation_day1"]
-variation_embolden = 2.0
+[ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="11_5m0g0"]
 
 [node name="Day1Intro" type="Node2D"]
 y_sort_enabled = true
@@ -57,47 +54,11 @@ speaker_portraits = Dictionary[String, Texture2D]({
 [node name="FriedaNPC" parent="." instance=ExtResource("6_vy4kv")]
 position = Vector2(4813, 2325)
 
-[node name="GUI" type="CanvasLayer" parent="."]
-
-[node name="FadeRect" type="ColorRect" parent="GUI"]
-visible = false
-modulate = Color(0.003921569, 0.003921569, 0.003921569, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="TransitionLabel" type="Label" parent="GUI"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -253.0
-offset_top = -82.5
-offset_right = 253.0
-offset_bottom = 82.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
-theme_override_fonts/font = SubResource("FontVariation_day1")
-theme_override_font_sizes/font_size = 120
-text = "DAY 1"
-horizontal_alignment = 1
-
-[node name="CutsceneController" type="Node2D" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box", "fade_rect", "transition_label")]
-script = ExtResource("7_cutscene")
+[node name="CutsceneController" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("11_5m0g0")]
+auto_start_cutscene = true
 target_npc = NodePath("../EllenNPC")
 dialogue_box = NodePath("../DialogueBox")
-fade_rect = NodePath("../GUI/FadeRect")
-transition_label = NodePath("../GUI/TransitionLabel")
-transition_text = "DAY 1"
-cutscene_flag_name = "ellen_day1_intro_done"
-
-[node name="CutsceneCamera2D" type="Camera2D" parent="CutsceneController"]
+cutscene_flag_name = "night_1_intro"
 
 [node name="General" parent="." instance=ExtResource("9_ydfot")]
 position = Vector2(4813, 2325)
