@@ -1,10 +1,9 @@
 extends Node
 
-@export var show_counter: bool = true
-
 var current_objective: String = ""
 var items_collected: int = 0
 var total_items: int = 0
+var show_counter: bool
 
 @onready var label: Label = $ObjectiveLabel
 @onready var counter: Label = $CounterLabel
@@ -15,16 +14,18 @@ var player_node: Node = null
 
 func _ready():
 	# Inicializa objetivo e contador
+	player_node = get_tree().get_first_node_in_group("Player")
+	if player_node and "show_counter" in player_node:
+		show_counter = player_node.show_counter
 	update_label()
 	_apply_counter_visibility()
 	await get_tree().process_frame
-
-	player_node = get_tree().get_first_node_in_group("Player")
-	if show_counter and player_node and "max_value" in player_node:
-		total_items = player_node.max_value
+	total_items = get_tree().get_nodes_in_group("Memories").size()
+	
+	#if show_counter and player_node and "max_value" in player_node:
+		#total_items = player_node.max_value
 
 	update_counter()
-
 func _apply_counter_visibility():
 	if counter:
 		counter.visible = show_counter
@@ -41,10 +42,10 @@ func update_label():
 func update_counter():
 	if show_counter and counter:
 		counter.text = str(items_collected) + "/" + str(total_items)
+	else:
+		print("erro bruh")
 
 func add_point():
-	if not show_counter:
-		return
 	items_collected += 1
 	update_counter()
 
@@ -57,7 +58,7 @@ func add_point():
 		if not target_flag.is_empty() and target_flag in Gamestate:
 			Gamestate.set(target_flag, true)
 		
-		Gamestate.npc_dialogues_completed["EzraCounter"] = items_collected
+		Gamestate.npc_dialogues_completed["EzraCounter"] = items_collected #problema provavelmente
 		_trigger_found_all_dialogue()
 
 func _trigger_found_all_dialogue():
@@ -67,7 +68,8 @@ func _trigger_found_all_dialogue():
 
 	var dialogue_data := {
 		"lines": [
-			{"speaker": "Player", "text": "Ahh — I found them all. I need to go back to Frieda."}
+			{"speaker": "Player", "text": "Now that i know more about her, i should go look for her...
+		She has to be here somewhere."}
 		]
 	}
 
@@ -77,7 +79,7 @@ func _trigger_found_all_dialogue():
 	if not dialogue_box.dialogue_ended.is_connected(_on_found_all_dialogue_ended):
 		dialogue_box.dialogue_ended.connect(_on_found_all_dialogue_ended)
 
-func _on_found_all_dialogue_ended(npc_node: Node):
+func _on_found_all_dialogue_ended(npc_node: Node, _fully_completed):
 	if npc_node != self:
 		return
 

@@ -7,6 +7,7 @@ extends Area2D
 
 var start_position: Vector2
 var player: Node2D = null
+var collected:= false
 
 var dialogue_handler := DialogueHandler.new()
 
@@ -25,14 +26,18 @@ func _process(_delta: float) -> void:
 	global_position.y = start_position.y + sin(Time.get_ticks_msec() / 1000.0 * float_speed) * float_amplitude
 
 func _on_body_entered(body: Node) -> void:
+	if collected:
+		return
+		
 	if body.is_in_group("Player"):
+		collected = true
+		set_deferred("monitoring", false) #desativa a area das memorias enquanto ta dialogo
+		set_deferred("monitorable", false) #desativa a area das memorias enquanto ta dialogo
 		player = body
 		_collect_item()
 
 func _collect_item() -> void:
-	if player and player.has_method("increment_item_counter"):
-		player.increment_item_counter()
-
+	remove_from_group("Memories")
 	_increment_memories_count()
 	start_dialogue()
 
@@ -48,13 +53,13 @@ func _increment_memories_count() -> void:
 	Gamestate.memories_collected[level_id] = current_count
 
 func start_dialogue() -> void:
-	var collected: int = 0
+	var collected_count: int = 0
 	if "memories_collected" in Gamestate and typeof(Gamestate.memories_collected) == TYPE_DICTIONARY:
 		if level_id in Gamestate.memories_collected:
-			collected = int(Gamestate.memories_collected[level_id])
+			collected_count = int(Gamestate.memories_collected[level_id])
 
 	var variables = {
-		"collected": collected,
+		"collected": collected_count,
 		"Gamestate": Gamestate,
 		"character_name": Gamestate.character_name
 	}
@@ -74,7 +79,7 @@ func start_dialogue() -> void:
 		dialogue_box.dialogue_ended.connect(_on_dialogue_ended)
 	dialogue_box.start(processed_dialogue, self)
 
-func _on_dialogue_ended(npc_node: Node, fully_completed: bool = true) -> void:
+func _on_dialogue_ended(npc_node: Node, fully_completed: bool) -> void:
 	if npc_node != self:
 		return
 
@@ -84,5 +89,8 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool = true) -> void:
 
 	if fully_completed:
 		dialogue_handler.mark_completed(self.name)
-
+		
+	if player and player.has_method("increment_item_counter"):
+		player.increment_item_counter()
+		
 	queue_free()

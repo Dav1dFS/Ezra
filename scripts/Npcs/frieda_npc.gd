@@ -1,22 +1,31 @@
 extends "res://scripts/npcs/general_talkable_npc.gd"
 
-@onready var ability_label: Label = $Label2
+@onready var ability_label: Label = $PlayerAbilityLabel
 @onready var ability_progress: TextureProgressBar = $AbilityProgress
 
 var glowrect: ColorRect
 var pointlight: PointLight2D
 
 @export var ability_hold_time: float = 3.0
-@export var fade_rect: ColorRect
-@export var day_label: Label
 
+var fade_rect: ColorRect
+var day_label: Label
 var ability_timer: float = 0.0
 var ability_holding: bool = false
 var all_collected_dialogue_shown: bool = false
 
 func _ready():
 	super._ready()
-
+	if all_collected_gamestate_flag.is_empty():
+		all_collected_gamestate_flag = "can_control_frieda"
+		
+	var cutscene_controller = get_tree().get_current_scene().get_node_or_null("CutsceneController")
+	if cutscene_controller:
+		fade_rect = cutscene_controller.get_node_or_null("CutsceneUI/FadeRect") as ColorRect
+		day_label = cutscene_controller.get_node_or_null("CutsceneUI/TransitionLabel") as Label
+	else:
+		push_warning("CutsceneController não encontrado na cena!")
+		
 	glowrect = find_child("GlowRect", true, false) as ColorRect
 	if not glowrect:
 		glowrect = get_node_or_null("ColorRect") as ColorRect

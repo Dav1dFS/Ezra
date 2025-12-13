@@ -4,6 +4,7 @@ const SPEED = 70.0
 
 
 @export var inv: Inventory
+@export var show_counter: bool = true
 @onready var cam: Camera2D = get_node("Camera2D")
 @onready var sprite: AnimatedSprite2D = $Base
 @onready var pause_menu = $PauseLayer/PauseMenu

@@ -48,7 +48,7 @@ func _show_dialogue():
 		"lines": [{"text": message, "speaker": Gamestate.character_name}]
 	}, self)
 
-func _on_dialogue_ended(npc_node: Node):
+func _on_dialogue_ended(npc_node: Node, _fully_completed):
 	if npc_node != self:
 		return
 

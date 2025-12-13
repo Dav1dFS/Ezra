@@ -59,10 +59,10 @@ vertical_alignment = 1
 
 [node name="Icon" type="Label" parent="."]
 layout_mode = 0
-offset_left = 81.0
-offset_top = -12.999996
-offset_right = 656.0
-offset_bottom = 181.0
+offset_left = 16.0
+offset_top = 22.000002
+offset_right = 591.0
+offset_bottom = 216.0
 scale = Vector2(0.5371709, 0.69748664)
 theme_override_fonts/font = ExtResource("3_jldal")
 theme_override_font_sizes/font_size = 18
@@ -80,7 +80,7 @@ offset_bottom = 243.0
 scale = Vector2(0.32820007, 0.32820007)
 theme_override_fonts/font = ExtResource("3_jldal")
 theme_override_font_sizes/font_size = 18
-text = "0/3"
+text = "0/0"
 label_settings = SubResource("LabelSettings_ume2u")
 vertical_alignment = 1
 text_direction = 1

@@ -1,20 +1,19 @@
-[gd_scene load_steps=62 format=3 uid="uid://d1lfv8eimewo0"]
+[gd_scene load_steps=60 format=3 uid="uid://d1lfv8eimewo0"]
 
 [ext_resource type="Script" uid="uid://2oyly7cd8uus" path="res://scripts/night_1_root.gd" id="1_bqncc"]
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/main_map.tscn" id="2_4ov1t"]
-[ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/dialogue/memory.tscn" id="3_u6i4i"]
+[ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/Dialogue/Memory.tscn" id="3_u6i4i"]
 [ext_resource type="PackedScene" uid="uid://cbyffikw81yby" path="res://scenes/UI/footprints.tscn" id="4_i0mio"]
-[ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/characters/ezra_character.tscn" id="4_t5b4k"]
-[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_3fgql"]
-[ext_resource type="PackedScene" uid="uid://br3gpnhtkafbd" path="res://scenes/npcs/friendly/characters/ellen_npc.tscn" id="7_4ov1t"]
-[ext_resource type="PackedScene" uid="uid://cg8nkwvp2h5y1" path="res://scenes/npcs/effects/npc_glow.tscn" id="9_glow"]
-[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/npcs/friendly/characters/frieda_npc.tscn" id="9_t5b4k"]
-[ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/npcs/frieda_npc.gd" id="10_3fgql"]
+[ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="4_t5b4k"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_3fgql"]
+[ext_resource type="PackedScene" uid="uid://br3gpnhtkafbd" path="res://scenes/Npcs/friendly/characters/ellen_npc.tscn" id="7_4ov1t"]
+[ext_resource type="PackedScene" uid="uid://cg8nkwvp2h5y1" path="res://scenes/Npcs/effects/npc_glow.tscn" id="9_glow"]
+[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/Npcs/friendly/characters/frieda_npc.tscn" id="9_t5b4k"]
+[ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/Npcs/frieda_npc.gd" id="10_3fgql"]
 [ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="10_lsjfn"]
 [ext_resource type="Texture2D" uid="uid://cd85becst2y5y" path="res://assets/grey_circle.png" id="11_jcha6"]
 [ext_resource type="Script" uid="uid://dbquasdj2kuv6" path="res://scripts/fog_wall.gd" id="12_bqncc"]
-[ext_resource type="Shader" path="res://scripts/shaders/fog.gdshader" id="12_jcha6"]
-[ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="13_fcljn"]
+[ext_resource type="Shader" uid="uid://cat5w6srnl8nt" path="res://scripts/shaders/fog.gdshader" id="12_jcha6"]
 [ext_resource type="Texture2D" uid="uid://dqmfjansghrhc" path="res://assets/example_tile_map/tiles.png" id="16_x5hnv"]
 [ext_resource type="Texture2D" uid="uid://cmpvshqd35yun" path="res://assets/environment_sprites_tiles/all_sprites.png" id="17_rq4tm"]
 [ext_resource type="Texture2D" uid="uid://do8re56ujn4xi" path="res://assets/example_tile_map/fence_tiles.png" id="18_kvly2"]
@@ -582,15 +581,6 @@ sources/1 = SubResource("TileSetAtlasSource_b37fx")
 pattern_0 = SubResource("TileMapPattern_55oj5")
 pattern_1 = SubResource("TileMapPattern_m3jbt")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5b4k"]
-bg_color = Color(0.38565356, 3.9948522e-06, 0.26058805, 0.4509804)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 1000
-corner_radius_bottom_left = 1000
-shadow_color = Color(0.99999994, 0.10406672, 0.6525324, 0.6)
-shadow_size = 5
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqncc"]
 size = Vector2(1892, 52)
 
@@ -624,18 +614,18 @@ layer_3/tile_data = PackedInt32Array(589763, 0, 17, 655299, 0, 17, 786371, 0, 17
 
 [node name="Memory" parent="." instance=ExtResource("3_u6i4i")]
 position = Vector2(4874, 2193)
-collision_layer = 128
-collision_mask = 128
+dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
+level_id = "night1"
 
 [node name="Memory2" parent="." instance=ExtResource("3_u6i4i")]
 position = Vector2(4551, 1809)
-collision_layer = 128
-collision_mask = 128
+dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
+level_id = "night1"
 
 [node name="Memory3" parent="." instance=ExtResource("3_u6i4i")]
 position = Vector2(3957, 2047)
-collision_layer = 128
-collision_mask = 128
+dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
+level_id = "night1"
 
 [node name="DownLeftLimit" type="Marker2D" parent="."]
 position = Vector2(2572, 3272)
@@ -659,39 +649,27 @@ footprint_side_offset = 5.0
 auto_start_cutscene = true
 target_npc = NodePath("../Frieda")
 dialogue_box = NodePath("../DialogueBox")
+transition_text = "Night 1"
 
 [node name="Ellen" parent="." instance=ExtResource("7_4ov1t")]
 position = Vector2(4992, 2047)
 dialogue_file = "res://dialogues/night_1/night_1_ellen.json"
-speaker_portraits = Dictionary[String, Texture2D]({
-"Ezra": ExtResource("13_fcljn")
-})
 
-[node name="Frieda" parent="." node_paths=PackedStringArray("fade_rect", "day_label") instance=ExtResource("9_t5b4k")]
+[node name="Frieda" parent="." instance=ExtResource("9_t5b4k")]
 position = Vector2(4999, 1821)
 script = ExtResource("10_3fgql")
 ability_hold_time = 3.0
-fade_rect = NodePath("")
-day_label = NodePath("")
 dialogue_file = "res://dialogues/night_1/night_1_frieda.json"
-speaker_portraits = Dictionary[String, Texture2D]({
-"Ezra": ExtResource("13_fcljn")
-})
 all_collected_gamestate_flag = "can_control_frieda"
 
-[node name="Label2" type="Label" parent="Frieda"]
+[node name="PlayerAbilityLabel" type="Label" parent="Frieda"]
 visible = false
-z_index = 2
-offset_left = -82.0
-offset_top = -46.0
-offset_right = 83.0
-offset_bottom = -23.0
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 0.3882353, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.3779188, 0.37791887, 0.37791884, 0)
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_t5b4k")
-text = "HOLD ABILITY"
+offset_left = -70.0
+offset_top = -33.0
+offset_right = 71.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 9
+text = "Press Space to Possess"
 horizontal_alignment = 1
 
 [node name="AbilityProgress" type="TextureProgressBar" parent="Frieda"]
