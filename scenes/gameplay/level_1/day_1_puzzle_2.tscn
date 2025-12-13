@@ -1,0 +1,236 @@
+[gd_scene load_steps=19 format=3 uid="uid://m3d38ksq3ja1"]
+
+[ext_resource type="Script" uid="uid://brog7m5vcrmdh" path="res://scripts/day_1_puzzle_2.gd" id="1_c5o0j"]
+[ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="2_1u0cv"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/characters/ellen_character.tscn" id="3_jej5n"]
+[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/npcs/enemies/enemy_guard.tscn" id="4_y0wut"]
+[ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/npcs/friendly/characters/general_npc.tscn" id="5_fh8rj"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_rwttn"]
+[ext_resource type="Shader" path="res://scripts/shaders/fogDay.gdshader" id="6_c5o0j"]
+[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/npcs/friendly/characters/frieda_npc.tscn" id="7_jej5n"]
+[ext_resource type="PackedScene" uid="uid://bpu0qf8tao73y" path="res://scenes/npcs/friendly/characters/miss_ruth_npc.tscn" id="8_y0wut"]
+[ext_resource type="PackedScene" uid="uid://bsud5g344nrs3" path="res://scenes/gameplay/main_map_final.tscn" id="9_fh8rj"]
+[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/npcs/enemies/enemy_general.tscn" id="9_rwttn"]
+[ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="10_es3bm"]
+[ext_resource type="Texture2D" uid="uid://igii0hb2mb2m" path="res://assets/character_sprites/frieda/frieda_base.png" id="11_c68y7"]
+[ext_resource type="Texture2D" uid="uid://bbvyp32os1srn" path="res://assets/character_sprites/ellen/ellen_base.png" id="12_pmqis"]
+[ext_resource type="Texture2D" uid="uid://d11imkedd5ajh" path="res://assets/character_sprites/miss_ruth/miss_ruth.png" id="14_c68y7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rwttn"]
+frequency = 0.0002
+fractal_gain = 0.67
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jej5n"]
+width = 61
+height = 55
+noise = SubResource("FastNoiseLite_rwttn")
+seamless = true
+invert = true
+in_3d_space = true
+as_normal_map = true
+seamless_blend_skirt = 0.255
+bump_strength = 7.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jej5n"]
+shader = ExtResource("6_c5o0j")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jej5n")
+shader_parameter/smoke_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/distortion_speed = 1.01600004826
+shader_parameter/density = 0.4250000201875
+
+[node name="Day1Puzzle2" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_c5o0j")
+
+[node name="CutsceneController" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("2_1u0cv")]
+auto_start_cutscene = true
+target_npc = NodePath("../FriedaNPC")
+dialogue_box = NodePath("../DialogueBox")
+
+[node name="MainMapFinal" parent="." instance=ExtResource("9_fh8rj")]
+
+[node name="Player" parent="." instance=ExtResource("3_jej5n")]
+position = Vector2(3767, 2214)
+
+[node name="DownLeftLimit" type="Marker2D" parent="."]
+position = Vector2(3101.4653, 2504.9849)
+
+[node name="TopRightLimit" type="Marker2D" parent="."]
+position = Vector2(3994.1248, 1584.7534)
+
+[node name="Enemy" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3574.5112, 2091.707)
+is_moving = true
+forward_distance = 200.0
+backward_distance = 100.0
+initial_direction = 3
+
+[node name="Enemy3" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3154.0935, 2322.6519)
+is_moving = true
+forward_distance = 1000.0
+backward_distance = 0.0
+
+[node name="Enemy11" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3463.7808, 2469.2927)
+is_moving = true
+forward_distance = 50.0
+backward_distance = 0.0
+
+[node name="Enemy12" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3345.7979, 1646.7437)
+is_moving = true
+forward_distance = 50.0
+backward_distance = 0.0
+
+[node name="Enemy7" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3126.735, 2276.566)
+backward_distance = 0.0
+initial_direction = 3
+
+[node name="Enemy8" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3129, 1899)
+backward_distance = 0.0
+initial_direction = 3
+
+[node name="Enemy9" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3511.195, 1630)
+backward_distance = 0.0
+
+[node name="Enemy10" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3629.0886, 1630)
+backward_distance = 0.0
+initial_direction = 1
+
+[node name="Enemy4" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3820.924, 2349.4941)
+is_moving = true
+forward_distance = 1000.0
+backward_distance = 0.0
+initial_direction = 1
+
+[node name="Enemy5" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3129, 1941)
+forward_distance = 800.0
+backward_distance = 0.0
+
+[node name="Enemy14" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3183, 1958)
+is_moving = true
+forward_distance = 750.0
+backward_distance = 0.0
+
+[node name="Enemy15" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3346.3252, 1857.9951)
+is_moving = true
+movement_speed = 30.0
+backward_distance = 20.0
+
+[node name="Enemy16" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3771.283, 1859.7069)
+is_moving = true
+movement_speed = 30.0
+forward_distance = 30.0
+backward_distance = 0.0
+
+[node name="Enemy17" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3349.689, 2207.4)
+is_moving = true
+movement_speed = 30.0
+forward_distance = 30.0
+backward_distance = 0.0
+
+[node name="Enemy6" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3881.7417, 1987.7257)
+is_moving = true
+forward_distance = 800.0
+backward_distance = 0.0
+initial_direction = 1
+
+[node name="Enemy2" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3542, 2128)
+is_moving = true
+forward_distance = 200.0
+backward_distance = 100.0
+initial_direction = 3
+
+[node name="Enemy13" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3954.1426, 2275.6616)
+is_moving = true
+forward_distance = 200.0
+backward_distance = 200.0
+initial_direction = 3
+
+[node name="Enemy18" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3129, 1920)
+
+[node name="Enemy19" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3572, 1630)
+initial_direction = 3
+
+[node name="DialogueBox" parent="." instance=ExtResource("5_rwttn")]
+
+[node name="Jordyn" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3229.2751, 1693.3629)
+npc_name = "Jordyn"
+dialogue_file = "res://dialogues/day_1/day_1_jordyn.json"
+
+[node name="Lilah" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3802.0894, 1625.6018)
+npc_name = "Lilah"
+dialogue_file = "res://dialogues/day_1/day_1_lilah.json"
+
+[node name="Talia" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3655.7212, 1777.6606)
+npc_name = "Talia"
+dialogue_file = "res://dialogues/day_1/day_1_talia.json"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jej5n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -248.0
+offset_top = -92.0
+offset_right = 1032.0
+offset_bottom = 628.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+modulate = Color(0.2548901, 0.25670886, 0.28151357, 1)
+top_level = true
+z_index = 2
+color = Color(0.65012825, 0.6501283, 0.6501282, 1)
+
+[node name="FriedaNPC" parent="." instance=ExtResource("7_jej5n")]
+y_sort_enabled = true
+position = Vector2(3793.0554, 2206.8125)
+dialogue_file = "res://dialogues/day_1/day_1_frieda.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
+"Ezra": ExtResource("10_es3bm"),
+"Frieda": ExtResource("11_c68y7")
+})
+
+[node name="MissRuthNPC" parent="." instance=ExtResource("8_y0wut")]
+position = Vector2(3656, 1679)
+dialogue_file = "res://dialogues/day_1/day_1_miss_ruth.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
+"Ezra": ExtResource("10_es3bm"),
+"Miss Ruth": ExtResource("14_c68y7")
+})
+
+[node name="General" parent="." instance=ExtResource("9_rwttn")]
+position = Vector2(3572, 1765)
+is_moving = true
+forward_distance = 300.0
+initial_direction = 3
+
+[node name="NextSceneNPC" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3793, 2207)
+dialogue_file = "res://dialogues/next_scene.json"

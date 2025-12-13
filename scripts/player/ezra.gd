@@ -2,7 +2,6 @@ extends "res://scripts/player/player.gd"
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var memories: Array[Node] = get_tree().get_nodes_in_group("Memories")
-@onready var objective: Control = $GUI/Objective
 
 @export var max_value: int = 3
 @export var footprint_scene: PackedScene
@@ -20,7 +19,6 @@ var _last_path_player_pos: Vector2
 var _current_path_target: Node2D = null
 var _last_dir_vector: Vector2 = Vector2.ZERO
 var _prev_player_pos: Vector2 = Vector2.ZERO
-var is_ability_active: bool = false
 var max_zoom: float = 5.0
 var min_zoom: float = 2.0
 var close_mem: Node = null
@@ -28,25 +26,14 @@ var collected_memories: int = 0
 var original_zoom: float
 var final_zoom_done: bool = false
 var zoom_speed: float = 0.02
-var _tracking_npc: bool = false 
-
-var ellen_anims = {
-	Direction.DOWN: "down",
-	Direction.UP: "up",
-	Direction.LEFT: "left",
-	Direction.RIGHT: "right"
-}
+var _tracking_npc: bool = false
 
 func _ready():
-	character_name = "Ezra"
 	super._ready()
+	character_name = "Ezra"
 	original_zoom = cam.zoom.x
 	_last_path_player_pos = global_position
 	_prev_player_pos = global_position
-
-func _update_sprite_for_direction():
-	if ellen_anims.has(current_direction):
-		sprite.play(ellen_anims[current_direction])
 
 func increment_item_counter():
 	memories.erase(close_mem)
@@ -130,7 +117,7 @@ func _update_footprint_path_to_target(npc: Node2D):
 		_spawn_footprint_path_to(npc)
 		return
 
-func get_zoom_from_distance(distance: float, delta: float):
+func get_zoom_from_distance(distance: float, _delta: float):
 	var target_zoom: float
 	var min_dist = 150.0
 	var max_dist = 500.0
@@ -164,9 +151,6 @@ func _apply_final_zoom(delta: float):
 		cam.zoom.x = target_zoom
 		cam.zoom.y = target_zoom
 		final_zoom_done = true
-
-func changeObjective(text: String):
-	objective.updateObjective(text)
 
 func _get_nearest_memory_to_position(pos: Vector2) -> Node2D:
 	var best: Node2D = null

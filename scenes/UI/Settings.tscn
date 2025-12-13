@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://dipv4awjcdp11"]
 
 [ext_resource type="Script" uid="uid://cfaqs65xqthbw" path="res://scripts/UI/buttons.gd" id="1_hat0o"]
-[ext_resource type="Script" uid="uid://d0446chgpirol" path="res://scripts/UI/settings.gd" id="1_ok1u1"]
+[ext_resource type="Script" path="res://scripts/UI/settings.gd" id="1_ok1u1"]
 [ext_resource type="Script" uid="uid://cyl2fmspfqmxq" path="res://scripts/UI/video_settings.gd" id="2_ok1u1"]
 [ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="2_vvtyw"]
 [ext_resource type="Script" uid="uid://dau2hy5t7x86e" path="res://scripts/UI/settings_row.gd" id="3_vvtyw"]
@@ -547,7 +547,7 @@ theme_override_constants/margin_right = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer"]
 layout_mode = 2
 
-[node name="Label_Action" type="Label" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer/HBoxContainer"]
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -561,7 +561,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Label_Input" type="Label" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer/HBoxContainer"]
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -592,7 +592,7 @@ theme_override_constants/margin_right = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer"]
 layout_mode = 2
 
-[node name="Label_Action" type="Label" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer/HBoxContainer"]
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -606,7 +606,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Label_Input" type="Label" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer/HBoxContainer"]
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -637,7 +637,7 @@ theme_override_constants/margin_right = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer"]
 layout_mode = 2
 
-[node name="Label_Action" type="Label" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer/HBoxContainer"]
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -651,7 +651,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Label_Input" type="Label" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer/HBoxContainer"]
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -682,7 +682,7 @@ theme_override_constants/margin_right = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer"]
 layout_mode = 2
 
-[node name="Label_Action" type="Label" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer/HBoxContainer"]
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -696,7 +696,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Label_Input" type="Label" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer/HBoxContainer"]
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -742,7 +742,7 @@ theme_override_constants/margin_right = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/Interact/MarginContainer"]
 layout_mode = 2
 
-[node name="Label_Action" type="Label" parent="ControlsColumn/TopGroup/Interact/MarginContainer/HBoxContainer"]
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/Interact/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -756,7 +756,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Label_Input" type="Label" parent="ControlsColumn/TopGroup/Interact/MarginContainer/HBoxContainer"]
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/Interact/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -802,7 +802,7 @@ theme_override_constants/margin_right = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer"]
 layout_mode = 2
 
-[node name="Label_Action" type="Label" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer/HBoxContainer"]
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")
@@ -816,7 +816,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Label_Input" type="Label" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer/HBoxContainer"]
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("2_vvtyw")

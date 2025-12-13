@@ -1,0 +1,12 @@
+{
+	"dialogues": [
+		{
+			"condition": "default",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "General", "text": "You there! Stop! You think you can get away with that?!?"},
+				{"speaker": "Ezra", "text": "No, they got us!"}
+			]
+		}
+	]
+}

@@ -7,7 +7,7 @@ extends VBoxContainer
 @onready var show_fps_row = $TopGroup/ShowFpsRow
 @onready var buttons_row = $BottomGroup/ResetApplyRow
 @onready var gamma_overlay = get_tree().get_root().find_child("GammaRect", true, false)
-@onready var fps_label = get_tree().get_root().find_child("FpsLabel", true, false)
+@onready var fps_label = get_tree().get_root().find_child("FPSLabel", true, false)
 
 var display_modes = ["Windowed", "Fullscreen", "Borderless"]
 var resolutions = ["1152x648", "1280x720", "1600x900", "1920x1080"]
@@ -70,7 +70,6 @@ func _on_resolution_changed(value: String):
 
 func _on_gamma_changed(value: float):
 	_pending_gamma = clamp(value, 0.7, 2.0)
-	print(_pending_gamma)
 
 func _on_fps_changed(value: int):
 	_pending_fps = value
@@ -79,8 +78,7 @@ func _on_toggled_show_fps(enabled: bool):
 	_pending_show_fps = enabled
 
 func _process(_delta: float):
-	if fps_label and fps_label.visible:
-		fps_label.text = str(Engine.get_frames_per_second()) + " FPS"
+	UIUtils.update_fps_label(fps_label)
 
 func _on_apply_pressed():
 	_apply_settings(

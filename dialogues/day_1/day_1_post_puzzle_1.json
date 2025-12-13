@@ -1,0 +1,12 @@
+{
+	"dialogues": [
+		{
+			"condition": "default",
+			"mid_action": true,
+			"lines": [
+				{"speaker": "Frieda", "text": "Girl, let's get out of here. They will be busy for a while."},
+				{"mid_action": "next_scene"}
+			]
+		}
+	]
+}

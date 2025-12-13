@@ -1,15 +1,10 @@
 extends Control
 
-@onready var fps_label = get_tree().get_root().find_child("FpsLabel", true, false)
+@onready var fps_label = get_tree().get_root().find_child("FPSLabel", true, false)
 @onready var settings = $Settings
 @onready var saving_options = $SavingOptions
 
-var custom_cursor: Texture2D
-
 func _ready():
-	var img = load("res://assets/character sprites/ezra/ezra_base.png").get_image()
-	img.resize(32, 32)
-	custom_cursor = ImageTexture.create_from_image(img)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _close_menus():
@@ -20,13 +15,11 @@ func _close_menus():
 	await get_tree().create_timer(0.3).timeout
 
 func _process(_delta: float):
-	if fps_label and fps_label.visible:
-		fps_label.text = str(Engine.get_frames_per_second()) + " FPS"
+	UIUtils.update_fps_label(fps_label)
 
 
 func _on_resume_game_pressed() -> void:
 	if SaveManager.has_any_save() and SaveManager.current_slot > 0:
-		# Scene will change immediately, no need to close menus
 		SaveManager.load_game(SaveManager.current_slot)
 	else:
 		_on_load_game_pressed()

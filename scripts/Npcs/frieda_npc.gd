@@ -1,25 +1,37 @@
-extends "res://scripts/Npcs/general_talkable_npc.gd"
+extends "res://scripts/npcs/general_talkable_npc.gd"
 
-@onready var ability_label: Label = $Label2
+@onready var ability_label: Label = $PlayerAbilityLabel
 @onready var ability_progress: TextureProgressBar = $AbilityProgress
-@onready var glowrect: ColorRect = $ColorRect
-@onready var pointlight: PointLight2D = $PointLight2D
+
+var glowrect: ColorRect
+var pointlight: PointLight2D
 
 @export var ability_hold_time: float = 3.0
-@export var fade_rect: ColorRect
-@export var day_label: Label
-@export var next_scene_path: String = "res://scenes/gameplay/pitch.tscn"
-@export var npc_gamestate_flag: String = "can_control_frieda"
 
+var fade_rect: ColorRect
+var day_label: Label
 var ability_timer: float = 0.0
 var ability_holding: bool = false
 var all_collected_dialogue_shown: bool = false
 
 func _ready():
 	super._ready()
-	
-	all_collected_gamestate_flag = npc_gamestate_flag
-	
+	if all_collected_gamestate_flag.is_empty():
+		all_collected_gamestate_flag = "can_control_frieda"
+		
+	var cutscene_controller = get_tree().get_current_scene().get_node_or_null("CutsceneController")
+	if cutscene_controller:
+		fade_rect = cutscene_controller.get_node_or_null("CutsceneUI/FadeRect") as ColorRect
+		day_label = cutscene_controller.get_node_or_null("CutsceneUI/TransitionLabel") as Label
+	else:
+		push_warning("CutsceneController não encontrado na cena!")
+		
+	glowrect = find_child("GlowRect", true, false) as ColorRect
+	if not glowrect:
+		glowrect = get_node_or_null("ColorRect") as ColorRect
+
+	pointlight = find_child("PointLight2D", true, false) as PointLight2D
+
 	if ability_label:
 		ability_label.visible = false
 	if ability_progress:
@@ -27,7 +39,7 @@ func _ready():
 		ability_progress.min_value = 0.0
 		ability_progress.max_value = ability_hold_time
 		ability_progress.value = 0.0
-	
+
 	if glowrect:
 		glowrect.visible = false
 	if pointlight:
@@ -77,13 +89,13 @@ func _process(delta: float):
 				start_dialogue()
 
 func _can_use_ability() -> bool:
-	if npc_gamestate_flag.is_empty():
+	if all_collected_gamestate_flag.is_empty():
 		return false
-	
-	if not npc_gamestate_flag in Gamestate:
+
+	if not all_collected_gamestate_flag in Gamestate:
 		return false
-	
-	return Gamestate.get(npc_gamestate_flag) == true
+
+	return Gamestate.get(all_collected_gamestate_flag) == true
 
 func _on_body_entered(body: Node):
 	super._on_body_entered(body)
@@ -104,7 +116,6 @@ func _reset_ability_charge():
 
 func _on_ability_fully_charged():
 	_reset_ability_charge()
-	print("Frieda ability activated!")
 	Gamestate.is_talking = true
 	Gamestate.dialogue_locked = true
 	_start_day2_transition()
@@ -122,7 +133,6 @@ func _on_fade_to_black_done():
 	day_label.visible = true
 	await get_tree().create_timer(3.0).timeout
 	day_label.visible = false
-	get_tree().change_scene_to_file(next_scene_path)
 	Gamestate.is_talking = false
 	Gamestate.dialogue_locked = false
 
@@ -135,10 +145,9 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	var all_memories_collected = false
 	if not all_collected_gamestate_flag.is_empty() and all_collected_gamestate_flag in Gamestate:
 		all_memories_collected = Gamestate.get(all_collected_gamestate_flag) == true
-	
+
 	if all_memories_collected and fully_completed and not all_collected_dialogue_shown:
 		all_collected_dialogue_shown = true
-		print("All collected dialogue shown! Ability now available.")
 		
 		if glowrect:
 			glowrect.visible = true

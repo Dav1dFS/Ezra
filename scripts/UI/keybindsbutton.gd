@@ -1,11 +1,11 @@
 extends Button
 
-@onready var label_action = $MarginContainer/HBoxContainer/Label_Action
-@onready var label_input = $MarginContainer/HBoxContainer/Label_Input
+@onready var label_action = $MarginContainer/HBoxContainer/LabelAction
+@onready var label_input = $MarginContainer/HBoxContainer/LabelInput
 
-@export var action_name: String = "" # definir no inspector
+@export var action_name: String = ""
+
 var is_remapping := false
-
 static var all_buttons: Array = []
 
 const DEFAULT_KEYS := {

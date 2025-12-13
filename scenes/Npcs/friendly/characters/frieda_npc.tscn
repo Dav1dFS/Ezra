@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://f3qo7r6kimms"]
+
+[ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/Npcs/friendly/general_talkable_npc.tscn" id="1_phv5v"]
+[ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="2_vg5ta"]
+[ext_resource type="Texture2D" uid="uid://igii0hb2mb2m" path="res://assets/character_sprites/frieda/frieda_base.png" id="2_w6bjl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_isp7f"]
+radius = 4.0
+height = 18.0
+
+[node name="FriedaNPC" instance=ExtResource("1_phv5v")]
+npc_name = "Frieda"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ezra": ExtResource("2_vg5ta"),
+"Frieda": ExtResource("2_w6bjl")
+})
+
+[node name="Base" type="Sprite2D" parent="." index="0"]
+position = Vector2(-0.5, -6)
+texture = ExtResource("2_w6bjl")
+
+[node name="PlayerInteractionArea" parent="." index="1"]
+position = Vector2(0, 10)
+collision_layer = 129
+collision_mask = 129
+
+[node name="Area2D" type="CharacterBody2D" parent="." index="3"]
+position = Vector2(0, 10)
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_isp7f")

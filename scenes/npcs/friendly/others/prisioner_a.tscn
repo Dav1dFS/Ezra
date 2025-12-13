@@ -1,16 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1h7yyq5catbo"]
+[gd_scene load_steps=6 format=3 uid="uid://c1h7yyq5catbo"]
 
 [ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/npcs/friendly/general_talkable_npc.tscn" id="1_2pq55"]
-[ext_resource type="Texture2D" uid="uid://dvjslhq7s1vpg" path="res://assets/character sprites/prisoners static/pm1.png" id="2_1n62i"]
+[ext_resource type="Texture2D" uid="uid://dvjslhq7s1vpg" path="res://assets/character_sprites/prisoners_static/pm1.png" id="2_1n62i"]
+[ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="2_j8hir"]
+[ext_resource type="Texture2D" uid="uid://cjchqjjy8qgul" path="res://assets/character_sprites/prisoners_static/pm1b.png" id="3_lmmyn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2pq55"]
 radius = 3.7122967
 height = 7.4245934
 
 [node name="PrisionerA" instance=ExtResource("1_2pq55")]
-character_name = "PrisionerA"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ezra": ExtResource("2_j8hir"),
+"PrisionerA": ExtResource("3_lmmyn")
+})
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+[node name="Base" type="Sprite2D" parent="." index="0"]
 position = Vector2(-0.5, -16)
 texture = ExtResource("2_1n62i")
 hframes = 4

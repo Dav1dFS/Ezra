@@ -1,17 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqrs4eoblsek4"]
+[gd_scene load_steps=5 format=3 uid="uid://bqrs4eoblsek4"]
 
 [ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/npcs/friendly/general_talkable_npc.tscn" id="1_rtvmv"]
-[ext_resource type="Texture2D" uid="uid://bagjyy0ndoogx" path="res://assets/character sprites/cao/cao_front.png" id="2_x37u2"]
+[ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="2_1cndw"]
+[ext_resource type="Texture2D" uid="uid://bagjyy0ndoogx" path="res://assets/character_sprites/cao/cao_front.png" id="2_x37u2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c3qtv"]
 radius = 3.248259
 height = 6.496518
 
-[node name="Dog NPC" instance=ExtResource("1_rtvmv")]
-character_name = "Dog"
+[node name="DogNPC" instance=ExtResource("1_rtvmv")]
+npc_name = "Dog"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Dog": ExtResource("2_x37u2"),
+"Ezra": ExtResource("2_1cndw")
+})
 
-[node name="CaoFront" type="Sprite2D" parent="." index="0"]
-position = Vector2(0, -16)
+[node name="Base" type="Sprite2D" parent="." index="0"]
+position = Vector2(-0.5, -16)
 texture = ExtResource("2_x37u2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]

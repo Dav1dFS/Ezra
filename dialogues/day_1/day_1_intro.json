@@ -1,0 +1,16 @@
+{
+	"dialogues": [
+		{
+			"condition": "default",
+			"lines": [
+				{
+					"speaker": "Ellen",
+					"text": "My belly hurts. I want some bread. I need to find something soon."
+				},
+				{
+					"mid_action": "next_scene"
+				}
+			]
+		}
+	]
+}

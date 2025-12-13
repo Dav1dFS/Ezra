@@ -4,46 +4,50 @@ const SPEED = 70.0
 
 
 @export var inv: Inventory
+@export var show_counter: bool = true
 @onready var cam: Camera2D = get_node("Camera2D")
-@onready var sprite: AnimatedSprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Base
 @onready var pause_menu = $PauseLayer/PauseMenu
+@onready var objective: Control = $GUI/Objective
+@onready var inventory = $GUI/Inventory
 
 @export var character_name: String =""
 
 enum Direction { RIGHT, LEFT, UP, DOWN }
 var current_direction: Direction = Direction.DOWN
 var last_movement_direction: Vector2 = Vector2.ZERO
+var is_ability_active: bool = false
 
-@onready var slot= $GUI/Inv
+var base_anims = {
+	Direction.DOWN: "down",
+	Direction.UP: "up",
+	Direction.LEFT: "left",
+	Direction.RIGHT: "right"
+}
 
-func update_inv(item:Item):
-	if not item:
-		slot.update(null)
-	else:
-		slot.update(item)
+func get_is_ability_active() -> bool:
+	return is_ability_active
+
+
+func update_inventory(item: Item):
+	inventory.update(item)
 
 func _ready():
 	add_to_group("player")
 
-	# Only set character_name if NOT loading a save (SaveManager will restore it)
 	if not SaveManager.is_loading:
-		print(character_name)
 		Gamestate.character_name = character_name
-	else:
-		# When loading, use the character name from save data
-		print("Loading save - using saved character_name:", Gamestate.character_name)
 
-	slot.character(Gamestate.character_name)
+	inventory.update_pocket(Gamestate.character_name)
 	
 	if inv:
-		print("✅ Connected to inventory:", inv)
-		inv.connect("inventory_changed", Callable(self, "update_inv"))
-		update_inv(null)
+		inv.connect("inventory_changed", Callable(self, "update_inventory"))
+		update_inventory(null)
 		
 	await get_tree().process_frame
 
-	var bottomLeft = get_tree().get_current_scene().get_node_or_null("downLeftLimit")
-	var topRight = get_tree().get_current_scene().get_node_or_null("topRightLimit")
+	var bottomLeft = get_tree().get_current_scene().get_node_or_null("DownLeftLimit")
+	var topRight = get_tree().get_current_scene().get_node_or_null("TopRightLimit")
 
 	if bottomLeft and topRight:
 		var pos1 = bottomLeft.global_position
@@ -55,6 +59,9 @@ func _ready():
 		cam.limit_bottom = int(pos1.y)
 	else:
 		push_warning("Limit1 or Limit2 not found in scene!")
+
+func changeObjective(text: String):
+	objective.updateObjective(text)
 
 func input_handler():
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -82,9 +89,9 @@ func update_sprite_direction(movement_direction: Vector2):
 
 		_update_sprite_for_direction()
 
-# Virtual method for child classes to override
 func _update_sprite_for_direction():
-	pass
+	if base_anims.has(current_direction):
+		sprite.play(base_anims[current_direction])
 	
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("pause") and not Gamestate.game_is_paused:
@@ -100,7 +107,6 @@ func _physics_process(_delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var target_velocity = direction * SPEED
 
-	# Smooth interpolation
 	velocity = velocity.lerp(target_velocity, 0.2)
 	
 	if direction != Vector2.ZERO:

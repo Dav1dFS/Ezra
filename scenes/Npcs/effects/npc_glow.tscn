@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg8nkwvp2h5y1"]
+
+[ext_resource type="Shader" path="res://scripts/shaders/memory_halo.gdshader" id="1_glow"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glow"]
+shader = ExtResource("1_glow")
+shader_parameter/glow_color = Color(6.738305e-07, 0.6649367, 0.7501924, 1)
+shader_parameter/glow_size = 0.5
+shader_parameter/glow_intensity = 0.4
+shader_parameter/edge_softness = 0.01
+
+[sub_resource type="Gradient" id="Gradient_glow"]
+colors = PackedColorArray(0, 0.6666667, 0.7490196, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_glow"]
+gradient = SubResource("Gradient_glow")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="NpcGlow" type="Node2D"]
+
+[node name="GlowRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_glow")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+color = Color(0, 0.6666667, 0.7490196, 1)
+shadow_color = Color(0.047058824, 0.047058824, 0.047058824, 0.8352941)
+texture = SubResource("GradientTexture2D_glow")
+texture_scale = 1.5
