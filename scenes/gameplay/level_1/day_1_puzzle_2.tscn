@@ -1,20 +1,21 @@
-[gd_scene load_steps=19 format=3 uid="uid://m3d38ksq3ja1"]
+[gd_scene load_steps=20 format=3 uid="uid://m3d38ksq3ja1"]
 
 [ext_resource type="Script" uid="uid://brog7m5vcrmdh" path="res://scripts/day_1_puzzle_2.gd" id="1_c5o0j"]
 [ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="2_1u0cv"]
-[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/characters/ellen_character.tscn" id="3_jej5n"]
-[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/npcs/enemies/enemy_guard.tscn" id="4_y0wut"]
-[ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/npcs/friendly/characters/general_npc.tscn" id="5_fh8rj"]
-[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_rwttn"]
-[ext_resource type="Shader" path="res://scripts/shaders/fogDay.gdshader" id="6_c5o0j"]
-[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/npcs/friendly/characters/frieda_npc.tscn" id="7_jej5n"]
-[ext_resource type="PackedScene" uid="uid://bpu0qf8tao73y" path="res://scenes/npcs/friendly/characters/miss_ruth_npc.tscn" id="8_y0wut"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="3_jej5n"]
+[ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/Npcs/enemies/enemy_guard.tscn" id="4_y0wut"]
+[ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/Npcs/friendly/characters/general_npc.tscn" id="5_fh8rj"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_rwttn"]
+[ext_resource type="Shader" uid="uid://p1ew2mo3oin0" path="res://scripts/shaders/fogDay.gdshader" id="6_c5o0j"]
+[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/Npcs/friendly/characters/frieda_npc.tscn" id="7_jej5n"]
+[ext_resource type="PackedScene" uid="uid://bpu0qf8tao73y" path="res://scenes/Npcs/friendly/characters/miss_ruth_npc.tscn" id="8_y0wut"]
 [ext_resource type="PackedScene" uid="uid://bsud5g344nrs3" path="res://scenes/gameplay/main_map_final.tscn" id="9_fh8rj"]
-[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/npcs/enemies/enemy_general.tscn" id="9_rwttn"]
+[ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/Npcs/enemies/enemy_general.tscn" id="9_rwttn"]
 [ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="10_es3bm"]
 [ext_resource type="Texture2D" uid="uid://igii0hb2mb2m" path="res://assets/character_sprites/frieda/frieda_base.png" id="11_c68y7"]
 [ext_resource type="Texture2D" uid="uid://bbvyp32os1srn" path="res://assets/character_sprites/ellen/ellen_base.png" id="12_pmqis"]
 [ext_resource type="Texture2D" uid="uid://d11imkedd5ajh" path="res://assets/character_sprites/miss_ruth/miss_ruth.png" id="14_c68y7"]
+[ext_resource type="PackedScene" uid="uid://bcqh0tgm5hj1m" path="res://scenes/gameplay/audioBack.tscn" id="16_pmqis"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rwttn"]
 frequency = 0.0002
@@ -234,3 +235,5 @@ initial_direction = 3
 [node name="NextSceneNPC" parent="." instance=ExtResource("5_fh8rj")]
 position = Vector2(3793, 2207)
 dialogue_file = "res://dialogues/next_scene.json"
+
+[node name="BackGround" parent="." instance=ExtResource("16_pmqis")]

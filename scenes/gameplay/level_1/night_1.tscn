@@ -1,7 +1,9 @@
-[gd_scene load_steps=60 format=3 uid="uid://d1lfv8eimewo0"]
+[gd_scene load_steps=62 format=3 uid="uid://d1lfv8eimewo0"]
 
 [ext_resource type="Script" uid="uid://2oyly7cd8uus" path="res://scripts/night_1_root.gd" id="1_bqncc"]
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/main_map.tscn" id="2_4ov1t"]
+[ext_resource type="PackedScene" uid="uid://bcqh0tgm5hj1m" path="res://scenes/gameplay/audioBack.tscn" id="2_qoxao"]
+[ext_resource type="AudioStream" uid="uid://c75q1ojnt14ek" path="res://assets/audios/whistle-of-the-haunted-realm-287347.mp3" id="3_sg2hc"]
 [ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/Dialogue/Memory.tscn" id="3_u6i4i"]
 [ext_resource type="PackedScene" uid="uid://cbyffikw81yby" path="res://scenes/UI/footprints.tscn" id="4_i0mio"]
 [ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="4_t5b4k"]
@@ -604,6 +606,9 @@ shader_parameter/speed = Vector2(0.02, 0.01)
 
 [node name="Night1" type="Node2D"]
 script = ExtResource("1_bqncc")
+
+[node name="BackGround" parent="." instance=ExtResource("2_qoxao")]
+stream = ExtResource("3_sg2hc")
 
 [node name="MainMap" parent="." instance=ExtResource("2_4ov1t")]
 tile_set = SubResource("TileSet_yphp0")
