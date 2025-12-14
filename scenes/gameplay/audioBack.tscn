@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcqh0tgm5hj1m"]
+
+[ext_resource type="AudioStream" uid="uid://dd273x8l450lb" path="res://assets/audios/halloween-bgmtarantelladark-amp-gothic-piano-248346.mp3" id="1_0bicp"]
+
+[node name="BackGround" type="AudioStreamPlayer"]
+stream = ExtResource("1_0bicp")
+volume_db = -15.271
+pitch_scale = 0.48
+autoplay = true
+bus = &"Music"
