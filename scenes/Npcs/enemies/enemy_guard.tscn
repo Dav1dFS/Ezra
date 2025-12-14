@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://rq853mcdau80"]
+[gd_scene load_steps=11 format=3 uid="uid://rq853mcdau80"]
 
-[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/npcs/enemy.gd" id="1_65c78"]
+[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_65c78"]
 [ext_resource type="Texture2D" uid="uid://bursog8awn2t" path="res://assets/character_sprites/guards_static/g2.png" id="2_0mye4"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_jnxau"]
-[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/npcs/movement_editor_helper.gd" id="4_movement"]
+[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_movement"]
+[ext_resource type="AudioStream" uid="uid://u5oyfwfb7d7v" path="res://assets/audios/referee-whistle-coach-whistle-sports-whistle-291816.mp3" id="5_oipbc"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pgdsa"]
 cull_mode = 1
@@ -87,9 +88,9 @@ scale = Vector2(1.35, 0.79)
 shape = SubResource("CapsuleShape2D_tvwks")
 
 [node name="MovementDebugDraw" type="Node2D" parent="."]
+visibility_layer = 31
 z_index = 4096
 z_as_relative = false
-visibility_layer = 31
 position = Vector2(0, 2)
 script = ExtResource("4_movement")
 point_color = Color(1, 0, 0, 0.36862746)
@@ -100,6 +101,11 @@ point_color = Color(1, 0, 0, 0.36862746)
 position = Vector2(0.3152008, 2.3954964)
 scale = Vector2(2.395, 1.545)
 shape = SubResource("CircleShape2D_kjesm")
+
+[node name="Whistle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_oipbc")
+volume_db = -1.085
+pitch_scale = 0.85
 
 [connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]

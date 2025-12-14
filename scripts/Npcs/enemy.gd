@@ -97,6 +97,7 @@ func _handle_player_detected(body: Node) -> bool:
 
 	vision_renderer.color = alert_color
 	player_detected = true
+	play_whistle()
 	_face_player(body)
 	moving_forward = false
 	is_moving = false
@@ -224,6 +225,12 @@ func _update_flashlight_bobbing(delta):
 	else:
 		flashlight.position.y = lerp(flashlight.position.y, flashlight_base_y, delta * 10.0)
 
+
+func play_whistle():
+	var music_index = AudioServer.get_bus_index("Music") 
+	AudioServer.set_bus_mute(music_index, true)
+	$Whistle.play()
+	
 func start_dialogue():
 	var dialogue_to_use = dialogue_handler.choose_dialogue(npc_name)
 
