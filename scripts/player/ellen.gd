@@ -20,6 +20,7 @@ var shakes
 func _ready():
 	super._ready()
 	character_name = "Ellen"
+	SPEED=50
 	timer.wait_time = 1.5
 	timer.one_shot=true
 	shakes=false

@@ -609,6 +609,8 @@ script = ExtResource("1_bqncc")
 
 [node name="BackGround" parent="." instance=ExtResource("2_qoxao")]
 stream = ExtResource("3_sg2hc")
+volume_db = -7.638
+pitch_scale = 1.03
 
 [node name="MainMap" parent="." instance=ExtResource("2_4ov1t")]
 tile_set = SubResource("TileSet_yphp0")

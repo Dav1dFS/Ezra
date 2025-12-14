@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 70.0
+var SPEED = 70.0
 
 
 @export var inv: Inventory

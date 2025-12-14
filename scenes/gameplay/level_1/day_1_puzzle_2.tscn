@@ -55,6 +55,7 @@ dialogue_box = NodePath("../DialogueBox")
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
 position = Vector2(3780, 2220)
+show_counter = null
 
 [node name="DownLeftLimit" type="Marker2D" parent="."]
 position = Vector2(3101.4653, 2504.9849)
@@ -63,7 +64,7 @@ position = Vector2(3101.4653, 2504.9849)
 position = Vector2(3994.1248, 1584.7534)
 
 [node name="Enemy" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3574.5112, 2091.707)
+position = Vector2(3602, 2040)
 is_moving = true
 forward_distance = 200.0
 backward_distance = 100.0
@@ -152,7 +153,7 @@ backward_distance = 0.0
 initial_direction = 1
 
 [node name="Enemy2" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3542, 2128)
+position = Vector2(3535, 2108)
 is_moving = true
 forward_distance = 200.0
 backward_distance = 100.0
