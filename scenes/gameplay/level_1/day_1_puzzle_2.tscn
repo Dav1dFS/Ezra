@@ -54,7 +54,7 @@ dialogue_box = NodePath("../DialogueBox")
 [node name="MainMapFinal" parent="." instance=ExtResource("9_fh8rj")]
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
-position = Vector2(3764, 2222)
+position = Vector2(3806, 1635)
 show_counter = null
 
 [node name="DownLeftLimit" type="Marker2D" parent="."]
@@ -245,7 +245,12 @@ forward_distance = 300.0
 initial_direction = 3
 
 [node name="NextSceneNPC" parent="." instance=ExtResource("5_fh8rj")]
-position = Vector2(3793, 2207)
+position = Vector2(3762, 2205)
+npc_name = "Frieda2"
 dialogue_file = "res://dialogues/next_scene.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ezra": ExtResource("10_es3bm"),
+"Frieda": ExtResource("11_c68y7")
+})
 
 [node name="BackGround" parent="." instance=ExtResource("16_pmqis")]

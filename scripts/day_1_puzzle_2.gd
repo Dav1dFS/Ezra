@@ -22,10 +22,12 @@ func _set_npc_interactable(npc: Node2D, enabled: bool):
 	npc.visible = enabled
 	npc.set_process(enabled)
 	npc.set_physics_process(enabled)
+	npc.deactivate_Collisions(enabled)
 	for child in npc.get_children():
 		if child is Area2D:
 			child.monitoring = enabled
 			child.monitorable = enabled
+
 
 func _on_mid_action(action_name: String):
 	match action_name:
