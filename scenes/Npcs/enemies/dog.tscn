@@ -190,8 +190,10 @@ shape = SubResource("CircleShape2D_22vex")
 
 [node name="Dog_Growl" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_2cyko")
-parameters/looping = false
+volume_db = -7.0
+parameters/looping = true
 
 [node name="Dog_Bark" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_4rrlh")
-parameters/looping = false
+volume_db = -7.0
+parameters/looping = true

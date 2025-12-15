@@ -2,20 +2,24 @@ extends "res://scripts/player/player.gd"
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var memories: Array[Node] = get_tree().get_nodes_in_group("Memories")
+@onready var ability_bar: TextureProgressBar = $AbilityCoolDown
 
-@export var ability_bar: TextureProgressBar
 @export var max_value: int = 3
 @export var footprint_scene: PackedScene
-@export var footprints_step_distance: float = 18.0
+@export var footprints_step_distance: float = 30.0
 @export var footprints_per_second: float = 6.0
 @export var max_path_length: float = 2000.0
 @export var path_update_distance: float = 24.0
 @export var direction_change_threshold: float = 0.25
 @export var target_npc: NodePath
 @export var target_npc_gamestate_flag: String = "can_control_frieda"
-@export var footprint_side_offset: float = 6.0
-@export var ability_duration: float = 3.0
-@export var ability_cooldown: float = 10.0
+@export var footprint_side_offset: float = 3.0
+
+@export var ability_duration_normal: float = 6.0
+@export var ability_cooldown_normal: float = 10.0
+@export var ability_duration_penalized: float = 3.0
+@export var ability_cooldown_penalized: float = 20.0
+@export var dog_alert_penalty_duration: float = 60.0 
 
 var ability_timer: float = 0.0
 var cooldown_timer: float = 0.0
@@ -36,6 +40,10 @@ var final_zoom_done: bool = false
 var zoom_speed: float = 0.02
 var _tracking_npc: bool = false
 
+var is_penalized: bool = false
+var penalty_timer: float = 0.0
+var was_dog_alerted_last_frame: bool = false
+
 func _ready():
 	super._ready()
 	character_name = "Ezra"
@@ -50,10 +58,12 @@ func increment_item_counter():
 
 func _process(delta: float):
 	var in_dialogue = Gamestate.is_talking or Gamestate.dialogue_locked
+
+	_update_penalty_timer(delta)
+	_check_dog_alert_triggered()
 	
 	if in_dialogue:
 		_prev_player_pos = global_position
-		# Continua a processar timers da ability
 		_process_ability_timers(delta)
 		return
 	
@@ -61,13 +71,13 @@ func _process(delta: float):
 		_prev_player_pos = global_position
 		return
 	
-	var can_use_footprint_ability = Gamestate.ezra_can_spawn_footprints
+	var can_use_footprint_ability = Gamestate.ezra_can_spawn_footprints and not Gamestate.dog_is_alerted
+	#print("[DEBUG] can_use: %s | dog_alerted: %s | penalized: %s | penalty_timer: %.1f" % [can_use_footprint_ability, Gamestate.dog_is_alerted, is_penalized, penalty_timer])
 	
 	if Input.is_action_just_pressed("ability") and ability_ready and can_use_footprint_ability:
 		activate_ability()
 	
 	var should_track_npc = _should_track_target_npc()
-	
 	if should_track_npc:
 		_tracking_npc = true
 		var npc = get_node_or_null(target_npc)
@@ -75,7 +85,6 @@ func _process(delta: float):
 			var dist_to_npc = global_position.distance_to(npc.global_position)
 			get_zoom_from_distance(dist_to_npc, delta)
 			
-			# Só spawna footprints se a flag permitir (não está na área de interação)
 			if can_use_footprint_ability:
 				_update_footprint_path_to_target(npc)
 			else:
@@ -88,20 +97,17 @@ func _process(delta: float):
 		_prev_player_pos = global_position
 		return
 	
-	# Se estava tracking mas agora não deve mais
 	if _tracking_npc and not should_track_npc:
 		_tracking_npc = false
 		final_zoom_done = false
 		_clear_footprint_path()
 	
-	# Se coletou todas as memórias, aplica zoom final
 	if collected_memories >= max_value and memories.is_empty():
 		_apply_final_zoom(delta)
 		_process_ability_timers(delta)
 		_prev_player_pos = global_position
 		return
 	
-	# Encontra memória mais próxima e ajusta zoom
 	var min_distance = 1e9
 	for mem in memories:
 		var dis = global_position.distance_to(mem.global_position)
@@ -117,24 +123,62 @@ func _process(delta: float):
 	
 	_prev_player_pos = global_position
 
+func _check_dog_alert_triggered():
+	var dog_alerted_now = Gamestate.dog_is_alerted
+	
+	if dog_alerted_now and not was_dog_alerted_last_frame:
+		_on_dog_alert_triggered()
+	
+	was_dog_alerted_last_frame = dog_alerted_now
+
+func _on_dog_alert_triggered():
+	is_penalized = true
+	penalty_timer = dog_alert_penalty_duration
+	
+	if ability_active:
+		ability_active = false
+		ability_timer = 0
+		_clear_footprint_path()
+		
+		# Inicia cooldown penalizado
+		cooldown_timer = ability_cooldown_penalized
+		ability_ready = false
+
+func _update_penalty_timer(delta: float):
+	if is_penalized:
+		penalty_timer -= delta
+		if penalty_timer <= 0:
+			penalty_timer = 0
+			is_penalized = false
+
+func get_current_ability_duration() -> float:
+	return ability_duration_penalized if is_penalized else ability_duration_normal
+
+func get_current_ability_cooldown() -> float:
+	return ability_cooldown_penalized if is_penalized else ability_cooldown_normal
+
 func _process_ability_timers(delta: float):
 	if ability_active:
 		ability_bar.visible = true
 		ability_bar.value = ability_bar.max_value
 		ability_timer -= delta
-		ability_bar.value = ability_bar.max_value * (ability_timer / ability_duration)
+		
+		var current_duration = get_current_ability_duration()
+		ability_bar.value = ability_bar.max_value * (ability_timer / current_duration)
 		
 		if ability_timer <= 0:
 			ability_active = false
 			ability_timer = 0
 			_clear_footprint_path()
-			cooldown_timer = ability_cooldown
+			cooldown_timer = get_current_ability_cooldown()
 			ability_bar.value = 0
 	
 	elif not ability_ready:
 		cooldown_timer -= delta
 		ability_bar.visible = true
-		ability_bar.value = ability_bar.max_value * (1 - cooldown_timer / ability_cooldown)
+		
+		var current_cooldown = get_current_ability_cooldown()
+		ability_bar.value = ability_bar.max_value * (1 - cooldown_timer / current_cooldown)
 		
 		if cooldown_timer <= 0:
 			cooldown_timer = 0
@@ -146,7 +190,7 @@ func _process_ability_timers(delta: float):
 func activate_ability():
 	ability_active = true
 	ability_ready = false
-	ability_timer = ability_duration
+	ability_timer = get_current_ability_duration()
 
 func _should_track_target_npc() -> bool:
 	if collected_memories < max_value or not memories.is_empty():
@@ -162,6 +206,12 @@ func _should_track_target_npc() -> bool:
 
 func _update_footprint_path_to_target(npc: Node2D):
 	if !ability_active:
+		return
+	
+	# Limpa footprints apenas se cão está alertado NESTE MOMENTO
+	if Gamestate.dog_is_alerted:
+		if footprints_instances.size() > 0:
+			_clear_footprint_path()
 		return
 	
 	var can_spawn = Gamestate.ezra_can_spawn_footprints
@@ -277,12 +327,10 @@ func _spawn_footprint_path_to(target_node: Node2D):
 	var direction = (end_pos - start_pos).normalized()
 	var perpendicular = Vector2(-direction.y, direction.x)
 	
-	# Calcula quantas pegadas criar (mais pegadas = caminho mais natural)
 	var step_dist = footprints_step_distance * 0.5
 	var num_steps = int(ceil(total_dist / step_dist))
 	num_steps = clamp(num_steps, 1, int(max_path_length / step_dist))
 	
-	# Spawna pegadas alternando esquerda/direita
 	for i in range(num_steps + 1):
 		var t = float(i) / float(num_steps)
 		var center_pos = start_pos.lerp(end_pos, t)
@@ -317,7 +365,6 @@ func _spawn_single_footprint(pos: Vector2, target_node: Node2D, side: int, _move
 	if fp and is_instance_valid(fp) and fp.is_inside_tree():
 		if fp.has_method("apply_visuals_now"):
 			fp.apply_visuals_now()
-		# Só adiciona à lista se a instância ainda for válida
 		footprints_instances.append(fp)
 
 func _compute_current_direction() -> Vector2:
@@ -332,6 +379,11 @@ func _compute_current_direction() -> Vector2:
 
 func _update_footprint_path_if_needed():
 	if Gamestate.is_being_pushed_back or !ability_active:
+		return
+	
+	if Gamestate.dog_is_alerted:
+		if footprints_instances.size() > 0:
+			_clear_footprint_path()
 		return
 	
 	var can_spawn = Gamestate.ezra_can_spawn_footprints
