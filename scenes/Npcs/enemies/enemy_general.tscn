@@ -286,6 +286,7 @@ radius = 5.6000237
 script = ExtResource("1_usc7g")
 vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
 alert_color = Color(0.69411767, 0.05882353, 0.36862746, 0.36862746)
+npc_portrait = "uid://durs75xmm7uy3"
 backward_distance = 100.0
 
 [node name="VisionCone2D" parent="." instance=ExtResource("3_yha3f")]

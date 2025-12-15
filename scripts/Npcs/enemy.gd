@@ -57,9 +57,13 @@ func _ready():
 		vision_cone._angle_half = vision_cone._angle / 2.0
 		vision_cone._angular_delta = vision_cone._angle / vision_cone.ray_count
 		flashlight_bob_amount = 3.0
+		self.npc_name="General"
+		self.npc_portrait = "res://assets/character_sprites/guards_static/guard_biggg.png"
 
 	if is_moving:
 		_calculate_target_position()
+	else:
+		spriteChar.stop()
 
 func _physics_process(delta: float) -> void:
 	if Gamestate.game_is_paused:
@@ -69,6 +73,8 @@ func _physics_process(delta: float) -> void:
 
 	if is_moving:
 		_process_movement(delta)
+	else:
+		spriteChar.stop()
 
 	if not is_turning:
 		_update_state()
