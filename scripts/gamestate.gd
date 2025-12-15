@@ -10,6 +10,9 @@ var is_talking: bool = false
 var dialogue_locked := false
 var memory_zoom_enabled := false
 var can_control_frieda: bool = false
+var is_being_pushed_back: bool = false
+var ezra_can_spawn_footprints:bool = true
+var dog_is_alerted: bool = false
 
 func _ready():
 	var img = load("res://assets/character_sprites/ezra/ezra_base.png").get_image()

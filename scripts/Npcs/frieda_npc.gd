@@ -99,10 +99,13 @@ func _can_use_ability() -> bool:
 
 func _on_body_entered(body: Node):
 	super._on_body_entered(body)
+	if body.name == "Player" and Gamestate.can_control_frieda:
+		Gamestate.ezra_can_spawn_footprints = false
 
 func _on_body_exited(body: Node):
 	super._on_body_exited(body)
 	if body.name == "Player":
+		Gamestate.ezra_can_spawn_footprints = true
 		_reset_ability_charge()
 		if ability_label:
 			ability_label.visible = false

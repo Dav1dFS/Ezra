@@ -63,14 +63,16 @@ func _push_player(player: Node, direction: Vector2):
 	if _is_pushing_back:
 		return
 	_is_pushing_back = true
-
+	Gamestate.is_being_pushed_back = true
 	_update_player_direction(player, direction)
 
 	var target_pos = player.global_position + direction.normalized() * pushback_distance
 
 	var tween = create_tween()
 	tween.tween_property(player, "global_position", target_pos, pushback_distance / pushback_speed)
-	tween.finished.connect(func(): _is_pushing_back = false)
+	tween.finished.connect(func():
+		_is_pushing_back = false
+		Gamestate.is_being_pushed_back = false)
 
 func _update_player_direction(player_body: Node, direction: Vector2):
 	if abs(direction.x) > abs(direction.y):
