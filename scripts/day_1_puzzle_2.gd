@@ -8,6 +8,7 @@ extends Node2D
 @onready var next_scene_npc: Node2D = $NextSceneNPC
 
 func _ready():
+	Gamestate.dog_is_alerted = false
 	_set_npc_interactable(next_scene_npc, false)
 	player.update_inventory(null)
 	var music_index = AudioServer.get_bus_index("Music") 

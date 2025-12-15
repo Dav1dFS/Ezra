@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://mliottlwd112"]
+[gd_scene load_steps=19 format=3 uid="uid://mliottlwd112"]
 
 [ext_resource type="Script" uid="uid://d0484gje3r5pg" path="res://scripts/UI/main_menu.gd" id="1_11hie"]
-[ext_resource type="Shader" uid="uid://i67thunpog4c" path="res://scripts/UI/gammashader.gdshader" id="2_3h7gc"]
-[ext_resource type="Script" uid="uid://cfaqs65xqthbw" path="res://scripts/UI/buttons.gd" id="3_4vh8y"]
+[ext_resource type="Shader" path="res://scripts/UI/gammashader.gdshader" id="2_3h7gc"]
+[ext_resource type="Texture2D" uid="uid://bdigqorb277x7" path="res://assets/main_Prancheta 1.png" id="2_bm8t2"]
+[ext_resource type="Script" path="res://scripts/UI/buttons.gd" id="3_4vh8y"]
 [ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_b1p1q"]
-[ext_resource type="PackedScene" uid="uid://dipv4awjcdp11" path="res://scenes/UI/settings.tscn" id="4_4vh8y"]
+[ext_resource type="PackedScene" uid="uid://dipv4awjcdp11" path="res://scenes/UI/Settings.tscn" id="4_4vh8y"]
 [ext_resource type="PackedScene" uid="uid://dctbgw4kfc7oq" path="res://scenes/UI/save_options.tscn" id="6_s7yn2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b1p1q"]
@@ -63,13 +64,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_11hie")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -2.0
+offset_right = 4.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_bm8t2")
+expand_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -114,7 +121,7 @@ theme_override_constants/separation = 9
 
 [node name="ResumeGame" type="Button" parent="LeftColumn/TopGroup"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.5022532, 0.7946471, 0.99999994, 1)
 theme_override_fonts/font = ExtResource("3_b1p1q")
 theme_override_font_sizes/font_size = 32
@@ -130,7 +137,7 @@ script = ExtResource("3_4vh8y")
 
 [node name="NewGame" type="Button" parent="LeftColumn/TopGroup"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.5019608, 0.79607844, 1, 1)
 theme_override_fonts/font = ExtResource("3_b1p1q")
 theme_override_font_sizes/font_size = 32
@@ -146,7 +153,7 @@ script = ExtResource("3_4vh8y")
 
 [node name="LoadGame" type="Button" parent="LeftColumn/TopGroup"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.5019608, 0.79607844, 1, 1)
 theme_override_fonts/font = ExtResource("3_b1p1q")
 theme_override_font_sizes/font_size = 32
