@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ddcft0p2lnsmk"]
 
-[ext_resource type="Script" uid="uid://bi1nsful0mdq5" path="res://scripts/dialogue/dialogue_box.gd" id="1_2k12t"]
+[ext_resource type="Script" uid="uid://bi1nsful0mdq5" path="res://scripts/Dialogue/dialogue_box.gd" id="1_2k12t"]
 
 [node name="Dialogue Box" type="CanvasLayer"]
 visible = false

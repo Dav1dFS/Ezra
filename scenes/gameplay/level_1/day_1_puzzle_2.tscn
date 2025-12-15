@@ -54,7 +54,7 @@ dialogue_box = NodePath("../DialogueBox")
 [node name="MainMapFinal" parent="." instance=ExtResource("9_fh8rj")]
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
-position = Vector2(3780, 2220)
+position = Vector2(3764, 2222)
 show_counter = null
 
 [node name="DownLeftLimit" type="Marker2D" parent="."]
@@ -168,8 +168,9 @@ position = Vector2(3229.2751, 1693.3629)
 npc_name = "Jordyn"
 dialogue_file = "res://dialogues/day_1/day_1_jordyn.json"
 speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
 "Ezra": ExtResource("10_es3bm"),
-"Jordyn": ExtResource("9_0joo4")
+"Woman": ExtResource("9_0joo4")
 })
 override_base_sprite = ExtResource("9_0joo4")
 
@@ -177,6 +178,12 @@ override_base_sprite = ExtResource("9_0joo4")
 position = Vector2(3633, 2245)
 npc_name = "Lilah"
 dialogue_file = "res://dialogues/day_1/day_1_lilah.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
+"Ezra": ExtResource("10_es3bm"),
+"Lilah": ExtResource("8_4k27q"),
+"Woman": ExtResource("8_4k27q")
+})
 override_base_sprite = ExtResource("8_4k27q")
 
 [node name="Talia" parent="." instance=ExtResource("5_fh8rj")]
@@ -184,8 +191,10 @@ position = Vector2(3655.7212, 1777.6606)
 npc_name = "Talia"
 dialogue_file = "res://dialogues/day_1/day_1_talia.json"
 speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
 "Ezra": ExtResource("10_es3bm"),
-"Talia": ExtResource("11_aey7p")
+"Talia": ExtResource("11_aey7p"),
+"Woman": ExtResource("11_aey7p")
 })
 override_base_sprite = ExtResource("11_aey7p")
 
