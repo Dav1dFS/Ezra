@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var vision_renderer: Polygon2D
 @export var alert_color: Color
 
-@onready var spriteChar: Sprite2D = $Base
+@onready var spriteChar: AnimatedSprite2D = $Base
 @onready var vision_cone: Node2D = $VisionCone2D
 
 @export var npc_name: String = "Guard"
@@ -28,7 +28,7 @@ var stuck_threshold: float = 1.0
 var player_detected = false
 var is_turning: bool = false
 var flashlight_bob = 0.0
-var flashlight_bob_speed = 2.5
+var flashlight_bob_speed = 5
 var flashlight_bob_amount = 1.0
 var flashlight_base_y := 0.0
 var dialogue_is_on: bool = false
@@ -101,6 +101,7 @@ func _handle_player_detected(body: Node) -> bool:
 	_face_player(body)
 	moving_forward = false
 	is_moving = false
+	spriteChar.stop()
 	start_dialogue()
 	return true
 
@@ -124,17 +125,22 @@ func _set_direction(dir: Direction):
 func _apply_visual_direction(dir: Direction):
 	match dir:
 		Direction.RIGHT:
-			spriteChar.frame = 3
+			spriteChar.play("wR")
 			vision_cone.rotation = -PI / 2
+			spriteChar.light_mask=~(1 << 0)
 		Direction.LEFT:
-			spriteChar.frame = 2
+			spriteChar.play("wL")
 			vision_cone.rotation = PI / 2
+			
 		Direction.UP:
-			spriteChar.frame = 1
+			spriteChar.play("wU")
 			vision_cone.rotation = PI
+			spriteChar.light_mask=~(1 << 0)
 		Direction.DOWN:
-			spriteChar.frame = 0
+			spriteChar.play("wD")
 			vision_cone.rotation = 0
+			spriteChar.light_mask=1
+			
 
 func _get_opposite_direction(dir: Direction) -> Direction:
 	match dir:
@@ -177,6 +183,7 @@ func _process_movement(delta: float):
 	if distance_to_target < 5.0:
 		is_turning = true
 		moving_forward = !moving_forward
+		spriteChar.stop()
 		await _rotate_in_place()
 		_calculate_target_position()
 		stuck_timer = 0.0
