@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://d1lfv8eimewo0"]
+[gd_scene load_steps=79 format=3 uid="uid://d1lfv8eimewo0"]
 
 [ext_resource type="Script" uid="uid://2oyly7cd8uus" path="res://scripts/night_1_root.gd" id="1_bqncc"]
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/main_map.tscn" id="2_4ov1t"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="4_t5b4k"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_3fgql"]
 [ext_resource type="PackedScene" uid="uid://br3gpnhtkafbd" path="res://scenes/Npcs/friendly/characters/ellen_npc.tscn" id="7_4ov1t"]
+[ext_resource type="Shader" uid="uid://cku83md4wcs5r" path="res://scripts/shaders/memory_halo.gdshader" id="7_lsjfn"]
 [ext_resource type="PackedScene" uid="uid://cg8nkwvp2h5y1" path="res://scenes/Npcs/effects/npc_glow.tscn" id="9_glow"]
 [ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/Npcs/friendly/characters/frieda_npc.tscn" id="9_t5b4k"]
 [ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/Npcs/frieda_npc.gd" id="10_3fgql"]
@@ -19,6 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://dqmfjansghrhc" path="res://assets/example_tile_map/tiles.png" id="16_x5hnv"]
 [ext_resource type="Texture2D" uid="uid://cmpvshqd35yun" path="res://assets/environment_sprites_tiles/all_sprites.png" id="17_rq4tm"]
 [ext_resource type="Texture2D" uid="uid://do8re56ujn4xi" path="res://assets/example_tile_map/fence_tiles.png" id="18_kvly2"]
+[ext_resource type="Texture2D" uid="uid://cq8vyxdfyjkw1" path="res://assets/animation_sheets/prisioneiros_dormir1.png" id="19_qoxao"]
+[ext_resource type="PackedScene" uid="uid://cx5x45xpimkr6" path="res://scenes/Npcs/enemies/dog.tscn" id="20_8midk"]
+[ext_resource type="PackedScene" uid="uid://dhetuapm0eojt" path="res://scenes/Npcs/enemies/sleeping_guard.tscn" id="21_dcukc"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_55oj5"]
 tile_data = PackedInt32Array(0, 0, 4, 65536, 0, 4, 131072, 0, 4, 196608, 0, 4, 262144, 0, 4, 327680, 0, 4, 393216, 0, 4, 458752, 0, 4, 524288, 0, 4, 589824, 0, 4, 655360, 0, 4, 720896, 0, 4, 786432, 0, 4, 851968, 0, 4, 917504, 0, 4, 983040, 0, 4, 1048576, 0, 4, 1114112, 0, 4, 1179648, 0, 4, 1245184, 0, 4, 1310720, 0, 4, 1376256, 0, 4, 1441792, 0, 4, 1507328, 0, 4, 1572864, 0, 4, 1638400, 65536, 4, 1, 65536, 4, 1638401, 65536, 4, 2, 65536, 4, 1638402, 65536, 4, 3, 65536, 4, 1638403, 65536, 4, 4, 65536, 4, 1638404, 65536, 4, 5, 65536, 4, 1638405, 65536, 4, 6, 65536, 4, 1638406, 65536, 4, 7, 65536, 4, 1638407, 65536, 4, 8, 65536, 4, 1638408, 65536, 4, 9, 65536, 4, 393225, 65536, 4, 589833, 65536, 4, 1507337, 65536, 4, 1638409, 196608, 16, 10, 65536, 4, 393226, 65536, 4, 589834, 65536, 4, 1507338, 65536, 4, 1638410, 196608, 16, 11, 65536, 4, 1638411, 65536, 4, 12, 65536, 4, 1638412, 65536, 4, 13, 65536, 4, 1638413, 65536, 4, 14, 65536, 4, 1638414, 65536, 4, 15, 65536, 4, 1638415, 65536, 4, 16, 65536, 4, 1638416, 65536, 4, 17, 65536, 4, 1638417, 65536, 4, 18, 65536, 4, 1638418, 65536, 4, 19, 65536, 4, 1638419, 65536, 4, 20, 0, 4, 65556, 0, 4, 131092, 0, 4, 196628, 0, 4, 262164, 0, 4, 327700, 0, 4, 393236, 0, 4, 458772, 0, 4, 524308, 0, 4, 589844, 0, 4, 655380, 0, 4, 720916, 0, 4, 786452, 0, 4, 851988, 0, 4, 917524, 0, 4, 983060, 0, 4, 1048596, 0, 4, 1114132, 0, 4, 1179668, 0, 4, 1245204, 0, 4, 1310740, 0, 4, 1376276, 0, 4, 1441812, 0, 4, 1507348, 0, 4, 1572884, 0, 4, 1638420, 65536, 4)
@@ -583,26 +587,142 @@ sources/1 = SubResource("TileSetAtlasSource_b37fx")
 pattern_0 = SubResource("TileMapPattern_55oj5")
 pattern_1 = SubResource("TileMapPattern_m3jbt")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqncc"]
-size = Vector2(1892, 52)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qoxao"]
+shader = ExtResource("7_lsjfn")
+shader_parameter/glow_color = Color(0.17810082, 0.43148592, 1, 0.69411767)
+shader_parameter/glow_size = 0.50000002049012
+shader_parameter/glow_intensity = 1.0
+shader_parameter/edge_softness = 0.3
+
+[sub_resource type="Gradient" id="Gradient_i3ddc"]
+offsets = PackedFloat32Array(0.41216215, 0.8175676, 1)
+colors = PackedColorArray(0.1764706, 0.43137255, 1, 0.69411767, 0.1764706, 0.43137255, 1, 0.5019608, 0.1764706, 0.43137255, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sg2hc"]
+gradient = SubResource("Gradient_i3ddc")
+width = 40
+height = 40
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jcha6"]
 seed = 140
-frequency = 0.0075
+frequency = 0.0015
 fractal_lacunarity = 2.24
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bqncc"]
-width = 320
-height = 180
+width = 1280
+height = 720
 noise = SubResource("FastNoiseLite_jcha6")
 seamless = true
-seamless_blend_skirt = 0.75
+seamless_blend_skirt = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bqncc"]
 shader = ExtResource("12_jcha6")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_bqncc")
-shader_parameter/density = 1.50000007125
+shader_parameter/density = 1.22
 shader_parameter/speed = Vector2(0.02, 0.01)
+shader_parameter/layers = 5
+shader_parameter/noise_scale = 1.6
+shader_parameter/contrast = 1.0000000475
+shader_parameter/min_threshold = 0.4330000205675
+shader_parameter/edge_softness = 0.25
+shader_parameter/clear_center = Vector2(0.5, 0.5)
+shader_parameter/clear_size = Vector2(0.6, 0.7)
+shader_parameter/clear_softness = 0.07
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqncc"]
+size = Vector2(1892, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg2hc"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8midk"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dcukc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg2hc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8midk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoxao"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcukc"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycewm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qoxao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcukc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycewm"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn62f"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(128, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwh6r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycewm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn62f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwh6r"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyogf"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(192, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xq0ux"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwh6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyogf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
 
 [node name="Night1" type="Node2D"]
 script = ExtResource("1_bqncc")
@@ -624,15 +744,81 @@ position = Vector2(4874, 2193)
 dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
 level_id = "night1"
 
+[node name="ColorRect" type="ColorRect" parent="Memory"]
+z_index = -1
+material = SubResource("ShaderMaterial_qoxao")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Memory"]
+color = Color(0.1764706, 0.43137255, 1, 1)
+energy = 2.0
+shadow_color = Color(0.047058824, 0.047058824, 0.047058824, 0.8352941)
+texture = SubResource("GradientTexture2D_sg2hc")
+texture_scale = 1.5
+
 [node name="Memory2" parent="." instance=ExtResource("3_u6i4i")]
-position = Vector2(4551, 1809)
+position = Vector2(4589, 1808)
 dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
 level_id = "night1"
+
+[node name="ColorRect" type="ColorRect" parent="Memory2"]
+z_index = -1
+material = SubResource("ShaderMaterial_qoxao")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Memory2"]
+color = Color(0.1764706, 0.43137255, 1, 1)
+energy = 2.0
+shadow_color = Color(0.047058824, 0.047058824, 0.047058824, 0.8352941)
+texture = SubResource("GradientTexture2D_sg2hc")
+texture_scale = 1.5
 
 [node name="Memory3" parent="." instance=ExtResource("3_u6i4i")]
 position = Vector2(3957, 2047)
 dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
 level_id = "night1"
+
+[node name="ColorRect" type="ColorRect" parent="Memory3"]
+z_index = -1
+material = SubResource("ShaderMaterial_qoxao")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Memory3"]
+color = Color(0.1764706, 0.43137255, 1, 1)
+energy = 2.0
+shadow_color = Color(0.047058824, 0.047058824, 0.047058824, 0.8352941)
+texture = SubResource("GradientTexture2D_sg2hc")
+texture_scale = 1.5
 
 [node name="DownLeftLimit" type="Marker2D" parent="."]
 position = Vector2(2572, 3272)
@@ -640,15 +826,26 @@ position = Vector2(2572, 3272)
 [node name="TopRightLimit" type="Marker2D" parent="."]
 position = Vector2(5934, -849)
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("4_t5b4k")]
+[node name="Player" parent="." node_paths=PackedStringArray("ability_bar") groups=["Player"] instance=ExtResource("4_t5b4k")]
 position = Vector2(4877, 1808)
 collision_layer = 128
 collision_mask = 128
+ability_bar = NodePath("AbilityCoolDown")
 footprint_scene = ExtResource("4_i0mio")
-footprints_step_distance = 30.0
-footprints_per_second = 10.0
 target_npc = NodePath("../Frieda")
-footprint_side_offset = 5.0
+character_name = ""
+
+[node name="AbilityCoolDown" type="TextureProgressBar" parent="Player"]
+visible = false
+offset_left = 13.0
+offset_top = -5.0
+offset_right = 1213.0
+offset_bottom = 1195.0
+scale = Vector2(0.007, 0.007)
+fill_mode = 4
+texture_under = ExtResource("11_jcha6")
+texture_progress = ExtResource("11_jcha6")
+tint_progress = Color(1, 0.28235295, 1, 1)
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_3fgql")]
 
@@ -656,7 +853,7 @@ footprint_side_offset = 5.0
 auto_start_cutscene = true
 target_npc = NodePath("../Frieda")
 dialogue_box = NodePath("../DialogueBox")
-transition_text = "Night 1"
+transition_text = "NIGHT 1"
 
 [node name="Ellen" parent="." instance=ExtResource("7_4ov1t")]
 position = Vector2(4992, 2047)
@@ -696,11 +893,22 @@ tint_progress = Color(0.8285668, 9.62615e-07, 0.43747923, 1)
 [node name="FogWalls" type="Node2D" parent="."]
 script = ExtResource("12_bqncc")
 
+[node name="ColorRect" type="ColorRect" parent="FogWalls"]
+z_index = 4
+material = SubResource("ShaderMaterial_bqncc")
+offset_left = 3128.0
+offset_top = 825.0
+offset_right = 3168.0
+offset_bottom = 865.00006
+scale = Vector2(61.555775, 46.340397)
+
 [node name="TopWall" type="Node2D" parent="FogWalls"]
-position = Vector2(4750, 1525)
+position = Vector2(4715, 1010)
+scale = Vector2(0.89807564, 1)
 
 [node name="Area2D" type="Area2D" parent="FogWalls/TopWall"]
-position = Vector2(-410, -169)
+position = Vector2(-387.49527, -119)
+scale = Vector2(1.0808549, 1.8629445)
 collision_layer = 128
 collision_mask = 128
 
@@ -708,54 +916,29 @@ collision_mask = 128
 position = Vector2(-9, 16)
 shape = SubResource("RectangleShape2D_bqncc")
 
-[node name="ColorRect" type="ColorRect" parent="FogWalls/TopWall"]
-z_index = 4
-material = SubResource("ShaderMaterial_bqncc")
-offset_left = -1343.0
-offset_top = -383.0
-offset_right = -1303.0
-offset_bottom = -343.0
-scale = Vector2(47.11999, 10.239988)
-
 [node name="LeftWall" type="Node2D" parent="FogWalls"]
 position = Vector2(3484.9998, 836.9999)
 rotation = -1.5745151
 scale = Vector2(1.4399976, 1.4399976)
 
-[node name="ColorRect" type="ColorRect" parent="FogWalls/LeftWall"]
-z_index = 4
-material = SubResource("ShaderMaterial_bqncc")
-offset_left = -1343.2057
-offset_top = -336.2478
-offset_right = -1303.2057
-offset_bottom = -296.2478
-scale = Vector2(47.11999, 10.239988)
-
 [node name="Area2D" type="Area2D" parent="FogWalls/LeftWall"]
-position = Vector2(-399.37634, -168.48613)
+position = Vector2(-675.7831, 138.4605)
+scale = Vector2(0.6390968, 1.0000001)
 collision_layer = 128
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FogWalls/LeftWall/Area2D"]
-position = Vector2(-9, 16)
+position = Vector2(-14.081465, -135.13715)
 shape = SubResource("RectangleShape2D_bqncc")
 
 [node name="RightWall" type="Node2D" parent="FogWalls"]
-position = Vector2(5784, 828.99994)
+position = Vector2(5784.0093, 786)
 rotation = -1.5745151
 scale = Vector2(1.4399976, 1.4399976)
 
-[node name="ColorRect" type="ColorRect" parent="FogWalls/RightWall"]
-z_index = 4
-material = SubResource("ShaderMaterial_bqncc")
-offset_left = -1340.6885
-offset_top = -452.9063
-offset_right = -1300.6885
-offset_bottom = -412.9063
-scale = Vector2(47.11999, 10.239988)
-
 [node name="Area2D" type="Area2D" parent="FogWalls/RightWall"]
-position = Vector2(-399.37634, -168.48613)
+position = Vector2(-705.644, -254.708)
+scale = Vector2(0.63909674, 1)
 collision_layer = 128
 collision_mask = 128
 
@@ -766,20 +949,360 @@ shape = SubResource("RectangleShape2D_bqncc")
 [node name="DownWall" type="Node2D" parent="FogWalls"]
 position = Vector2(4842, 2943)
 
-[node name="ColorRect" type="ColorRect" parent="FogWalls/DownWall"]
-z_index = 4
-material = SubResource("ShaderMaterial_bqncc")
-offset_left = -1343.0
-offset_top = -600.0
-offset_right = -1303.0
-offset_bottom = -560.0
-scale = Vector2(47.11999, 10.239988)
-
 [node name="Area2D" type="Area2D" parent="FogWalls/DownWall"]
-position = Vector2(-410, -202)
+position = Vector2(-455, -348)
 collision_layer = 128
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FogWalls/DownWall/Area2D"]
 position = Vector2(-9, 16)
 shape = SubResource("RectangleShape2D_bqncc")
+
+[node name="SleepingPrisoners" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TypeA" type="Control" parent="SleepingPrisoners"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SleepingPrisioner" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5040, 1744)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="SleepingPrisioner3" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5040, 1808)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="SleepingPrisioner5" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5041, 2000)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="SleepingPrisioner6" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5041, 1979)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="SleepingPrisioner7" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5041, 2064)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="SleepingPrisioner8" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5043, 2075)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="SleepingPrisioner9" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5041, 2139)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="SleepingPrisioner10" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5041, 2192)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="SleepingPrisioner11" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5041, 2257)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="SleepingPrisioner12" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5041, 2235)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="SleepingPrisioner4" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5040, 1883)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="SleepingPrisioner2" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeA"]
+position = Vector2(5040, 1712)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.83783853
+
+[node name="TypeB" type="Control" parent="SleepingPrisoners"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeB"]
+position = Vector2(5041, 1691)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeB"]
+position = Vector2(5041, 2096)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeB"]
+position = Vector2(5041, 2160)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeB"]
+position = Vector2(5041, 2288)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeB"]
+position = Vector2(5041, 1904)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.47367245
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeB"]
+position = Vector2(5073, 1968)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.47367245
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeB"]
+position = Vector2(5042, 1723)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeB"]
+position = Vector2(5041, 1787)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeB"]
+position = Vector2(5040, 1851)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="TypeC" type="Control" parent="SleepingPrisoners"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4944, 1744)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4944, 1808)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4944, 1904)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4944, 1871)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4944, 2256)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4944, 1968)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4944, 2064)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4944, 2000)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4944, 2192)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4947, 1711)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeC"]
+position = Vector2(4943, 2160)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="TypeD" type="Control" parent="SleepingPrisoners"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4945, 1723)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.446562
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4945, 1883)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4944, 1851)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4944, 1979)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4944, 2096)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4944, 2075)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4944, 2171)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4944, 2139)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4944, 2267)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4942, 2288)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/TypeD"]
+position = Vector2(4943, 1691)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.29402032
+
+[node name="Dogs" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dog" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(4833, 2360)
+guard_to_alert = NodePath("../../Guards/SleepingGuard")
+
+[node name="Dog5" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(4833, 1051)
+guard_to_alert = NodePath("../../Guards/SleepingGuard5")
+
+[node name="Dog6" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(3904, 1051)
+guard_to_alert = NodePath("../../Guards/SleepingGuard6")
+
+[node name="Dog2" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(3904, 2363)
+guard_to_alert = NodePath("../../Guards/SleepingGuard2")
+
+[node name="Dog3" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(4496, 1942)
+guard_to_alert = NodePath("../../Guards/SleepingGuard3")
+facing_direction = 1
+
+[node name="Dog7" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(5118, 1328)
+guard_to_alert = NodePath("../../Guards/SleepingGuard7")
+facing_direction = 1
+
+[node name="Dog8" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(3597, 1328)
+guard_to_alert = NodePath("../../Guards/SleepingGuard8")
+facing_direction = 2
+
+[node name="Dog4" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(4250, 1942)
+guard_to_alert = NodePath("../../Guards/SleepingGuard4")
+facing_direction = 2
+
+[node name="Guards" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SleepingGuard" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(4817, 2355)
+
+[node name="SleepingGuard5" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(4817, 1046)
+
+[node name="SleepingGuard6" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(3888, 1046)
+
+[node name="SleepingGuard2" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(3888, 2358)
+
+[node name="SleepingGuard3" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(4501, 1920)
+facing_direction = 1
+
+[node name="SleepingGuard7" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(5123, 1306)
+facing_direction = 1
+
+[node name="SleepingGuard8" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(3602, 1306)
+facing_direction = 2
+
+[node name="SleepingGuard4" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(4255, 1920)
+facing_direction = 2

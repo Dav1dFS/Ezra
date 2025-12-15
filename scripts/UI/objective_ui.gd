@@ -50,8 +50,6 @@ func update_label():
 func update_counter():
 	if show_counter and counter:
 		counter.text = str(items_collected) + "/" + str(total_items)
-	else:
-		print("erro bruh")
 
 func add_point():
 	items_collected += 1

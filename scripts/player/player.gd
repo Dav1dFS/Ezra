@@ -75,7 +75,7 @@ func input_handler():
 		return
 
 func update_sprite_direction(movement_direction: Vector2):
-	if !Gamestate.game_is_paused:
+	if !Gamestate.game_is_paused and !Gamestate.is_being_pushed_back:
 		if abs(movement_direction.x) > abs(movement_direction.y):
 			if movement_direction.x > 0:
 				current_direction = Direction.RIGHT
@@ -99,7 +99,7 @@ func _physics_process(_delta):
 		pause_menu.show_menu()
 		get_tree().root.get_viewport().set_input_as_handled()
 
-	if Gamestate.dialogue_locked:
+	if Gamestate.dialogue_locked or Gamestate.is_being_pushed_back:
 		velocity = Vector2.ZERO
 		sprite.stop()
 		return
