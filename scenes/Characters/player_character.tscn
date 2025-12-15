@@ -30,7 +30,6 @@ offset_bottom = 37.0
 scale = Vector2(3.3036156, 3.3036156)
 
 [node name="Objective" parent="GUI" instance=ExtResource("4_hfyxy")]
-show_counter = false
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 layer = 100

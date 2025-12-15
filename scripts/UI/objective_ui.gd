@@ -5,6 +5,8 @@ var items_collected: int = 0
 var total_items: int = 0
 var show_counter: bool
 
+var typewriter_speed := 0.03        
+var _typewriter_playing := false 
 @onready var label: Label = $ObjectiveLabel
 @onready var counter: Label = $CounterLabel
 @onready var item_display: TextureRect = $ItemDisplay
@@ -34,10 +36,16 @@ func _apply_counter_visibility():
 
 func updateObjective(text: String):
 	current_objective = text
+	_typewriter_playing=true
 	update_label()
 
 func update_label():
+	label.visible_ratio=0
 	label.text = str(current_objective)
+	while label.visible_ratio!=1 and _typewriter_playing:
+		label.visible_ratio+=0.05
+		await get_tree().create_timer(typewriter_speed).timeout
+	_typewriter_playing = false
 
 func update_counter():
 	if show_counter and counter:

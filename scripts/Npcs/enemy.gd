@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var vision_renderer: Polygon2D
 @export var alert_color: Color
 
-@onready var spriteChar: Sprite2D = $Base
+@onready var spriteChar: AnimatedSprite2D = $Base
 @onready var vision_cone: Node2D = $VisionCone2D
 
 @export var npc_name: String = "Guard"
@@ -28,7 +28,7 @@ var stuck_threshold: float = 1.0
 var player_detected = false
 var is_turning: bool = false
 var flashlight_bob = 0.0
-var flashlight_bob_speed = 2.5
+var flashlight_bob_speed = 5
 var flashlight_bob_amount = 1.0
 var flashlight_base_y := 0.0
 var dialogue_is_on: bool = false
@@ -57,9 +57,13 @@ func _ready():
 		vision_cone._angle_half = vision_cone._angle / 2.0
 		vision_cone._angular_delta = vision_cone._angle / vision_cone.ray_count
 		flashlight_bob_amount = 3.0
+		self.npc_name="General"
+		self.npc_portrait = "res://assets/character_sprites/guards_static/guard_biggg.png"
 
 	if is_moving:
 		_calculate_target_position()
+	else:
+		spriteChar.stop()
 
 func _physics_process(delta: float) -> void:
 	if Gamestate.game_is_paused:
@@ -69,6 +73,8 @@ func _physics_process(delta: float) -> void:
 
 	if is_moving:
 		_process_movement(delta)
+	else:
+		spriteChar.stop()
 
 	if not is_turning:
 		_update_state()
@@ -97,9 +103,11 @@ func _handle_player_detected(body: Node) -> bool:
 
 	vision_renderer.color = alert_color
 	player_detected = true
+	play_whistle()
 	_face_player(body)
 	moving_forward = false
 	is_moving = false
+	spriteChar.stop()
 	start_dialogue()
 	return true
 
@@ -123,17 +131,22 @@ func _set_direction(dir: Direction):
 func _apply_visual_direction(dir: Direction):
 	match dir:
 		Direction.RIGHT:
-			spriteChar.frame = 3
+			spriteChar.play("wR")
 			vision_cone.rotation = -PI / 2
+			spriteChar.light_mask=~(1 << 0)
 		Direction.LEFT:
-			spriteChar.frame = 2
+			spriteChar.play("wL")
 			vision_cone.rotation = PI / 2
+			
 		Direction.UP:
-			spriteChar.frame = 1
+			spriteChar.play("wU")
 			vision_cone.rotation = PI
+			spriteChar.light_mask=~(1 << 0)
 		Direction.DOWN:
-			spriteChar.frame = 0
+			spriteChar.play("wD")
 			vision_cone.rotation = 0
+			spriteChar.light_mask=1
+			
 
 func _get_opposite_direction(dir: Direction) -> Direction:
 	match dir:
@@ -176,6 +189,7 @@ func _process_movement(delta: float):
 	if distance_to_target < 5.0:
 		is_turning = true
 		moving_forward = !moving_forward
+		spriteChar.stop()
 		await _rotate_in_place()
 		_calculate_target_position()
 		stuck_timer = 0.0
@@ -224,6 +238,12 @@ func _update_flashlight_bobbing(delta):
 	else:
 		flashlight.position.y = lerp(flashlight.position.y, flashlight_base_y, delta * 10.0)
 
+
+func play_whistle():
+	var music_index = AudioServer.get_bus_index("Music") 
+	AudioServer.set_bus_mute(music_index, true)
+	$Whistle.play()
+	
 func start_dialogue():
 	var dialogue_to_use = dialogue_handler.choose_dialogue(npc_name)
 
