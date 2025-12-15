@@ -65,176 +65,98 @@ position = Vector2(3994.1248, 1584.7534)
 
 [node name="Enemy" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3602, 2040)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
-movement_speed = 50.0
 forward_distance = 200.0
 backward_distance = 100.0
 initial_direction = 3
 
 [node name="Enemy3" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3154.0935, 2322.6519)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
-movement_speed = 50.0
 forward_distance = 1000.0
 backward_distance = 0.0
-initial_direction = 0
 
 [node name="Enemy11" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3463.7808, 2469.2927)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
-movement_speed = 50.0
 forward_distance = 50.0
 backward_distance = 0.0
-initial_direction = 0
 
 [node name="Enemy12" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3345.7979, 1646.7437)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
-movement_speed = 50.0
 forward_distance = 50.0
 backward_distance = 0.0
-initial_direction = 0
 
 [node name="Enemy7" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3126.735, 2276.566)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
-is_moving = false
-movement_speed = 50.0
-forward_distance = 100.0
 backward_distance = 0.0
 initial_direction = 3
 
 [node name="Enemy8" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3129, 1899)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
-is_moving = false
-movement_speed = 50.0
-forward_distance = 100.0
 backward_distance = 0.0
 initial_direction = 3
 
 [node name="Enemy9" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3511.195, 1630)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
-is_moving = false
-movement_speed = 50.0
-forward_distance = 100.0
 backward_distance = 0.0
-initial_direction = 0
 
 [node name="Enemy10" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3629.0886, 1630)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
-is_moving = false
-movement_speed = 50.0
-forward_distance = 100.0
 backward_distance = 0.0
 initial_direction = 1
 
 [node name="Enemy4" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3820.924, 2349.4941)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
-movement_speed = 50.0
 forward_distance = 1000.0
 backward_distance = 0.0
 initial_direction = 1
 
 [node name="Enemy14" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3183, 1958)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
-movement_speed = 50.0
 forward_distance = 750.0
 backward_distance = 0.0
-initial_direction = 0
 
 [node name="Enemy15" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3346.3252, 1857.9951)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
 movement_speed = 30.0
-forward_distance = 100.0
 backward_distance = 20.0
-initial_direction = 0
 
 [node name="Enemy16" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3771.283, 1859.7069)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
 movement_speed = 30.0
 forward_distance = 30.0
 backward_distance = 0.0
-initial_direction = 0
 
 [node name="Enemy17" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3349.689, 2207.4)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
 movement_speed = 30.0
 forward_distance = 30.0
 backward_distance = 0.0
-initial_direction = 0
 
 [node name="Enemy6" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3881.7417, 1987.7257)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
-movement_speed = 50.0
 forward_distance = 800.0
 backward_distance = 0.0
 initial_direction = 1
 
 [node name="Enemy2" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3535, 2108)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
-movement_speed = 50.0
 forward_distance = 200.0
 backward_distance = 100.0
 initial_direction = 3
 
 [node name="Enemy13" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3954.1426, 2275.6616)
-npc_name = "Guard"
-dialogue_file = "res://dialogues/game_over_guard.json"
-npc_portrait = ""
 is_moving = true
-movement_speed = 50.0
 forward_distance = 200.0
 backward_distance = 200.0
 initial_direction = 3

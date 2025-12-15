@@ -10,7 +10,8 @@ extends Node2D
 func _ready():
 	_set_npc_interactable(next_scene_npc, false)
 	player.update_inventory(null)
-
+	var music_index = AudioServer.get_bus_index("Music") 
+	AudioServer.set_bus_mute(music_index, false)
 	await cutscene.scene_fade_in()
 	player.changeObjective("Find Miss Ruth")
 	dialogue_box.mid_action_triggered.connect(_on_mid_action)

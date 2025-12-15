@@ -6,6 +6,8 @@ extends Node2D
 
 func _ready():
 	await cutscene.scene_fade_in()
+	var music_index = AudioServer.get_bus_index("Music") 
+	AudioServer.set_bus_mute(music_index, false)
 	player.changeObjective("Escape the dorms")
 	dialogue_box.mid_action_triggered.connect(_on_mid_action)
 
