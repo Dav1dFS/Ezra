@@ -67,7 +67,7 @@ forward_distance = 200.0
 initial_direction = 3
 
 [node name="Enemy11" parent="." instance=ExtResource("4_w2lpk")]
-position = Vector2(4969, 2252)
+position = Vector2(4950, 2252)
 is_moving = true
 forward_distance = 150.0
 
@@ -86,7 +86,7 @@ position = Vector2(4566, 1889)
 is_moving = true
 
 [node name="Enemy8" parent="." instance=ExtResource("4_w2lpk")]
-position = Vector2(4898, 1929)
+position = Vector2(5012, 1931)
 is_moving = true
 
 [node name="Enemy9" parent="." instance=ExtResource("4_w2lpk")]
@@ -94,7 +94,7 @@ position = Vector2(4642, 2072)
 is_moving = true
 
 [node name="Enemy10" parent="." instance=ExtResource("4_w2lpk")]
-position = Vector2(4813, 2277)
+position = Vector2(4638, 2218)
 is_moving = true
 
 [node name="Enemy14" parent="." instance=ExtResource("4_w2lpk")]
