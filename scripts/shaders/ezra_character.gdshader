@@ -26,7 +26,6 @@ void fragment() {
 	// distância radial ao centro (0 = centro)
 	float center_dist = distance(UV, vec2(0.5, 0.5));
 
-	// --- ajustes súbitos mas mínimos ---
 	// reduz a amplitude do pulso para não abrir tanto
 	const float pulse_scale_factor = 0.15;
 	const float speed_multiplier = 3.0;
