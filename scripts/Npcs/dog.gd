@@ -6,6 +6,8 @@ signal alert_ended
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var growl_area: Area2D = $Growl_Area
 @onready var alert_area: Area2D = $Alert_Area
+@onready var dog_growl: AudioStreamPlayer2D = $Dog_Growl
+@onready var dog_bark: AudioStreamPlayer2D = $Dog_Bark
 
 @export var guard_to_alert: NodePath
 @export var facing_direction: int = 0  # 0=DOWN, 1=LEFT, 2=RIGHT
@@ -55,15 +57,24 @@ func _set_state(new_state: DogState):
 	
 	match state:
 		DogState.IDLE:
+			if dog_growl.playing or dog_bark.playing:
+				dog_growl.stop()
+				dog_bark.stop()
 			_play_anim("idle")
 			emit_signal("alert_ended")
 			Gamestate.dog_is_alerted = false
 		
 		DogState.GROWL:
+			if dog_bark.playing:
+				dog_bark.stop()
 			_play_anim("growl")
+			dog_growl.play()
 		
 		DogState.ALERT:
+			if dog_growl.playing:
+				dog_growl.stop()
 			_play_anim("alert")
+			dog_bark.play()
 			emit_signal("alert_started")
 			Gamestate.dog_is_alerted = true
 
