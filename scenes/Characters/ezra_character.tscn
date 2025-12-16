@@ -1,75 +1,12 @@
-[gd_scene load_steps=43 format=3 uid="uid://t5axmw5yx5dl"]
+[gd_scene load_steps=28 format=3 uid="uid://t5axmw5yx5dl"]
 
 [ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/Characters/player_character.tscn" id="1_83tdx"]
 [ext_resource type="Script" uid="uid://bgk2b1ql6834e" path="res://scripts/player/ezra.gd" id="2_qm0pf"]
 [ext_resource type="Texture2D" uid="uid://bff14d23i5fei" path="res://assets/animation_sheets/ezra_anim.png" id="3_0umtt"]
 [ext_resource type="Shader" uid="uid://cskovea21mids" path="res://scripts/shaders/ezra_character.gdshader" id="4_rir7v"]
 [ext_resource type="Shader" uid="uid://c6ehp4sd405we" path="res://scripts/shaders/dark.gdshader" id="5_swecp"]
-[ext_resource type="Script" path="res://scripts/UI/ezranight_shader.gd" id="6_v2jhp"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v2jhp"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0umtt"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rvnwh"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0gjh5"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e3u7u"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ujkh8"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(64, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kqgg7"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5f2wj"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(64, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4imet"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l31hf"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(96, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hoffw"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_toobx"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(96, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_37xxh"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_121km"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bdujm"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2gqy"]
-atlas = ExtResource("3_0umtt")
-region = Rect2(32, 96, 32, 32)
+[ext_resource type="Script" uid="uid://bo1ir6xcd3fdc" path="res://scripts/UI/ezranight_shader.gd" id="6_v2jhp"]
+[ext_resource type="Texture2D" uid="uid://cd85becst2y5y" path="res://assets/grey_circle.png" id="7_0umtt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1nf0e"]
 atlas = ExtResource("3_0umtt")
@@ -313,7 +250,7 @@ direction_change_threshold = 0.25
 target_npc = NodePath("")
 target_npc_gamestate_flag = "can_control_frieda"
 footprint_side_offset = 6.0
-ability_duration = 3.0
+ability_duration = 6.0
 ability_cooldown = 10.0
 inv = null
 character_name = "Ezra"
@@ -356,3 +293,15 @@ vignette_material = SubResource("ShaderMaterial_swecp")
 darkness_transition_speed = 2.0
 alert_speed = 5.0
 speed_transition_speed = 10.0
+
+[node name="AbilityCoolDown" type="TextureProgressBar" parent="." index="5"]
+visible = false
+offset_left = 13.0
+offset_top = -5.0
+offset_right = 1213.0
+offset_bottom = 1195.0
+scale = Vector2(0.007, 0.007)
+fill_mode = 4
+texture_under = ExtResource("7_0umtt")
+texture_progress = ExtResource("7_0umtt")
+tint_progress = Color(1, 0.28235295, 1, 1)

@@ -372,11 +372,11 @@ sprite_frames = SubResource("SpriteFrames_nmoo3")
 animation = &"alert_left"
 
 [node name="Flashlight" type="Node2D" parent="."]
-position = Vector2(-1, 4)
+y_sort_enabled = true
+position = Vector2(-2, 4)
 rotation = -1.5707964
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Flashlight"]
-z_index = 3
 y_sort_enabled = true
 position = Vector2(1, 0.30199996)
 rotation = 1.5707964
@@ -384,7 +384,6 @@ scale = Vector2(1.4615386, 0.59375)
 occluder = SubResource("OccluderPolygon2D_wsasx")
 
 [node name="PointLight2D" type="PointLight2D" parent="Flashlight"]
-z_index = 3
 y_sort_enabled = true
 position = Vector2(0.09375, -1.984375)
 rotation = 1.5707964

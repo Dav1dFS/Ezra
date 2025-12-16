@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq1u03wrdd7aj"]
+[gd_scene load_steps=3 format=3 uid="uid://dq1u03wrdd7aj"]
 
 [ext_resource type="Script" uid="uid://ddduf3o4tlfgt" path="res://scripts/cutscene_manager.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://dyj1vdec1wq05" path="res://assets/fonts/Deutsch.ttf" id="2_ervmp"]
 
 [node name="CutsceneController" type="Node2D"]
 script = ExtResource("1_script")
@@ -33,7 +34,9 @@ offset_right = 253.0
 offset_bottom = 82.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_colors/font_color = Color(0.1764706, 0.43137255, 1, 0.69411767)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ervmp")
 theme_override_font_sizes/font_size = 120
 text = "DAY 1"
 horizontal_alignment = 1
