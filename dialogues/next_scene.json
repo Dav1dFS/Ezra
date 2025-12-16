@@ -1,7 +1,7 @@
 {
-    "condition": "default",
-    "mid_action": true,
-    "lines": [
-        {"mid_action": "next_scene"}
-    ]
+	"condition": "default",
+	"mid_action": true,
+	"lines": [
+		{"mid_action": "next_scene"}
+	]
 }
