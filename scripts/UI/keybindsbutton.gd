@@ -88,3 +88,7 @@ static func reset_to_defaults():
 
 	for b in all_buttons:
 		b._update_label_text()
+
+
+func _on_reset_pressed() -> void:
+	reset_to_defaults()

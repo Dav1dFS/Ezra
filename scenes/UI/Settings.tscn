@@ -856,3 +856,5 @@ text = "Apply"
 [connection signal="pressed" from="VideoSettingsColumn/BottomGroup/ResetApplyRow/Apply" to="VideoSettingsColumn" method="_on_apply_pressed"]
 [connection signal="pressed" from="AudioSettingsColumn/BottomGroup/ResetApplyRow/Reset" to="AudioSettingsColumn" method="_on_reset_pressed"]
 [connection signal="pressed" from="AudioSettingsColumn/BottomGroup/ResetApplyRow/Apply" to="AudioSettingsColumn" method="_on_apply_pressed"]
+[connection signal="pressed" from="ControlsColumn/BottomGroup/ResetApplyRow/Reset" to="ControlsColumn/TopGroup/MoveUp" method="_on_reset_pressed"]
+[connection signal="pressed" from="ControlsColumn/BottomGroup/ResetApplyRow/Reset" to="ControlsColumn/TopGroup/Invisibiliy" method="_on_reset_pressed"]
