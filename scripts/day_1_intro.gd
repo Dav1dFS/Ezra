@@ -71,6 +71,9 @@ func _action_frieda_gets_closer():
 
 func _action_guards_searching():
 	var tween = cutscene.move_camera_to(frieda_initial_pos)
+	var music_index = AudioServer.get_bus_index("Music") 
+	AudioServer.set_bus_mute(music_index, true)
+	$Whistle.play()
 	await tween.finished
 	await cutscene.shake_camera().finished
 	await get_tree().create_timer(0.5).timeout

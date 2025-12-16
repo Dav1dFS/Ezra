@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cls8ikqvlrma5"]
+[gd_scene load_steps=16 format=3 uid="uid://cls8ikqvlrma5"]
 
 [ext_resource type="Script" uid="uid://co627c0mvwblv" path="res://scripts/day_1_intro.gd" id="1_282ja"]
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/main_map.tscn" id="2_282ja"]
@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://7wu3dx2fnuct" path="res://assets/character_sprites/guards_static/guard_biggg.png" id="9_7x5xa"]
 [ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/Npcs/friendly/characters/general_npc.tscn" id="9_ydfot"]
 [ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="11_5m0g0"]
+[ext_resource type="PackedScene" uid="uid://bcqh0tgm5hj1m" path="res://scenes/gameplay/audioBack.tscn" id="12_r6aca"]
 [ext_resource type="Texture2D" uid="uid://cvnn0uuppro4n" path="res://assets/character_sprites/guards_static/g3s.png" id="13_iidb0"]
+[ext_resource type="PackedScene" uid="uid://bycu3ppdrfsjl" path="res://scenes/gameplay/whistle.tscn" id="13_wwqmh"]
 
 [node name="Day1Intro" type="Node2D"]
 y_sort_enabled = true
@@ -65,6 +67,10 @@ auto_start_cutscene = true
 target_npc = NodePath("../EllenNPC")
 dialogue_box = NodePath("../DialogueBox")
 cutscene_flag_name = "night_1_intro"
+
+[node name="BackGround" parent="." instance=ExtResource("12_r6aca")]
+
+[node name="Whistle" parent="." instance=ExtResource("13_wwqmh")]
 
 [node name="General" parent="." instance=ExtResource("9_ydfot")]
 position = Vector2(4813, 2325)

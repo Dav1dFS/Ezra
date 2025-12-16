@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c8vggm6tiss2l" path="res://assets/animation_sheets/gaurdageneral_sheet.png" id="3_uebqx"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_yha3f"]
 [ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_nlgux"]
-[ext_resource type="AudioStream" uid="uid://u5oyfwfb7d7v" path="res://assets/audios/referee-whistle-coach-whistle-sports-whistle-291816.mp3" id="5_uebqx"]
+[ext_resource type="PackedScene" uid="uid://bycu3ppdrfsjl" path="res://scenes/gameplay/whistle.tscn" id="5_uebqx"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tx05f"]
 cull_mode = 1
@@ -388,10 +388,7 @@ position = Vector2(-0.20578384, 13.0236225)
 scale = Vector2(2.395, 1.545)
 shape = SubResource("CircleShape2D_mm8ar")
 
-[node name="Whistle" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_uebqx")
-volume_db = -1.085
-pitch_scale = 0.85
+[node name="Whistle" parent="." instance=ExtResource("5_uebqx")]
 
 [connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]
