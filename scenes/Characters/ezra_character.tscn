@@ -74,73 +74,10 @@ region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rvnwh"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v2jhp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0umtt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rvnwh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0gjh5")
-}],
+"frames": [],
 "loop": true,
-"name": &"defaultD",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e3u7u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ujkh8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kqgg7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5f2wj")
-}],
-"loop": true,
-"name": &"defaultL",
+"name": &"default",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4imet")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l31hf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hoffw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_toobx")
-}],
-"loop": true,
-"name": &"defaultR",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_37xxh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_121km")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bdujm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h2gqy")
-}],
-"loop": true,
-"name": &"defaultU",
-"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -259,7 +196,7 @@ character_name = "Ezra"
 z_index = 1
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_rvnwh")
-animation = &"defaultL"
+animation = &"down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -7)

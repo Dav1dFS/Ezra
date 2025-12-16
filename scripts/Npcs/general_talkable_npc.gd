@@ -20,7 +20,7 @@ var dialogue_handler := DialogueHandler.new()
 func _ready():
 	if override_base_sprite != null and sprite:
 		sprite.texture = override_base_sprite
-	if npc_name == "Frieda" or npc_name=="Ruth": ##change this, just hotfix
+	if npc_name == "Frieda" or npc_name=="Ruth" or npc_name=="Ellen": ##change this, just hotfix
 		$Base.visible=false
 		$Base2.visible=true
 		$Base2.play()
