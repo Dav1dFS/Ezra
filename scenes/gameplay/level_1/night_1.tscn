@@ -387,6 +387,7 @@ dialogue_file = "res://dialogues/night_1/night_1_frieda.json"
 all_collected_gamestate_flag = "can_control_frieda"
 
 [node name="PlayerAbilityLabel" type="Label" parent="Frieda"]
+visible = false
 z_index = 1
 offset_left = -27.0
 offset_top = -16.0
