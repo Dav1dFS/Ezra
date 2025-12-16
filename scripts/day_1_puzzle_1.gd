@@ -5,6 +5,8 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 
 func _ready():
+	for npc in Gamestate.npc_dialogues_completed.keys():
+		Gamestate.npc_dialogues_completed[npc]=false
 	Gamestate.dog_is_alerted = false
 	await cutscene.scene_fade_in()
 	var music_index = AudioServer.get_bus_index("Music") 

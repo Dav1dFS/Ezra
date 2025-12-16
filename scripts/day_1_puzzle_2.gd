@@ -9,6 +9,8 @@ extends Node2D
 
 func _ready():
 	Gamestate.dog_is_alerted = false
+	for npc in Gamestate.npc_dialogues_completed.keys():
+		Gamestate.npc_dialogues_completed[npc]=false
 	_set_npc_interactable(next_scene_npc, false)
 	player.update_inventory(null)
 	var music_index = AudioServer.get_bus_index("Music") 

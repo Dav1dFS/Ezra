@@ -57,7 +57,7 @@ dialogue_box = NodePath("../DialogueBox")
 [node name="MainMapFinal" parent="." instance=ExtResource("9_fh8rj")]
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
-position = Vector2(3643, 1750)
+position = Vector2(3776, 2225)
 
 [node name="DownLeftLimit" type="Marker2D" parent="."]
 position = Vector2(3101.4653, 2504.9849)
