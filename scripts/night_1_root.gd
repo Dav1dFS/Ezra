@@ -4,6 +4,7 @@ extends "res://scripts/main.gd"
 @onready var counter_label = $Player/GUI/Objective/CounterLabel
 
 func _ready():
+	Gamestate.npc_dialogues_completed["Frieda"]=false
 	$Player.changeObjective("Collect all Memories")
 	memories.visible = true
 	counter_label.visible = true

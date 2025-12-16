@@ -57,6 +57,19 @@ text = "Objective"
 label_settings = SubResource("LabelSettings_4lg62")
 vertical_alignment = 1
 
+[node name="tip" type="Label" parent="."]
+layout_mode = 0
+offset_left = 870.00006
+offset_top = 601.0
+offset_right = 2521.0002
+offset_bottom = 795.0
+scale = Vector2(0.16475177, 0.21392104)
+theme_override_fonts/font = ExtResource("3_jldal")
+theme_override_font_sizes/font_size = 18
+text = "Press Space for Ability"
+label_settings = SubResource("LabelSettings_4lg62")
+vertical_alignment = 1
+
 [node name="Icon" type="Label" parent="."]
 layout_mode = 0
 offset_left = 16.0

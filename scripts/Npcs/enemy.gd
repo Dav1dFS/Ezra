@@ -144,19 +144,23 @@ func _apply_visual_direction(dir: Direction):
 			Direction.RIGHT:
 				spriteChar.play("wR")
 				vision_cone.rotation = -PI / 2
-				spriteChar.light_mask=~(1 << 0)
+				if "General" not in self.name:
+					spriteChar.light_mask=~(1 << 0)
 			Direction.LEFT:
 				spriteChar.play("wL")
 				vision_cone.rotation = PI / 2
-				spriteChar.light_mask=1
+				if "General" not in self.name:
+					spriteChar.light_mask=1
 			Direction.UP:
 				spriteChar.play("wU")
 				vision_cone.rotation = PI
-				spriteChar.light_mask=~(1 << 0)
+				if "General" not in self.name:
+					spriteChar.light_mask=~(1 << 0)
 			Direction.DOWN:
 				spriteChar.play("wD")
 				vision_cone.rotation = 0
-				spriteChar.light_mask=1
+				if "General" not in self.name:
+					spriteChar.light_mask=1
 	else:
 		match dir:
 			Direction.RIGHT:
