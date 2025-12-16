@@ -73,7 +73,7 @@ backward_distance = 100.0
 initial_direction = 3
 
 [node name="Enemy3" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3154.0935, 2322.6519)
+position = Vector2(3034, 2318)
 is_moving = true
 forward_distance = 1000.0
 backward_distance = 0.0
@@ -209,7 +209,7 @@ speaker_portraits = Dictionary[String, Texture2D]({
 override_base_sprite = ExtResource("8_4k27q")
 
 [node name="Talia" parent="." instance=ExtResource("5_fh8rj")]
-position = Vector2(3655.7212, 1777.6606)
+position = Vector2(3956, 1750)
 npc_name = "Talia"
 dialogue_file = "res://dialogues/day_1/day_1_talia.json"
 speaker_portraits = Dictionary[String, Texture2D]({
@@ -301,6 +301,7 @@ speaker_portraits = Dictionary[String, Texture2D]({
 
 [node name="MissRuthNPC" parent="." instance=ExtResource("8_y0wut")]
 position = Vector2(3744, 1623)
+npc_name = "Ruth"
 dialogue_file = "res://dialogues/day_1/day_1_miss_ruth.json"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ellen": ExtResource("12_pmqis"),
