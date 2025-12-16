@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dctbgw4kfc7oq"]
 
-[ext_resource type="Script" path="res://scripts/UI/saving_options.gd" id="1_5r8lu"]
+[ext_resource type="Script" uid="uid://bn7c2w7irf8g1" path="res://scripts/UI/saving_options.gd" id="1_5r8lu"]
 [ext_resource type="PackedScene" uid="uid://drd7ax7a383ta" path="res://scenes/UI/save_slot.tscn" id="2_yilmb"]
 
 [node name="SavingOptions" type="Control"]
@@ -16,7 +16,7 @@ anchors_preset = -1
 anchor_right = 0.781
 anchor_bottom = 1.0
 offset_right = 0.22399902
-color = Color(0, 0, 0, 0.47843137)
+color = Color(0, 0, 0, 0.23137255)
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 layout_mode = 1
@@ -27,7 +27,7 @@ anchor_bottom = 1.0
 offset_left = 0.22399902
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.54509807)
+color = Color(0, 0, 0, 0.23137255)
 
 [node name="SaveSlot1" parent="." instance=ExtResource("2_yilmb")]
 layout_mode = 1

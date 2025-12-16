@@ -1,12 +1,32 @@
-[gd_scene load_steps=19 format=3 uid="uid://mliottlwd112"]
+[gd_scene load_steps=29 format=3 uid="uid://mliottlwd112"]
 
 [ext_resource type="Script" uid="uid://d0484gje3r5pg" path="res://scripts/UI/main_menu.gd" id="1_11hie"]
-[ext_resource type="Shader" path="res://scripts/UI/gammashader.gdshader" id="2_3h7gc"]
-[ext_resource type="Texture2D" uid="uid://bdigqorb277x7" path="res://assets/main_Prancheta 1.png" id="2_bm8t2"]
+[ext_resource type="Shader" uid="uid://i67thunpog4c" path="res://scripts/UI/gammashader.gdshader" id="2_3h7gc"]
+[ext_resource type="Texture2D" uid="uid://bvgpb6jktd0rf" path="res://assets/menu_art.png" id="2_5d4ag"]
 [ext_resource type="Script" path="res://scripts/UI/buttons.gd" id="3_4vh8y"]
 [ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_b1p1q"]
+[ext_resource type="Shader" uid="uid://p1ew2mo3oin0" path="res://scripts/shaders/fogDay.gdshader" id="3_um6dh"]
 [ext_resource type="PackedScene" uid="uid://dipv4awjcdp11" path="res://scenes/UI/Settings.tscn" id="4_4vh8y"]
 [ext_resource type="PackedScene" uid="uid://dctbgw4kfc7oq" path="res://scenes/UI/save_options.tscn" id="6_s7yn2"]
+[ext_resource type="Texture2D" uid="uid://bff14d23i5fei" path="res://assets/animation_sheets/ezra_anim.png" id="8_um6dh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mf7fl"]
+frequency = 0.0166
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d6l81"]
+width = 1920
+height = 1080
+noise = SubResource("FastNoiseLite_mf7fl")
+seamless = true
+invert = true
+seamless_blend_skirt = 0.377
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a1wsg"]
+shader = ExtResource("3_um6dh")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_d6l81")
+shader_parameter/smoke_color = Color(0.24840018, 0.24840015, 0.24840036, 1)
+shader_parameter/distortion_speed = 0.41600001976
+shader_parameter/density = 0.6000000285
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b1p1q"]
 shader = ExtResource("2_3h7gc")
@@ -55,6 +75,42 @@ content_margin_top = 7.0
 content_margin_bottom = 7.0
 bg_color = Color(0, 0, 0, 0.68235296)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf7fl"]
+atlas = ExtResource("8_um6dh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6l81"]
+atlas = ExtResource("8_um6dh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1wsg"]
+atlas = ExtResource("8_um6dh")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7p8e"]
+atlas = ExtResource("8_um6dh")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sfthw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf7fl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6l81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1wsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7p8e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -75,8 +131,24 @@ offset_right = 4.0
 offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_bm8t2")
+texture = ExtResource("2_5d4ag")
 expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_a1wsg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = 105.0
+offset_right = -320.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.38083267
+scale = Vector2(1.5014378, 2.348567)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -103,14 +175,17 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0.8980392, 0.5803922, 1)
 
 [node name="LeftColumn" type="VBoxContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.22200002
 anchor_bottom = 1.0
+offset_top = 48.0
 offset_right = 0.25598145
+offset_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_constants/separation = 75
+theme_override_constants/separation = 20
 
 [node name="TopGap" type="Control" parent="LeftColumn"]
 layout_mode = 2
@@ -120,6 +195,7 @@ layout_mode = 2
 theme_override_constants/separation = 9
 
 [node name="ResumeGame" type="Button" parent="LeftColumn/TopGroup"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.5022532, 0.7946471, 0.99999994, 1)
@@ -209,6 +285,7 @@ alignment = 0
 
 [node name="Settings" parent="." instance=ExtResource("4_4vh8y")]
 visible = false
+z_index = 1
 layout_mode = 1
 anchor_left = 0.22200002
 anchor_right = 1.0
@@ -216,6 +293,7 @@ offset_left = 0.25598145
 offset_right = 0.0
 
 [node name="SavingOptions" parent="." instance=ExtResource("6_s7yn2")]
+z_index = 1
 layout_mode = 1
 anchor_left = 0.22200002
 anchor_right = 1.0
@@ -223,6 +301,12 @@ offset_left = 0.25598145
 offset_right = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(586, 548)
+scale = Vector2(4.84375, 4.84375)
+sprite_frames = SubResource("SpriteFrames_sfthw")
+frame_progress = 0.1003351
 
 [connection signal="pressed" from="LeftColumn/TopGroup/ResumeGame" to="." method="_on_resume_game_pressed"]
 [connection signal="pressed" from="LeftColumn/TopGroup/NewGame" to="." method="_on_new_game_pressed"]

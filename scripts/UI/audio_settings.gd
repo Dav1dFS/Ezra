@@ -52,11 +52,16 @@ func _apply_settings(master: float, sfx: float, music: float):
 	_pending_sfx = sfx
 	_pending_music = music
 
-func _set_bus_volume(bus_name: String, value: float):
-	var bus_idx = AudioServer.get_bus_index(bus_name)
-	var db = percent_to_db(value)
+func _set_bus_volume(bus_name: String, percent: float):
+	var bus_idx := AudioServer.get_bus_index(bus_name)
+	if bus_idx == -1:
+		return
+
+	var linear := percent / 100.0
+	var db := linear_to_db(linear)
+
 	AudioServer.set_bus_volume_db(bus_idx, db)
-	AudioServer.set_bus_mute(bus_idx, value <= 0.0)
+	AudioServer.set_bus_mute(bus_idx, percent <= 0.0)
 
 func percent_to_db(percent: float) -> float:
 	if percent <= 0.0:

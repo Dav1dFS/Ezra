@@ -146,11 +146,6 @@ func _apply_settings(display_mode: String, resolution: String, gamma: float, fps
 	_pending_fps          = fps
 	_pending_show_fps     = show_fps
 	
-	if display_mode == "Fullscreen":
-		var screen_size = DisplayServer.screen_get_size()
-		resolution_row.get_node("ScreenMode").text = str(screen_size.x) + "x" + str(screen_size.y)
-	else:
-		resolution_row.get_node("ScreenMode").text = resolution
 		
 func _apply_resolution_string(value: String):
 	var parts = value.split("x")
