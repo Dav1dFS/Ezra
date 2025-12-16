@@ -82,7 +82,7 @@ func _on_options_pressed() -> void:
 func _on_exit_menu_pressed() -> void:
 	get_tree().paused = false
 	Gamestate.game_is_paused = false
-	get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
 
 
 func _on_exit_desktop_pressed() -> void:

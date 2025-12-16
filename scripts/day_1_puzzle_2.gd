@@ -8,6 +8,7 @@ extends Node2D
 @onready var next_scene_npc: Node2D = $NextSceneNPC
 
 func _ready():
+	Gamestate.dog_is_alerted = false
 	_set_npc_interactable(next_scene_npc, false)
 	player.update_inventory(null)
 	var music_index = AudioServer.get_bus_index("Music") 
@@ -21,10 +22,12 @@ func _set_npc_interactable(npc: Node2D, enabled: bool):
 	npc.visible = enabled
 	npc.set_process(enabled)
 	npc.set_physics_process(enabled)
+	npc.deactivate_Collisions(enabled)
 	for child in npc.get_children():
 		if child is Area2D:
 			child.monitoring = enabled
 			child.monitorable = enabled
+
 
 func _on_mid_action(action_name: String):
 	match action_name:

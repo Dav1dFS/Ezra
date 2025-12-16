@@ -1,10 +1,75 @@
-[gd_scene load_steps=44 format=3 uid="uid://rq853mcdau80"]
+[gd_scene load_steps=61 format=3 uid="uid://rq853mcdau80"]
 
 [ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_65c78"]
+[ext_resource type="Texture2D" uid="uid://cyyt8r2cv0v4b" path="res://assets/animation_sheets/guardabluehat_idlecycle.png" id="2_aueeb"]
 [ext_resource type="Texture2D" uid="uid://pck7l37hfvh6" path="res://assets/animation_sheets/gaurdabluehat_sheet.png" id="2_oipbc"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_jnxau"]
 [ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_movement"]
 [ext_resource type="AudioStream" uid="uid://u5oyfwfb7d7v" path="res://assets/audios/referee-whistle-coach-whistle-sports-whistle-291816.mp3" id="5_oipbc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5y8db"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwgnt"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47rk3"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enbxs"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tggld"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpuj5"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb7x3"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v1qb"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo2qe"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq7mn"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv75c"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r28qr"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kspx3"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygsm6"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vm706"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1uuyh"]
+atlas = ExtResource("2_aueeb")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aueeb"]
 atlas = ExtResource("2_oipbc")
@@ -139,6 +204,74 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5y8db")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwgnt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47rk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enbxs")
+}],
+"loop": true,
+"name": &"iD",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tggld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpuj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb7x3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v1qb")
+}],
+"loop": true,
+"name": &"iL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo2qe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tq7mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv75c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r28qr")
+}],
+"loop": true,
+"name": &"iR",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kspx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygsm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vm706")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1uuyh")
+}],
+"loop": true,
+"name": &"iU",
 "speed": 5.0
 }, {
 "frames": [{
@@ -287,15 +420,14 @@ y_sort_enabled = true
 script = ExtResource("1_65c78")
 vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
 alert_color = Color(0.69411767, 0.05882353, 0.36862746, 0.36862746)
+movement_speed = 40.0
 
 [node name="Base" type="AnimatedSprite2D" parent="."]
 light_mask = 0
 y_sort_enabled = true
 position = Vector2(0, -6.3699455)
 sprite_frames = SubResource("SpriteFrames_5y8db")
-animation = &"wD"
-frame = 6
-frame_progress = 0.28617328
+animation = &"wU"
 
 [node name="FlashlightBob" type="Node2D" parent="."]
 position = Vector2(0.217, 1.445055)

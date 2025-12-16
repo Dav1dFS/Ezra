@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://m3d38ksq3ja1"]
+[gd_scene load_steps=26 format=3 uid="uid://m3d38ksq3ja1"]
 
 [ext_resource type="Script" uid="uid://brog7m5vcrmdh" path="res://scripts/day_1_puzzle_2.gd" id="1_c5o0j"]
 [ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="2_1u0cv"]
@@ -17,7 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://c4u2ikdw4i2a2" path="res://assets/character_sprites/prisoners_static/pf5b.png" id="11_aey7p"]
 [ext_resource type="Texture2D" uid="uid://igii0hb2mb2m" path="res://assets/character_sprites/frieda/frieda_base.png" id="11_c68y7"]
 [ext_resource type="Texture2D" uid="uid://bbvyp32os1srn" path="res://assets/character_sprites/ellen/ellen_base.png" id="12_pmqis"]
+[ext_resource type="Texture2D" uid="uid://cnvdi8b44pa80" path="res://assets/character_sprites/prisoners_static/pf1r.png" id="13_m6v5w"]
 [ext_resource type="Texture2D" uid="uid://d11imkedd5ajh" path="res://assets/character_sprites/miss_ruth/miss_ruth.png" id="14_c68y7"]
+[ext_resource type="Texture2D" uid="uid://nam71qbyylif" path="res://assets/character_sprites/prisoners_static/pf3r.png" id="14_q2dts"]
+[ext_resource type="Texture2D" uid="uid://cvwox8hdrbgi5" path="res://assets/character_sprites/prisoners_static/pf2r.png" id="15_qjn6r"]
 [ext_resource type="PackedScene" uid="uid://bcqh0tgm5hj1m" path="res://scenes/gameplay/audioBack.tscn" id="16_pmqis"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rwttn"]
@@ -54,8 +57,7 @@ dialogue_box = NodePath("../DialogueBox")
 [node name="MainMapFinal" parent="." instance=ExtResource("9_fh8rj")]
 
 [node name="Player" parent="." instance=ExtResource("3_jej5n")]
-position = Vector2(3780, 2220)
-show_counter = null
+position = Vector2(3764, 2222)
 
 [node name="DownLeftLimit" type="Marker2D" parent="."]
 position = Vector2(3101.4653, 2504.9849)
@@ -64,14 +66,14 @@ position = Vector2(3101.4653, 2504.9849)
 position = Vector2(3994.1248, 1584.7534)
 
 [node name="Enemy" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3602, 2040)
+position = Vector2(3217, 2146)
 is_moving = true
 forward_distance = 200.0
 backward_distance = 100.0
 initial_direction = 3
 
 [node name="Enemy3" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3154.0935, 2322.6519)
+position = Vector2(3034, 2318)
 is_moving = true
 forward_distance = 1000.0
 backward_distance = 0.0
@@ -80,6 +82,12 @@ backward_distance = 0.0
 position = Vector2(3463.7808, 2469.2927)
 is_moving = true
 forward_distance = 50.0
+backward_distance = 0.0
+
+[node name="Enemy18" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3521, 2189)
+is_moving = true
+forward_distance = 70.0
 backward_distance = 0.0
 
 [node name="Enemy12" parent="." instance=ExtResource("4_y0wut")]
@@ -120,6 +128,13 @@ is_moving = true
 forward_distance = 750.0
 backward_distance = 0.0
 
+[node name="Enemy19" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3944, 1927)
+is_moving = true
+forward_distance = 950.0
+backward_distance = 0.0
+initial_direction = 1
+
 [node name="Enemy15" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3346.3252, 1857.9951)
 is_moving = true
@@ -148,10 +163,17 @@ backward_distance = 0.0
 initial_direction = 1
 
 [node name="Enemy2" parent="." instance=ExtResource("4_y0wut")]
-position = Vector2(3535, 2108)
+position = Vector2(3493, 2089)
 is_moving = true
-forward_distance = 200.0
-backward_distance = 100.0
+forward_distance = 80.0
+backward_distance = 80.0
+initial_direction = 3
+
+[node name="Enemy5" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3556, 2074)
+is_moving = true
+forward_distance = 50.0
+backward_distance = 0.0
 initial_direction = 3
 
 [node name="Enemy13" parent="." instance=ExtResource("4_y0wut")]
@@ -168,8 +190,9 @@ position = Vector2(3229.2751, 1693.3629)
 npc_name = "Jordyn"
 dialogue_file = "res://dialogues/day_1/day_1_jordyn.json"
 speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
 "Ezra": ExtResource("10_es3bm"),
-"Jordyn": ExtResource("9_0joo4")
+"Woman": ExtResource("9_0joo4")
 })
 override_base_sprite = ExtResource("9_0joo4")
 
@@ -177,17 +200,73 @@ override_base_sprite = ExtResource("9_0joo4")
 position = Vector2(3633, 2245)
 npc_name = "Lilah"
 dialogue_file = "res://dialogues/day_1/day_1_lilah.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
+"Ezra": ExtResource("10_es3bm"),
+"Lilah": ExtResource("8_4k27q"),
+"Woman": ExtResource("8_4k27q")
+})
 override_base_sprite = ExtResource("8_4k27q")
 
 [node name="Talia" parent="." instance=ExtResource("5_fh8rj")]
-position = Vector2(3655.7212, 1777.6606)
+position = Vector2(3956, 1750)
 npc_name = "Talia"
 dialogue_file = "res://dialogues/day_1/day_1_talia.json"
 speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
 "Ezra": ExtResource("10_es3bm"),
-"Talia": ExtResource("11_aey7p")
+"Talia": ExtResource("11_aey7p"),
+"Woman": ExtResource("11_aey7p")
 })
 override_base_sprite = ExtResource("11_aey7p")
+
+[node name="rand1" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3526, 2093)
+npc_name = "Talia"
+dialogue_file = "res://dialogues/day_1/day_1_talia.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
+"Ezra": ExtResource("10_es3bm"),
+"Talia": ExtResource("11_aey7p"),
+"Woman": ExtResource("11_aey7p")
+})
+override_base_sprite = ExtResource("13_m6v5w")
+
+[node name="rand2" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3526, 2106)
+npc_name = "Talia"
+dialogue_file = "res://dialogues/day_1/day_1_talia.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
+"Ezra": ExtResource("10_es3bm"),
+"Talia": ExtResource("11_aey7p"),
+"Woman": ExtResource("11_aey7p")
+})
+override_base_sprite = ExtResource("14_q2dts")
+
+[node name="rand3" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3526, 2120)
+npc_name = "Talia"
+dialogue_file = "res://dialogues/day_1/day_1_talia.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
+"Ezra": ExtResource("10_es3bm"),
+"Talia": ExtResource("11_aey7p"),
+"Woman": ExtResource("11_aey7p")
+})
+override_base_sprite = ExtResource("15_qjn6r")
+
+[node name="rand4" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3526, 2133)
+npc_name = "Talia"
+dialogue_file = "res://dialogues/day_1/day_1_talia.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
+"Ezra": ExtResource("10_es3bm"),
+"Talia": ExtResource("11_aey7p"),
+"Woman": ExtResource("11_aey7p")
+})
+override_base_sprite = ExtResource("15_qjn6r")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -221,7 +300,8 @@ speaker_portraits = Dictionary[String, Texture2D]({
 })
 
 [node name="MissRuthNPC" parent="." instance=ExtResource("8_y0wut")]
-position = Vector2(3656, 1679)
+position = Vector2(3744, 1623)
+npc_name = "Ruth"
 dialogue_file = "res://dialogues/day_1/day_1_miss_ruth.json"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ellen": ExtResource("12_pmqis"),
@@ -230,13 +310,18 @@ speaker_portraits = Dictionary[String, Texture2D]({
 })
 
 [node name="General" parent="." instance=ExtResource("9_rwttn")]
-position = Vector2(3572, 1765)
+position = Vector2(3566, 1575)
 is_moving = true
 forward_distance = 300.0
 initial_direction = 3
 
 [node name="NextSceneNPC" parent="." instance=ExtResource("5_fh8rj")]
-position = Vector2(3793, 2207)
+position = Vector2(3794, 2206)
+npc_name = "Frieda2"
 dialogue_file = "res://dialogues/next_scene.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ezra": ExtResource("10_es3bm"),
+"Frieda": ExtResource("11_c68y7")
+})
 
 [node name="BackGround" parent="." instance=ExtResource("16_pmqis")]

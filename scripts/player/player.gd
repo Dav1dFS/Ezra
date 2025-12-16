@@ -24,6 +24,12 @@ var base_anims = {
 	Direction.LEFT: "left",
 	Direction.RIGHT: "right"
 }
+var def_anims = {
+	Direction.DOWN: "defaultD",
+	Direction.UP: "defaultU",
+	Direction.LEFT: "defaultL",
+	Direction.RIGHT: "defaultR"
+}
 
 func get_is_ability_active() -> bool:
 	return is_ability_active
@@ -101,7 +107,8 @@ func _physics_process(_delta):
 
 	if Gamestate.dialogue_locked or Gamestate.is_being_pushed_back:
 		velocity = Vector2.ZERO
-		sprite.stop()
+		if base_anims.has(current_direction):
+			sprite.play(def_anims[current_direction])
 		return
 
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -113,7 +120,8 @@ func _physics_process(_delta):
 		update_sprite_direction(direction)
 	else:
 		if can_update_animations():
-			sprite.stop()
+			if base_anims.has(current_direction):
+				sprite.play(def_anims[current_direction])
 	move_and_slide()
 
 func can_update_animations() -> bool:
