@@ -74,7 +74,7 @@ func _trigger_found_all_dialogue():
 
 	var dialogue_data := {
 		"lines": [
-			{"speaker": "Player", "text": "Now that i know more about her, i should go look for her...
+			{"speaker": "Ezra", "text": "Now that i know more about her, i should go look for her...
 		She has to be here somewhere."}
 		]
 	}
