@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bvk1yw63m6uvx"]
+
+[ext_resource type="Texture2D" uid="uid://dbgubbhbjqgli" path="res://assets/items_sprites/cookie.png" id="1_ipym2"]
+[ext_resource type="Script" uid="uid://d0wmeudlik2d6" path="res://scripts/inventory/item.gd" id="2_mit38"]
+
+[resource]
+script = ExtResource("2_mit38")
+name = "Cookie"
+icon = ExtResource("1_ipym2")
+metadata/_custom_type_script = "uid://d0wmeudlik2d6"

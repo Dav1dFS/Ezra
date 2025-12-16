@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bycu3ppdrfsjl"]
+
+[ext_resource type="AudioStream" uid="uid://u5oyfwfb7d7v" path="res://assets/audios/referee-whistle-coach-whistle-sports-whistle-291816.mp3" id="1_yidj3"]
+
+[node name="Whistle" type="AudioStreamPlayer"]
+stream = ExtResource("1_yidj3")
+volume_db = -1.085
+pitch_scale = 0.85

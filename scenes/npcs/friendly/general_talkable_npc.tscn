@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://rigk7iiiey25"]
+
+[ext_resource type="Script" uid="uid://boiknnwxihnqo" path="res://scripts/npcs/general_talkable_npc.gd" id="1_tteq1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uhn7n"]
+radius = 21.47651
+
+[node name="GeneralTalkableNPC" type="Node2D"]
+script = ExtResource("1_tteq1")
+
+[node name="PlayerInteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteractionArea"]
+position = Vector2(0, -16)
+scale = Vector2(0.745, 1.075)
+shape = SubResource("CircleShape2D_uhn7n")
+one_way_collision_margin = 94.5
+
+[node name="PlayerInteractionLabel" type="Label" parent="."]
+visible = false
+offset_left = -70.0
+offset_top = -33.0
+offset_right = 71.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 9
+text = "Press E to Interact"
+horizontal_alignment = 1

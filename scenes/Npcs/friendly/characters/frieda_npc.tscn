@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://f3qo7r6kimms"]
+
+[ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/Npcs/friendly/general_talkable_npc.tscn" id="1_phv5v"]
+[ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="2_vg5ta"]
+[ext_resource type="Texture2D" uid="uid://igii0hb2mb2m" path="res://assets/character_sprites/frieda/frieda_base.png" id="2_w6bjl"]
+[ext_resource type="FontFile" uid="uid://d4dn2anvknt7a" path="res://assets/fonts/Bayer TypeArchiType Regular.otf" id="4_05ekc"]
+[ext_resource type="Texture2D" uid="uid://cuitmbsab0x3f" path="res://assets/animation_sheets/frieda_idlecycle.png" id="4_cngya"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87q1i"]
+atlas = ExtResource("4_cngya")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj2d8"]
+atlas = ExtResource("4_cngya")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70fns"]
+atlas = ExtResource("4_cngya")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wr5a"]
+atlas = ExtResource("4_cngya")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8mm7t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87q1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj2d8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70fns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wr5a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_isp7f"]
+radius = 4.0
+height = 18.0
+
+[node name="FriedaNPC" instance=ExtResource("1_phv5v")]
+npc_name = "Frieda"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ezra": ExtResource("2_vg5ta"),
+"Frieda": ExtResource("2_w6bjl")
+})
+
+[node name="Base" type="Sprite2D" parent="." index="0"]
+position = Vector2(0, -1)
+texture = ExtResource("2_w6bjl")
+
+[node name="Base2" type="AnimatedSprite2D" parent="." index="1"]
+visible = false
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_8mm7t")
+
+[node name="PlayerInteractionArea" parent="." index="2"]
+position = Vector2(0.5, 15)
+collision_layer = 129
+collision_mask = 129
+
+[node name="PlayerInteractionLabel" parent="." index="3"]
+z_index = 8
+offset_left = -28.000011
+offset_top = -27.000004
+offset_right = 1812.0
+offset_bottom = 218.0
+scale = Vector2(0.032180898, 0.032180898)
+theme_override_fonts/font = ExtResource("4_05ekc")
+theme_override_font_sizes/font_size = 180
+
+[node name="Area2D" type="CharacterBody2D" parent="." index="4"]
+position = Vector2(0.5, 15)
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_isp7f")

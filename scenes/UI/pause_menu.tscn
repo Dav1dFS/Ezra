@@ -1,0 +1,283 @@
+[gd_scene load_steps=23 format=3 uid="uid://dle73kkftd1pm"]
+
+[ext_resource type="Texture2D" uid="uid://ce5a650ty58jj" path="res://assets/maxresdefault.jpg" id="1_4r2wj"]
+[ext_resource type="Script" uid="uid://c3woloahpidfg" path="res://scripts/UI/pause_menu.gd" id="1_onjwa"]
+[ext_resource type="Script" path="res://scripts/UI/buttons.gd" id="2_6q0ex"]
+[ext_resource type="Shader" path="res://scripts/UI/blurshader.gdshader" id="2_avwb0"]
+[ext_resource type="Shader" path="res://scripts/UI/gammashader.gdshader" id="4_rgmlj"]
+[ext_resource type="Script" uid="uid://bkif47l5jcwcd" path="res://scripts/UI/current_character_text.gd" id="5_0ibie"]
+[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="5_77ihb"]
+[ext_resource type="PackedScene" uid="uid://dipv4awjcdp11" path="res://scenes/UI/Settings.tscn" id="7_3m1qe"]
+[ext_resource type="PackedScene" uid="uid://dctbgw4kfc7oq" path="res://scenes/UI/save_options.tscn" id="8_savop"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slthy"]
+shader = ExtResource("4_rgmlj")
+shader_parameter/gamma = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_73e60"]
+shader = ExtResource("2_avwb0")
+shader_parameter/blur = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3m1qe"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6q0ex"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77ihb"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yj2n7"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_avwb0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avwb0"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73e60"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4r2wj"]
+content_margin_left = 25.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgmlj"]
+content_margin_left = 30.0
+bg_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onjwa"]
+content_margin_left = 30.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tp5j"]
+content_margin_left = 30.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 0.68235296)
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_onjwa")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4r2wj")
+expand_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GammaRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_slthy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.8980392, 0.5803922, 1)
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_73e60")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="PlayerColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05490196, 0.2784314, 0.05490196, 0.47058824)
+
+[node name="CurrentCharacterText" type="Label" parent="."]
+layout_mode = 0
+offset_top = 401.0
+offset_right = 265.0
+offset_bottom = 494.0
+theme_override_colors/font_color = Color(0, 0.89699674, 0.5792715, 1)
+theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_3m1qe")
+text = "Ezra
+"
+script = ExtResource("5_0ibie")
+
+[node name="PlayDuration" type="Label" parent="."]
+layout_mode = 0
+offset_top = 441.0
+offset_right = 265.0
+offset_bottom = 534.0
+theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_3m1qe")
+text = "00h 00m 00s"
+
+[node name="LeftColumn" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.22200002
+anchor_bottom = 1.0
+offset_right = 0.25598145
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 75
+
+[node name="TopGap" type="Control" parent="LeftColumn"]
+layout_mode = 2
+
+[node name="TopGroup" type="VBoxContainer" parent="LeftColumn"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="ResumeGame" type="Button" parent="LeftColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.5022532, 0.7946471, 0.99999994, 1)
+theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_6q0ex")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_77ihb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yj2n7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_avwb0")
+text = "Resume"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_6q0ex")
+
+[node name="SaveGame" type="Button" parent="LeftColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.5019608, 0.79607844, 1, 1)
+theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_avwb0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_77ihb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yj2n7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_avwb0")
+text = "Save Game"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_6q0ex")
+
+[node name="LoadGame" type="Button" parent="LeftColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.5019608, 0.79607844, 1, 1)
+theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_73e60")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_77ihb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yj2n7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_avwb0")
+text = "Load Game"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_6q0ex")
+
+[node name="BottomGroup" type="VBoxContainer" parent="LeftColumn"]
+layout_mode = 2
+
+[node name="Options" type="Button" parent="LeftColumn/BottomGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2tp5j")
+text = "Options
+"
+alignment = 0
+
+[node name="ExitMenu" type="Button" parent="LeftColumn/BottomGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2tp5j")
+text = "Exit to Main Menu"
+alignment = 0
+
+[node name="ExitDesktop" type="Button" parent="LeftColumn/BottomGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.65659994, 0.6055896, 1)
+theme_override_colors/font_focus_color = Color(1, 0.654902, 0.6039216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.654902, 0.6039216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.654902, 0.6039216, 1)
+theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2tp5j")
+text = "Exit to Desktop"
+alignment = 0
+
+[node name="Settings" parent="." instance=ExtResource("7_3m1qe")]
+layout_mode = 1
+anchor_left = 0.22200002
+anchor_right = 1.0
+offset_left = 0.25598145
+offset_right = 0.0
+
+[node name="SavingOptions" parent="." instance=ExtResource("8_savop")]
+layout_mode = 1
+anchor_left = 0.22200002
+anchor_right = 1.0
+offset_left = 0.25598145
+offset_right = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="mouse_entered" from="LeftColumn/TopGroup/ResumeGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LeftColumn/TopGroup/ResumeGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_mouse_exited"]
+[connection signal="pressed" from="LeftColumn/TopGroup/ResumeGame" to="." method="_on_resume_game_pressed"]
+[connection signal="mouse_entered" from="LeftColumn/TopGroup/SaveGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_save_game_mouse_entered"]
+[connection signal="mouse_exited" from="LeftColumn/TopGroup/SaveGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_save_game_mouse_exited"]
+[connection signal="pressed" from="LeftColumn/TopGroup/SaveGame" to="." method="_on_save_game_pressed"]
+[connection signal="mouse_entered" from="LeftColumn/TopGroup/LoadGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_load_game_mouse_entered"]
+[connection signal="mouse_exited" from="LeftColumn/TopGroup/LoadGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_load_game_mouse_exited"]
+[connection signal="pressed" from="LeftColumn/TopGroup/LoadGame" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="LeftColumn/BottomGroup/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="LeftColumn/BottomGroup/ExitMenu" to="." method="_on_exit_menu_pressed"]
+[connection signal="pressed" from="LeftColumn/BottomGroup/ExitDesktop" to="." method="_on_exit_desktop_pressed"]

@@ -1,0 +1,390 @@
+[gd_scene load_steps=21 format=3 uid="uid://dle73kkftd1pm"]
+
+[ext_resource type="Texture2D" uid="uid://ce5a650ty58jj" path="res://assets/maxresdefault.jpg" id="1_4r2wj"]
+[ext_resource type="Script" uid="uid://c3woloahpidfg" path="res://scripts/pause_menu.gd" id="1_onjwa"]
+[ext_resource type="Script" uid="uid://cfaqs65xqthbw" path="res://scripts/UI/buttons.gd" id="2_6q0ex"]
+[ext_resource type="Shader" uid="uid://ka41p58s6cpm" path="res://scripts/UI/blurshader.gdshader" id="2_avwb0"]
+[ext_resource type="Texture2D" uid="uid://uaapoxv0h7eb" path="res://assets/arrow.png" id="3_avwb0"]
+[ext_resource type="PackedScene" uid="uid://ddkqx2brtr8hc" path="res://scenes/UI/InputSettings.tscn" id="5_73e60"]
+[ext_resource type="Script" uid="uid://dau2hy5t7x86e" path="res://scripts/settings_row.gd" id="6_3m1qe"]
+[ext_resource type="Script" uid="uid://cyl2fmspfqmxq" path="res://scripts/video_settings.gd" id="6_77ihb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_73e60"]
+shader = ExtResource("2_avwb0")
+shader_parameter/blur = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3m1qe"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6q0ex"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77ihb"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yj2n7"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_avwb0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avwb0"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73e60"]
+content_margin_left = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4r2wj"]
+content_margin_left = 25.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgmlj"]
+content_margin_left = 30.0
+bg_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onjwa"]
+content_margin_left = 30.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tp5j"]
+content_margin_left = 30.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 0.68235296)
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_onjwa")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4r2wj")
+expand_mode = 3
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_73e60")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 1.0
+offset_left = 266.0
+offset_right = 266.0
+grow_vertical = 2
+scale = Vector2(0.92, 1)
+color = Color(0, 0, 0, 0.47843137)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.45
+anchor_bottom = 1.0
+offset_left = 531.0
+offset_right = 685.99994
+grow_vertical = 2
+scale = Vector2(0.92, 1)
+color = Color(0, 0, 0, 0.54509807)
+
+[node name="EarlyAccessText" type="Label" parent="."]
+layout_mode = 0
+offset_top = 6.0
+offset_right = 265.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 10
+text = "Early Access EZ#000001"
+horizontal_alignment = 1
+
+[node name="CurrentCharacterText" type="Label" parent="."]
+layout_mode = 0
+offset_top = 405.0
+offset_right = 265.0
+offset_bottom = 498.0
+theme_override_colors/font_color = Color(0, 0.89699674, 0.5792715, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_3m1qe")
+text = "Ezra
+"
+
+[node name="CurrentCharacterText2" type="Label" parent="."]
+layout_mode = 0
+offset_top = 445.0
+offset_right = 265.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_3m1qe")
+text = "Play Duration: 3h 32m 10s"
+
+[node name="LeftColumn" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.1
+anchor_bottom = 1.0
+offset_right = 150.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="TopGroup" type="VBoxContainer" parent="LeftColumn"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="ResumeGame" type="Button" parent="LeftColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.5022532, 0.7946471, 0.99999994, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_6q0ex")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_77ihb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yj2n7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_avwb0")
+text = "Resume"
+icon = ExtResource("3_avwb0")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_6q0ex")
+
+[node name="SaveGame" type="Button" parent="LeftColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.5019608, 0.79607844, 1, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_avwb0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_77ihb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yj2n7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_avwb0")
+text = "Save Game"
+icon = ExtResource("3_avwb0")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_6q0ex")
+
+[node name="LoadGame" type="Button" parent="LeftColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.5019608, 0.79607844, 1, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_73e60")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_77ihb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yj2n7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_avwb0")
+text = "Load Game"
+icon = ExtResource("3_avwb0")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_6q0ex")
+
+[node name="BottomGroup" type="VBoxContainer" parent="LeftColumn"]
+layout_mode = 2
+
+[node name="Options" type="Button" parent="LeftColumn/BottomGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2tp5j")
+text = "Options
+"
+alignment = 0
+
+[node name="ExitMenu" type="Button" parent="LeftColumn/BottomGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2tp5j")
+text = "Exit to Main Menu"
+alignment = 0
+
+[node name="ExitDesktop" type="Button" parent="LeftColumn/BottomGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.65659994, 0.6055896, 1)
+theme_override_colors/font_focus_color = Color(1, 0.654902, 0.6039216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.654902, 0.6039216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.654902, 0.6039216, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2tp5j")
+text = "Exit to Desktop"
+alignment = 0
+
+[node name="DownGap" type="Control" parent="LeftColumn"]
+custom_minimum_size = Vector2(0, 135.29)
+layout_mode = 2
+
+[node name="MiddleColumn" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.231
+anchor_right = 0.331
+anchor_bottom = 1.0
+offset_right = 150.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="TopGap" type="Control" parent="MiddleColumn"]
+layout_mode = 2
+
+[node name="TopGroup" type="VBoxContainer" parent="MiddleColumn"]
+layout_mode = 2
+
+[node name="VideoSettings" type="Button" parent="MiddleColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2tp5j")
+text = "Video Settings
+"
+icon = ExtResource("3_avwb0")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_6q0ex")
+
+[node name="AudioSettings" type="Button" parent="MiddleColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2tp5j")
+text = "Audio Settings
+"
+icon = ExtResource("3_avwb0")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_6q0ex")
+
+[node name="Controls" type="Button" parent="MiddleColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2tp5j")
+text = "Controls
+"
+icon = ExtResource("3_avwb0")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_6q0ex")
+
+[node name="Back" type="Button" parent="MiddleColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2tp5j")
+text = "Back
+"
+alignment = 0
+
+[node name="VideoSettingsColumn" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.462
+anchor_right = 0.745
+anchor_bottom = 1.0
+offset_right = 293.1599
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 324
+script = ExtResource("6_77ihb")
+
+[node name="TopGroup" type="VBoxContainer" parent="VideoSettingsColumn"]
+layout_mode = 2
+
+[node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("6_3m1qe")
+
+[node name="DisplayMode" type="Label" parent="VideoSettingsColumn/TopGroup/DisplayRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Display Mode"
+
+[node name="LeftArrow" type="Button" parent="VideoSettingsColumn/TopGroup/DisplayRow"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "<"
+
+[node name="ScreenMode" type="Label" parent="VideoSettingsColumn/TopGroup/DisplayRow"]
+layout_mode = 2
+text = "Windowed"
+
+[node name="RightArrow" type="Button" parent="VideoSettingsColumn/TopGroup/DisplayRow"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = ">"
+
+[node name="ControlsColumn" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.462
+anchor_right = 0.908
+anchor_bottom = 1.0
+offset_right = 105.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 324
+
+[node name="TopGroup" type="VBoxContainer" parent="ControlsColumn"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="InputSettings" parent="ControlsColumn/TopGroup" instance=ExtResource("5_73e60")]
+layout_mode = 2
+
+[connection signal="mouse_entered" from="LeftColumn/TopGroup/ResumeGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LeftColumn/TopGroup/ResumeGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="LeftColumn/TopGroup/SaveGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_save_game_mouse_entered"]
+[connection signal="mouse_exited" from="LeftColumn/TopGroup/SaveGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_save_game_mouse_exited"]
+[connection signal="mouse_entered" from="LeftColumn/TopGroup/LoadGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_load_game_mouse_entered"]
+[connection signal="mouse_exited" from="LeftColumn/TopGroup/LoadGame" to="LeftColumn/TopGroup/ResumeGame" method="_on_load_game_mouse_exited"]
+[connection signal="pressed" from="LeftColumn/BottomGroup/Options" to="." method="show_middle_column"]
+[connection signal="pressed" from="MiddleColumn/TopGroup/VideoSettings" to="." method="show_video_column"]
+[connection signal="pressed" from="MiddleColumn/TopGroup/AudioSettings" to="." method="show_controls_column"]
+[connection signal="pressed" from="MiddleColumn/TopGroup/Back" to="." method="back_pressed"]
+[connection signal="pressed" from="VideoSettingsColumn/TopGroup/DisplayRow/LeftArrow" to="VideoSettingsColumn/TopGroup/DisplayRow" method="_on_left_pressed"]
+[connection signal="pressed" from="VideoSettingsColumn/TopGroup/DisplayRow/RightArrow" to="VideoSettingsColumn/TopGroup/DisplayRow" method="_on_right_pressed"]

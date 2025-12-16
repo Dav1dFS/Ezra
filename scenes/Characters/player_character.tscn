@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4p71586doyl3"]
+
+[ext_resource type="Script" uid="uid://t6g4s16ddx38" path="res://scripts/player/player.gd" id="1_6r27q"]
+[ext_resource type="Resource" uid="uid://c2pw7d2t47c3s" path="res://scripts/inventory/playerInv.tres" id="2_4h0vy"]
+[ext_resource type="PackedScene" uid="uid://dl7d0eba2uvfw" path="res://scenes/UI/inventory_ui.tscn" id="3_kww55"]
+[ext_resource type="PackedScene" uid="uid://2b5a7qw3sl3" path="res://scenes/UI/objective_ui.tscn" id="4_hfyxy"]
+[ext_resource type="PackedScene" uid="uid://dle73kkftd1pm" path="res://scenes/UI/pause_menu.tscn" id="5_hfyxy"]
+
+[node name="PlayerCharacter" type="CharacterBody2D"]
+script = ExtResource("1_6r27q")
+inv = ExtResource("2_4h0vy")
+metadata/_edit_horizontal_guides_ = [-62.0]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4.18, 4.18)
+limit_left = -169
+limit_top = -221
+limit_right = 210
+limit_bottom = 0
+limit_smoothed = true
+position_smoothing_speed = 8.0
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="GUI" instance=ExtResource("3_kww55")]
+offset_left = 1060.0
+offset_top = 13.000001
+offset_right = 1084.0
+offset_bottom = 37.0
+scale = Vector2(3.3036156, 3.3036156)
+
+[node name="Objective" parent="GUI" instance=ExtResource("4_hfyxy")]
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("5_hfyxy")]
+visible = false

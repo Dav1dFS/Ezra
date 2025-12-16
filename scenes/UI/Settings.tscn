@@ -1,0 +1,860 @@
+[gd_scene load_steps=22 format=3 uid="uid://dipv4awjcdp11"]
+
+[ext_resource type="Script" path="res://scripts/UI/buttons.gd" id="1_hat0o"]
+[ext_resource type="Script" uid="uid://d0446chgpirol" path="res://scripts/UI/settings.gd" id="1_ok1u1"]
+[ext_resource type="Script" uid="uid://cyl2fmspfqmxq" path="res://scripts/UI/video_settings.gd" id="2_ok1u1"]
+[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="2_vvtyw"]
+[ext_resource type="Script" uid="uid://dau2hy5t7x86e" path="res://scripts/UI/settings_row.gd" id="3_vvtyw"]
+[ext_resource type="Script" uid="uid://cqsb75t06vwua" path="res://scripts/UI/gamma_row.gd" id="4_u04k5"]
+[ext_resource type="Script" uid="uid://d1hl1qcdamjmj" path="res://scripts/UI/max_fps.gd" id="5_myod3"]
+[ext_resource type="Script" path="res://scripts/UI/show_fps.gd" id="6_ykg1i"]
+[ext_resource type="Script" uid="uid://calewk3ki3qxl" path="res://scripts/UI/audio_settings.gd" id="7_ao8i7"]
+[ext_resource type="Script" uid="uid://b176bl2hqibnn" path="res://scripts/UI/volume_rows.gd" id="8_o2io1"]
+[ext_resource type="Script" uid="uid://ben00aqlbg7a7" path="res://scripts/UI/keybindsbutton.gd" id="9_oh65a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qluss"]
+content_margin_left = 25.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xk1xm"]
+content_margin_left = 30.0
+bg_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l113"]
+content_margin_left = 30.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3v35i"]
+content_margin_left = 30.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 0.68235296)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erh6y"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8lgl"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eq5xg"]
+content_margin_left = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcnv3"]
+content_margin_top = 35.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pjyly"]
+content_margin_left = 25.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6cjd"]
+content_margin_left = 25.0
+content_margin_top = 3.0
+content_margin_right = 25.0
+content_margin_bottom = 3.0
+bg_color = Color(0.4745098, 0.33333334, 0.28235295, 0.47058824)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchor_right = 0.77800006
+anchor_bottom = 1.0
+offset_right = -0.25604248
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 9.7
+script = ExtResource("1_ok1u1")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.286
+anchor_bottom = 1.0
+offset_right = -0.25601196
+color = Color(0, 0, 0, 0.47843137)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.286
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.25601196
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.54509807)
+
+[node name="MiddleColumn" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.286
+anchor_bottom = 1.0
+offset_right = -0.25601196
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 75
+
+[node name="TopGap" type="Control" parent="MiddleColumn"]
+layout_mode = 2
+
+[node name="TopGroup" type="VBoxContainer" parent="MiddleColumn"]
+layout_mode = 2
+
+[node name="VideoSettings" type="Button" parent="MiddleColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qluss")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xk1xm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1l113")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3v35i")
+text = "Video Settings
+"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("1_hat0o")
+
+[node name="AudioSettings" type="Button" parent="MiddleColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qluss")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xk1xm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1l113")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3v35i")
+text = "Audio Settings
+"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("1_hat0o")
+
+[node name="Controls" type="Button" parent="MiddleColumn/TopGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qluss")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xk1xm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1l113")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3v35i")
+text = "Controls
+"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("1_hat0o")
+
+[node name="VideoSettingsColumn" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.321
+anchor_right = 0.96400005
+anchor_bottom = 1.0
+offset_left = 0.3840027
+offset_right = 0.25598145
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 75
+script = ExtResource("2_ok1u1")
+
+[node name="Control" type="Control" parent="VideoSettingsColumn"]
+layout_mode = 2
+
+[node name="TopGroup" type="VBoxContainer" parent="VideoSettingsColumn"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup"]
+layout_mode = 2
+script = ExtResource("3_vvtyw")
+
+[node name="DisplayMode" type="Label" parent="VideoSettingsColumn/TopGroup/DisplayRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "Display Mode"
+
+[node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/DisplayRow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="LeftArrow" type="Button" parent="VideoSettingsColumn/TopGroup/DisplayRow/DisplayRow"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "<"
+
+[node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/DisplayRow/DisplayRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ScreenMode" type="Label" parent="VideoSettingsColumn/TopGroup/DisplayRow/DisplayRow/DisplayRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "Windowed"
+horizontal_alignment = 1
+
+[node name="RightArrow" type="Button" parent="VideoSettingsColumn/TopGroup/DisplayRow/DisplayRow"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = ">"
+
+[node name="ResolutionRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("3_vvtyw")
+
+[node name="Resolution" type="Label" parent="VideoSettingsColumn/TopGroup/ResolutionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "Resolution"
+
+[node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/ResolutionRow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="LeftArrow" type="Button" parent="VideoSettingsColumn/TopGroup/ResolutionRow/DisplayRow"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "<"
+
+[node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/ResolutionRow/DisplayRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ScreenMode" type="Label" parent="VideoSettingsColumn/TopGroup/ResolutionRow/DisplayRow/DisplayRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "1152x648"
+
+[node name="RightArrow" type="Button" parent="VideoSettingsColumn/TopGroup/ResolutionRow/DisplayRow"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = ">"
+
+[node name="GammaRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("4_u04k5")
+
+[node name="Gamma" type="Label" parent="VideoSettingsColumn/TopGroup/GammaRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "Gamma"
+
+[node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/GammaRow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/GammaRow/DisplayRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VideoSettingsColumn/TopGroup/GammaRow/DisplayRow/DisplayRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.7
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="Value" type="Label" parent="VideoSettingsColumn/TopGroup/GammaRow/DisplayRow"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "2.0"
+horizontal_alignment = 1
+
+[node name="FpsRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("5_myod3")
+
+[node name="MaxFps" type="Label" parent="VideoSettingsColumn/TopGroup/FpsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "Max Fps"
+
+[node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/FpsRow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/FpsRow/DisplayRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VideoSettingsColumn/TopGroup/FpsRow/DisplayRow/DisplayRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 30.0
+max_value = 240.0
+value = 60.0
+
+[node name="Value" type="Label" parent="VideoSettingsColumn/TopGroup/FpsRow/DisplayRow"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "60"
+horizontal_alignment = 1
+
+[node name="ShowFpsRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("6_ykg1i")
+
+[node name="ShowFps" type="Label" parent="VideoSettingsColumn/TopGroup/ShowFpsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "Show Fps"
+
+[node name="CheckBox" type="CheckBox" parent="VideoSettingsColumn/TopGroup/ShowFpsRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+
+[node name="BottomGroup" type="VBoxContainer" parent="VideoSettingsColumn"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 7
+
+[node name="ResetApplyRow" type="HBoxContainer" parent="VideoSettingsColumn/BottomGroup"]
+layout_mode = 2
+
+[node name="Reset" type="Button" parent="VideoSettingsColumn/BottomGroup/ResetApplyRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_erh6y")
+text = "Reset"
+
+[node name="Apply" type="Button" parent="VideoSettingsColumn/BottomGroup/ResetApplyRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_h8lgl")
+text = "Apply"
+
+[node name="AudioSettingsColumn" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.321
+anchor_right = 0.96400005
+anchor_bottom = 1.0
+offset_left = 0.3840027
+offset_right = 0.25598145
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 75
+script = ExtResource("7_ao8i7")
+
+[node name="Control" type="Control" parent="AudioSettingsColumn"]
+layout_mode = 2
+
+[node name="TopGroup" type="VBoxContainer" parent="AudioSettingsColumn"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MasterRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup"]
+layout_mode = 2
+script = ExtResource("8_o2io1")
+
+[node name="MasterVolume" type="Label" parent="AudioSettingsColumn/TopGroup/MasterRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "Master Volume"
+
+[node name="DisplayRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup/MasterRow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="DisplayRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup/MasterRow/DisplayRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="AudioSettingsColumn/TopGroup/MasterRow/DisplayRow/DisplayRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="Value" type="Label" parent="AudioSettingsColumn/TopGroup/MasterRow/DisplayRow"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "100"
+horizontal_alignment = 1
+
+[node name="SFXRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("8_o2io1")
+
+[node name="SFXVolume" type="Label" parent="AudioSettingsColumn/TopGroup/SFXRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "SFX Volume"
+
+[node name="DisplayRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup/SFXRow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="DisplayRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup/SFXRow/DisplayRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="AudioSettingsColumn/TopGroup/SFXRow/DisplayRow/DisplayRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="Value" type="Label" parent="AudioSettingsColumn/TopGroup/SFXRow/DisplayRow"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "100"
+horizontal_alignment = 1
+
+[node name="MusicRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("8_o2io1")
+
+[node name="MusicVolume" type="Label" parent="AudioSettingsColumn/TopGroup/MusicRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "Music Volume"
+
+[node name="DisplayRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup/MusicRow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="DisplayRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup/MusicRow/DisplayRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="AudioSettingsColumn/TopGroup/MusicRow/DisplayRow/DisplayRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="Value" type="Label" parent="AudioSettingsColumn/TopGroup/MusicRow/DisplayRow"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+text = "100"
+horizontal_alignment = 1
+
+[node name="BottomGroup" type="VBoxContainer" parent="AudioSettingsColumn"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 7
+
+[node name="ResetApplyRow" type="HBoxContainer" parent="AudioSettingsColumn/BottomGroup"]
+layout_mode = 2
+
+[node name="Reset" type="Button" parent="AudioSettingsColumn/BottomGroup/ResetApplyRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_erh6y")
+text = "Reset"
+
+[node name="Apply" type="Button" parent="AudioSettingsColumn/BottomGroup/ResetApplyRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_h8lgl")
+text = "Apply"
+
+[node name="ControlsColumn" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.321
+anchor_right = 0.96400005
+anchor_bottom = 1.0
+offset_left = 0.3840027
+offset_right = 0.25598145
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 75
+
+[node name="Control" type="Control" parent="ControlsColumn"]
+layout_mode = 2
+
+[node name="TopGroup" type="VBoxContainer" parent="ControlsColumn"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="MovementRow" type="HBoxContainer" parent="ControlsColumn/TopGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PlayerMovement" type="Label" parent="ControlsColumn/TopGroup/MovementRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eq5xg")
+text = "Player Movement"
+
+[node name="HSeparator" type="HSeparator" parent="ControlsColumn/TopGroup"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MoveUp" type="Button" parent="ControlsColumn/TopGroup"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lcnv3")
+script = ExtResource("9_oh65a")
+action_name = "move_up"
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlsColumn/TopGroup/MoveUp"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
+text = "Action Name"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
+text = "Input Key"
+vertical_alignment = 1
+
+[node name="MoveLeft" type="Button" parent="ControlsColumn/TopGroup"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lcnv3")
+script = ExtResource("9_oh65a")
+action_name = "move_left"
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlsColumn/TopGroup/MoveLeft"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
+text = "Action Name"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
+text = "Input Key"
+vertical_alignment = 1
+
+[node name="MoveDown" type="Button" parent="ControlsColumn/TopGroup"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lcnv3")
+script = ExtResource("9_oh65a")
+action_name = "move_down"
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlsColumn/TopGroup/MoveDown"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
+text = "Action Name"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
+text = "Input Key"
+vertical_alignment = 1
+
+[node name="MoveRight" type="Button" parent="ControlsColumn/TopGroup"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lcnv3")
+script = ExtResource("9_oh65a")
+action_name = "move_right"
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlsColumn/TopGroup/MoveRight"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
+text = "Action Name"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
+text = "Input Key"
+vertical_alignment = 1
+
+[node name="InteractionRow" type="HBoxContainer" parent="ControlsColumn/TopGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PlayerMovement" type="Label" parent="ControlsColumn/TopGroup/InteractionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eq5xg")
+text = "Player Interactions"
+
+[node name="HSeparator2" type="HSeparator" parent="ControlsColumn/TopGroup"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Interact" type="Button" parent="ControlsColumn/TopGroup"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lcnv3")
+script = ExtResource("9_oh65a")
+action_name = "interact"
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlsColumn/TopGroup/Interact"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/Interact/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/Interact/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
+text = "Action Name"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="ControlsColumn/TopGroup/Interact/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/Interact/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
+text = "Input Key"
+vertical_alignment = 1
+
+[node name="AbilityRow" type="HBoxContainer" parent="ControlsColumn/TopGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PlayerMovement" type="Label" parent="ControlsColumn/TopGroup/AbilityRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eq5xg")
+text = "Player Abilities"
+
+[node name="HSeparator3" type="HSeparator" parent="ControlsColumn/TopGroup"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Invisibiliy" type="Button" parent="ControlsColumn/TopGroup"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lcnv3")
+script = ExtResource("9_oh65a")
+action_name = "ability"
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlsColumn/TopGroup/Invisibiliy"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
+text = "Action Name"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
+text = "Input Key"
+vertical_alignment = 1
+
+[node name="BottomGroup" type="VBoxContainer" parent="ControlsColumn"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 7
+
+[node name="ResetApplyRow" type="HBoxContainer" parent="ControlsColumn/BottomGroup"]
+layout_mode = 2
+
+[node name="Reset" type="Button" parent="ControlsColumn/BottomGroup/ResetApplyRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_erh6y")
+text = "Reset"
+
+[node name="Apply" type="Button" parent="ControlsColumn/BottomGroup/ResetApplyRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_h8lgl")
+text = "Apply"
+
+[connection signal="pressed" from="MiddleColumn/TopGroup/VideoSettings" to="." method="_on_video_settings_pressed"]
+[connection signal="pressed" from="MiddleColumn/TopGroup/AudioSettings" to="." method="_on_audio_settings_pressed"]
+[connection signal="pressed" from="MiddleColumn/TopGroup/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="VideoSettingsColumn/TopGroup/DisplayRow/DisplayRow/LeftArrow" to="VideoSettingsColumn/TopGroup/DisplayRow" method="_on_left_pressed"]
+[connection signal="pressed" from="VideoSettingsColumn/TopGroup/DisplayRow/DisplayRow/RightArrow" to="VideoSettingsColumn/TopGroup/DisplayRow" method="_on_right_pressed"]
+[connection signal="pressed" from="VideoSettingsColumn/TopGroup/ResolutionRow/DisplayRow/LeftArrow" to="VideoSettingsColumn/TopGroup/ResolutionRow" method="_on_left_pressed"]
+[connection signal="pressed" from="VideoSettingsColumn/TopGroup/ResolutionRow/DisplayRow/RightArrow" to="VideoSettingsColumn/TopGroup/ResolutionRow" method="_on_right_pressed"]
+[connection signal="pressed" from="VideoSettingsColumn/BottomGroup/ResetApplyRow/Reset" to="VideoSettingsColumn" method="_on_reset_pressed"]
+[connection signal="pressed" from="VideoSettingsColumn/BottomGroup/ResetApplyRow/Apply" to="VideoSettingsColumn" method="_on_apply_pressed"]
+[connection signal="pressed" from="AudioSettingsColumn/BottomGroup/ResetApplyRow/Reset" to="AudioSettingsColumn" method="_on_reset_pressed"]
+[connection signal="pressed" from="AudioSettingsColumn/BottomGroup/ResetApplyRow/Apply" to="AudioSettingsColumn" method="_on_apply_pressed"]
+[connection signal="pressed" from="ControlsColumn/BottomGroup/ResetApplyRow/Reset" to="ControlsColumn/TopGroup/MoveUp" method="_on_reset_pressed"]
+[connection signal="pressed" from="ControlsColumn/BottomGroup/ResetApplyRow/Reset" to="ControlsColumn/TopGroup/Invisibiliy" method="_on_reset_pressed"]

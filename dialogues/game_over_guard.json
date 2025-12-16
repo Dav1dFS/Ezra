@@ -1,0 +1,20 @@
+{
+	"dialogues": [
+		{
+			"condition": "default",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Guard", "text": "You there! Stop! You think you can get away with that?!?"},
+				{"speaker": "Ezra", "text": "No, they got us!"}
+			]
+		},
+		{
+			"condition": "repetition",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Guard", "text": "You there! Stop! You think you can get away with that?!?"},
+				{"speaker": "Ezra", "text": "No, they got us!"}
+			]
+		},
+	]
+}

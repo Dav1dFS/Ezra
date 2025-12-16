@@ -1,0 +1,71 @@
+{
+  "dialogues": [
+	{
+	  "condition": "default",
+	  "lines": [
+		{
+		  "speaker": "Ellen",
+		  "text": "My belly hurts. I want some bread. I need to find something soon."
+		},
+
+		{ "mid_action": "erza_appears" },
+		{
+		  "speaker": "Ezra",
+		  "text": "Sis? Is that you??"
+		},
+
+
+		{ "mid_action": "frieda_at_the_door" },
+				{
+		  "speaker": "Frieda",
+		  "text": "Ellen? What are you doing here at this hour?"
+		},
+		{
+		  "speaker": "Ellen",
+		  "text": "I... I was just looking for something to eat."
+		},
+
+		{ "mid_action": "frieda_gets_closer" },
+
+		{
+		  "speaker": "Frieda",
+		  "text": "You look pale. Are you feeling alright?"
+		},
+		{
+		  "speaker": "Ellen",
+		  "text": "I'm hungry and... scared..."
+		},
+		{
+		  "speaker": "Frieda",
+		  "text": "Oh sweetie, its.."
+		},
+		{ "mid_action": "guards_searching_ellen" },
+
+		{
+		  "speaker": "General",
+		  "text": "Search the area. She must still be here."
+		},
+		{
+		  "speaker": "Frieda",
+		  "text": "HIDE! Quick!"
+		},
+
+		{ "mid_action": "ezra_possesses_ellen" },
+		{
+		  "speaker": "Ellen",
+		  "text": "Something is wrong... I feel strange..."
+		},
+
+		{
+		  "speaker": "Ezra",
+		  "text": "Don’t fight it. Let me in."
+		},
+		{
+		  "speaker": "Ezra",
+		  "text": "I need to get her out of here!"
+		},
+		{ "mid_action": "next_scene" }
+	  ]
+	}
+  ]
+}

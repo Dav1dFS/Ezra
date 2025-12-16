@@ -1,0 +1,2649 @@
+[gd_scene load_steps=57 format=3 uid="uid://d1lfv8eimewo0"]
+
+[ext_resource type="Script" uid="uid://2oyly7cd8uus" path="res://scripts/night_1_root.gd" id="1_bqncc"]
+[ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/main_map.tscn" id="2_4ov1t"]
+[ext_resource type="PackedScene" uid="uid://bcqh0tgm5hj1m" path="res://scenes/gameplay/audioBack.tscn" id="2_qoxao"]
+[ext_resource type="AudioStream" uid="uid://5vnaf6f0xwdi" path="res://assets/audios/creepy_ambient.mp3" id="3_dcukc"]
+[ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/Dialogue/Memory.tscn" id="3_u6i4i"]
+[ext_resource type="PackedScene" uid="uid://cbyffikw81yby" path="res://scenes/UI/footprints.tscn" id="4_i0mio"]
+[ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="4_t5b4k"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_3fgql"]
+[ext_resource type="PackedScene" uid="uid://br3gpnhtkafbd" path="res://scenes/Npcs/friendly/characters/ellen_npc.tscn" id="7_4ov1t"]
+[ext_resource type="Shader" uid="uid://cku83md4wcs5r" path="res://scripts/shaders/memory_halo.gdshader" id="7_lsjfn"]
+[ext_resource type="PackedScene" uid="uid://cg8nkwvp2h5y1" path="res://scenes/Npcs/effects/npc_glow.tscn" id="9_glow"]
+[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/Npcs/friendly/characters/frieda_npc.tscn" id="9_t5b4k"]
+[ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/Npcs/frieda_npc.gd" id="10_3fgql"]
+[ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="10_lsjfn"]
+[ext_resource type="Texture2D" uid="uid://cd85becst2y5y" path="res://assets/grey_circle.png" id="11_jcha6"]
+[ext_resource type="Script" uid="uid://dbquasdj2kuv6" path="res://scripts/fog_wall.gd" id="12_bqncc"]
+[ext_resource type="Shader" uid="uid://cat5w6srnl8nt" path="res://scripts/shaders/fog.gdshader" id="12_jcha6"]
+[ext_resource type="FontFile" uid="uid://dyj1vdec1wq05" path="res://assets/fonts/Deutsch.ttf" id="14_ycewm"]
+[ext_resource type="Texture2D" uid="uid://cq8vyxdfyjkw1" path="res://assets/animation_sheets/prisioneiros_dormir1.png" id="19_qoxao"]
+[ext_resource type="PackedScene" uid="uid://cx5x45xpimkr6" path="res://scenes/Npcs/enemies/dog.tscn" id="20_8midk"]
+[ext_resource type="PackedScene" uid="uid://dhetuapm0eojt" path="res://scenes/Npcs/enemies/sleeping_guard.tscn" id="21_dcukc"]
+[ext_resource type="Texture2D" uid="uid://0tbg0uq8he8u" path="res://assets/animation_sheets/prisioneiros_dormir3.png" id="21_ycewm"]
+[ext_resource type="Script" uid="uid://coetcysixuife" path="res://scripts/phasing_walls.gd" id="25_wwh6r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qoxao"]
+shader = ExtResource("7_lsjfn")
+shader_parameter/glow_color = Color(0.17810082, 0.43148592, 1, 0.69411767)
+shader_parameter/glow_size = 0.50000002049012
+shader_parameter/glow_intensity = 1.0
+shader_parameter/edge_softness = 0.3
+
+[sub_resource type="Gradient" id="Gradient_i3ddc"]
+offsets = PackedFloat32Array(0.41216215, 0.8175676, 1)
+colors = PackedColorArray(0.1764706, 0.43137255, 1, 0.69411767, 0.1764706, 0.43137255, 1, 0.5019608, 0.1764706, 0.43137255, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sg2hc"]
+gradient = SubResource("Gradient_i3ddc")
+width = 40
+height = 40
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jcha6"]
+seed = 140
+frequency = 0.0015
+fractal_lacunarity = 2.24
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bqncc"]
+width = 1280
+height = 720
+noise = SubResource("FastNoiseLite_jcha6")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bqncc"]
+shader = ExtResource("12_jcha6")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_bqncc")
+shader_parameter/density = 1.22
+shader_parameter/speed = Vector2(0.02, 0.01)
+shader_parameter/layers = 5
+shader_parameter/noise_scale = 1.6
+shader_parameter/contrast = 1.0000000475
+shader_parameter/min_threshold = 0.4330000205675
+shader_parameter/edge_softness = 0.25
+shader_parameter/clear_center = Vector2(0.5, 0.5)
+shader_parameter/clear_size = Vector2(0.6, 0.7)
+shader_parameter/clear_softness = 0.07
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqncc"]
+size = Vector2(1892, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg2hc"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8midk"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dcukc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg2hc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8midk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoxao"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcukc"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycewm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qoxao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcukc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycewm"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn62f"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(128, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwh6r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycewm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn62f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwh6r"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyogf"]
+atlas = ExtResource("19_qoxao")
+region = Rect2(192, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xq0ux"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwh6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyogf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq0ux"]
+atlas = ExtResource("21_ycewm")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtkkq"]
+atlas = ExtResource("21_ycewm")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3nvp1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq0ux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtkkq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eocqq"]
+atlas = ExtResource("21_ycewm")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yftjy"]
+atlas = ExtResource("21_ycewm")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bfj8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eocqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yftjy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nvp1"]
+atlas = ExtResource("21_ycewm")
+region = Rect2(128, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfj8b"]
+atlas = ExtResource("21_ycewm")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wku3o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nvp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfj8b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nax1r"]
+atlas = ExtResource("21_ycewm")
+region = Rect2(192, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nncq"]
+atlas = ExtResource("21_ycewm")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tvgga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nax1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nncq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gn62f"]
+size = Vector2(1.2407186, 84.10094)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwh6r"]
+size = Vector2(624, 32)
+
+[node name="Night1" type="Node2D"]
+script = ExtResource("1_bqncc")
+
+[node name="BackGround" parent="." instance=ExtResource("2_qoxao")]
+stream = ExtResource("3_dcukc")
+volume_db = -5.0
+pitch_scale = 1.03
+
+[node name="MainMap" parent="." instance=ExtResource("2_4ov1t")]
+
+[node name="Memory" parent="." instance=ExtResource("3_u6i4i")]
+position = Vector2(4874, 2193)
+dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
+level_id = "night1"
+
+[node name="ColorRect" type="ColorRect" parent="Memory"]
+z_index = -1
+material = SubResource("ShaderMaterial_qoxao")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Memory"]
+color = Color(0.1764706, 0.43137255, 1, 1)
+energy = 2.0
+shadow_color = Color(0.047058824, 0.047058824, 0.047058824, 0.8352941)
+texture = SubResource("GradientTexture2D_sg2hc")
+texture_scale = 1.5
+
+[node name="Memory2" parent="." instance=ExtResource("3_u6i4i")]
+position = Vector2(4371, 1309)
+dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
+level_id = "night1"
+
+[node name="ColorRect" type="ColorRect" parent="Memory2"]
+z_index = -1
+material = SubResource("ShaderMaterial_qoxao")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Memory2"]
+color = Color(0.1764706, 0.43137255, 1, 1)
+energy = 2.0
+shadow_color = Color(0.047058824, 0.047058824, 0.047058824, 0.8352941)
+texture = SubResource("GradientTexture2D_sg2hc")
+texture_scale = 1.5
+
+[node name="Memory3" parent="." instance=ExtResource("3_u6i4i")]
+position = Vector2(3818, 1610)
+dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
+level_id = "night1"
+
+[node name="ColorRect" type="ColorRect" parent="Memory3"]
+z_index = -1
+material = SubResource("ShaderMaterial_qoxao")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Memory3"]
+color = Color(0.1764706, 0.43137255, 1, 1)
+energy = 2.0
+shadow_color = Color(0.047058824, 0.047058824, 0.047058824, 0.8352941)
+texture = SubResource("GradientTexture2D_sg2hc")
+texture_scale = 1.5
+
+[node name="DownLeftLimit" type="Marker2D" parent="."]
+position = Vector2(2572, 3272)
+
+[node name="TopRightLimit" type="Marker2D" parent="."]
+position = Vector2(5934, -849)
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("4_t5b4k")]
+position = Vector2(4877, 1808)
+collision_layer = 128
+collision_mask = 128
+footprint_scene = ExtResource("4_i0mio")
+footprints_step_distance = 30.0
+target_npc = NodePath("../Frieda")
+footprint_side_offset = 3.0
+ability_duration_normal = 6.0
+ability_cooldown_normal = 10.0
+ability_duration_penalized = 3.0
+ability_cooldown_penalized = 20.0
+dog_alert_penalty_duration = 60.0
+character_name = ""
+
+[node name="DialogueBox" parent="." instance=ExtResource("5_3fgql")]
+
+[node name="CutsceneController" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("10_lsjfn")]
+auto_start_cutscene = true
+target_npc = NodePath("../Frieda")
+dialogue_box = NodePath("../DialogueBox")
+transition_text = "Night 1"
+
+[node name="Ellen" parent="." instance=ExtResource("7_4ov1t")]
+position = Vector2(4844, 1987)
+dialogue_file = "res://dialogues/night_1/night_1_ellen.json"
+
+[node name="Frieda" parent="." instance=ExtResource("9_t5b4k")]
+position = Vector2(5040, 1750)
+script = ExtResource("10_3fgql")
+ability_hold_time = 3.0
+dialogue_file = "res://dialogues/night_1/night_1_frieda.json"
+all_collected_gamestate_flag = "can_control_frieda"
+
+[node name="PlayerAbilityLabel" type="Label" parent="Frieda"]
+visible = false
+z_index = 1
+offset_left = -27.0
+offset_top = -16.0
+offset_right = 1640.0
+offset_bottom = 178.0
+scale = Vector2(0.03565063, 0.03565063)
+theme_override_fonts/font = ExtResource("14_ycewm")
+theme_override_font_sizes/font_size = 180
+text = "Press Space to Possess"
+horizontal_alignment = 1
+
+[node name="AbilityProgress" type="TextureProgressBar" parent="Frieda"]
+visible = false
+offset_left = 15.0
+offset_top = -9.0
+offset_right = 1215.0
+offset_bottom = 1191.0
+scale = Vector2(0.01, 0.01)
+fill_mode = 4
+texture_under = ExtResource("11_jcha6")
+texture_progress = ExtResource("11_jcha6")
+tint_progress = Color(0.8285668, 9.62615e-07, 0.43747923, 1)
+
+[node name="NpcGlow" parent="Frieda" instance=ExtResource("9_glow")]
+
+[node name="FogWalls" type="Node2D" parent="."]
+script = ExtResource("12_bqncc")
+
+[node name="ColorRect" type="ColorRect" parent="FogWalls"]
+z_index = 4
+material = SubResource("ShaderMaterial_bqncc")
+offset_left = 3128.0
+offset_top = 825.0
+offset_right = 3168.0
+offset_bottom = 865.00006
+scale = Vector2(61.555775, 46.340397)
+
+[node name="TopWall" type="Node2D" parent="FogWalls"]
+position = Vector2(4715, 1010)
+scale = Vector2(0.89807564, 1)
+
+[node name="Area2D" type="Area2D" parent="FogWalls/TopWall"]
+position = Vector2(-387.49527, -119)
+scale = Vector2(1.0808549, 1.8629445)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FogWalls/TopWall/Area2D"]
+position = Vector2(-9, 16)
+shape = SubResource("RectangleShape2D_bqncc")
+
+[node name="LeftWall" type="Node2D" parent="FogWalls"]
+position = Vector2(3484.9998, 836.9999)
+rotation = -1.5745151
+scale = Vector2(1.4399976, 1.4399976)
+
+[node name="Area2D" type="Area2D" parent="FogWalls/LeftWall"]
+position = Vector2(-675.7831, 138.4605)
+scale = Vector2(0.6390968, 1.0000001)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FogWalls/LeftWall/Area2D"]
+position = Vector2(-14.081465, -135.13715)
+shape = SubResource("RectangleShape2D_bqncc")
+
+[node name="RightWall" type="Node2D" parent="FogWalls"]
+position = Vector2(5784.0093, 786)
+rotation = -1.5745151
+scale = Vector2(1.4399976, 1.4399976)
+
+[node name="Area2D" type="Area2D" parent="FogWalls/RightWall"]
+position = Vector2(-705.644, -254.708)
+scale = Vector2(0.63909674, 1)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FogWalls/RightWall/Area2D"]
+position = Vector2(-14.081465, -135.13715)
+shape = SubResource("RectangleShape2D_bqncc")
+
+[node name="DownWall" type="Node2D" parent="FogWalls"]
+position = Vector2(4842, 2943)
+
+[node name="Area2D" type="Area2D" parent="FogWalls/DownWall"]
+position = Vector2(-455, -348)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FogWalls/DownWall/Area2D"]
+position = Vector2(-9, 16)
+shape = SubResource("RectangleShape2D_bqncc")
+
+[node name="SleepingPrisoners" type="Control" parent="."]
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Blue" type="Control" parent="SleepingPrisoners"]
+y_sort_enabled = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TypeA" type="Control" parent="SleepingPrisoners/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(4689, 1723)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(4689, 2192)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(5072, 1968)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(5040, 1808)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(5041, 2000)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(4723, 1968)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(4690, 2171)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(5043, 2075)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(4913, 2159)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(5041, 2192)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(4722, 2256)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(4912, 2138)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(4690, 1904)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeA"]
+position = Vector2(5009, 1712)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.83783853
+
+[node name="TypeB" type="Control" parent="SleepingPrisoners/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(5009, 1689)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(4689, 2075)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(4689, 1647)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(5041, 2096)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(4689, 2267)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(5041, 2288)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(5041, 1904)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.47367245
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(4657, 1872)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.47367245
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(4689, 1979)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(5041, 1787)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeB"]
+position = Vector2(4561, 1691)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="TypeC" type="Control" parent="SleepingPrisoners/Blue"]
+y_sort_enabled = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4592, 1744)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4944, 1808)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4944, 1904)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4719, 1947)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4622, 2160)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+y_sort_enabled = true
+position = Vector2(4623, 2256)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4944, 2064)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4944, 2160)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(5071, 1849)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4557, 1594)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(5041, 2265)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4942, 1977)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4560, 2064)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4592, 1872)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4944, 2192)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4944, 1723)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeC"]
+position = Vector2(4592, 1648)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="TypeD" type="Control" parent="SleepingPrisoners/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(4944, 1648)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.446562
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(4945, 1883)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(4592, 2000)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(4943, 2000)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(4944, 2096)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(4593, 2192)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(4624, 2234)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(5006, 2138)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(4944, 2267)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(4592, 2288)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/Blue/TypeD"]
+position = Vector2(4910, 1691)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.29402032
+
+[node name="Grey" type="Control" parent="SleepingPrisoners"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TypeA" type="Control" parent="SleepingPrisoners/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeA"]
+position = Vector2(4689, 1743)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeA"]
+position = Vector2(4721, 1594)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeA"]
+position = Vector2(5041, 1626)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeA"]
+position = Vector2(5041, 2170)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeA"]
+position = Vector2(5073, 1946)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="TypeB" type="Control" parent="SleepingPrisoners/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeB"]
+position = Vector2(5041, 1647)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeB"]
+position = Vector2(5039, 1722)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeB"]
+position = Vector2(4722, 1690)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeB"]
+position = Vector2(4688, 1628)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeB"]
+position = Vector2(4689, 1999)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="TypeC" type="Control" parent="SleepingPrisoners/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeC"]
+position = Vector2(4593, 1882)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeC"]
+position = Vector2(4561, 1711)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeC"]
+position = Vector2(4593, 1626)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeC"]
+position = Vector2(4619, 1946)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeC"]
+position = Vector2(4593, 2074)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeC"]
+position = Vector2(4593, 2266)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="TypeD" type="Control" parent="SleepingPrisoners/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeD"]
+position = Vector2(4944, 2042)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeD"]
+position = Vector2(4975, 1945)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeD"]
+position = Vector2(4944, 1744)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeD"]
+position = Vector2(4592, 1722)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeD"]
+position = Vector2(4592, 1850)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeD"]
+position = Vector2(4593, 1978)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeD"]
+position = Vector2(4623, 2139)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeD"]
+position = Vector2(4945, 2170)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners/Grey/TypeD"]
+position = Vector2(4945, 2287)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="SleepingPrisoners2" type="Control" parent="."]
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -928.0
+offset_right = -888.0
+offset_bottom = 40.0
+
+[node name="Blue" type="Control" parent="SleepingPrisoners2"]
+y_sort_enabled = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TypeA" type="Control" parent="SleepingPrisoners2/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(4689, 1723)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(4689, 2192)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(5072, 1968)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(5040, 1808)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(5041, 2000)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(4723, 1968)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(4690, 2171)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(5043, 2075)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(4913, 2159)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(5041, 2192)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(4722, 2256)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(4912, 2138)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(4690, 1904)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeA"]
+position = Vector2(5009, 1712)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.83783853
+
+[node name="TypeB" type="Control" parent="SleepingPrisoners2/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(5009, 1689)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(4689, 2075)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(4689, 1647)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(5041, 2096)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(4689, 2267)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(5041, 2288)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(5041, 1904)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.47367245
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(4657, 1872)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.47367245
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(4689, 1979)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(5041, 1787)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeB"]
+position = Vector2(4561, 1691)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="TypeC" type="Control" parent="SleepingPrisoners2/Blue"]
+y_sort_enabled = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4592, 1744)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4944, 1808)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4944, 1904)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4719, 1947)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4622, 2160)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+y_sort_enabled = true
+position = Vector2(4623, 2256)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4944, 2064)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4944, 2160)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(5071, 1849)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4557, 1594)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(5041, 2265)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4942, 1977)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4560, 2064)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4592, 1872)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4944, 2192)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4944, 1723)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeC"]
+position = Vector2(4592, 1648)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="TypeD" type="Control" parent="SleepingPrisoners2/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(4944, 1648)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.446562
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(4945, 1883)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(4592, 2000)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(4943, 2000)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(4944, 2096)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(4593, 2192)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(4624, 2234)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(5006, 2138)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(4944, 2267)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(4592, 2288)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners2/Blue/TypeD"]
+position = Vector2(4910, 1691)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.29402032
+
+[node name="Grey" type="Control" parent="SleepingPrisoners2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TypeA" type="Control" parent="SleepingPrisoners2/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeA"]
+position = Vector2(4689, 1743)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeA"]
+position = Vector2(4721, 1594)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeA"]
+position = Vector2(5041, 1626)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeA"]
+position = Vector2(5041, 2170)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeA"]
+position = Vector2(5073, 1946)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="TypeB" type="Control" parent="SleepingPrisoners2/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeB"]
+position = Vector2(5041, 1647)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeB"]
+position = Vector2(5039, 1722)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeB"]
+position = Vector2(4722, 1690)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeB"]
+position = Vector2(4688, 1628)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeB"]
+position = Vector2(4689, 1999)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="TypeC" type="Control" parent="SleepingPrisoners2/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeC"]
+position = Vector2(4593, 1882)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeC"]
+position = Vector2(4561, 1711)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeC"]
+position = Vector2(4593, 1626)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeC"]
+position = Vector2(4619, 1946)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeC"]
+position = Vector2(4593, 2074)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeC"]
+position = Vector2(4593, 2266)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="TypeD" type="Control" parent="SleepingPrisoners2/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeD"]
+position = Vector2(4944, 2042)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeD"]
+position = Vector2(4975, 1945)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeD"]
+position = Vector2(4944, 1744)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeD"]
+position = Vector2(4592, 1722)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeD"]
+position = Vector2(4592, 1850)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeD"]
+position = Vector2(4593, 1978)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeD"]
+position = Vector2(4623, 2139)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeD"]
+position = Vector2(4945, 2170)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners2/Grey/TypeD"]
+position = Vector2(4945, 2287)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="SleepingPrisoners3" type="Control" parent="."]
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -928.0
+offset_top = -1313.0
+offset_right = -888.0
+offset_bottom = -1273.0
+
+[node name="Blue" type="Control" parent="SleepingPrisoners3"]
+y_sort_enabled = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TypeA" type="Control" parent="SleepingPrisoners3/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(4689, 1723)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(4689, 2192)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(5072, 1968)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(5040, 1808)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(5041, 2000)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(4723, 1968)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(4690, 2171)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(5043, 2075)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(4913, 2159)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(5041, 2192)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(4722, 2256)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(4912, 2138)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(4690, 1904)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeA"]
+position = Vector2(5009, 1712)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.83783853
+
+[node name="TypeB" type="Control" parent="SleepingPrisoners3/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(5009, 1689)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(4689, 2075)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(4689, 1647)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(5041, 2096)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(4689, 2267)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(5041, 2288)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(5041, 1904)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.47367245
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(4657, 1872)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.47367245
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(4689, 1979)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(5041, 1787)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeB"]
+position = Vector2(4561, 1691)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="TypeC" type="Control" parent="SleepingPrisoners3/Blue"]
+y_sort_enabled = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4592, 1744)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4944, 1808)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4944, 1904)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4719, 1947)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4622, 2160)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+y_sort_enabled = true
+position = Vector2(4623, 2256)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4944, 2064)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4944, 2160)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(5071, 1849)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4557, 1594)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(5041, 2265)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4942, 1977)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4560, 2064)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4592, 1872)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4944, 2192)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4944, 1723)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeC"]
+position = Vector2(4592, 1648)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="TypeD" type="Control" parent="SleepingPrisoners3/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(4944, 1648)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.446562
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(4945, 1883)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(4592, 2000)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(4943, 2000)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(4944, 2096)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(4593, 2192)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(4624, 2234)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(5006, 2138)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(4944, 2267)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(4592, 2288)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners3/Blue/TypeD"]
+position = Vector2(4910, 1691)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.29402032
+
+[node name="Grey" type="Control" parent="SleepingPrisoners3"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TypeA" type="Control" parent="SleepingPrisoners3/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeA"]
+position = Vector2(4689, 1743)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeA"]
+position = Vector2(4721, 1594)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeA"]
+position = Vector2(5041, 1626)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeA"]
+position = Vector2(5041, 2170)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeA"]
+position = Vector2(5073, 1946)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="TypeB" type="Control" parent="SleepingPrisoners3/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeB"]
+position = Vector2(5041, 1647)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeB"]
+position = Vector2(5039, 1722)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeB"]
+position = Vector2(4722, 1690)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeB"]
+position = Vector2(4688, 1628)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeB"]
+position = Vector2(4689, 1999)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="TypeC" type="Control" parent="SleepingPrisoners3/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeC"]
+position = Vector2(4593, 1882)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeC"]
+position = Vector2(4561, 1711)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeC"]
+position = Vector2(4593, 1626)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeC"]
+position = Vector2(4619, 1946)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeC"]
+position = Vector2(4593, 2074)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeC"]
+position = Vector2(4593, 2266)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="TypeD" type="Control" parent="SleepingPrisoners3/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeD"]
+position = Vector2(4944, 2042)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeD"]
+position = Vector2(4975, 1945)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeD"]
+position = Vector2(4944, 1744)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeD"]
+position = Vector2(4592, 1722)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeD"]
+position = Vector2(4592, 1850)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeD"]
+position = Vector2(4593, 1978)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeD"]
+position = Vector2(4623, 2139)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeD"]
+position = Vector2(4945, 2170)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners3/Grey/TypeD"]
+position = Vector2(4945, 2287)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="SleepingPrisoners4" type="Control" parent="."]
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_top = -1313.0
+offset_right = 39.0
+offset_bottom = -1273.0
+
+[node name="Blue" type="Control" parent="SleepingPrisoners4"]
+y_sort_enabled = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TypeA" type="Control" parent="SleepingPrisoners4/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(4689, 1723)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(4689, 2192)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(5072, 1968)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.59567964
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(5040, 1808)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(5041, 2000)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(4723, 1968)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(4690, 2171)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(5043, 2075)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(4913, 2159)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(5041, 2192)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(4722, 2256)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(4912, 2138)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(4690, 1904)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.82543546
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeA"]
+position = Vector2(5009, 1712)
+sprite_frames = SubResource("SpriteFrames_dcukc")
+autoplay = "default"
+frame_progress = 0.83783853
+
+[node name="TypeB" type="Control" parent="SleepingPrisoners4/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(5009, 1689)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(4689, 2075)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(4689, 1647)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.8668129
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(5041, 2096)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(4689, 2267)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(5041, 2288)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.6160568
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(5041, 1904)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.47367245
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(4657, 1872)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.47367245
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(4689, 1979)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(5041, 1787)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeB"]
+position = Vector2(4561, 1691)
+sprite_frames = SubResource("SpriteFrames_ycewm")
+autoplay = "default"
+frame_progress = 0.7420952
+
+[node name="TypeC" type="Control" parent="SleepingPrisoners4/Blue"]
+y_sort_enabled = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4592, 1744)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4944, 1808)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4944, 1904)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4719, 1947)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4622, 2160)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+y_sort_enabled = true
+position = Vector2(4623, 2256)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4944, 2064)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4944, 2160)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(5071, 1849)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4557, 1594)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(5041, 2265)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4942, 1977)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4560, 2064)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4592, 1872)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4944, 2192)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4944, 1723)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeC"]
+position = Vector2(4592, 1648)
+sprite_frames = SubResource("SpriteFrames_wwh6r")
+autoplay = "default"
+
+[node name="TypeD" type="Control" parent="SleepingPrisoners4/Blue"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(4944, 1648)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.446562
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(4945, 1883)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(4592, 2000)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(4943, 2000)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(4944, 2096)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(4593, 2192)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(4624, 2234)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(5006, 2138)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(4944, 2267)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(4592, 2288)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.23524824
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners4/Blue/TypeD"]
+position = Vector2(4910, 1691)
+sprite_frames = SubResource("SpriteFrames_xq0ux")
+autoplay = "default"
+frame_progress = 0.29402032
+
+[node name="Grey" type="Control" parent="SleepingPrisoners4"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TypeA" type="Control" parent="SleepingPrisoners4/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeA"]
+position = Vector2(4689, 1743)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeA"]
+position = Vector2(4721, 1594)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeA"]
+position = Vector2(5041, 1626)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeA"]
+position = Vector2(5041, 2170)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeA"]
+position = Vector2(5073, 1946)
+sprite_frames = SubResource("SpriteFrames_3nvp1")
+autoplay = "default"
+
+[node name="TypeB" type="Control" parent="SleepingPrisoners4/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeB"]
+position = Vector2(5041, 1647)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeB"]
+position = Vector2(5039, 1722)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeB"]
+position = Vector2(4722, 1690)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeB"]
+position = Vector2(4688, 1628)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeB"]
+position = Vector2(4689, 1999)
+sprite_frames = SubResource("SpriteFrames_bfj8b")
+autoplay = "default"
+
+[node name="TypeC" type="Control" parent="SleepingPrisoners4/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeC"]
+position = Vector2(4593, 1882)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeC"]
+position = Vector2(4561, 1711)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeC"]
+position = Vector2(4593, 1626)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeC"]
+position = Vector2(4619, 1946)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeC"]
+position = Vector2(4593, 2074)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeC"]
+position = Vector2(4593, 2266)
+sprite_frames = SubResource("SpriteFrames_wku3o")
+autoplay = "default"
+
+[node name="TypeD" type="Control" parent="SleepingPrisoners4/Grey"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeD"]
+position = Vector2(4944, 2042)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeD"]
+position = Vector2(4975, 1945)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeD"]
+position = Vector2(4944, 1744)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeD"]
+position = Vector2(4592, 1722)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeD"]
+position = Vector2(4592, 1850)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeD"]
+position = Vector2(4593, 1978)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeD"]
+position = Vector2(4623, 2139)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeD"]
+position = Vector2(4945, 2170)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="SleepingPrisoners4/Grey/TypeD"]
+position = Vector2(4945, 2287)
+sprite_frames = SubResource("SpriteFrames_tvgga")
+autoplay = "default"
+
+[node name="Dogs" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dog" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(4833, 2360)
+guard_to_alert = NodePath("../../Guards/SleepingGuard")
+
+[node name="Dog5" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(4833, 1051)
+guard_to_alert = NodePath("../../Guards/SleepingGuard5")
+
+[node name="Dog6" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(3904, 1051)
+guard_to_alert = NodePath("../../Guards/SleepingGuard6")
+
+[node name="Dog2" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(3904, 2363)
+guard_to_alert = NodePath("../../Guards/SleepingGuard2")
+
+[node name="Dog3" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(4496, 1942)
+guard_to_alert = NodePath("../../Guards/SleepingGuard3")
+facing_direction = 1
+
+[node name="Dog7" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(5118, 1328)
+guard_to_alert = NodePath("../../Guards/SleepingGuard7")
+facing_direction = 1
+
+[node name="Dog8" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(3597, 1328)
+guard_to_alert = NodePath("../../Guards/SleepingGuard8")
+facing_direction = 2
+
+[node name="Dog4" parent="Dogs" instance=ExtResource("20_8midk")]
+position = Vector2(4250, 1942)
+guard_to_alert = NodePath("../../Guards/SleepingGuard4")
+facing_direction = 2
+
+[node name="Guards" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SleepingGuard" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(4817, 2355)
+
+[node name="SleepingGuard5" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(4817, 1046)
+
+[node name="SleepingGuard6" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(3888, 1046)
+
+[node name="SleepingGuard2" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(3888, 2358)
+
+[node name="SleepingGuard3" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(4501, 1920)
+facing_direction = 1
+
+[node name="SleepingGuard7" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(5123, 1306)
+facing_direction = 1
+
+[node name="SleepingGuard8" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(3602, 1306)
+facing_direction = 2
+
+[node name="SleepingGuard4" parent="Guards" instance=ExtResource("21_dcukc")]
+position = Vector2(4255, 1920)
+facing_direction = 2
+
+[node name="PhasingWalls" type="Node2D" parent="."]
+script = ExtResource("25_wwh6r")
+target_player_path = NodePath("../Player")
+enable_color_tint = true
+tint_color = Color(0.7176471, 0.28235295, 1, 1)
+enable_scale_effect = true
+scale_factor = 0.9
+
+[node name="Area2D" type="Area2D" parent="PhasingWalls"]
+position = Vector2(5144.0005, 1944)
+scale = Vector2(1.0561503, 2.3888438)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D"]
+scale = Vector2(12.210637, -4.2209215)
+shape = SubResource("RectangleShape2D_gn62f")
+
+[node name="Area2D8" type="Area2D" parent="PhasingWalls"]
+position = Vector2(4519.9995, 1944.0001)
+scale = Vector2(1.0561503, 2.3888438)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D8"]
+scale = Vector2(12.210637, -4.2209215)
+shape = SubResource("RectangleShape2D_gn62f")
+
+[node name="Area2D9" type="Area2D" parent="PhasingWalls"]
+position = Vector2(4221, 1944.0001)
+scale = Vector2(1.0561503, 2.3888438)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D9"]
+scale = Vector2(12.210637, -4.2209215)
+shape = SubResource("RectangleShape2D_gn62f")
+
+[node name="Area2D10" type="Area2D" parent="PhasingWalls"]
+position = Vector2(3586, 1944.0001)
+scale = Vector2(1.0561503, 2.3888438)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D10"]
+scale = Vector2(12.210637, -4.2209215)
+shape = SubResource("RectangleShape2D_gn62f")
+
+[node name="Area2D11" type="Area2D" parent="PhasingWalls"]
+position = Vector2(3585.9998, 625)
+scale = Vector2(1.0561503, 2.3888438)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D11"]
+scale = Vector2(12.210637, -4.2209215)
+shape = SubResource("RectangleShape2D_gn62f")
+
+[node name="Area2D12" type="Area2D" parent="PhasingWalls"]
+position = Vector2(4221, 625)
+scale = Vector2(1.0561503, 2.3888438)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D12"]
+scale = Vector2(12.210637, -4.2209215)
+shape = SubResource("RectangleShape2D_gn62f")
+
+[node name="Area2D13" type="Area2D" parent="PhasingWalls"]
+position = Vector2(4512, 625)
+scale = Vector2(1.0561503, 2.3888438)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D13"]
+scale = Vector2(12.210637, -4.2209215)
+shape = SubResource("RectangleShape2D_gn62f")
+
+[node name="Area2D14" type="Area2D" parent="PhasingWalls"]
+position = Vector2(5144, 625)
+scale = Vector2(1.0561503, 2.3888438)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D14"]
+scale = Vector2(12.210637, -4.2209215)
+shape = SubResource("RectangleShape2D_gn62f")
+
+[node name="Area2D2" type="Area2D" parent="PhasingWalls"]
+position = Vector2(4817, 2355)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D2"]
+position = Vector2(7, -3)
+shape = SubResource("RectangleShape2D_wwh6r")
+
+[node name="Area2D3" type="Area2D" parent="PhasingWalls"]
+position = Vector2(4817, 1539)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D3"]
+position = Vector2(7, -3)
+shape = SubResource("RectangleShape2D_wwh6r")
+
+[node name="Area2D4" type="Area2D" parent="PhasingWalls"]
+position = Vector2(4817, 1042)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D4"]
+position = Vector2(7, -3)
+shape = SubResource("RectangleShape2D_wwh6r")
+
+[node name="Area2D5" type="Area2D" parent="PhasingWalls"]
+position = Vector2(3904, 1042)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D5"]
+position = Vector2(7, -3)
+shape = SubResource("RectangleShape2D_wwh6r")
+
+[node name="Area2D6" type="Area2D" parent="PhasingWalls"]
+position = Vector2(3904, 1554)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D6"]
+position = Vector2(7, -3)
+shape = SubResource("RectangleShape2D_wwh6r")
+
+[node name="Area2D7" type="Area2D" parent="PhasingWalls"]
+position = Vector2(3904, 2355)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhasingWalls/Area2D7"]
+position = Vector2(7, -3)
+shape = SubResource("RectangleShape2D_wwh6r")

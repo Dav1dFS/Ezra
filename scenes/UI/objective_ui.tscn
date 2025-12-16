@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://2b5a7qw3sl3"]
+
+[ext_resource type="Script" uid="uid://dxmt1morhhvnc" path="res://scripts/UI/objective_ui.gd" id="1_mtdt0"]
+[ext_resource type="Texture2D" uid="uid://cuho8t4f0o2bn" path="res://assets/items_sprites/paper.png" id="2_00r74"]
+[ext_resource type="Texture2D" uid="uid://xpwktqpbmc48" path="res://assets/items_sprites/warningSign.png" id="2_f4pa3"]
+[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_jldal"]
+[ext_resource type="FontFile" uid="uid://dyj1vdec1wq05" path="res://assets/fonts/Deutsch.ttf" id="5_ume2u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4lg62"]
+font = ExtResource("5_ume2u")
+font_size = 180
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ume2u"]
+font = ExtResource("5_ume2u")
+font_size = 180
+
+[node name="ObjectiveUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 11.0
+offset_bottom = 11.0
+script = ExtResource("1_mtdt0")
+
+[node name="ItemDisplay" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1027.0
+offset_top = 15.0
+offset_right = 1037.0
+offset_bottom = 25.0
+scale = Vector2(12.371283, 13.065289)
+texture = ExtResource("2_00r74")
+expand_mode = 1
+
+[node name="ItemDisplay2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -35.0
+offset_top = 8.0
+offset_right = -25.0
+offset_bottom = 18.0
+scale = Vector2(12.371283, 13.065289)
+texture = ExtResource("2_f4pa3")
+expand_mode = 1
+
+[node name="ObjectiveLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 51.999996
+offset_top = 47.0
+offset_right = 627.0
+offset_bottom = 241.0
+scale = Vector2(0.25717095, 0.33392224)
+theme_override_fonts/font = ExtResource("3_jldal")
+theme_override_font_sizes/font_size = 18
+text = "Objective"
+label_settings = SubResource("LabelSettings_4lg62")
+vertical_alignment = 1
+
+[node name="tip" type="Label" parent="."]
+layout_mode = 0
+offset_left = 870.00006
+offset_top = 601.0
+offset_right = 2521.0002
+offset_bottom = 795.0
+scale = Vector2(0.16475177, 0.21392104)
+theme_override_fonts/font = ExtResource("3_jldal")
+theme_override_font_sizes/font_size = 18
+text = "Press Space for Ability"
+label_settings = SubResource("LabelSettings_4lg62")
+vertical_alignment = 1
+
+[node name="Icon" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 22.000002
+offset_right = 591.0
+offset_bottom = 216.0
+scale = Vector2(0.5371709, 0.69748664)
+theme_override_fonts/font = ExtResource("3_jldal")
+theme_override_font_sizes/font_size = 18
+text = "!"
+label_settings = SubResource("LabelSettings_4lg62")
+vertical_alignment = 1
+
+[node name="CounterLabel" type="Label" parent="."]
+texture_repeat = 1
+layout_mode = 0
+offset_left = 931.0
+offset_top = 49.0
+offset_right = 1256.0
+offset_bottom = 243.0
+scale = Vector2(0.32820007, 0.32820007)
+theme_override_fonts/font = ExtResource("3_jldal")
+theme_override_font_sizes/font_size = 18
+text = "0/0"
+label_settings = SubResource("LabelSettings_ume2u")
+vertical_alignment = 1
+text_direction = 1

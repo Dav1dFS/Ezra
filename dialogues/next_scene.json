@@ -1,0 +1,12 @@
+{
+	"dialogues": [
+		{
+	"condition": "default",
+	"mid_action": true,
+	"lines": [
+		{"speaker": "Frieda", "text": "Good, you are here, they already left."},
+		{"speaker": "Frieda", "text": "Lets get some rest."},
+		{"mid_action": "next_scene"}
+	]}
+	]
+}
