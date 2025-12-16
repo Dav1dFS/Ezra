@@ -47,8 +47,9 @@ func _ready():
 	flashlight_base_y = flashlight.position.y
 	current_direction = initial_direction as Direction
 	previous_position = global_position
+	player_detected=false
 	$DetectionArea.body_entered.connect(_on_detection_area_body_entered)
-
+	
 	dialogue_handler.load_dialogue_file(dialogue_file)
 
 	if "General" in self.name:
@@ -59,7 +60,16 @@ func _ready():
 		flashlight_bob_amount = 3.0
 		self.npc_name="General"
 		self.npc_portrait = "res://assets/character_sprites/guards_static/guard_biggg.png"
-
+	else:
+		match current_direction:
+			Direction.RIGHT:
+				spriteChar.play("iR")
+			Direction.LEFT:
+				spriteChar.play("iL")	
+			Direction.UP:
+				spriteChar.play("iU")
+			Direction.DOWN:
+				spriteChar.play("iD")
 	if is_moving:
 		_calculate_target_position()
 	else:
@@ -74,7 +84,15 @@ func _physics_process(delta: float) -> void:
 	if is_moving:
 		_process_movement(delta)
 	else:
-		spriteChar.stop()
+		match current_direction:
+			Direction.RIGHT:
+				spriteChar.play("iR")
+			Direction.LEFT:
+				spriteChar.play("iL")	
+			Direction.UP:
+				spriteChar.play("iU")
+			Direction.DOWN:
+				spriteChar.play("iD")
 
 	if not is_turning:
 		_update_state()
