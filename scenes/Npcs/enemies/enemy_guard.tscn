@@ -287,6 +287,7 @@ y_sort_enabled = true
 script = ExtResource("1_65c78")
 vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
 alert_color = Color(0.69411767, 0.05882353, 0.36862746, 0.36862746)
+movement_speed = 25.0
 
 [node name="Base" type="AnimatedSprite2D" parent="."]
 light_mask = 0
