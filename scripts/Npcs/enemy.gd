@@ -49,7 +49,7 @@ func _ready():
 	previous_position = global_position
 	player_detected=false
 	$DetectionArea.body_entered.connect(_on_detection_area_body_entered)
-	
+
 	dialogue_handler.load_dialogue_file(dialogue_file)
 
 	if "General" in self.name:
@@ -61,15 +61,16 @@ func _ready():
 		self.npc_name="General"
 		self.npc_portrait = "res://assets/character_sprites/guards_static/guard_biggg.png"
 	else:
-		match current_direction:
-			Direction.RIGHT:
-				spriteChar.play("iR")
-			Direction.LEFT:
-				spriteChar.play("iL")	
-			Direction.UP:
-				spriteChar.play("iU")
-			Direction.DOWN:
-				spriteChar.play("iD")
+		if not is_moving:
+			match current_direction:
+				Direction.RIGHT:
+					spriteChar.play("iR")
+				Direction.LEFT:
+					spriteChar.play("iL")	
+				Direction.UP:
+					spriteChar.play("iU")
+				Direction.DOWN:
+					spriteChar.play("iD")
 	if is_moving:
 		_calculate_target_position()
 	else:
@@ -83,16 +84,7 @@ func _physics_process(delta: float) -> void:
 
 	if is_moving:
 		_process_movement(delta)
-	else:
-		match current_direction:
-			Direction.RIGHT:
-				spriteChar.play("iR")
-			Direction.LEFT:
-				spriteChar.play("iL")	
-			Direction.UP:
-				spriteChar.play("iU")
-			Direction.DOWN:
-				spriteChar.play("iD")
+	
 
 	if not is_turning:
 		_update_state()
@@ -147,23 +139,42 @@ func _set_direction(dir: Direction):
 	_apply_visual_direction(dir)
 
 func _apply_visual_direction(dir: Direction):
-	match dir:
-		Direction.RIGHT:
-			spriteChar.play("wR")
-			vision_cone.rotation = -PI / 2
-			spriteChar.light_mask=~(1 << 0)
-		Direction.LEFT:
-			spriteChar.play("wL")
-			vision_cone.rotation = PI / 2
-			
-		Direction.UP:
-			spriteChar.play("wU")
-			vision_cone.rotation = PI
-			spriteChar.light_mask=~(1 << 0)
-		Direction.DOWN:
-			spriteChar.play("wD")
-			vision_cone.rotation = 0
-			spriteChar.light_mask=1
+	if is_moving:
+		match dir:
+			Direction.RIGHT:
+				spriteChar.play("wR")
+				vision_cone.rotation = -PI / 2
+				spriteChar.light_mask=~(1 << 0)
+			Direction.LEFT:
+				spriteChar.play("wL")
+				vision_cone.rotation = PI / 2
+				spriteChar.light_mask=1
+			Direction.UP:
+				spriteChar.play("wU")
+				vision_cone.rotation = PI
+				spriteChar.light_mask=~(1 << 0)
+			Direction.DOWN:
+				spriteChar.play("wD")
+				vision_cone.rotation = 0
+				spriteChar.light_mask=1
+	else:
+		match dir:
+			Direction.RIGHT:
+				spriteChar.play("iR")
+				vision_cone.rotation = -PI / 2
+				spriteChar.light_mask=~(1 << 0)
+			Direction.LEFT:
+				spriteChar.play("iL")
+				vision_cone.rotation = PI / 2
+				spriteChar.light_mask=1
+			Direction.UP:
+				spriteChar.play("iU")
+				vision_cone.rotation = PI
+				spriteChar.light_mask=~(1 << 0)
+			Direction.DOWN:
+				spriteChar.play("iD")
+				vision_cone.rotation = 0
+				spriteChar.light_mask=1
 			
 
 func _get_opposite_direction(dir: Direction) -> Direction:
@@ -245,7 +256,7 @@ func _update_state():
 			Direction.LEFT: visual_direction = Direction.RIGHT
 			Direction.UP: visual_direction = Direction.DOWN
 			Direction.DOWN: visual_direction = Direction.UP
-
+	
 	_apply_visual_direction(visual_direction)
 
 func _update_flashlight_bobbing(delta):

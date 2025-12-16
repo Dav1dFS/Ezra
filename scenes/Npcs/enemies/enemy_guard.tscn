@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://rq853mcdau80"]
+[gd_scene load_steps=61 format=3 uid="uid://rq853mcdau80"]
 
 [ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_65c78"]
 [ext_resource type="Texture2D" uid="uid://cyyt8r2cv0v4b" path="res://assets/animation_sheets/guardabluehat_idlecycle.png" id="2_aueeb"]
@@ -9,33 +9,17 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5y8db"]
 atlas = ExtResource("2_aueeb")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pwgnt"]
 atlas = ExtResource("2_aueeb")
-region = Rect2(96, 32, 32, 32)
+region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_47rk3"]
 atlas = ExtResource("2_aueeb")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_enbxs"]
-atlas = ExtResource("2_aueeb")
-region = Rect2(96, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8y00n"]
-atlas = ExtResource("2_aueeb")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ved0e"]
-atlas = ExtResource("2_aueeb")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_efs3r"]
-atlas = ExtResource("2_aueeb")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jrq3f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_enbxs"]
 atlas = ExtResource("2_aueeb")
 region = Rect2(0, 96, 32, 32)
 
@@ -234,18 +218,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_enbxs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8y00n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ved0e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_efs3r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jrq3f")
 }],
 "loop": true,
 "name": &"iD",
@@ -455,7 +427,7 @@ light_mask = 0
 y_sort_enabled = true
 position = Vector2(0, -6.3699455)
 sprite_frames = SubResource("SpriteFrames_5y8db")
-animation = &"iU"
+animation = &"wU"
 
 [node name="FlashlightBob" type="Node2D" parent="."]
 position = Vector2(0.217, 1.445055)
