@@ -36,7 +36,7 @@ position = Vector2(4525.275, 2355.4363)
 position = Vector2(5141, 1557)
 
 [node name="Player" parent="." instance=ExtResource("3_l7v7i")]
-position = Vector2(5117, 1578)
+position = Vector2(4903, 1744)
 
 [node name="Enemy" parent="." instance=ExtResource("4_w2lpk")]
 position = Vector2(4869, 1672)

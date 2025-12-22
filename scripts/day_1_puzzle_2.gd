@@ -45,7 +45,8 @@ func on_checkpoint():
 	_set_npc_interactable(frieda_npc, false)
 	_set_npc_interactable(next_scene_npc, true)
 	player.changeObjective("Go hide in the dorms")
-	player.update_inventory(load("res://items/cookie.tres"))
+	player.update_inventory(load("res://items/Cookie.tres"))
+	
 	dialogue_box.continue_after_action()
 
 func _action_next_scene():
