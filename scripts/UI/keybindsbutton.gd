@@ -20,6 +20,7 @@ const DEFAULT_KEYS := {
 func _ready():
 	if not all_buttons.has(self):
 		all_buttons.append(self)
+	_load_keybind()
 	_update_label_text()
 
 func _pressed():
@@ -46,6 +47,9 @@ func _input(event):
 
 		InputMap.action_erase_events(action_name)
 		InputMap.action_add_event(action_name, event)
+
+		SettingsManager.save_keybind(action_name, event)
+		SettingsManager.save_settings()
 
 		_update_label_text()
 		is_remapping = false
@@ -78,13 +82,25 @@ func _is_duplicate(key_text: String) -> bool:
 		if other_text == key_text:
 			return true
 	return false
-	
+
+func _load_keybind():
+	# Try to load saved keybind
+	var saved_event = SettingsManager.load_keybind(action_name)
+	if saved_event != null:
+		InputMap.action_erase_events(action_name)
+		InputMap.action_add_event(action_name, saved_event)
+
 static func reset_to_defaults():
 	for action in DEFAULT_KEYS.keys():
 		InputMap.action_erase_events(action)
 		var ev := InputEventKey.new()
 		ev.physical_keycode = DEFAULT_KEYS[action]
 		InputMap.action_add_event(action, ev)
+		# Save default keybind
+		SettingsManager.save_keybind(action, ev)
+
+	# Save all keybinds to file
+	SettingsManager.save_settings()
 
 	for b in all_buttons:
 		b._update_label_text()

@@ -10,7 +10,7 @@ extends VBoxContainer
 @onready var fps_label = get_tree().get_root().find_child("FPSLabel", true, false)
 
 var display_modes = ["Windowed", "Fullscreen", "Borderless"]
-var resolutions = ["1152x648", "1280x720", "1600x900", "1920x1080"]
+var resolutions = []
 
 const DEFAULT_DISPLAY_MODE = "Windowed"
 const DEFAULT_RESOLUTION = "1152x648"
@@ -31,6 +31,8 @@ var _pending_fps          := _applied_fps
 var _pending_show_fps     := _applied_show_fps
 
 func _ready():
+	_generate_resolutions()
+
 	display_mode_row.set_options(display_modes)
 	display_mode_row.value_changed.connect(_on_display_mode_changed)
 
@@ -42,6 +44,10 @@ func _ready():
 	show_fps_row.toggled_show_fps.connect(_on_toggled_show_fps)
 
 	set_process(true)
+
+	_load_settings()
+
+	get_tree().get_root().size_changed.connect(_on_window_size_changed)
 
 func _on_display_mode_changed(value: String):
 	_pending_display_mode = value
@@ -77,6 +83,17 @@ func _on_fps_changed(value: int):
 func _on_toggled_show_fps(enabled: bool):
 	_pending_show_fps = enabled
 
+func _on_window_size_changed():
+	var current_size = DisplayServer.window_get_size()
+	var resolution_str = str(current_size.x) + "x" + str(current_size.y)
+
+	var current_mode = DisplayServer.window_get_mode()
+	if current_mode == DisplayServer.WINDOW_MODE_WINDOWED:
+		if resolutions.has(resolution_str):
+			resolution_row.set_value(resolution_str)
+			_pending_resolution = resolution_str
+			_applied_resolution = resolution_str
+
 func _process(_delta: float):
 	UIUtils.update_fps_label(fps_label)
 
@@ -88,6 +105,7 @@ func _on_apply_pressed():
 		_pending_fps,
 		_pending_show_fps
 	)
+	_save_settings()
 
 func _on_reset_pressed():
 	display_mode_row.set_value(DEFAULT_DISPLAY_MODE)
@@ -116,14 +134,21 @@ func _apply_settings(display_mode: String, resolution: String, gamma: float, fps
 		"Windowed":
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			_apply_resolution_string(resolution)
 		"Fullscreen":
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			# Fullscreen always uses native screen resolution
+			var current_screen = DisplayServer.window_get_current_screen()
+			var screen_size = DisplayServer.screen_get_size(current_screen)
+			DisplayServer.window_set_size(screen_size)
 		"Borderless":
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-			DisplayServer.window_set_size(DisplayServer.screen_get_size())
-
-	_apply_resolution_string(resolution)
+			var current_screen = DisplayServer.window_get_current_screen()
+			var screen_size = DisplayServer.screen_get_size(current_screen)
+			var screen_pos = DisplayServer.screen_get_position(current_screen)
+			DisplayServer.window_set_size(screen_size)
+			DisplayServer.window_set_position(screen_pos)
 	
 	if gamma_overlay:
 		var mat: ShaderMaterial = gamma_overlay.material as ShaderMaterial
@@ -154,3 +179,50 @@ func _apply_resolution_string(value: String):
 		DisplayServer.window_set_size(win_size)
 		var screen_center = DisplayServer.screen_get_size() / 2 - win_size / 2
 		DisplayServer.window_set_position(screen_center)
+
+func _generate_resolutions():
+	var screen_size = DisplayServer.screen_get_size()
+	var base_resolutions = [
+		Vector2i(1152, 648),
+		Vector2i(1280, 720),
+		Vector2i(1600, 900),
+		Vector2i(1920, 1080),
+		Vector2i(2560, 1440),
+		Vector2i(3840, 2160)
+	]
+
+	resolutions.clear()
+	for res in base_resolutions:
+		if res.x <= screen_size.x and res.y <= screen_size.y:
+			resolutions.append(str(res.x) + "x" + str(res.y))
+
+	var screen_res_str = str(screen_size.x) + "x" + str(screen_size.y)
+	if not resolutions.has(screen_res_str):
+		resolutions.append(screen_res_str)
+
+	if resolutions.size() == 0:
+		resolutions.append(DEFAULT_RESOLUTION)
+
+func _load_settings():
+	var saved_display_mode = SettingsManager.get_display_mode(DEFAULT_DISPLAY_MODE)
+	var saved_resolution = SettingsManager.get_resolution(DEFAULT_RESOLUTION)
+	var saved_gamma = SettingsManager.get_gamma(DEFAULT_GAMMA)
+	var saved_fps = SettingsManager.get_max_fps(DEFAULT_FPS)
+	var saved_show_fps = SettingsManager.get_show_fps(DEFAULT_SHOW_FPS)
+
+	display_mode_row.set_value(saved_display_mode)
+	resolution_row.set_value(saved_resolution)
+	gamma_row.set_value(saved_gamma)
+	max_fps_row.set_value(saved_fps)
+	show_fps_row.set_checked(saved_show_fps)
+
+	_apply_settings(saved_display_mode, saved_resolution, saved_gamma, saved_fps, saved_show_fps)
+	_on_display_mode_changed(saved_display_mode)
+
+func _save_settings():
+	SettingsManager.set_display_mode(_applied_display_mode)
+	SettingsManager.set_resolution(_applied_resolution)
+	SettingsManager.set_gamma(_applied_gamma)
+	SettingsManager.set_max_fps(_applied_fps)
+	SettingsManager.set_show_fps(_applied_show_fps)
+	SettingsManager.save_settings()
