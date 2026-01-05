@@ -12,11 +12,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_slthy"]
 shader = ExtResource("4_rgmlj")
-shader_parameter/gamma = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_73e60"]
 shader = ExtResource("2_avwb0")
-shader_parameter/blur = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3m1qe"]
 content_margin_left = 25.0

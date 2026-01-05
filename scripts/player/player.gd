@@ -5,7 +5,7 @@ var SPEED = 70.0
 @export var character_name: String =""
 @export var show_counter: bool = true
 @export var inv: Inventory
-@export var camera_lookahead_distance: float = 50.0
+@export var camera_lookahead_distance: float = 36.0
 @export var camera_lookahead_speed: float = 1.0
 
 @onready var cam: Camera2D = get_node("Camera2D")
