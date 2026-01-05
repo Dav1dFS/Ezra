@@ -17,8 +17,8 @@ limit_left = -169
 limit_top = -221
 limit_right = 210
 limit_bottom = 0
-limit_smoothed = true
-position_smoothing_speed = 8.0
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
 
 [node name="GUI" type="CanvasLayer" parent="."]
 

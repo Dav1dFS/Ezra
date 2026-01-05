@@ -2,18 +2,21 @@ extends CharacterBody2D
 
 var SPEED = 70.0
 
-
-@export var inv: Inventory
+@export var character_name: String =""
 @export var show_counter: bool = true
+@export var inv: Inventory
+@export var camera_lookahead_distance: float = 50.0
+@export var camera_lookahead_speed: float = 1.0
+
 @onready var cam: Camera2D = get_node("Camera2D")
 @onready var sprite: AnimatedSprite2D = $Base
 @onready var pause_menu = $PauseLayer/PauseMenu
 @onready var objective: Control = $GUI/Objective
 @onready var inventory = $GUI/Inventory
 
-@export var character_name: String =""
 
 enum Direction { RIGHT, LEFT, UP, DOWN }
+var camera_offset: Vector2 = Vector2.ZERO
 var current_direction: Direction = Direction.DOWN
 var last_movement_direction: Vector2 = Vector2.ZERO
 var is_ability_active: bool = false
@@ -115,7 +118,7 @@ func _physics_process(_delta):
 	var target_velocity = direction * SPEED
 
 	velocity = velocity.lerp(target_velocity, 0.2)
-	
+
 	if direction != Vector2.ZERO:
 		update_sprite_direction(direction)
 	else:
@@ -123,6 +126,21 @@ func _physics_process(_delta):
 			if base_anims.has(current_direction):
 				sprite.play(def_anims[current_direction])
 	move_and_slide()
+
+	# Update camera look-ahead
+	update_camera_lookahead(direction, _delta)
+
+func update_camera_lookahead(direction: Vector2, delta: float):
+	# Calculate target offset based on movement direction
+	var target_offset = Vector2.ZERO
+	if direction != Vector2.ZERO:
+		target_offset = direction.normalized() * camera_lookahead_distance
+
+	# Smoothly interpolate current offset to target offset
+	camera_offset = camera_offset.lerp(target_offset, camera_lookahead_speed * delta)
+
+	# Apply offset to camera
+	cam.position = camera_offset
 
 func can_update_animations() -> bool:
 	return true
