@@ -19,6 +19,8 @@ var _pending_music := DEFAULT_MUSIC
 
 func _ready():
 	master_row.volume_changed.connect(_on_master_volume_changed)
+	sfx_row.volume_changed.connect(_on_sfx_volume_changed)
+	music_row.volume_changed.connect(_on_music_volume_changed)
 
 func _on_master_volume_changed(value: float):
 	_pending_master = value

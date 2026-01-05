@@ -1,13 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://dipv4awjcdp11"]
+[gd_scene load_steps=23 format=3 uid="uid://coeya6u2db1vb"]
 
-[ext_resource type="Script" path="res://scripts/UI/buttons.gd" id="1_hat0o"]
+[ext_resource type="Script" uid="uid://cfaqs65xqthbw" path="res://scripts/UI/buttons.gd" id="1_hat0o"]
 [ext_resource type="Script" uid="uid://d0446chgpirol" path="res://scripts/UI/settings.gd" id="1_ok1u1"]
 [ext_resource type="Script" uid="uid://cyl2fmspfqmxq" path="res://scripts/UI/video_settings.gd" id="2_ok1u1"]
 [ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="2_vvtyw"]
 [ext_resource type="Script" uid="uid://dau2hy5t7x86e" path="res://scripts/UI/settings_row.gd" id="3_vvtyw"]
 [ext_resource type="Script" uid="uid://cqsb75t06vwua" path="res://scripts/UI/gamma_row.gd" id="4_u04k5"]
 [ext_resource type="Script" uid="uid://d1hl1qcdamjmj" path="res://scripts/UI/max_fps.gd" id="5_myod3"]
-[ext_resource type="Script" path="res://scripts/UI/show_fps.gd" id="6_ykg1i"]
+[ext_resource type="Script" uid="uid://c28a0fjdfkj1c" path="res://scripts/UI/show_fps.gd" id="6_ykg1i"]
 [ext_resource type="Script" uid="uid://calewk3ki3qxl" path="res://scripts/UI/audio_settings.gd" id="7_ao8i7"]
 [ext_resource type="Script" uid="uid://b176bl2hqibnn" path="res://scripts/UI/volume_rows.gd" id="8_o2io1"]
 [ext_resource type="Script" uid="uid://ben00aqlbg7a7" path="res://scripts/UI/keybindsbutton.gd" id="9_oh65a"]
@@ -32,6 +32,15 @@ content_margin_left = 30.0
 content_margin_top = 7.0
 content_margin_bottom = 7.0
 bg_color = Color(0, 0, 0, 0.68235296)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvtyw"]
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(1, 0.68891066, 0.8700762, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erh6y"]
 content_margin_left = 20.0
@@ -152,7 +161,6 @@ expand_icon = true
 script = ExtResource("1_hat0o")
 
 [node name="VideoSettingsColumn" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.321
@@ -492,6 +500,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_h8lgl")
 text = "Apply"
 
 [node name="ControlsColumn" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.321
@@ -838,12 +847,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vvtyw")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_erh6y")
 text = "Reset"
-
-[node name="Apply" type="Button" parent="ControlsColumn/BottomGroup/ResetApplyRow"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_styles/normal = SubResource("StyleBoxFlat_h8lgl")
-text = "Apply"
 
 [connection signal="pressed" from="MiddleColumn/TopGroup/VideoSettings" to="." method="_on_video_settings_pressed"]
 [connection signal="pressed" from="MiddleColumn/TopGroup/AudioSettings" to="." method="_on_audio_settings_pressed"]
