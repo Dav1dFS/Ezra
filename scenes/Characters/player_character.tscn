@@ -32,7 +32,7 @@ scale = Vector2(3.3036156, 3.3036156)
 [node name="Objective" parent="GUI" instance=ExtResource("4_hfyxy")]
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
-layer = 100
+layer = 128
 
 [node name="PauseMenu" parent="PauseLayer" instance=ExtResource("5_hfyxy")]
 visible = false

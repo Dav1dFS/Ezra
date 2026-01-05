@@ -4,25 +4,25 @@
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/main_map.tscn" id="2_4ov1t"]
 [ext_resource type="PackedScene" uid="uid://bcqh0tgm5hj1m" path="res://scenes/gameplay/audioBack.tscn" id="2_qoxao"]
 [ext_resource type="AudioStream" uid="uid://5vnaf6f0xwdi" path="res://assets/audios/creepy_ambient.mp3" id="3_dcukc"]
-[ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/Dialogue/Memory.tscn" id="3_u6i4i"]
+[ext_resource type="PackedScene" uid="uid://kt8tr1617icm" path="res://scenes/dialogue/Memory.tscn" id="3_u6i4i"]
 [ext_resource type="PackedScene" uid="uid://cbyffikw81yby" path="res://scenes/UI/footprints.tscn" id="4_i0mio"]
-[ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="4_t5b4k"]
-[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_3fgql"]
-[ext_resource type="PackedScene" uid="uid://br3gpnhtkafbd" path="res://scenes/Npcs/friendly/characters/ellen_npc.tscn" id="7_4ov1t"]
+[ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/characters/ezra_character.tscn" id="4_t5b4k"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_3fgql"]
+[ext_resource type="PackedScene" uid="uid://br3gpnhtkafbd" path="res://scenes/npcs/friendly/characters/ellen_npc.tscn" id="7_4ov1t"]
 [ext_resource type="Shader" uid="uid://cku83md4wcs5r" path="res://scripts/shaders/memory_halo.gdshader" id="7_lsjfn"]
-[ext_resource type="PackedScene" uid="uid://cg8nkwvp2h5y1" path="res://scenes/Npcs/effects/npc_glow.tscn" id="9_glow"]
-[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/Npcs/friendly/characters/frieda_npc.tscn" id="9_t5b4k"]
-[ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/Npcs/frieda_npc.gd" id="10_3fgql"]
+[ext_resource type="PackedScene" uid="uid://cg8nkwvp2h5y1" path="res://scenes/npcs/effects/npc_glow.tscn" id="9_glow"]
+[ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/npcs/friendly/characters/frieda_npc.tscn" id="9_t5b4k"]
+[ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/npcs/frieda_npc.gd" id="10_3fgql"]
 [ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="10_lsjfn"]
 [ext_resource type="Texture2D" uid="uid://cd85becst2y5y" path="res://assets/grey_circle.png" id="11_jcha6"]
 [ext_resource type="Script" uid="uid://dbquasdj2kuv6" path="res://scripts/fog_wall.gd" id="12_bqncc"]
 [ext_resource type="Shader" uid="uid://cat5w6srnl8nt" path="res://scripts/shaders/fog.gdshader" id="12_jcha6"]
 [ext_resource type="FontFile" uid="uid://dyj1vdec1wq05" path="res://assets/fonts/Deutsch.ttf" id="14_ycewm"]
 [ext_resource type="Texture2D" uid="uid://cq8vyxdfyjkw1" path="res://assets/animation_sheets/prisioneiros_dormir1.png" id="19_qoxao"]
-[ext_resource type="PackedScene" uid="uid://cx5x45xpimkr6" path="res://scenes/Npcs/enemies/dog.tscn" id="20_8midk"]
-[ext_resource type="PackedScene" uid="uid://dhetuapm0eojt" path="res://scenes/Npcs/enemies/sleeping_guard.tscn" id="21_dcukc"]
+[ext_resource type="PackedScene" uid="uid://cx5x45xpimkr6" path="res://scenes/npcs/enemies/dog.tscn" id="20_8midk"]
+[ext_resource type="PackedScene" uid="uid://dhetuapm0eojt" path="res://scenes/npcs/enemies/sleeping_guard.tscn" id="21_dcukc"]
 [ext_resource type="Texture2D" uid="uid://0tbg0uq8he8u" path="res://assets/animation_sheets/prisioneiros_dormir3.png" id="21_ycewm"]
-[ext_resource type="Script" uid="uid://coetcysixuife" path="res://scripts/phasing_walls.gd" id="25_wwh6r"]
+[ext_resource type="Script" path="res://scripts/phasing_walls.gd" id="25_wwh6r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qoxao"]
 shader = ExtResource("7_lsjfn")
@@ -260,8 +260,8 @@ script = ExtResource("1_bqncc")
 
 [node name="BackGround" parent="." instance=ExtResource("2_qoxao")]
 stream = ExtResource("3_dcukc")
-volume_db = -5.0
 pitch_scale = 1.03
+parameters/looping = true
 
 [node name="MainMap" parent="." instance=ExtResource("2_4ov1t")]
 
@@ -360,11 +360,6 @@ footprint_scene = ExtResource("4_i0mio")
 footprints_step_distance = 30.0
 target_npc = NodePath("../Frieda")
 footprint_side_offset = 3.0
-ability_duration_normal = 6.0
-ability_cooldown_normal = 10.0
-ability_duration_penalized = 3.0
-ability_cooldown_penalized = 20.0
-dog_alert_penalty_duration = 60.0
 character_name = ""
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_3fgql")]
