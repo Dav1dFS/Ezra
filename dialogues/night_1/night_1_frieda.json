@@ -5,24 +5,21 @@
 			"mid_action": false,
 			"lines": [
 				{"speaker": "Frieda", "text": "I just had the craziest dream..."},
-				{"speaker": "Frieda", "text": "It's very cold... i'm having a hard time falling back to sleep."},
+				{"speaker": "Frieda", "text": "It's very cold... I'm having a hard time falling back to sleep."},
 				{"speaker": "Ezra", "text": "So, this is Frieda.. what kind of person is she?"},
 				{"speaker": "Ezra", "text": "I should look around for some clues."}
 			]
-		},
-		{
+		},{
 			"condition": "all_collected",
 			"mid_action": false,
 			"lines": [
 				{"speaker": "Ezra", "text": "Oh well... Here goes nothing!"}
 			]
-		},
-		{
+		},{
 			"condition": "repetition",
 			"mid_action": false,
 			"lines": [
-				{"speaker": "Ezra", "text": "Hmm, i feel like something's missing, i should go
-				look for more clues."}
+				{"speaker": "Ezra", "text": "Hmm, I feel like something's missing, I should go look for more clues."}
 			]
 		}
 	]

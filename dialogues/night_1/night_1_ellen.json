@@ -10,8 +10,7 @@
 				{"speaker": "Ezra", "text": "I need to work with this Frieda lady"},
 				{"speaker": "Ezra", "text": "She could be the key to saving Ellen"}
 			]
-		},
-		{
+		},{
 			"condition": "repetition",
 			"mid_action": false,
 			"lines": [

@@ -1,62 +1,51 @@
 {
-  "dialogues": [
-	{
-	  "condition": "collected == 1",
-	  "mid_action": false,
-	  "lines": [
-		{"speaker": "Woman", "text": "You don't even know me. Why are you being so kind?"},
-		{"speaker": "Frieda", "text": "Kindness doesn't require certainty. Only choice."},
-		{"speaker": "Woman", "text": "And what do you see in my future?"},
-		{"speaker": "Frieda", "text": "A storm you survive. Not because you are strong... but because
-		someone will stand by your side."},
-		{"speaker": "Woman", "text": "Who?"},
-		{"speaker": "Frieda", "text": "That is up to you."},
-		{"speaker": "Ezra", "text": "So, Frieda did work as a public seer... but instead of predicting
-		destiny, she tried to give people courage."},
-		{"speaker": "Ezra", "text": "Not what i expected. Hmm, i should learn more about her"}
-	  ]
-	},
-	{
-	  "condition": "collected == 2",
-	  "mid_action": false,
-	  "lines": [
-		{"speaker": "Panicked Villager", "text": "They'll kill them Frieda! Please, don't go near the soldiers!"},
-		{"speaker": "Frieda", "text": "I can't stay hidden while others die."},
-		{"speaker": "Panicked Villager", "text": "But you'll die too!"},
-		{"speaker": "Frieda", "text": "So be it! Maybe, just maybe, they'll listen if someone steps
-		forward unarmed."},
-		{"speaker": "Panicked Villager", "text": "You're insane."},
-		{"speaker": "Frieda", "text": "I guess i am."},
-		{"speaker": "Ezra", "text": "This seems to be during a riot... when she stopped innocent
-		women from being executed."},
-		{"speaker": "Ezra", "text": "She stepped in without hesitation. That kind of bravery isn't
-		common."},
-		{"speaker": "Ezra", "text": "I need to understand who she really was."}
-	  ]
-	},
-	{
-	  "condition": "collected >= 3",
-	  "mid_action": false,
-	  "lines": [
-		{"speaker": "Child", "text": "Lady Frieda, why do you tell us stories when you're tired?"},
-		{"speaker": "Frieda", "text": "Because you need them more than i need sleep."},
-		{"speaker": "Child", "text": "Do you think we'll ever be safe?"},
-		{"speaker": "Frieda", "text": "Yes sweetheart. One day. And when that day comes... i want
-		to build a home where fear doesn't reach you."},
-		{"speaker": "Child", "text": "Does a place like that actually exist?"},
-		{"speaker": "Frieda", "text": "It will. I promise."},
-		{"speaker": "Ezra", "text": "So, she really cared for the children at the camp... enough to
-		dream of giving them a future."},
-		{"speaker": "Ezra", "text": "This isn't the past of a cruel woman. There's more to Frieda than
-		the rumours."}
-	  ]
-	},
-	{
-	  "condition": "default",
-	  "mid_action": false,
-	  "lines": [
-		{"speaker": null, "text": ""}
-	  ]
-	}
-  ]
+  	"dialogues": [
+		{
+			"condition": "collected == 1",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Woman", "text": "You don't even know me. Why are you being so kind?"},
+				{"speaker": "Frieda", "text": "Kindness doesn't require certainty. Only choice."},
+				{"speaker": "Woman", "text": "And what do you see in my future?"},
+				{"speaker": "Frieda", "text": "A storm you survive. Not because you are strong... but because someone will stand by your side."},
+				{"speaker": "Woman", "text": "Who?"},
+				{"speaker": "Frieda", "text": "That is up to you."},
+				{"speaker": "Ezra", "text": "So, Frieda did work as a public seer... but instead of predicting destiny, she tried to give people courage."},
+				{"speaker": "Ezra", "text": "Not what I expected. Hmm, I should learn more about her"}
+			]
+		},{
+			"condition": "collected == 2",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Panicked Villager", "text": "They'll kill them Frieda! Please, don't go near the soldiers!"},
+				{"speaker": "Frieda", "text": "I can't stay hidden while others die."},
+				{"speaker": "Panicked Villager", "text": "But you'll die too!"},
+				{"speaker": "Frieda", "text": "So be it! Maybe, just maybe, they'll listen if someone steps forward unarmed."},
+				{"speaker": "Panicked Villager", "text": "You're insane."},
+				{"speaker": "Frieda", "text": "I guess I am."},
+				{"speaker": "Ezra", "text": "This seems to be during a riot... when she stopped innocent women from being executed."},
+				{"speaker": "Ezra", "text": "She stepped in without hesitation. That kind of bravery isn't common."},
+				{"speaker": "Ezra", "text": "I need to understand who she really was."}
+			]
+		},{
+			"condition": "collected >= 3",
+			"mid_action": false,
+			"lines": [
+				{"speaker": "Child", "text": "Lady Frieda, why do you tell us stories when you're tired?"},
+				{"speaker": "Frieda", "text": "Because you need them more than I need sleep."},
+				{"speaker": "Child", "text": "Do you think we'll ever be safe?"},
+				{"speaker": "Frieda", "text": "Yes sweetheart. One day. And when that day comes... I want to build a home where fear doesn't reach you."},
+				{"speaker": "Child", "text": "Does a place like that actually exist?"},
+				{"speaker": "Frieda", "text": "It will. I promise."},
+				{"speaker": "Ezra", "text": "So, she really cared for the children at the camp... enough to dream of giving them a future."},
+				{"speaker": "Ezra", "text": "This isn't the past of a cruel woman. There's more to Frieda than the rumours."}
+			]
+		},{
+			"condition": "default",
+			"mid_action": false,
+			"lines": [
+				{"speaker": null, "text": ""}
+			]
+		}
+	]
 }

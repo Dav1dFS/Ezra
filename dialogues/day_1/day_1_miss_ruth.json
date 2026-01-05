@@ -21,8 +21,7 @@
 				{"speaker": "Miss Ruth", "text": "For now, keep hiding in the women's dorm room."},
 				{"mid_action": "checkpoint"}
 			]
-		},
-		{
+		},{
 			"condition": "repetition",
 			"mid_action": false,
 			"lines": [

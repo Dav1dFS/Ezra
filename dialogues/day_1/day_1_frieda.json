@@ -4,7 +4,6 @@
 			"condition": "default",
 			"mid_action": false,
 			"lines": [
-				{"speaker": "Ellen", "text": "Thank you, Lady. Thank you so much."},
 				{"speaker": "Frieda", "text": "You look so bad, sweet girl."},
 				{"speaker": "Frieda", "text": "Find Miss Ruth, she will take good care of you."},
 				{"speaker": "Frieda", "text": "She might be at the gates at the top of this section."},
@@ -13,8 +12,7 @@
 				{"speaker": "Frieda", "text": "Frieda, call me Frieda. You can do it, sweetie."},
 				{"speaker": "Ezra", "text": "Ellen is going to need my help."}
 			]
-		},
-		{
+		},{
 			"condition": "repetition",
 			"mid_action": false,
 			"lines": [

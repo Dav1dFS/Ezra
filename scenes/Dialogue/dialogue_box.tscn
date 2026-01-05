@@ -35,7 +35,9 @@ theme_override_font_sizes/font_size = 30
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 127.0
-offset_top = 551.0
-offset_right = 167.0
-offset_bottom = 574.0
+offset_top = 535.0
+offset_right = 1050.0
+offset_bottom = 625.0
 theme_override_font_sizes/font_size = 30
+autowrap_mode = 3
+vertical_alignment = 1
