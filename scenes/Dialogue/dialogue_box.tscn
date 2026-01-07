@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bi1nsful0mdq5" path="res://scripts/Dialogue/dialogue_box.gd" id="1_2k12t"]
 
 [node name="Dialogue Box" type="CanvasLayer"]
+process_mode = 1
 visible = false
 script = ExtResource("1_2k12t")
 
@@ -12,6 +13,7 @@ offset_top = 477.0
 offset_right = 140.0
 offset_bottom = 517.0
 scale = Vector2(24.465757, 3.9400332)
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 92.0
@@ -25,6 +27,7 @@ flip_h = true
 [node name="Button" type="Button" parent="."]
 offset_right = 8.0
 offset_bottom = 8.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="."]
 offset_left = 124.0
@@ -35,7 +38,9 @@ theme_override_font_sizes/font_size = 30
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 127.0
-offset_top = 551.0
-offset_right = 167.0
-offset_bottom = 574.0
+offset_top = 535.0
+offset_right = 1050.0
+offset_bottom = 625.0
 theme_override_font_sizes/font_size = 30
+autowrap_mode = 3
+vertical_alignment = 1

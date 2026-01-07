@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dyj1vdec1wq05" path="res://assets/fonts/Deutsch.ttf" id="2_ervmp"]
 
 [node name="CutsceneController" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_script")
 
 [node name="CutsceneCamera2D" type="Camera2D" parent="."]
@@ -19,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="TransitionLabel" type="Label" parent="CutsceneUI"]

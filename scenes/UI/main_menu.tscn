@@ -30,7 +30,6 @@ shader_parameter/density = 0.6000000285
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b1p1q"]
 shader = ExtResource("2_3h7gc")
-shader_parameter/gamma = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7yn2"]
 content_margin_left = 25.0

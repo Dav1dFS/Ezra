@@ -12,8 +12,7 @@
 				{"speaker": "Ellen", "text": "General?"},
 				{"speaker": "Lilah", "text": "Yes, his eyes are very sharp, he is up ahead!"}
 			]
-		},
-		{
+		},{
 			"condition": "repetition",
 			"mid_action": false,
 			"lines": [

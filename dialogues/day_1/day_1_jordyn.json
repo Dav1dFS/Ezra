@@ -11,8 +11,7 @@
 				{"speaker": "Ellen", "text": "..."},
 				{"speaker": "Woman", "text": "Judge all you want. It's still better than water soup."}
 			]
-		},
-		{
+		},{
 			"condition": "repetition",
 			"mid_action": false,
 			"lines": [

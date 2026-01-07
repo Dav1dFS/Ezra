@@ -19,6 +19,10 @@ var _pending_music := DEFAULT_MUSIC
 
 func _ready():
 	master_row.volume_changed.connect(_on_master_volume_changed)
+	sfx_row.volume_changed.connect(_on_sfx_volume_changed)
+	music_row.volume_changed.connect(_on_music_volume_changed)
+
+	_load_settings()
 
 func _on_master_volume_changed(value: float):
 	_pending_master = value
@@ -31,6 +35,7 @@ func _on_music_volume_changed(value: float):
 
 func _on_apply_pressed():
 	_apply_settings(_pending_master, _pending_sfx, _pending_music)
+	_save_settings()
 
 func _on_reset_pressed():
 	master_row.set_value(DEFAULT_MASTER)
@@ -67,3 +72,20 @@ func percent_to_db(percent: float) -> float:
 	if percent <= 0.0:
 		return -80.0
 	return 20.0 * log(percent / 100.0) / log(10.0)
+
+func _load_settings():
+	var saved_master = SettingsManager.get_master_volume(DEFAULT_MASTER)
+	var saved_sfx = SettingsManager.get_sfx_volume(DEFAULT_SFX)
+	var saved_music = SettingsManager.get_music_volume(DEFAULT_MUSIC)
+
+	master_row.set_value(saved_master)
+	sfx_row.set_value(saved_sfx)
+	music_row.set_value(saved_music)
+
+	_apply_settings(saved_master, saved_sfx, saved_music)
+
+func _save_settings():
+	SettingsManager.set_master_volume(_applied_master)
+	SettingsManager.set_sfx_volume(_applied_sfx)
+	SettingsManager.set_music_volume(_applied_music)
+	SettingsManager.save_settings()

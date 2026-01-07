@@ -20,6 +20,7 @@ config/icon="uid://cnwfcuulqro1h"
 
 Gamestate="*res://scripts/gamestate.gd"
 SaveManager="*res://scripts/save_manager.gd"
+SettingsManager="*res://scripts/settings_manager.gd"
 
 [display]
 
