@@ -5,6 +5,7 @@ extends Control
 @onready var saving_options = $SavingOptions
 
 func _ready():
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$AnimatedSprite2D.play()
 
