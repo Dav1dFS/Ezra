@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c03hl6oioh6jb"
-path="res://.godot/imported/ezra_ability.png-a643a25c6b10d23d14fc88f3a6e9f808.ctex"
+path="res://.godot/imported/ezra_ability_track.png-dc6aec1233e0f68887613e058aa3851b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilities/ezra_ability.png"
-dest_files=["res://.godot/imported/ezra_ability.png-a643a25c6b10d23d14fc88f3a6e9f808.ctex"]
+source_file="res://assets/abilities/ezra_ability_track.png"
+dest_files=["res://.godot/imported/ezra_ability_track.png-dc6aec1233e0f68887613e058aa3851b.ctex"]
 
 [params]
 
