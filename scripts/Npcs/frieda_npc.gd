@@ -1,4 +1,4 @@
-extends "res://scripts/Npcs/general_talkable_npc.gd"
+extends "res://scripts/npcs/general_talkable_npc.gd"
 
 @onready var ability_label: Label = $PlayerAbilityLabel
 @onready var ability_progress: TextureProgressBar = $AbilityProgress

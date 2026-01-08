@@ -1,10 +1,10 @@
 [gd_scene load_steps=61 format=3 uid="uid://rq853mcdau80"]
 
-[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_65c78"]
+[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/npcs/enemy.gd" id="1_65c78"]
 [ext_resource type="Texture2D" uid="uid://cyyt8r2cv0v4b" path="res://assets/animation_sheets/guardabluehat_idlecycle.png" id="2_aueeb"]
 [ext_resource type="Texture2D" uid="uid://pck7l37hfvh6" path="res://assets/animation_sheets/gaurdabluehat_sheet.png" id="2_oipbc"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_jnxau"]
-[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_movement"]
+[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/npcs/movement_editor_helper.gd" id="4_movement"]
 [ext_resource type="AudioStream" uid="uid://u5oyfwfb7d7v" path="res://assets/audios/referee-whistle-coach-whistle-sports-whistle-291816.mp3" id="5_oipbc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5y8db"]
