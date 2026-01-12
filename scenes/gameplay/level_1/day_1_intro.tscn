@@ -43,11 +43,6 @@ position = Vector2(4889, 2252)
 [node name="Player" parent="." instance=ExtResource("4_71j44")]
 position = Vector2(4785, 2296)
 collision_layer = 3
-ability_duration_normal = 6.0
-ability_cooldown_normal = 10.0
-ability_duration_penalized = 3.0
-ability_cooldown_penalized = 20.0
-dog_alert_penalty_duration = 60.0
 
 [node name="EllenNPC" parent="." instance=ExtResource("5_282ja")]
 position = Vector2(4845, 2304)
@@ -74,4 +69,5 @@ cutscene_flag_name = "night_1_intro"
 
 [node name="General" parent="." instance=ExtResource("9_ydfot")]
 position = Vector2(4813, 2325)
+npc_name = "Director"
 override_base_sprite = ExtResource("13_iidb0")

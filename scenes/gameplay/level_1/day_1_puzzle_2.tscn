@@ -311,6 +311,8 @@ speaker_portraits = Dictionary[String, Texture2D]({
 
 [node name="General" parent="." instance=ExtResource("9_rwttn")]
 position = Vector2(3566, 1575)
+npc_name = "Director"
+dialogue_file = "res://dialogues/game_over_general.json"
 is_moving = true
 forward_distance = 300.0
 initial_direction = 3
