@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 @onready var spriteChar: AnimatedSprite2D = $Base
 @onready var vision_cone: Node2D = $VisionCone2D
+@onready var steps = $AudioStreamPlayer2D
 
 @export var npc_name: String = "Guard"
 @export_file("*.json") var dialogue_file: String = "res://dialogues/game_over_guard.json"
@@ -76,6 +77,15 @@ func _ready():
 	else:
 		spriteChar.stop()
 
+func play_steps():
+	if steps.playing:
+		pass
+	else:
+		steps.play()
+
+func stop_steps():
+	steps.stop()
+	
 func _physics_process(delta: float) -> void:
 	if Gamestate.game_is_paused:
 		return
@@ -84,7 +94,10 @@ func _physics_process(delta: float) -> void:
 
 	if is_moving:
 		_process_movement(delta)
+		play_steps()
 	
+	else:
+		stop_steps()
 
 	if not is_turning:
 		_update_state()
