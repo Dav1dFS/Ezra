@@ -36,3 +36,6 @@ layer = 128
 
 [node name="PauseMenu" parent="PauseLayer" instance=ExtResource("5_hfyxy")]
 visible = false
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true

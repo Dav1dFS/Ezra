@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://rq853mcdau80"]
+[gd_scene load_steps=62 format=3 uid="uid://rq853mcdau80"]
 
 [ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_65c78"]
 [ext_resource type="Texture2D" uid="uid://cyyt8r2cv0v4b" path="res://assets/animation_sheets/guardabluehat_idlecycle.png" id="2_aueeb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_jnxau"]
 [ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_movement"]
 [ext_resource type="AudioStream" uid="uid://u5oyfwfb7d7v" path="res://assets/audios/referee-whistle-coach-whistle-sports-whistle-291816.mp3" id="5_oipbc"]
+[ext_resource type="AudioStream" uid="uid://cv376tpat6uhu" path="res://assets/audios/footsteps-walking-boots-parquet-1-420135.mp3" id="7_22lfy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5y8db"]
 atlas = ExtResource("2_aueeb")
@@ -397,7 +398,7 @@ polygon = PackedVector2Array(0.47757894, 0, -1.7300689, 1.2105255, -1.9278486, 1
 
 [sub_resource type="Gradient" id="Gradient_kjesm"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.46, 1)
+offsets = PackedFloat32Array(0.47333333, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lf20i"]
@@ -492,6 +493,12 @@ shape = SubResource("CircleShape2D_kjesm")
 stream = ExtResource("5_oipbc")
 volume_db = -1.085
 pitch_scale = 0.85
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_22lfy")
+max_distance = 135.0
+panning_strength = 1.5
+bus = &"SFX"
 
 [connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]

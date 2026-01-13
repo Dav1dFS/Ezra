@@ -85,7 +85,7 @@ func create_new_game(slot_index: int) -> bool:
 
 	current_slot = slot_index
 
-	get_tree().change_scene_to_file("res://scenes/gameplay/level_1/day_1_intro.tscn")
+	get_tree().change_scene_to_file("res://scenes/gameplay/level_1/initialCutscene.tscn")
 
 	return true
 
