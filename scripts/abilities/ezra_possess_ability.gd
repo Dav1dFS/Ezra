@@ -5,13 +5,13 @@ func _init():
 	ability_name = "Possess"
 	# ability_icon = preload("res://assets/abilities/ezra_ability_possess.png")
 	ability_icon = preload("res://assets/abilities/ezra_ability_track.png")
+	# ability_sound = preload("res://assets/abilities/ezra_ability_possess.mp3")
+	ability_sound = preload("res://assets/abilities/ezra_ability_track.mp3")
 	description = "Possess and unlock new abilities"
-
 	requires_hold = true
 	hold_time = 3.0
 	cooldown_time = 0.0
 	duration = 0.0
-
 	is_toggle = false
 
 

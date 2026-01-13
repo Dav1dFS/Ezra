@@ -38,10 +38,12 @@ func _init():
 	ability_name = "Hide"
 	# ability_icon = preload("res://assets/abilities/ellen_ability_hide.png")
 	ability_icon = preload("res://assets/abilities/ezra_ability_track.png")
+	# ability_sound = preload("res://assets/abilities/ellen_ability_hide.mp3")
+	ability_sound = preload("res://assets/abilities/ezra_ability_track.mp3")
 	description = "Hide from guards sight"
-	is_toggle = true
-	cooldown_time = 0.0
-	duration = 0.0
+	is_toggle = false
+	cooldown_time = 3.0
+	duration = AUTO_DEACTIVATE_TIME
 	requires_hold = false
 
 
@@ -56,10 +58,14 @@ func execute(player: CharacterBody2D) -> void:
 		push_error("HideAbility: Required nodes not found on player!")
 		return
 
-	if is_active:
+	_activate_hide()
+
+
+func deactivate() -> void:
+	if not is_restoring:
 		_start_restore()
 	else:
-		_activate_hide()
+		super.deactivate()
 
 
 func update(delta: float, player: CharacterBody2D) -> void:
@@ -75,9 +81,6 @@ func update(delta: float, player: CharacterBody2D) -> void:
 		if not shake_shown and time_active >= SHAKE_TIME:
 			shake_shown = true
 			_show_shake()
-
-		if time_active >= AUTO_DEACTIVATE_TIME:
-			_start_restore()
 
 
 func _activate_hide() -> void:
@@ -121,9 +124,11 @@ func _update_restoration() -> void:
 
 
 func _finish_restore() -> void:
-	is_restoring = false
 	player_ref.is_ability_active = false
 	time_active = 0.0
 	shake_shown = false
 	restore_animation_name = ""
+
+	deactivate()
+	is_restoring = false
 

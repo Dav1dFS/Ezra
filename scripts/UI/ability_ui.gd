@@ -6,6 +6,7 @@ extends Control
 @onready var cooldown_overlay: TextureProgressBar = $AbilityCircle/CooldownOverlay
 @onready var hold_progress: TextureProgressBar = $AbilityCircle/HoldProgress
 @onready var ability_label: Label = $AbilityLabel
+@onready var ability_sound: AudioStreamPlayer = $AbilitySoundEffect
 
 var ability_manager: AbilityManager = null
 var icon_tween: Tween
@@ -13,20 +14,33 @@ var should_show_ui: bool = true
 
 
 func _ready():
-	await get_tree().process_frame
-	await get_tree().process_frame
+	var player = owner
+	if not player:
+		return
 
-	var player = get_tree().get_first_node_in_group("player")
-	if player:
-		for child in player.get_children():
-			if child is AbilityManager:
-				ability_manager = child
-				break
-
-		if ability_manager:
-			_connect_signals()
-
+	player.child_entered_tree.connect(_on_player_child_entered)
+	_find_ability_manager()
 	_reset_ui()
+
+
+func _on_player_child_entered(child: Node):
+	if child is AbilityManager and not ability_manager:
+		_find_ability_manager()
+
+
+func _find_ability_manager():
+	if ability_manager:
+		return
+
+	var player = owner
+	if not player:
+		return
+
+	for child in player.get_children():
+		if child is AbilityManager:
+			ability_manager = child
+			_connect_signals()
+			break
 
 
 func _process(_delta: float):
@@ -41,6 +55,7 @@ func _process(_delta: float):
 
 func _connect_signals():
 	ability_manager.ability_changed.connect(_on_ability_changed)
+	ability_manager.ability_activated.connect(_on_ability_activated)
 	ability_manager.cooldown_updated.connect(_on_cooldown_updated)
 	ability_manager.hold_updated.connect(_on_hold_updated)
 
@@ -72,6 +87,12 @@ func _on_ability_changed(ability: Ability):
 	_reset_ui()
 
 	hold_progress.visible = ability.requires_hold
+
+
+func _on_ability_activated(ability: Ability):
+	if ability.ability_sound:
+		ability_sound.stream = ability.ability_sound
+		ability_sound.play()
 
 
 func _animate_icon_change(new_icon: Texture2D):

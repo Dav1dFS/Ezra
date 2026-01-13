@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://co627c0mvwblv" path="res://scripts/day_1_intro.gd" id="1_282ja"]
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/main_map.tscn" id="2_282ja"]
-[ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/Characters/ezra_character.tscn" id="4_71j44"]
+[ext_resource type="PackedScene" uid="uid://t5axmw5yx5dl" path="res://scenes/characters/ezra_character.tscn" id="4_71j44"]
 [ext_resource type="PackedScene" uid="uid://br3gpnhtkafbd" path="res://scenes/npcs/friendly/characters/ellen_npc.tscn" id="5_282ja"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_ydfot"]
 [ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="6_pte20"]
@@ -43,11 +43,6 @@ position = Vector2(4889, 2252)
 [node name="Player" parent="." instance=ExtResource("4_71j44")]
 position = Vector2(4785, 2296)
 collision_layer = 3
-ability_duration_normal = 6.0
-ability_cooldown_normal = 10.0
-ability_duration_penalized = 3.0
-ability_cooldown_penalized = 20.0
-dog_alert_penalty_duration = 60.0
 
 [node name="EllenNPC" parent="." instance=ExtResource("5_282ja")]
 position = Vector2(4845, 2304)

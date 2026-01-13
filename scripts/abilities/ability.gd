@@ -3,6 +3,7 @@ extends Resource
 
 @export var ability_name: String = ""
 @export var ability_icon: Texture2D
+@export var ability_sound: AudioStream
 @export var description: String = ""
 @export var cooldown_time: float = 0.0
 @export var duration: float = 0.0

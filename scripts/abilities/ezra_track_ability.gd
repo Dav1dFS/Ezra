@@ -5,6 +5,7 @@ extends Ability
 func _init():
 	ability_name = "Track"
 	ability_icon = preload("res://assets/abilities/ezra_ability_track.png")
+	ability_sound = preload("res://assets/abilities/ezra_ability_track.mp3")
 	description = "Reveals a path of footprints leading to your objective"
 	cooldown_time = 10.0
 	duration = 6.0

@@ -53,21 +53,29 @@ speaker_portraits = Dictionary[String, Texture2D]({
 "Frieda": ExtResource("2_w6bjl")
 })
 
-[node name="Base" type="Sprite2D" parent="." index="0"]
+[node name="Base" parent="." index="0"]
 position = Vector2(0, -1)
 texture = ExtResource("2_w6bjl")
 
-[node name="Base2" type="AnimatedSprite2D" parent="." index="1"]
+[node name="Base2" parent="." index="1"]
 visible = false
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_8mm7t")
 
-[node name="PlayerInteractionArea" parent="." index="2"]
+[node name="Area2D" type="CharacterBody2D" parent="." index="2"]
+position = Vector2(0.5, 15)
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_isp7f")
+
+[node name="PlayerInteractionArea" parent="." index="3"]
 position = Vector2(0.5, 15)
 collision_layer = 129
 collision_mask = 129
 
-[node name="PlayerInteractionLabel" parent="." index="3"]
+[node name="PlayerInteractionLabel" parent="." index="4"]
 z_index = 8
 offset_left = -28.000011
 offset_top = -27.000004
@@ -76,11 +84,3 @@ offset_bottom = 218.0
 scale = Vector2(0.032180898, 0.032180898)
 theme_override_fonts/font = ExtResource("4_05ekc")
 theme_override_font_sizes/font_size = 180
-
-[node name="Area2D" type="CharacterBody2D" parent="." index="4"]
-position = Vector2(0.5, 15)
-disable_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, -9)
-shape = SubResource("CapsuleShape2D_isp7f")

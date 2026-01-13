@@ -53,20 +53,27 @@ speaker_portraits = Dictionary[String, Texture2D]({
 "Miss Ruth": ExtResource("2_d65lc")
 })
 
-[node name="Base" type="Sprite2D" parent="." index="0"]
+[node name="Base" parent="." index="0"]
 position = Vector2(1, 0)
 texture = ExtResource("2_d65lc")
 
-[node name="Base2" type="AnimatedSprite2D" parent="." index="1"]
+[node name="Base2" parent="." index="1"]
 visible = false
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_m2yk6")
-frame_progress = 0.29823792
 
-[node name="PlayerInteractionArea" parent="." index="2"]
+[node name="Area2D" type="CharacterBody2D" parent="." index="2"]
+position = Vector2(0.5, 16)
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_isp7f")
+
+[node name="PlayerInteractionArea" parent="." index="3"]
 position = Vector2(0.5, 16)
 
-[node name="PlayerInteractionLabel" parent="." index="3"]
+[node name="PlayerInteractionLabel" parent="." index="4"]
 offset_left = -28.000011
 offset_top = -27.000004
 offset_right = 1812.0
@@ -74,11 +81,3 @@ offset_bottom = 218.0
 scale = Vector2(0.032180898, 0.032180898)
 theme_override_fonts/font = ExtResource("4_jqqvx")
 theme_override_font_sizes/font_size = 180
-
-[node name="Area2D" type="CharacterBody2D" parent="." index="4"]
-position = Vector2(0.5, 16)
-disable_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, -9)
-shape = SubResource("CapsuleShape2D_isp7f")
