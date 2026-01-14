@@ -8,6 +8,10 @@ radius = 21.47651
 [node name="GeneralTalkableNPC" type="Node2D"]
 script = ExtResource("1_tteq1")
 
+[node name="Base" type="Sprite2D" parent="."]
+
+[node name="Base2" type="AnimatedSprite2D" parent="."]
+
 [node name="PlayerInteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteractionArea"]

@@ -29,12 +29,12 @@
 				{ "mid_action": "guards_searching_ellen" },
 				
 				{"speaker": "Frieda","text": "Girl! Quick! Hide!"},
-				{"speaker": "General","text": "I'm too scared. Lady, help me."},
+				{"speaker": "Ellen","text": "I'm too scared. Lady, help me."},
 				{"speaker": "Ezra","text": "I have to help Ellen!"},
 				
 				{ "mid_action": "ezra_possesses_ellen" },
 
-				{"speaker": "General","text": "Woman, come here and get out of the way. We are searching this place from top to bottom."},
+				{"speaker": "Director","text": "Woman, come here and get out of the way. We are searching this place from top to bottom."},
 				
 				{ "mid_action": "next_scene" }
 			]

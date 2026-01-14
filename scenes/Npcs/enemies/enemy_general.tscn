@@ -1,10 +1,11 @@
-[gd_scene load_steps=44 format=3 uid="uid://qrd46ikxghqo"]
+[gd_scene load_steps=45 format=3 uid="uid://qrd46ikxghqo"]
 
-[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/Npcs/enemy.gd" id="1_usc7g"]
+[ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/npcs/enemy.gd" id="1_usc7g"]
 [ext_resource type="Texture2D" uid="uid://c8vggm6tiss2l" path="res://assets/animation_sheets/gaurdageneral_sheet.png" id="3_uebqx"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_yha3f"]
-[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/Npcs/movement_editor_helper.gd" id="4_nlgux"]
+[ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/npcs/movement_editor_helper.gd" id="4_nlgux"]
 [ext_resource type="PackedScene" uid="uid://bycu3ppdrfsjl" path="res://scenes/gameplay/whistle.tscn" id="5_uebqx"]
+[ext_resource type="AudioStream" uid="uid://cv376tpat6uhu" path="res://assets/audios/footsteps-walking-boots-parquet-1-420135.mp3" id="6_78gd7"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tx05f"]
 cull_mode = 1
@@ -389,6 +390,12 @@ scale = Vector2(2.395, 1.545)
 shape = SubResource("CircleShape2D_mm8ar")
 
 [node name="Whistle" parent="." instance=ExtResource("5_uebqx")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_78gd7")
+max_distance = 135.0
+panning_strength = 1.5
+bus = &"SFX"
 
 [connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]

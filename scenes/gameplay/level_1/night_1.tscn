@@ -383,7 +383,7 @@ all_collected_gamestate_flag = "can_control_frieda"
 
 [node name="PlayerAbilityLabel" type="Label" parent="Frieda"]
 visible = false
-z_index = 1
+z_index = 10
 offset_left = -27.0
 offset_top = -16.0
 offset_right = 1640.0
@@ -414,10 +414,10 @@ script = ExtResource("12_bqncc")
 [node name="ColorRect" type="ColorRect" parent="FogWalls"]
 z_index = 4
 material = SubResource("ShaderMaterial_bqncc")
-offset_left = 3128.0
-offset_top = 825.0
-offset_right = 3168.0
-offset_bottom = 865.00006
+offset_left = 3117.0
+offset_top = 820.0
+offset_right = 3157.0
+offset_bottom = 860.0
 scale = Vector2(61.555775, 46.340397)
 
 [node name="TopWall" type="Node2D" parent="FogWalls"]

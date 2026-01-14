@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsplejn0f5lnr"]
+
+[ext_resource type="Script" uid="uid://olrtv1gx2o7k" path="res://scripts/initial_cutscene.gd" id="1_mxvfw"]
+[ext_resource type="VideoStream" uid="uid://bssvvbdm146ew" path="res://assets/initialCutscene.ogv" id="2_ixloh"]
+
+[node name="InitialCutscene" type="Node2D"]
+script = ExtResource("1_mxvfw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_ixloh")
+autoplay = true
+expand = true
+buffering_msec = 1000
+metadata/_edit_use_anchors_ = true
+
+[connection signal="finished" from="CanvasLayer/VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

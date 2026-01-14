@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bpu0qf8tao73y"]
 
-[ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/Npcs/friendly/general_talkable_npc.tscn" id="1_d65lc"]
+[ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/npcs/friendly/general_talkable_npc.tscn" id="1_d65lc"]
 [ext_resource type="Texture2D" uid="uid://d11imkedd5ajh" path="res://assets/character_sprites/miss_ruth/miss_ruth.png" id="2_d65lc"]
 [ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="2_iy5dx"]
 [ext_resource type="Texture2D" uid="uid://dbke65tqnrspu" path="res://assets/animation_sheets/ruth_idlecycle.png" id="4_wr4n2"]
@@ -53,17 +53,24 @@ speaker_portraits = Dictionary[String, Texture2D]({
 "Miss Ruth": ExtResource("2_d65lc")
 })
 
-[node name="Base" type="Sprite2D" parent="." index="0"]
+[node name="Base" parent="." index="0"]
 position = Vector2(1, 0)
 texture = ExtResource("2_d65lc")
 
-[node name="Base2" type="AnimatedSprite2D" parent="." index="1"]
+[node name="Base2" parent="." index="1"]
 visible = false
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_m2yk6")
-frame_progress = 0.29823792
 
-[node name="PlayerInteractionArea" parent="." index="2"]
+[node name="Area2D" type="CharacterBody2D" parent="." index="2"]
+position = Vector2(0.5, 16)
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_isp7f")
+
+[node name="PlayerInteractionArea" parent="." index="3"]
 position = Vector2(0.5, 16)
 
 [node name="PlayerInteractionLabel" parent="." index="3"]
