@@ -54,7 +54,12 @@ y_sort_enabled = true
 script = ExtResource("1_c5o0j")
 
 [node name="CutsceneController" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("2_1u0cv")]
+auto_start_cutscene = true
 target_npc = NodePath("../FriedaNPC")
+dialogue_box = NodePath("../DialogueBox")
+
+[node name="CutsceneController2" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("2_1u0cv")]
+target_npc = NodePath("../death")
 dialogue_box = NodePath("../DialogueBox")
 
 [node name="MainMapFinal" parent="." instance=ExtResource("9_fh8rj")]
@@ -199,6 +204,8 @@ initial_direction = 3
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_rwttn")]
 
+[node name="DialogueBox2" parent="." instance=ExtResource("5_rwttn")]
+
 [node name="Jordyn" parent="." instance=ExtResource("5_fh8rj")]
 position = Vector2(3229.2751, 1693.3629)
 npc_name = "Jordyn"
@@ -234,7 +241,7 @@ speaker_portraits = Dictionary[String, Texture2D]({
 })
 override_base_sprite = ExtResource("11_aey7p")
 
-[node name="death" parent="." instance=ExtResource("5_fh8rj")]
+[node name="death" parent="." node_paths=PackedStringArray("dialogue_box") instance=ExtResource("5_fh8rj")]
 position = Vector2(3961, 2115)
 npc_name = "Talia"
 dialogue_file = "res://dialogues/day_1/day_1_death.json"
@@ -246,6 +253,7 @@ speaker_portraits = Dictionary[String, Texture2D]({
 "Woman": ExtResource("11_aey7p")
 })
 override_base_sprite = ExtResource("11_aey7p")
+dialogue_box = NodePath("../DialogueBox2")
 
 [node name="rand1" parent="." instance=ExtResource("5_fh8rj")]
 position = Vector2(3526, 2093)
@@ -354,12 +362,6 @@ speaker_portraits = Dictionary[String, Texture2D]({
 })
 
 [node name="BackGround" parent="." instance=ExtResource("16_pmqis")]
-
-[node name="CutsceneController2" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("2_1u0cv")]
-auto_start_cutscene = true
-target_npc = NodePath("../death")
-dialogue_box = NodePath("../DialogueBox")
-cutscene_flag_name = "death"
 
 [node name="Area2D" type="Area2D" parent="."]
 z_index = 2

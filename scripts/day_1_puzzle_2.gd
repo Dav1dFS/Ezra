@@ -6,7 +6,7 @@ extends Node2D
 @onready var dialogue_box: CanvasLayer = $DialogueBox
 @onready var next_scene_npc: Node2D = $NextSceneNPC
 @onready var cutscene: Node2D = $CutsceneController
-
+@onready var cutscene2: Node2D = $CutsceneController2
 func _ready():
 	Gamestate.dog_is_alerted = false
 	for npc in Gamestate.npc_dialogues_completed.keys():
@@ -18,6 +18,10 @@ func _ready():
 	await cutscene.scene_fade_in()
 	player.changeObjective("Find Miss Ruth")
 	dialogue_box.mid_action_triggered.connect(_on_mid_action)
+	cutscene.mid_action_requested.connect(_on_mid_action)
+	cutscene2.mid_action_requested.connect(_on_mid_action)
+	cutscene2.dialogue_box=$DialogueBox2
+	$death.dialogue_box=$DialogueBox2
 
 
 
@@ -40,16 +44,14 @@ func _on_mid_action(action_name: String):
 			on_checkpoint()
 		"next_scene":
 			_action_next_scene()
-		"next_cut":
-			_next_cut()
+
 
 		
 		_:
 			push_warning("Unknown mid_action: " + action_name)
 			dialogue_box.continue_after_action()
 			
-func _next_cut():
-	cutscene.target_npc=$death
+
 
 func on_checkpoint():
 	_set_npc_interactable(frieda_npc, false)
@@ -68,12 +70,9 @@ func _action_next_scene():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name=="Player":
-		player.visible = false
 		print("here cut")
-		cutscene.runCutscene()
-		player.visible = true
-		cutscene.target_npc=$FriedaNPC
-		$death.queue_free()
-		$Guard1.queue_free()
-		$Guard2.queue_free()
+		await cutscene2.runCutscene()
+		$Area2D.queue_free()
+		
+
 		

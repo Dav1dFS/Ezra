@@ -64,12 +64,12 @@ func _ready():
 			_skip_cutscene()
 			
 func runCutscene():
-
 		_connect_dialogue_signals()
 
 		var cutscene_done = Gamestate.get(cutscene_flag_name) if cutscene_flag_name in Gamestate else false
 
 		if not cutscene_done:
+			print("starting")
 			_start_intro()
 		else:
 			_skip_cutscene()

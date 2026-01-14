@@ -7,7 +7,7 @@ extends Node2D
 }
 @export var override_base_sprite: Texture2D = null
 @export var all_collected_gamestate_flag: String = ""
-
+@export var dialogue_box: CanvasLayer
 @onready var sprite = $Base
 @onready var area = $PlayerInteractionArea
 @onready var interact_label = $PlayerInteractionLabel
@@ -58,8 +58,8 @@ func start_dialogue():
 		interact_label.visible = false
 
 	var processed_dialogue = dialogue_handler.process_dialogue(dialogue_to_use)
-
-	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+	if not dialogue_box:
+		dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 	if not dialogue_box:
 		push_error("DialogueBox not found in scene!")
 		dialogue_is_on = false

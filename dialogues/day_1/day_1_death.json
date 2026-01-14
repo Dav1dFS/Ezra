@@ -2,7 +2,7 @@
   	"dialogues": [
 		{
 			"condition": "default",
-			"mid_action": true,
+			"mid_action": false,
 			"lines": [
 				{"speaker": "Woman","text": "Argh..."},
 				{"speaker": "Guard 1","text": "Oh, this one is done for. But let me kick her once more"},
