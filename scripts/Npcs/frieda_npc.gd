@@ -1,4 +1,4 @@
-extends "res://scripts/Npcs/general_talkable_npc.gd"
+extends "res://scripts/npcs/general_talkable_npc.gd"
 
 @onready var ability_label: Label = $PlayerAbilityLabel
 @onready var ability_progress: TextureProgressBar = $AbilityProgress
@@ -45,45 +45,26 @@ func _ready():
 	if pointlight:
 		pointlight.visible = false
 
-func _process(delta: float):
+func _process(_delta: float):
 	if not player_in_range:
-		_reset_ability_charge()
 		if ability_label:
 			ability_label.visible = false
 		return
-	
+
 	if Gamestate.is_talking or Gamestate.dialogue_locked:
-		_reset_ability_charge()
 		return
-	
+
 	var can_use_ability = _can_use_ability() and all_collected_dialogue_shown
-	
+
 	if can_use_ability:
-		# Modo habilidade
 		if interact_label:
 			interact_label.visible = false
-		if ability_label:
-			ability_label.visible = true
-		
-		if Input.is_action_pressed("ability"):
-			ability_holding = true
-			ability_timer += delta
-			if ability_progress:
-				ability_progress.visible = true
-				ability_progress.value = ability_timer
-			if ability_timer >= ability_hold_time:
-				_on_ability_fully_charged()
-		else:
-			if ability_holding:
-				_reset_ability_charge()
 	else:
-		# Modo normal
-		_reset_ability_charge()
 		if ability_label:
 			ability_label.visible = false
 		if interact_label and not dialogue_is_on:
 			interact_label.visible = true
-		
+
 		if Input.is_action_just_pressed("interact"):
 			if not dialogue_is_on and not Gamestate.dialogue_locked:
 				start_dialogue()
@@ -102,26 +83,21 @@ func _on_body_entered(body: Node):
 	if body.name == "Player" and Gamestate.can_control_frieda:
 		Gamestate.ezra_can_spawn_footprints = false
 
+		if body.has_node("AbilityManager"):
+			var ability_manager = body.get_node("AbilityManager")
+			var possess_ability = EzraPossessAbility.new()
+			ability_manager.push_ability(possess_ability)
+
 func _on_body_exited(body: Node):
 	super._on_body_exited(body)
 	if body.name == "Player":
 		Gamestate.ezra_can_spawn_footprints = true
-		_reset_ability_charge()
 		if ability_label:
 			ability_label.visible = false
 
-func _reset_ability_charge():
-	ability_holding = false
-	ability_timer = 0.0
-	if ability_progress:
-		ability_progress.value = 0.0
-		ability_progress.visible = false
-
-func _on_ability_fully_charged():
-	_reset_ability_charge()
-	Gamestate.is_talking = true
-	Gamestate.dialogue_locked = true
-	_start_day2_transition()
+		if body.has_node("AbilityManager"):
+			var ability_manager = body.get_node("AbilityManager")
+			ability_manager.pop_ability()
 
 func _start_day2_transition():
 	fade_rect.visible = true

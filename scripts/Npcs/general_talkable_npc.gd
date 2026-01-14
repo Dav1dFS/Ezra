@@ -9,6 +9,7 @@ extends Node2D
 @export var all_collected_gamestate_flag: String = ""
 
 @onready var sprite = $Base
+@onready var base_anims: AnimatedSprite2D = $Base2
 @onready var area = $PlayerInteractionArea
 @onready var interact_label = $PlayerInteractionLabel
 
@@ -20,10 +21,10 @@ var dialogue_handler := DialogueHandler.new()
 func _ready():
 	if override_base_sprite != null and sprite:
 		sprite.texture = override_base_sprite
-	if npc_name == "Frieda" or npc_name=="Ruth" or npc_name=="Ellen": ##change this, just hotfix
-		$Base.visible=false
-		$Base2.visible=true
-		$Base2.play()
+	if base_anims.sprite_frames != null and override_base_sprite != null:
+		sprite.visible=false
+		base_anims.visible=true
+		base_anims.play()
 	if dialogue_file != "":
 		dialogue_handler.load_dialogue_file(dialogue_file)
 		area.body_entered.connect(_on_body_entered)
@@ -56,7 +57,6 @@ func start_dialogue():
 	dialogue_is_on = true
 	if interact_label:
 		interact_label.visible = false
-	print("here2")
 	var processed_dialogue = dialogue_handler.process_dialogue(dialogue_to_use)
 
 	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")

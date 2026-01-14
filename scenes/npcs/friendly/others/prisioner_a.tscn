@@ -15,12 +15,12 @@ speaker_portraits = Dictionary[String, Texture2D]({
 "PrisionerA": ExtResource("3_lmmyn")
 })
 
-[node name="Base" type="Sprite2D" parent="." index="0"]
+[node name="Base" parent="." index="0"]
 position = Vector2(-0.5, -16)
 texture = ExtResource("2_1n62i")
 hframes = 4
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 position = Vector2(0, -7.9999986)

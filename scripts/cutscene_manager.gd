@@ -30,6 +30,7 @@ extends Node2D
 
 @export_group("GUI Elements to Hide")
 @export var hide_objective: bool = true
+@export var hide_ability_ui: bool = true
 @export var hide_green_aura: bool = true
 @export var disable_memory_zoom: bool = true
 
@@ -44,6 +45,7 @@ signal scene_fade_out_completed
 var player: Node2D
 var player_camera: Camera2D
 var objective: Control
+var ability_ui: Control
 var green_aura: ColorRect
 
 var running := false
@@ -86,6 +88,7 @@ func _find_player_references():
 		var gui = player.get_node_or_null("GUI")
 		if gui:
 			objective = gui.get_node_or_null("Objective")
+			ability_ui = gui.get_node_or_null("AbilityUI")
 			green_aura = gui.get_node_or_null("ColorRect")
 
 func _start_intro():
@@ -100,6 +103,8 @@ func _start_intro():
 
 	if hide_objective and objective:
 		objective.visible = false
+	if hide_ability_ui and ability_ui:
+		ability_ui.visible = false
 	if hide_green_aura and green_aura:
 		green_aura.visible = false
 
@@ -176,10 +181,12 @@ func _on_fade_to_black_done() -> void:
 
 func _on_fade_in_finished() -> void:
 	fade_rect.visible = false
-	
+
 	if hide_objective and objective:
 		objective.visible = true
-	
+	if hide_ability_ui and ability_ui:
+		ability_ui.visible = true
+
 	Gamestate.is_talking = false
 	Gamestate.dialogue_locked = false
 	

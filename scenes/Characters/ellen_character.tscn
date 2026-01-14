@@ -1,6 +1,6 @@
 [gd_scene load_steps=100 format=3 uid="uid://crx5k8n7j2mp8"]
 
-[ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/Characters/player_character.tscn" id="1_base"]
+[ext_resource type="PackedScene" uid="uid://b4p71586doyl3" path="res://scenes/characters/player_character.tscn" id="1_base"]
 [ext_resource type="Script" uid="uid://c402qiye5sjjl" path="res://scripts/player/ellen.gd" id="2_ellen"]
 [ext_resource type="Texture2D" uid="uid://x2cceqkolt5f" path="res://assets/animation_sheets/ellen_idlecycle.png" id="3_l88vx"]
 [ext_resource type="Texture2D" uid="uid://bhn4fqyw4t7l8" path="res://assets/animation_sheets/ellen_anim.png" id="3_wsosn"]
@@ -758,7 +758,7 @@ radius = 5.0
 height = 14.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wsosn"]
-polygon = PackedVector2Array(0, 6, -4, 6, -5, -14, -1, -17, 2, -17, 6, -15, 5, 6)
+polygon = PackedVector2Array(0, 6, -5, 6, -5, -14, -2, -17, 2, -17, 5, -14, 5, 6)
 
 [node name="EllenCharacter" instance=ExtResource("1_base")]
 z_as_relative = false
@@ -769,7 +769,7 @@ character_name = "Ellen"
 
 [node name="Base" type="AnimatedSprite2D" parent="." index="0"]
 y_sort_enabled = true
-position = Vector2(-0.5, -8)
+position = Vector2(0.5, -8)
 sprite_frames = SubResource("SpriteFrames_myuhx")
 animation = &"defaultD"
 frame_progress = 0.4947583
