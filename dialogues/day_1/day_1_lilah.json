@@ -4,7 +4,7 @@
 			"condition": "default",
 			"mid_action": false,
 			"lines": [
-				{"speaker": "Woman", "text": "Oh sweetie, you are not suposed to be here!"},
+				{"speaker": "Lilah", "text": "Oh sweetie, you are not supposed to be here!"},
 				{"speaker": "Ellen", "text": "Are you Miss... Ruth?"},
 				{"speaker": "Lilah", "text": "No, sweetie, my name is Lilah, why?"},
 				{"speaker": "Ellen", "text": "I must find her..."},
