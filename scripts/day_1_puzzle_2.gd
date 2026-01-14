@@ -4,6 +4,7 @@ extends Node2D
 @onready var frieda_npc: Node2D = $"FriedaNPC"
 @onready var miss_ruth_npc: Node2D = $"MissRuthNPC"
 @onready var dialogue_box: CanvasLayer = $DialogueBox
+@onready var dialogue_box2: CanvasLayer = $DialogueBox2
 @onready var next_scene_npc: Node2D = $NextSceneNPC
 @onready var cutscene: Node2D = $CutsceneController
 @onready var cutscene2: Node2D = $CutsceneController2
@@ -44,6 +45,8 @@ func _on_mid_action(action_name: String):
 			on_checkpoint()
 		"next_scene":
 			_action_next_scene()
+		"take_hostage":
+			_take_hostage()
 
 
 
@@ -52,14 +55,26 @@ func _on_mid_action(action_name: String):
 			push_warning("Unknown mid_action: " + action_name)
 			dialogue_box.continue_after_action()
 			
-
-
+func _take_hostage():
+	var target_pos = Vector2($death.global_position.x, $death.global_position.y+10)
+	var slide=cutscene.slide_character($Guard2, target_pos)
+	
+	
+	await slide
+	await get_tree().create_timer(0.8).timeout
+	dialogue_box2.continue_after_action()
+	
+	
 func on_checkpoint():
 	_set_npc_interactable(frieda_npc, false)
 	_set_npc_interactable(next_scene_npc, true)
 	player.changeObjective("Go hide in the dorms")
 	player.update_inventory(load("res://items/Cookie.tres"))
-	
+	if $Area2D:
+		$Area2D.queue_free()
+	$death.queue_free()
+	$Guard1.queue_free()
+	$Guard2.queue_free()
 	dialogue_box.continue_after_action()
 
 func _action_next_scene():

@@ -334,7 +334,7 @@ speaker_portraits = Dictionary[String, Texture2D]({
 "Frieda": ExtResource("11_c68y7")
 })
 
-[node name="MissRuthNPC" parent="." node_paths=PackedStringArray("dialogue_box") instance=ExtResource("8_y0wut")]
+[node name="MissRuthNPC" parent="." instance=ExtResource("8_y0wut")]
 position = Vector2(3744, 1623)
 npc_name = "Ruth"
 dialogue_file = "res://dialogues/day_1/day_1_miss_ruth.json"
@@ -343,7 +343,6 @@ speaker_portraits = Dictionary[String, Texture2D]({
 "Ezra": ExtResource("10_es3bm"),
 "Miss Ruth": ExtResource("14_c68y7")
 })
-dialogue_box = NodePath("../DialogueBox")
 
 [node name="General" parent="." instance=ExtResource("9_rwttn")]
 position = Vector2(3566, 1575)

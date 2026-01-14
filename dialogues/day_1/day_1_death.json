@@ -2,16 +2,18 @@
   	"dialogues": [
 		{
 			"condition": "default",
-			"mid_action": false,
+			"mid_action": true,
 			"lines": [
 				{"speaker": "Woman","text": "Argh..."},
 				{"speaker": "Guard 1","text": "Oh, this one is done for. But let me kick her once more"},
 				{"speaker": "Guard 1","text": "To make sure she doesn't repeat it of course"},
+				{"mid_action":"take_hostage"},
 				{"speaker": "Woman","text": "AAHHH!"},
 				{"speaker": "Guard 2","text": "Uff, looks like her arm is broken."},
 				{"speaker": "Guard 1","text": "Not able to work it seems."},
 				{"speaker": "Guard 2","text": "Exactly. You, up up, you are coming with us."},
 				{"speaker": "Woman","text": "Please don't!"},
+
 			]
 		}
   	]
