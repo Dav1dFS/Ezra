@@ -46,6 +46,7 @@ func _on_mid_action(action_name: String):
 			_action_next_scene()
 
 
+
 		
 		_:
 			push_warning("Unknown mid_action: " + action_name)
@@ -73,6 +74,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		print("here cut")
 		await cutscene2.runCutscene()
 		$Area2D.queue_free()
-		
 
 		
