@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://cx5x45xpimkr6"]
 
 [ext_resource type="Texture2D" uid="uid://nclqp4ynq2e7" path="res://assets/character_sprites/cao/cao_allposes.png" id="1_17wxv"]
-[ext_resource type="Script" uid="uid://dkn6u1x03lbbb" path="res://scripts/Npcs/dog.gd" id="1_qnbj3"]
+[ext_resource type="Script" uid="uid://dkn6u1x03lbbb" path="res://scripts/npcs/dog.gd" id="1_qnbj3"]
 [ext_resource type="AudioStream" uid="uid://c728ehx04msj" path="res://assets/audios/dog_growl.mp3" id="3_2cyko"]
 [ext_resource type="AudioStream" uid="uid://degd7u5oshdf3" path="res://assets/audios/dog_bark.mp3" id="4_4rrlh"]
 

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv56vhj86ppe0"]
+
+[ext_resource type="VideoStream" path="res://assets/logoAnim_6.ogv" id="1_6ikw2"]
+[ext_resource type="Script" path="res://scripts/logo_studio.gd" id="1_g2cee"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_g2cee")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_6ikw2")
+autoplay = true
+expand = true
+buffering_msec = 1000
+
+[connection signal="finished" from="CanvasLayer/VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

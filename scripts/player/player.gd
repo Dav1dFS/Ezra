@@ -14,12 +14,12 @@ var SPEED = 70.0
 @onready var objective: Control = $GUI/Objective
 @onready var inventory = $GUI/Inventory
 
-
 enum Direction { RIGHT, LEFT, UP, DOWN }
 var camera_offset: Vector2 = Vector2.ZERO
 var current_direction: Direction = Direction.DOWN
 var last_movement_direction: Vector2 = Vector2.ZERO
 var is_ability_active: bool = false
+var ability_manager: AbilityManager
 
 var base_anims = {
 	Direction.DOWN: "down",
@@ -48,11 +48,16 @@ func _ready():
 		Gamestate.character_name = character_name
 
 	inventory.update_pocket(Gamestate.character_name)
-	
+
 	if inv:
 		inv.connect("inventory_changed", Callable(self, "update_inventory"))
 		update_inventory(null)
-		
+
+	ability_manager = AbilityManager.new()
+	add_child(ability_manager)
+
+	setup_abilities()
+
 	await get_tree().process_frame
 
 	var bottomLeft = get_tree().get_current_scene().get_node_or_null("DownLeftLimit")
@@ -61,7 +66,7 @@ func _ready():
 	if bottomLeft and topRight:
 		var pos1 = bottomLeft.global_position
 		var pos2 = topRight.global_position
-		
+
 		cam.limit_left = int(pos1.x-10)
 		cam.limit_right = int(pos2.x+10)
 		cam.limit_top = int(pos2.y-20)
@@ -127,20 +132,20 @@ func _physics_process(_delta):
 				sprite.play(def_anims[current_direction])
 	move_and_slide()
 
-	# Update camera look-ahead
 	update_camera_lookahead(direction, _delta)
 
 func update_camera_lookahead(direction: Vector2, delta: float):
-	# Calculate target offset based on movement direction
 	var target_offset = Vector2.ZERO
 	if direction != Vector2.ZERO:
 		target_offset = direction.normalized() * camera_lookahead_distance
 
-	# Smoothly interpolate current offset to target offset
 	camera_offset = camera_offset.lerp(target_offset, camera_lookahead_speed * delta)
 
-	# Apply offset to camera
 	cam.position = camera_offset
 
 func can_update_animations() -> bool:
 	return true
+
+
+func setup_abilities():
+	pass

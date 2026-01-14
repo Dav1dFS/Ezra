@@ -1,7 +1,7 @@
 [gd_scene load_steps=51 format=3 uid="uid://dhetuapm0eojt"]
 
 [ext_resource type="Texture2D" uid="uid://cgfwsq2gd2bwf" path="res://assets/animation_sheets/guarda_dormir.png" id="1_dslxy"]
-[ext_resource type="Script" uid="uid://cpb3ch87ipmo3" path="res://scripts/Npcs/sleeping_guard.gd" id="1_wsasx"]
+[ext_resource type="Script" uid="uid://cpb3ch87ipmo3" path="res://scripts/npcs/sleeping_guard.gd" id="1_wsasx"]
 [ext_resource type="Texture2D" uid="uid://bq6gnykbow0t1" path="res://assets/animation_sheets/guarda_acordar.png" id="2_201v8"]
 [ext_resource type="Texture2D" uid="uid://pck7l37hfvh6" path="res://assets/animation_sheets/gaurdabluehat_sheet.png" id="2_wsasx"]
 
