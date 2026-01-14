@@ -13,6 +13,7 @@ var ezra_initial_pos: Vector2
 
 func _ready():
 	player.get_node("GUI").get_node("Objective").visible = false
+	player.get_node("GUI").get_node("AbilityUI").visible = false
 
 	ellen_initial_pos = ellen_character.global_position
 	frieda_initial_pos = frieda_character.global_position

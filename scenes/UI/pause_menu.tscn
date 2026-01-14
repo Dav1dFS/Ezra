@@ -7,7 +7,7 @@
 [ext_resource type="Shader" path="res://scripts/UI/gammashader.gdshader" id="4_rgmlj"]
 [ext_resource type="Script" uid="uid://bkif47l5jcwcd" path="res://scripts/UI/current_character_text.gd" id="5_0ibie"]
 [ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="5_77ihb"]
-[ext_resource type="PackedScene" uid="uid://dipv4awjcdp11" path="res://scenes/UI/Settings.tscn" id="7_3m1qe"]
+[ext_resource type="PackedScene" uid="uid://coeya6u2db1vb" path="res://scenes/UI/Settings.tscn" id="7_3m1qe"]
 [ext_resource type="PackedScene" uid="uid://dctbgw4kfc7oq" path="res://scenes/UI/save_options.tscn" id="8_savop"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_slthy"]

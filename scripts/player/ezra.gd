@@ -2,7 +2,6 @@ extends "res://scripts/player/player.gd"
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var memories: Array[Node] = get_tree().get_nodes_in_group("Memories")
-@onready var ability_bar: TextureProgressBar = $AbilityCoolDown
 
 @export var max_value: int = 3
 @export var footprint_scene: PackedScene
@@ -51,6 +50,12 @@ func _ready():
 	_last_path_player_pos = global_position
 	_prev_player_pos = global_position
 
+
+func setup_abilities():
+	var track_ability = EzraTrackAbility.new()
+	ability_manager.set_primary_ability(track_ability)
+
+
 func increment_item_counter():
 	memories.erase(close_mem)
 	objective.add_point()
@@ -72,11 +77,7 @@ func _process(delta: float):
 		return
 	
 	var can_use_footprint_ability = Gamestate.ezra_can_spawn_footprints and not Gamestate.dog_is_alerted
-	#print("[DEBUG] can_use: %s | dog_alerted: %s | penalized: %s | penalty_timer: %.1f" % [can_use_footprint_ability, Gamestate.dog_is_alerted, is_penalized, penalty_timer])
-	
-	if Input.is_action_just_pressed("ability") and ability_ready and can_use_footprint_ability:
-		activate_ability()
-	
+
 	var should_track_npc = _should_track_target_npc()
 	if should_track_npc:
 		_tracking_npc = true
@@ -157,40 +158,24 @@ func get_current_ability_duration() -> float:
 func get_current_ability_cooldown() -> float:
 	return ability_cooldown_penalized if is_penalized else ability_cooldown_normal
 
+
 func _process_ability_timers(delta: float):
 	if ability_active:
-		ability_bar.visible = true
-		ability_bar.value = ability_bar.max_value
 		ability_timer -= delta
-		
-		var current_duration = get_current_ability_duration()
-		ability_bar.value = ability_bar.max_value * (ability_timer / current_duration)
-		
+
 		if ability_timer <= 0:
 			ability_active = false
 			ability_timer = 0
 			_clear_footprint_path()
 			cooldown_timer = get_current_ability_cooldown()
-			ability_bar.value = 0
-	
+
 	elif not ability_ready:
 		cooldown_timer -= delta
-		ability_bar.visible = true
-		
-		var current_cooldown = get_current_ability_cooldown()
-		ability_bar.value = ability_bar.max_value * (1 - cooldown_timer / current_cooldown)
-		
+
 		if cooldown_timer <= 0:
 			cooldown_timer = 0
 			ability_ready = true
-			ability_bar.visible = false
-	else:
-		ability_bar.visible = false
 
-func activate_ability():
-	ability_active = true
-	ability_ready = false
-	ability_timer = get_current_ability_duration()
 
 func _should_track_target_npc() -> bool:
 	if collected_memories < max_value or not memories.is_empty():
@@ -208,7 +193,6 @@ func _update_footprint_path_to_target(npc: Node2D):
 	if !ability_active:
 		return
 	
-	# Limpa footprints apenas se cão está alertado NESTE MOMENTO
 	if Gamestate.dog_is_alerted:
 		if footprints_instances.size() > 0:
 			_clear_footprint_path()
