@@ -61,6 +61,7 @@ func execute(player: CharacterBody2D) -> void:
 
 func deactivate() -> void:
 	if not is_restoring:
+		is_active = false  # Prevent update() from calling deactivate() repeatedly
 		_start_restore()
 	else:
 		super.deactivate()

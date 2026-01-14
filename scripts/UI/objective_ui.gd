@@ -16,16 +16,19 @@ var player_node: Node = null
 
 func _ready():
 	# Inicializa objetivo e contador
-	player_node = get_tree().get_first_node_in_group("Player")
-	if player_node and "show_counter" in player_node:
-		show_counter = player_node.show_counter
+	# Traverse up: Objective -> GUI -> Player
+	var gui = get_parent()
+	if gui:
+		player_node = gui.get_parent()
+
+	if player_node:
+		var counter_val = player_node.get("show_counter")
+		if counter_val != null:
+			show_counter = counter_val
 	update_label()
 	_apply_counter_visibility()
 	await get_tree().process_frame
 	total_items = get_tree().get_nodes_in_group("Memories").size()
-	
-	#if show_counter and player_node and "max_value" in player_node:
-		#total_items = player_node.max_value
 
 	update_counter()
 func _apply_counter_visibility():
@@ -57,9 +60,11 @@ func add_point():
 
 	if items_collected >= total_items:
 		var target_flag = ""
-		if player_node and "target_npc_gamestate_flag" in player_node:
-			target_flag = player_node.target_npc_gamestate_flag
-		
+		if player_node:
+			var flag_val = player_node.get("target_npc_gamestate_flag")
+			if flag_val != null:
+				target_flag = str(flag_val)
+
 		# Ativa a flag configurada no Player
 		if not target_flag.is_empty() and target_flag in Gamestate:
 			Gamestate.set(target_flag, true)
