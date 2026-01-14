@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://drd7ax7a383ta"]
 
 [ext_resource type="Script" uid="uid://ci5ytb63we35r" path="res://scripts/UI/save_slot.gd" id="1_rg2ty"]
-[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="2_mmvpr"]
+[ext_resource type="FontFile" uid="uid://dg6ej1c8cf706" path="res://assets/fonts/Punk Typewriter.otf" id="2_4eq2g"]
 
 [node name="SaveSlot" type="Control"]
 layout_mode = 3
@@ -20,21 +20,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_mmvpr")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("2_4eq2g")
+theme_override_font_sizes/font_size = 40
 text = "Empty Slot"
 
 [node name="CharacterLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.55
+anchor_top = 0.575
 anchor_right = 0.95
-anchor_bottom = 0.7
+anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_mmvpr")
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("2_4eq2g")
+theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
 [node name="PlaytimeLabel" type="Label" parent="."]
@@ -43,24 +43,24 @@ anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.7
 anchor_right = 0.95
-anchor_bottom = 0.85
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_mmvpr")
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_fonts/font = ExtResource("2_4eq2g")
+theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="DateLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.85
+anchor_top = 0.875
 anchor_right = 0.95
-anchor_bottom = 1.0
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_mmvpr")
-theme_override_font_sizes/font_size = 10
 theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_fonts/font = ExtResource("2_4eq2g")
+theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1

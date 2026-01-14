@@ -5,7 +5,7 @@
 			"mid_action": true,
 			"lines": [
 				{"speaker": "Frieda", "text": "Good, you are here, they already left."},
-				{"speaker": "Frieda", "text": "Lets get some rest."},
+				{"speaker": "Frieda", "text": "Let's get some rest."},
 				{"mid_action": "next_scene"}
 			]
 		}

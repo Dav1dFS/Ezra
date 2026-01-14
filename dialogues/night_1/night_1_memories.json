@@ -9,9 +9,9 @@
 				{"speaker": "Woman", "text": "And what do you see in my future?"},
 				{"speaker": "Frieda", "text": "A storm you survive. Not because you are strong... but because someone will stand by your side."},
 				{"speaker": "Woman", "text": "Who?"},
-				{"speaker": "Frieda", "text": "That is up to you."},
+				{"speaker": "Frieda", "text": "That.. is up to you."},
 				{"speaker": "Ezra", "text": "So, Frieda did work as a public seer... but instead of predicting destiny, she tried to give people courage."},
-				{"speaker": "Ezra", "text": "Not what I expected. Hmm, I should learn more about her"}
+				{"speaker": "Ezra", "text": "Not what I expected. Hmm, I should learn more about her."}
 			]
 		},{
 			"condition": "collected == 2",

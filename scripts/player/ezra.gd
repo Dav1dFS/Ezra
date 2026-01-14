@@ -47,6 +47,7 @@ var was_dog_alerted_last_frame: bool = false
 func _ready():
 	super._ready()
 	character_name = "Ezra"
+	Gamestate.character_name = "Ezra"
 	original_zoom = cam.zoom.x
 	_last_path_player_pos = global_position
 	_prev_player_pos = global_position

@@ -1,12 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://coeya6u2db1vb"]
+[gd_scene load_steps=23 format=3 uid="uid://coeya6u2db1vb"]
 
 [ext_resource type="Script" uid="uid://cfaqs65xqthbw" path="res://scripts/UI/buttons.gd" id="1_hat0o"]
 [ext_resource type="Script" uid="uid://d0446chgpirol" path="res://scripts/UI/settings.gd" id="1_ok1u1"]
 [ext_resource type="Script" uid="uid://cyl2fmspfqmxq" path="res://scripts/UI/video_settings.gd" id="2_ok1u1"]
-[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="2_vvtyw"]
+[ext_resource type="FontFile" uid="uid://dg6ej1c8cf706" path="res://assets/fonts/Punk Typewriter.otf" id="2_u04k5"]
 [ext_resource type="Script" uid="uid://dau2hy5t7x86e" path="res://scripts/UI/settings_row.gd" id="3_vvtyw"]
 [ext_resource type="Script" uid="uid://cqsb75t06vwua" path="res://scripts/UI/gamma_row.gd" id="4_u04k5"]
 [ext_resource type="Script" uid="uid://d1hl1qcdamjmj" path="res://scripts/UI/max_fps.gd" id="5_myod3"]
+[ext_resource type="FontFile" uid="uid://cyufjp0b701io" path="res://assets/fonts/JMH Typewriter-Bold.otf" id="6_myod3"]
 [ext_resource type="Script" uid="uid://c28a0fjdfkj1c" path="res://scripts/UI/show_fps.gd" id="6_ykg1i"]
 [ext_resource type="Script" uid="uid://calewk3ki3qxl" path="res://scripts/UI/audio_settings.gd" id="7_ao8i7"]
 [ext_resource type="Script" uid="uid://b176bl2hqibnn" path="res://scripts/UI/volume_rows.gd" id="8_o2io1"]
@@ -32,7 +33,6 @@ content_margin_left = 30.0
 content_margin_top = 7.0
 content_margin_bottom = 7.0
 bg_color = Color(0, 0, 0, 0.68235296)
-
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erh6y"]
 content_margin_left = 20.0
@@ -110,7 +110,8 @@ layout_mode = 2
 [node name="VideoSettings" type="Button" parent="MiddleColumn/TopGroup"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_qluss")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xk1xm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1l113")
@@ -125,7 +126,8 @@ script = ExtResource("1_hat0o")
 [node name="AudioSettings" type="Button" parent="MiddleColumn/TopGroup"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_qluss")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xk1xm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1l113")
@@ -140,7 +142,8 @@ script = ExtResource("1_hat0o")
 [node name="Controls" type="Button" parent="MiddleColumn/TopGroup"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_qluss")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xk1xm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1l113")
@@ -179,7 +182,8 @@ script = ExtResource("3_vvtyw")
 [node name="DisplayMode" type="Label" parent="VideoSettingsColumn/TopGroup/DisplayRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "Display Mode"
 
 [node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/DisplayRow"]
@@ -189,7 +193,8 @@ layout_mode = 2
 [node name="LeftArrow" type="Button" parent="VideoSettingsColumn/TopGroup/DisplayRow/DisplayRow"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("6_myod3")
+theme_override_font_sizes/font_size = 20
 text = "<"
 
 [node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/DisplayRow/DisplayRow"]
@@ -199,14 +204,16 @@ alignment = 1
 
 [node name="ScreenMode" type="Label" parent="VideoSettingsColumn/TopGroup/DisplayRow/DisplayRow/DisplayRow"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "Windowed"
 horizontal_alignment = 1
 
 [node name="RightArrow" type="Button" parent="VideoSettingsColumn/TopGroup/DisplayRow/DisplayRow"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("6_myod3")
+theme_override_font_sizes/font_size = 20
 text = ">"
 
 [node name="ResolutionRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup"]
@@ -217,7 +224,8 @@ script = ExtResource("3_vvtyw")
 [node name="Resolution" type="Label" parent="VideoSettingsColumn/TopGroup/ResolutionRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "Resolution"
 
 [node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/ResolutionRow"]
@@ -227,7 +235,8 @@ layout_mode = 2
 [node name="LeftArrow" type="Button" parent="VideoSettingsColumn/TopGroup/ResolutionRow/DisplayRow"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("6_myod3")
+theme_override_font_sizes/font_size = 20
 text = "<"
 
 [node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/ResolutionRow/DisplayRow"]
@@ -237,13 +246,15 @@ alignment = 1
 
 [node name="ScreenMode" type="Label" parent="VideoSettingsColumn/TopGroup/ResolutionRow/DisplayRow/DisplayRow"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "1152x648"
 
 [node name="RightArrow" type="Button" parent="VideoSettingsColumn/TopGroup/ResolutionRow/DisplayRow"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("6_myod3")
+theme_override_font_sizes/font_size = 20
 text = ">"
 
 [node name="GammaRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup"]
@@ -254,7 +265,8 @@ script = ExtResource("4_u04k5")
 [node name="Gamma" type="Label" parent="VideoSettingsColumn/TopGroup/GammaRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "Gamma"
 
 [node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/GammaRow"]
@@ -270,6 +282,7 @@ alignment = 1
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 min_value = 0.7
 max_value = 2.0
 step = 0.1
@@ -278,7 +291,8 @@ value = 1.0
 [node name="Value" type="Label" parent="VideoSettingsColumn/TopGroup/GammaRow/DisplayRow"]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "2.0"
 horizontal_alignment = 1
 
@@ -290,7 +304,8 @@ script = ExtResource("5_myod3")
 [node name="MaxFps" type="Label" parent="VideoSettingsColumn/TopGroup/FpsRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "Max Fps"
 
 [node name="DisplayRow" type="HBoxContainer" parent="VideoSettingsColumn/TopGroup/FpsRow"]
@@ -306,6 +321,7 @@ alignment = 1
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 min_value = 30.0
 max_value = 240.0
 value = 60.0
@@ -313,7 +329,8 @@ value = 60.0
 [node name="Value" type="Label" parent="VideoSettingsColumn/TopGroup/FpsRow/DisplayRow"]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "60"
 horizontal_alignment = 1
 
@@ -325,12 +342,14 @@ script = ExtResource("6_ykg1i")
 [node name="ShowFps" type="Label" parent="VideoSettingsColumn/TopGroup/ShowFpsRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "Show Fps"
 
 [node name="CheckBox" type="CheckBox" parent="VideoSettingsColumn/TopGroup/ShowFpsRow"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 
 [node name="BottomGroup" type="VBoxContainer" parent="VideoSettingsColumn"]
 layout_mode = 2
@@ -342,13 +361,15 @@ layout_mode = 2
 
 [node name="Reset" type="Button" parent="VideoSettingsColumn/BottomGroup/ResetApplyRow"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_erh6y")
 text = "Reset"
 
 [node name="Apply" type="Button" parent="VideoSettingsColumn/BottomGroup/ResetApplyRow"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_h8lgl")
 text = "Apply"
 
@@ -380,7 +401,8 @@ script = ExtResource("8_o2io1")
 [node name="MasterVolume" type="Label" parent="AudioSettingsColumn/TopGroup/MasterRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "Master Volume"
 
 [node name="DisplayRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup/MasterRow"]
@@ -396,12 +418,14 @@ alignment = 1
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 value = 100.0
 
 [node name="Value" type="Label" parent="AudioSettingsColumn/TopGroup/MasterRow/DisplayRow"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "100"
 horizontal_alignment = 1
 
@@ -413,7 +437,8 @@ script = ExtResource("8_o2io1")
 [node name="SFXVolume" type="Label" parent="AudioSettingsColumn/TopGroup/SFXRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "SFX Volume"
 
 [node name="DisplayRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup/SFXRow"]
@@ -429,12 +454,14 @@ alignment = 1
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 value = 100.0
 
 [node name="Value" type="Label" parent="AudioSettingsColumn/TopGroup/SFXRow/DisplayRow"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "100"
 horizontal_alignment = 1
 
@@ -446,7 +473,8 @@ script = ExtResource("8_o2io1")
 [node name="MusicVolume" type="Label" parent="AudioSettingsColumn/TopGroup/MusicRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "Music Volume"
 
 [node name="DisplayRow" type="HBoxContainer" parent="AudioSettingsColumn/TopGroup/MusicRow"]
@@ -462,12 +490,14 @@ alignment = 1
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 value = 100.0
 
 [node name="Value" type="Label" parent="AudioSettingsColumn/TopGroup/MusicRow/DisplayRow"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 text = "100"
 horizontal_alignment = 1
 
@@ -481,13 +511,15 @@ layout_mode = 2
 
 [node name="Reset" type="Button" parent="AudioSettingsColumn/BottomGroup/ResetApplyRow"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_erh6y")
 text = "Reset"
 
 [node name="Apply" type="Button" parent="AudioSettingsColumn/BottomGroup/ResetApplyRow"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_h8lgl")
 text = "Apply"
 
@@ -518,7 +550,8 @@ theme_override_constants/separation = 8
 [node name="PlayerMovement" type="Label" parent="ControlsColumn/TopGroup/MovementRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eq5xg")
 text = "Player Movement"
 
@@ -551,8 +584,8 @@ layout_mode = 2
 [node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
 text = "Action Name"
 vertical_alignment = 1
@@ -563,12 +596,14 @@ size_flags_horizontal = 3
 mouse_filter = 1
 
 [node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveUp/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
 text = "Input Key"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MoveLeft" type="Button" parent="ControlsColumn/TopGroup"]
@@ -596,8 +631,8 @@ layout_mode = 2
 [node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
 text = "Action Name"
 vertical_alignment = 1
@@ -608,12 +643,14 @@ size_flags_horizontal = 3
 mouse_filter = 1
 
 [node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveLeft/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
 text = "Input Key"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MoveDown" type="Button" parent="ControlsColumn/TopGroup"]
@@ -641,8 +678,8 @@ layout_mode = 2
 [node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
 text = "Action Name"
 vertical_alignment = 1
@@ -653,12 +690,14 @@ size_flags_horizontal = 3
 mouse_filter = 1
 
 [node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveDown/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
 text = "Input Key"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MoveRight" type="Button" parent="ControlsColumn/TopGroup"]
@@ -686,8 +725,8 @@ layout_mode = 2
 [node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
 text = "Action Name"
 vertical_alignment = 1
@@ -698,12 +737,14 @@ size_flags_horizontal = 3
 mouse_filter = 1
 
 [node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/MoveRight/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
 text = "Input Key"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InteractionRow" type="HBoxContainer" parent="ControlsColumn/TopGroup"]
@@ -713,7 +754,8 @@ theme_override_constants/separation = 8
 [node name="PlayerMovement" type="Label" parent="ControlsColumn/TopGroup/InteractionRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eq5xg")
 text = "Player Interactions"
 
@@ -746,8 +788,8 @@ layout_mode = 2
 [node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/Interact/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
 text = "Action Name"
 vertical_alignment = 1
@@ -758,12 +800,14 @@ size_flags_horizontal = 3
 mouse_filter = 1
 
 [node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/Interact/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
 text = "Input Key"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AbilityRow" type="HBoxContainer" parent="ControlsColumn/TopGroup"]
@@ -773,7 +817,8 @@ theme_override_constants/separation = 8
 [node name="PlayerMovement" type="Label" parent="ControlsColumn/TopGroup/AbilityRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eq5xg")
 text = "Player Abilities"
 
@@ -806,8 +851,8 @@ layout_mode = 2
 [node name="LabelAction" type="Label" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_pjyly")
 text = "Action Name"
 vertical_alignment = 1
@@ -818,12 +863,14 @@ size_flags_horizontal = 3
 mouse_filter = 1
 
 [node name="LabelInput" type="Label" parent="ControlsColumn/TopGroup/Invisibiliy/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("2_vvtyw")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxFlat_t6cjd")
 text = "Input Key"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BottomGroup" type="VBoxContainer" parent="ControlsColumn"]
@@ -836,7 +883,8 @@ layout_mode = 2
 
 [node name="Reset" type="Button" parent="ControlsColumn/BottomGroup/ResetApplyRow"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vvtyw")
+theme_override_fonts/font = ExtResource("2_u04k5")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_erh6y")
 text = "Reset"
 
