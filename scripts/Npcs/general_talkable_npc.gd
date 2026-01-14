@@ -36,14 +36,14 @@ func deactivate_Collisions(enabled: bool):
 func _process(_delta):
 	if player_in_range and Input.is_action_just_pressed("interact"):
 		if not dialogue_is_on and not Gamestate.dialogue_locked:
-			print("here3")
+		
 			start_dialogue()
 
 func start_dialogue_from_cutscene(_player_node: Node = null):
 	if dialogue_file == "":
 		return
 	is_cutscene_dialogue = true
-	print("here")
+
 	start_dialogue()
 
 func start_dialogue():
@@ -56,7 +56,7 @@ func start_dialogue():
 	dialogue_is_on = true
 	if interact_label:
 		interact_label.visible = false
-	print("here2")
+
 	var processed_dialogue = dialogue_handler.process_dialogue(dialogue_to_use)
 
 	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")

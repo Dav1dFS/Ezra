@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://m3d38ksq3ja1"]
+[gd_scene load_steps=28 format=3 uid="uid://m3d38ksq3ja1"]
 
 [ext_resource type="Script" uid="uid://brog7m5vcrmdh" path="res://scripts/day_1_puzzle_2.gd" id="1_c5o0j"]
 [ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="2_1u0cv"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://igii0hb2mb2m" path="res://assets/character_sprites/frieda/frieda_base.png" id="11_c68y7"]
 [ext_resource type="Texture2D" uid="uid://bbvyp32os1srn" path="res://assets/character_sprites/ellen/ellen_base.png" id="12_pmqis"]
 [ext_resource type="Texture2D" uid="uid://cnvdi8b44pa80" path="res://assets/character_sprites/prisoners_static/pf1r.png" id="13_m6v5w"]
+[ext_resource type="Texture2D" uid="uid://b4q1s8crmnith" path="res://assets/character_sprites/guards_static/guard_big.png" id="13_q2dts"]
 [ext_resource type="Texture2D" uid="uid://d11imkedd5ajh" path="res://assets/character_sprites/miss_ruth/miss_ruth.png" id="14_c68y7"]
 [ext_resource type="Texture2D" uid="uid://nam71qbyylif" path="res://assets/character_sprites/prisoners_static/pf3r.png" id="14_q2dts"]
 [ext_resource type="Texture2D" uid="uid://cvwox8hdrbgi5" path="res://assets/character_sprites/prisoners_static/pf2r.png" id="15_qjn6r"]
@@ -45,12 +46,14 @@ shader_parameter/smoke_color = Color(0.8, 0.8, 0.8, 1)
 shader_parameter/distortion_speed = 1.01600004826
 shader_parameter/density = 0.4250000201875
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2dts"]
+size = Vector2(173, 194)
+
 [node name="Day1Puzzle2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_c5o0j")
 
 [node name="CutsceneController" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("2_1u0cv")]
-auto_start_cutscene = true
 target_npc = NodePath("../FriedaNPC")
 dialogue_box = NodePath("../DialogueBox")
 
@@ -169,6 +172,17 @@ forward_distance = 80.0
 backward_distance = 80.0
 initial_direction = 3
 
+[node name="Guard1" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3931, 2120)
+forward_distance = 80.0
+backward_distance = 80.0
+
+[node name="Guard2" parent="." instance=ExtResource("4_y0wut")]
+position = Vector2(3956, 2148)
+forward_distance = 80.0
+backward_distance = 80.0
+initial_direction = 2
+
 [node name="Enemy5" parent="." instance=ExtResource("4_y0wut")]
 position = Vector2(3556, 2074)
 is_moving = true
@@ -216,6 +230,19 @@ speaker_portraits = Dictionary[String, Texture2D]({
 "Ellen": ExtResource("12_pmqis"),
 "Ezra": ExtResource("10_es3bm"),
 "Talia": ExtResource("11_aey7p"),
+"Woman": ExtResource("11_aey7p")
+})
+override_base_sprite = ExtResource("11_aey7p")
+
+[node name="death" parent="." instance=ExtResource("5_fh8rj")]
+position = Vector2(3961, 2115)
+npc_name = "Talia"
+dialogue_file = "res://dialogues/day_1/day_1_death.json"
+speaker_portraits = Dictionary[String, Texture2D]({
+"Ellen": ExtResource("12_pmqis"),
+"Ezra": ExtResource("10_es3bm"),
+"Guard 1": ExtResource("13_q2dts"),
+"Guard 2": ExtResource("13_q2dts"),
 "Woman": ExtResource("11_aey7p")
 })
 override_base_sprite = ExtResource("11_aey7p")
@@ -327,3 +354,20 @@ speaker_portraits = Dictionary[String, Texture2D]({
 })
 
 [node name="BackGround" parent="." instance=ExtResource("16_pmqis")]
+
+[node name="CutsceneController2" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("2_1u0cv")]
+auto_start_cutscene = true
+target_npc = NodePath("../death")
+dialogue_box = NodePath("../DialogueBox")
+cutscene_flag_name = "death"
+
+[node name="Area2D" type="Area2D" parent="."]
+z_index = 2
+position = Vector2(3897.9998, 2024)
+scale = Vector2(0.76, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(76.5, 87)
+shape = SubResource("RectangleShape2D_q2dts")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

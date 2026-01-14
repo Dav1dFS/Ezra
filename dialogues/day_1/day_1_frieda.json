@@ -2,7 +2,7 @@
 	"dialogues": [
 		{
 			"condition": "default",
-			"mid_action": false,
+			"mid_action": true,
 			"lines": [
 				{"speaker": "Frieda", "text": "You look so bad, sweet girl."},
 				{"speaker": "Frieda", "text": "Find Miss Ruth, she will take good care of you."},
@@ -10,7 +10,8 @@
 				{"speaker": "Frieda", "text": "Tell her I sent you."},
 				{"speaker": "Ellen", "text": "Lady, I'm too scared."},
 				{"speaker": "Frieda", "text": "Frieda, call me Frieda. You can do it, sweetie."},
-				{"speaker": "Ezra", "text": "Ellen is going to need my help."}
+				{"speaker": "Ezra", "text": "Ellen is going to need my help."},
+				{"mid_action": "next_cut"},
 			]
 		},{
 			"condition": "repetition",
