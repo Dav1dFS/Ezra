@@ -6,6 +6,7 @@ extends Node2D
 @onready var general_character: Node2D = $"General"
 @onready var dialogue_box: CanvasLayer = $DialogueBox
 @onready var cutscene: Node2D = $CutsceneController
+@onready var door_knock_sound: AudioStreamPlayer = $DoorKnock
 
 var ellen_initial_pos: Vector2
 var frieda_initial_pos: Vector2
@@ -74,7 +75,7 @@ func _action_guards_searching():
 	var tween = cutscene.move_camera_to(frieda_initial_pos)
 	var music_index = AudioServer.get_bus_index("Music") 
 	AudioServer.set_bus_mute(music_index, true)
-	$Whistle.play()
+	door_knock_sound.play()
 	await tween.finished
 	await cutscene.shake_camera().finished
 	await get_tree().create_timer(0.5).timeout
