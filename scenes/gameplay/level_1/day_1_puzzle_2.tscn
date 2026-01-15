@@ -53,10 +53,9 @@ size = Vector2(173, 194)
 y_sort_enabled = true
 script = ExtResource("1_c5o0j")
 
-[node name="CutsceneController" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("2_1u0cv")]
+[node name="CutsceneController" parent="." node_paths=PackedStringArray("target_npc") instance=ExtResource("2_1u0cv")]
 auto_start_cutscene = true
 target_npc = NodePath("../FriedaNPC")
-dialogue_box = NodePath("../dialogueBox")
 
 [node name="CutsceneController2" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("2_1u0cv")]
 target_npc = NodePath("../death")
@@ -344,7 +343,7 @@ speaker_portraits = Dictionary[String, Texture2D]({
 "Miss Ruth": ExtResource("14_c68y7")
 })
 
-[node name="General" parent="." instance=ExtResource("9_rwttn")]
+[node name="Director" parent="." instance=ExtResource("9_rwttn")]
 position = Vector2(3566, 1575)
 npc_name = "Director"
 dialogue_file = "res://dialogues/game_over_general.json"

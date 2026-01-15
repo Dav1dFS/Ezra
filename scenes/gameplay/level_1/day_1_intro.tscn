@@ -72,7 +72,7 @@ cutscene_flag_name = "night_1_intro"
 [node name="DoorKnock" parent="." instance=ExtResource("13_wwqmh")]
 stream = ExtResource("14_wwqmh")
 
-[node name="General" parent="." instance=ExtResource("9_ydfot")]
+[node name="Director" parent="." instance=ExtResource("9_ydfot")]
 position = Vector2(4813, 2325)
 npc_name = "Director"
 speaker_portraits = Dictionary[String, Texture2D]({
