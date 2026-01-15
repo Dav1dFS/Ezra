@@ -6,9 +6,13 @@ extends Node2D
 @onready var dialogue_box: CanvasLayer = $DialogueBox
 @onready var dialogue_box2: CanvasLayer = $DialogueBox2
 @onready var next_scene_npc: Node2D = $NextSceneNPC
+@onready var objective: Control = $Player/GUI/Objective
 @onready var cutscene: Node2D = $CutsceneController
 @onready var cutscene2: Node2D = $CutsceneController2
+
 func _ready():
+	objective.get_node_or_null("ItemDisplay").visible = false
+	objective.get_node_or_null("CounterLabel").visible = false	
 	Gamestate.dog_is_alerted = false
 	for npc in Gamestate.npc_dialogues_completed.keys():
 		Gamestate.npc_dialogues_completed[npc]=false
