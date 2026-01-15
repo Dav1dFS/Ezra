@@ -18,8 +18,9 @@
 				{"speaker": "Miss Ruth", "text": "You can't keep hiding. I will talk to Miss Frieda tomorrow."},
 				{"speaker": "Miss Ruth", "text": "I might have a way of getting you out of here."},
 				{"speaker": "Ellen", "text": "Thank you... Lad... Miss Ruth."},
+				{"mid_action": "checkpoint"},
 				{"speaker": "Miss Ruth", "text": "For now, keep hiding in the women's dorm room."},
-				{"mid_action": "checkpoint"}
+				
 			]
 		},{
 			"condition": "repetition",

@@ -10,7 +10,7 @@
 				{"speaker": "Frieda", "text": "Tell her I sent you."},
 				{"speaker": "Ellen", "text": "Lady, I'm too scared."},
 				{"speaker": "Frieda", "text": "Frieda, call me Frieda. You can do it, sweetie."},
-				{"speaker": "Ezra", "text": "Ellen is going to need my help."}
+				{"speaker": "Ezra", "text": "Ellen is going to need my help."},
 			]
 		},{
 			"condition": "repetition",
