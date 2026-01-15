@@ -336,9 +336,12 @@ func _restart_level():
 	get_tree().reload_current_scene()
 
 func _setup_cone_light():
+	if not flashlight_light:
+		return
 	var cone_angle_deg := vision_cone.angle_deg as float
 	var cone_texture := _generate_cone_texture(128, 128, cone_angle_deg)
-	flashlight_light.texture = cone_texture
+	if cone_texture:
+		flashlight_light.texture = cone_texture
 	var scale_factor : float = vision_cone.max_distance / 64.0
 	flashlight_light.texture_scale = scale_factor
 	flashlight_light.offset = Vector2(0, vision_cone.max_distance / 2.0)
