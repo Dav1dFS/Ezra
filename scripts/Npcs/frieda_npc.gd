@@ -126,12 +126,25 @@ func _start_day2_transition():
 	tween.finished.connect(_on_fade_to_black_done)
 
 func _on_fade_to_black_done():
-	day_label.text = "DAY 2"
+	day_label.text = "TO BE\nCONTINUED..."
 	day_label.visible = true
 	await get_tree().create_timer(3.0).timeout
 	day_label.visible = false
 	Gamestate.is_talking = false
 	Gamestate.dialogue_locked = false
+	await fade_to_black(0.6)
+	get_tree().change_scene_to_file("res://scenes/UI/credits_cutscene.tscn")
+
+func fade_to_black(duration := 0.5) -> void:
+	fade_rect.visible = true
+	fade_rect.modulate.a = 0.0
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(fade_rect, "modulate:a", 1.0, duration)
+	await tween.finished
+
+	
+
 
 func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	super._on_dialogue_ended(npc_node, fully_completed)
