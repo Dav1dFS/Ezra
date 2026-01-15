@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://pck7l37hfvh6" path="res://assets/animation_sheets/gaurdabluehat_sheet.png" id="2_oipbc"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_jnxau"]
 [ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/npcs/movement_editor_helper.gd" id="4_movement"]
-[ext_resource type="AudioStream" uid="uid://u5oyfwfb7d7v" path="res://assets/audios/dbd-feng-caught-in-a-bear-trap-135905.mp3" id="5_oipbc"]
+[ext_resource type="AudioStream" uid="uid://dwrq74o0uxo1j" path="res://assets/audios/dbd-feng-caught-in-a-bear-trap-135905.mp3" id="5_oipbc"]
 [ext_resource type="AudioStream" uid="uid://cv376tpat6uhu" path="res://assets/audios/footsteps-walking-boots-parquet-1-420135.mp3" id="7_22lfy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5y8db"]
