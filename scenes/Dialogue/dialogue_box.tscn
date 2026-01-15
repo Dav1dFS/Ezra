@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddcft0p2lnsmk"]
+[gd_scene load_steps=5 format=3 uid="uid://ddcft0p2lnsmk"]
 
 [ext_resource type="Script" uid="uid://bi1nsful0mdq5" path="res://scripts/dialogue/dialogue_box.gd" id="1_2k12t"]
 [ext_resource type="FontFile" uid="uid://dg6ej1c8cf706" path="res://assets/fonts/Punk Typewriter.otf" id="2_0bcj4"]
 [ext_resource type="Texture2D" uid="uid://do3vaua6thkkq" path="res://assets/environment_sprites_tiles/text dialogue.png" id="2_1repb"]
+[ext_resource type="AudioStream" uid="uid://cpqxuvo3btpli" path="res://assets/audios/remove-charging-cable-into-smartphone-393112.mp3" id="4_dialogue_sound"]
 
 [node name="Dialogue Box" type="CanvasLayer"]
 process_mode = 1
@@ -64,3 +65,6 @@ offset_bottom = 625.0
 theme_override_fonts/font = ExtResource("2_0bcj4")
 theme_override_font_sizes/font_size = 40
 autowrap_mode = 3
+
+[node name="DialogueSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dialogue_sound")

@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var name_label = $Label
 @onready var text_label = $Label2
 @onready var text_bg = $TextureRect2
+@onready var dialogue_sound: AudioStreamPlayer = $DialogueSound
 
 signal dialogue_ended(npc_node, fully_completed: bool)
 signal mid_action_triggered(action_name: String)
@@ -30,9 +31,10 @@ func start(dialogue : Dictionary, npc: Node):
 	current_npc = npc
 	visible = true
 	active = true
-	
+
 	lines = dialogue.get("lines", [])
 	current_line = 0
+	dialogue_sound.play()
 	_show_line()
 
 func _start_typewriter(text: String):
@@ -102,14 +104,17 @@ func _input(event):
 			]: return
 			if event.physical_keycode == KEY_Z:
 				current_line = max(current_line - 1, 0)
+				dialogue_sound.play()
 				_show_line()
 				return
-		
+
 		if is_typing:
 			is_typing = false
 			text_label.text = full_text
+			dialogue_sound.play()
 			return
-		
+
+		dialogue_sound.play()
 		current_line += 1
 		_show_line()
 		
