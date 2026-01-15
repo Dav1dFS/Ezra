@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://d0484gje3r5pg" path="res://scripts/UI/main_menu.gd" id="1_11hie"]
 [ext_resource type="Shader" uid="uid://i67thunpog4c" path="res://scripts/UI/gammashader.gdshader" id="2_3h7gc"]
 [ext_resource type="Texture2D" uid="uid://bvgpb6jktd0rf" path="res://assets/menu_art.png" id="2_5d4ag"]
-[ext_resource type="Script" path="res://scripts/UI/buttons.gd" id="3_4vh8y"]
-[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="3_b1p1q"]
+[ext_resource type="Script" uid="uid://cfaqs65xqthbw" path="res://scripts/UI/buttons.gd" id="3_4vh8y"]
 [ext_resource type="Shader" uid="uid://p1ew2mo3oin0" path="res://scripts/shaders/fogDay.gdshader" id="3_um6dh"]
 [ext_resource type="PackedScene" uid="uid://coeya6u2db1vb" path="res://scenes/UI/Settings.tscn" id="4_4vh8y"]
+[ext_resource type="FontFile" uid="uid://dg6ej1c8cf706" path="res://assets/fonts/Punk Typewriter.otf" id="5_mf7fl"]
 [ext_resource type="PackedScene" uid="uid://dctbgw4kfc7oq" path="res://scenes/UI/save_options.tscn" id="6_s7yn2"]
 [ext_resource type="Texture2D" uid="uid://bff14d23i5fei" path="res://assets/animation_sheets/ezra_anim.png" id="8_um6dh"]
 [ext_resource type="PackedScene" uid="uid://bcqh0tgm5hj1m" path="res://scenes/gameplay/audioBack.tscn" id="9_mf7fl"]
@@ -121,6 +121,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_11hie")
 
+[node name="Fadecredits" type="ColorRect" parent="."]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -200,8 +211,8 @@ visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.5022532, 0.7946471, 0.99999994, 1)
-theme_override_fonts/font = ExtResource("3_b1p1q")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("5_mf7fl")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_s7yn2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_5r3px")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kgeya")
@@ -216,8 +227,8 @@ script = ExtResource("3_4vh8y")
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.5019608, 0.79607844, 1, 1)
-theme_override_fonts/font = ExtResource("3_b1p1q")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("5_mf7fl")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_6lq7x")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_5r3px")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kgeya")
@@ -232,8 +243,8 @@ script = ExtResource("3_4vh8y")
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.5019608, 0.79607844, 1, 1)
-theme_override_fonts/font = ExtResource("3_b1p1q")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("5_mf7fl")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_n327r")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_5r3px")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kgeya")
@@ -249,8 +260,8 @@ layout_mode = 2
 
 [node name="Options" type="Button" parent="LeftColumn/BottomGroup"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_b1p1q")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("5_mf7fl")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_sfdnv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_frhrr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_elmld")
@@ -259,15 +270,15 @@ text = "Options
 "
 alignment = 0
 
-[node name="ExitMenu" type="Button" parent="LeftColumn/BottomGroup"]
+[node name="Credits" type="Button" parent="LeftColumn/BottomGroup"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_b1p1q")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("5_mf7fl")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_sfdnv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_frhrr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_elmld")
 theme_override_styles/focus = SubResource("StyleBoxFlat_6kh0n")
-text = "Exit to Main Menu"
+text = "Credits"
 alignment = 0
 
 [node name="ExitDesktop" type="Button" parent="LeftColumn/BottomGroup"]
@@ -276,7 +287,8 @@ theme_override_colors/font_color = Color(1, 0.65659994, 0.6055896, 1)
 theme_override_colors/font_focus_color = Color(1, 0.654902, 0.6039216, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.654902, 0.6039216, 1)
 theme_override_colors/font_hover_color = Color(1, 0.654902, 0.6039216, 1)
-theme_override_fonts/font = ExtResource("3_b1p1q")
+theme_override_fonts/font = ExtResource("5_mf7fl")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_sfdnv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_frhrr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_elmld")
@@ -315,4 +327,5 @@ frame_progress = 0.1003351
 [connection signal="pressed" from="LeftColumn/TopGroup/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="LeftColumn/TopGroup/LoadGame" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="LeftColumn/BottomGroup/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="LeftColumn/BottomGroup/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="LeftColumn/BottomGroup/ExitDesktop" to="." method="_on_exit_desktop_pressed"]

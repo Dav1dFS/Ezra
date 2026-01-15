@@ -2,19 +2,21 @@
 
 [ext_resource type="Texture2D" uid="uid://ce5a650ty58jj" path="res://assets/maxresdefault.jpg" id="1_4r2wj"]
 [ext_resource type="Script" uid="uid://c3woloahpidfg" path="res://scripts/UI/pause_menu.gd" id="1_onjwa"]
-[ext_resource type="Script" path="res://scripts/UI/buttons.gd" id="2_6q0ex"]
-[ext_resource type="Shader" path="res://scripts/UI/blurshader.gdshader" id="2_avwb0"]
-[ext_resource type="Shader" path="res://scripts/UI/gammashader.gdshader" id="4_rgmlj"]
+[ext_resource type="Script" uid="uid://cfaqs65xqthbw" path="res://scripts/UI/buttons.gd" id="2_6q0ex"]
+[ext_resource type="Shader" uid="uid://ka41p58s6cpm" path="res://scripts/UI/blurshader.gdshader" id="2_avwb0"]
+[ext_resource type="Shader" uid="uid://i67thunpog4c" path="res://scripts/UI/gammashader.gdshader" id="4_rgmlj"]
 [ext_resource type="Script" uid="uid://bkif47l5jcwcd" path="res://scripts/UI/current_character_text.gd" id="5_0ibie"]
-[ext_resource type="FontFile" uid="uid://daelqt7nr7ubp" path="res://assets/fonts/boldpixels/BoldPixels.otf" id="5_77ihb"]
 [ext_resource type="PackedScene" uid="uid://coeya6u2db1vb" path="res://scenes/UI/Settings.tscn" id="7_3m1qe"]
+[ext_resource type="FontFile" uid="uid://dg6ej1c8cf706" path="res://assets/fonts/Punk Typewriter.otf" id="7_feba6"]
 [ext_resource type="PackedScene" uid="uid://dctbgw4kfc7oq" path="res://scenes/UI/save_options.tscn" id="8_savop"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_slthy"]
 shader = ExtResource("4_rgmlj")
+shader_parameter/gamma = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_73e60"]
 shader = ExtResource("2_avwb0")
+shader_parameter/blur = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3m1qe"]
 content_margin_left = 25.0
@@ -130,12 +132,12 @@ color = Color(0.05490196, 0.2784314, 0.05490196, 0.47058824)
 
 [node name="CurrentCharacterText" type="Label" parent="."]
 layout_mode = 0
-offset_top = 401.0
+offset_top = 420.0
 offset_right = 265.0
-offset_bottom = 494.0
-theme_override_colors/font_color = Color(0, 0.89699674, 0.5792715, 1)
-theme_override_fonts/font = ExtResource("5_77ihb")
-theme_override_font_sizes/font_size = 32
+offset_bottom = 513.0
+theme_override_colors/font_color = Color(0, 0.8980392, 0.5803922, 1)
+theme_override_fonts/font = ExtResource("7_feba6")
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_3m1qe")
 text = "Ezra
 "
@@ -143,11 +145,11 @@ script = ExtResource("5_0ibie")
 
 [node name="PlayDuration" type="Label" parent="."]
 layout_mode = 0
-offset_top = 441.0
+offset_top = 460.0
 offset_right = 265.0
-offset_bottom = 534.0
-theme_override_fonts/font = ExtResource("5_77ihb")
-theme_override_font_sizes/font_size = 16
+offset_bottom = 553.0
+theme_override_fonts/font = ExtResource("7_feba6")
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_3m1qe")
 text = "00h 00m 00s"
 
@@ -156,10 +158,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.22200002
 anchor_bottom = 1.0
+offset_top = 48.0
 offset_right = 0.25598145
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_constants/separation = 75
+theme_override_constants/separation = 20
 
 [node name="TopGap" type="Control" parent="LeftColumn"]
 layout_mode = 2
@@ -171,8 +174,8 @@ theme_override_constants/separation = 9
 [node name="ResumeGame" type="Button" parent="LeftColumn/TopGroup"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.5022532, 0.7946471, 0.99999994, 1)
-theme_override_fonts/font = ExtResource("5_77ihb")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("7_feba6")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_6q0ex")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_77ihb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yj2n7")
@@ -186,8 +189,8 @@ script = ExtResource("2_6q0ex")
 [node name="SaveGame" type="Button" parent="LeftColumn/TopGroup"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.5019608, 0.79607844, 1, 1)
-theme_override_fonts/font = ExtResource("5_77ihb")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("7_feba6")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_avwb0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_77ihb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yj2n7")
@@ -201,8 +204,8 @@ script = ExtResource("2_6q0ex")
 [node name="LoadGame" type="Button" parent="LeftColumn/TopGroup"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.5019608, 0.79607844, 1, 1)
-theme_override_fonts/font = ExtResource("5_77ihb")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("7_feba6")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_73e60")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_77ihb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yj2n7")
@@ -219,7 +222,8 @@ layout_mode = 2
 [node name="Options" type="Button" parent="LeftColumn/BottomGroup"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_fonts/font = ExtResource("7_feba6")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
@@ -231,7 +235,8 @@ alignment = 0
 [node name="ExitMenu" type="Button" parent="LeftColumn/BottomGroup"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_fonts/font = ExtResource("7_feba6")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
@@ -245,7 +250,8 @@ theme_override_colors/font_color = Color(1, 0.65659994, 0.6055896, 1)
 theme_override_colors/font_focus_color = Color(1, 0.654902, 0.6039216, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.654902, 0.6039216, 1)
 theme_override_colors/font_hover_color = Color(1, 0.654902, 0.6039216, 1)
-theme_override_fonts/font = ExtResource("5_77ihb")
+theme_override_fonts/font = ExtResource("7_feba6")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_4r2wj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rgmlj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_onjwa")
