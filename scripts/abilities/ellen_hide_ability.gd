@@ -36,10 +36,8 @@ var hide_back_anims = {
 
 func _init():
 	ability_name = "Hide"
-	# ability_icon = preload("res://assets/abilities/ellen_ability_hide.png")
-	ability_icon = preload("res://assets/abilities/ezra_ability_track.png")
-	# ability_sound = preload("res://assets/abilities/ellen_ability_hide.mp3")
-	ability_sound = preload("res://assets/abilities/ezra_ability_track.mp3")
+	ability_icon = preload("res://assets/abilities/ellen_hide_ability.png")
+	ability_sound = preload("res://assets/abilities/ellen_hide_ability.mp3")
 	description = "Hide from guards sight"
 	is_toggle = false
 	cooldown_time = 3.0
@@ -63,6 +61,7 @@ func execute(player: CharacterBody2D) -> void:
 
 func deactivate() -> void:
 	if not is_restoring:
+		is_active = false  # Prevent update() from calling deactivate() repeatedly
 		_start_restore()
 	else:
 		super.deactivate()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c03hl6oioh6jb"
-path="res://.godot/imported/ezra_ability_track.png-dc6aec1233e0f68887613e058aa3851b.ctex"
+uid="uid://dtxjrswa6u6d7"
+path="res://.godot/imported/ezra_possess_ability.png-3948ef952861c72f2872c3246e42d200.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilities/ezra_ability_track.png"
-dest_files=["res://.godot/imported/ezra_ability_track.png-dc6aec1233e0f68887613e058aa3851b.ctex"]
+source_file="res://assets/abilities/ezra_possess_ability.png"
+dest_files=["res://.godot/imported/ezra_possess_ability.png-3948ef952861c72f2872c3246e42d200.ctex"]
 
 [params]
 

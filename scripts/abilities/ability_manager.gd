@@ -78,19 +78,15 @@ func _try_execute_ability():
 		if primary_ability.is_active:
 			primary_ability.execute(player)
 			primary_ability.deactivate()
-			ability_deactivated.emit(primary_ability)
 		else:
 			primary_ability.execute(player)
 			primary_ability.activate()
-			ability_activated.emit(primary_ability)
 	else:
 		primary_ability.execute(player)
 		primary_ability.activate()
-		ability_activated.emit(primary_ability)
 
 		if primary_ability.duration <= 0:
 			primary_ability.deactivate()
-			ability_deactivated.emit(primary_ability)
 
 
 func set_primary_ability(ability: Ability):
@@ -141,11 +137,11 @@ func get_ability_icon() -> Texture2D:
 
 
 func _on_ability_activated():
-	pass
+	ability_activated.emit(primary_ability)
 
 
 func _on_ability_deactivated():
-	pass
+	ability_deactivated.emit(primary_ability)
 
 
 func _on_cooldown_finished():
