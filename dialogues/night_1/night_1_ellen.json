@@ -4,18 +4,40 @@
 			"condition": "default",
 			"mid_action": false,
 			"lines": [
-				{"speaker": "Ellen", "text": "I'm so scared.."},
-				{"speaker": "Ellen", "text": "I'm tired of having to hide all the time."},
-				{"speaker": "Ellen", "text": "Oh, Lady Frieda..."},
-				{"speaker": "Ezra", "text": "I need to work with this Frieda lady!"},
-				{"speaker": "Ezra", "text": "She could be the key to saving Ellen."}
+				{
+					"speaker": "Ellen",
+					"text": "I'm so scared.."
+				},
+				{
+					"speaker": "Ellen",
+					"text": "I'm tired of having to hide all the time."
+				},
+				{
+					"speaker": "Ellen",
+					"text": "Oh, Lady Frieda..."
+				},
+				{
+					"speaker": "Ezra",
+					"text": "I need to work with this Frieda lady!"
+				},
+				{
+					"speaker": "Ezra",
+					"text": "She could be the key to saving Ellen."
+				}
 			]
-		},{
+		},
+		{
 			"condition": "repetition",
 			"mid_action": false,
 			"lines": [
-				{"speaker": "Ezra", "text": "I'm sad just looking at her..."},
-				{"speaker": "Ezra", "text": "I didn't know i could still feel this way.."}
+				{
+					"speaker": "Ezra",
+					"text": "I'm sad just looking at her..."
+				},
+				{
+					"speaker": "Ezra",
+					"text": "I didn't know i could still feel this way.."
+				}
 			]
 		}
 	]

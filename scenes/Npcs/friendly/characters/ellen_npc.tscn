@@ -80,9 +80,3 @@ offset_bottom = 274.0
 scale = Vector2(0.032180898, 0.032180898)
 theme_override_fonts/font = ExtResource("5_p8666")
 theme_override_font_sizes/font_size = 300
-
-[node name="Area2D" type="Area2D" parent="." index="4"]
-position = Vector2(0, -7.5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-shape = SubResource("CapsuleShape2D_mol5f")

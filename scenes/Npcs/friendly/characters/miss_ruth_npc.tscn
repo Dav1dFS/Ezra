@@ -73,7 +73,7 @@ shape = SubResource("CapsuleShape2D_isp7f")
 [node name="PlayerInteractionArea" parent="." index="3"]
 position = Vector2(0.5, 16)
 
-[node name="PlayerInteractionLabel" parent="." index="3"]
+[node name="PlayerInteractionLabel" parent="." index="4"]
 offset_left = -28.0
 offset_top = -24.000002
 offset_right = 1812.0
@@ -81,11 +81,3 @@ offset_bottom = 290.0
 scale = Vector2(0.032180898, 0.032180898)
 theme_override_fonts/font = ExtResource("5_wr4n2")
 theme_override_font_sizes/font_size = 300
-
-[node name="Area2D" type="CharacterBody2D" parent="." index="4"]
-position = Vector2(0.5, 16)
-disable_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, -9)
-shape = SubResource("CapsuleShape2D_isp7f")

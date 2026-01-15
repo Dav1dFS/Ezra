@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddcft0p2lnsmk"]
 
-[ext_resource type="Script" uid="uid://bi1nsful0mdq5" path="res://scripts/Dialogue/dialogue_box.gd" id="1_2k12t"]
+[ext_resource type="Script" uid="uid://bi1nsful0mdq5" path="res://scripts/dialogue/dialogue_box.gd" id="1_2k12t"]
 [ext_resource type="FontFile" uid="uid://dg6ej1c8cf706" path="res://assets/fonts/Punk Typewriter.otf" id="2_0bcj4"]
 [ext_resource type="Texture2D" uid="uid://do3vaua6thkkq" path="res://assets/environment_sprites_tiles/text dialogue.png" id="2_1repb"]
 
