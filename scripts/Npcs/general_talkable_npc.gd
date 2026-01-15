@@ -7,7 +7,7 @@ extends Node2D
 }
 @export var override_base_sprite: Texture2D = null
 @export var all_collected_gamestate_flag: String = ""
-
+@export var dialogue_box: CanvasLayer
 @onready var sprite = $Base
 @onready var base_anims: AnimatedSprite2D = $Base2
 @onready var area = $PlayerInteractionArea
@@ -21,10 +21,16 @@ var dialogue_handler := DialogueHandler.new()
 func _ready():
 	if override_base_sprite != null and sprite:
 		sprite.texture = override_base_sprite
-	if base_anims.sprite_frames != null and override_base_sprite != null:
+	if base_anims.sprite_frames != null:
 		sprite.visible=false
 		base_anims.visible=true
 		base_anims.play()
+	else:
+		for child in self.get_children():
+			if child is AnimatedSprite2D and child.name ==npc_name:
+				sprite.visible=false
+				child.visible=true
+				child.play()
 	if dialogue_file != "":
 		dialogue_handler.load_dialogue_file(dialogue_file)
 		area.body_entered.connect(_on_body_entered)
@@ -37,14 +43,14 @@ func deactivate_Collisions(enabled: bool):
 func _process(_delta):
 	if player_in_range and Input.is_action_just_pressed("interact"):
 		if not dialogue_is_on and not Gamestate.dialogue_locked:
-			print("here3")
+		
 			start_dialogue()
 
 func start_dialogue_from_cutscene(_player_node: Node = null):
 	if dialogue_file == "":
 		return
 	is_cutscene_dialogue = true
-	print("here")
+
 	start_dialogue()
 
 func start_dialogue():
@@ -57,9 +63,10 @@ func start_dialogue():
 	dialogue_is_on = true
 	if interact_label:
 		interact_label.visible = false
-	var processed_dialogue = dialogue_handler.process_dialogue(dialogue_to_use)
 
-	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+	var processed_dialogue = dialogue_handler.process_dialogue(dialogue_to_use)
+	if not dialogue_box:
+		dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 	if not dialogue_box:
 		push_error("DialogueBox not found in scene!")
 		dialogue_is_on = false
@@ -87,7 +94,7 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	if npc_node != self:
 		return
 
-	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+	dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 	if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 		dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)
 
@@ -117,6 +124,6 @@ func _on_body_exited(body: Node):
 			interact_label.visible = false
 
 		if dialogue_is_on and not is_cutscene_dialogue:
-			var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+			dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 			if dialogue_box and dialogue_box.active:
 				dialogue_box.end_dialogue()

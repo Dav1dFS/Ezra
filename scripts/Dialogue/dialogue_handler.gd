@@ -60,7 +60,6 @@ func choose_dialogue(npc_name: String = "", custom_check: Callable = Callable(),
 		if condition == "default" and not is_completed:
 			return dialogue
 		elif condition == "repetition" and is_completed:
-			print("err13")
 			return dialogue
 
 	return {}

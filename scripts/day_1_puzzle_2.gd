@@ -1,12 +1,13 @@
 extends Node2D
 
-@onready var cutscene: Node2D = $CutsceneController
 @onready var player: CharacterBody2D = $Player
 @onready var frieda_npc: Node2D = $"FriedaNPC"
 @onready var miss_ruth_npc: Node2D = $"MissRuthNPC"
 @onready var dialogue_box: CanvasLayer = $DialogueBox
+@onready var dialogue_box2: CanvasLayer = $DialogueBox2
 @onready var next_scene_npc: Node2D = $NextSceneNPC
-
+@onready var cutscene: Node2D = $CutsceneController
+@onready var cutscene2: Node2D = $CutsceneController2
 func _ready():
 	Gamestate.dog_is_alerted = false
 	for npc in Gamestate.npc_dialogues_completed.keys():
@@ -18,7 +19,13 @@ func _ready():
 	await cutscene.scene_fade_in()
 	player.changeObjective("Find Miss Ruth")
 	dialogue_box.mid_action_triggered.connect(_on_mid_action)
+	cutscene2.mid_action_requested.connect(_on_mid_action)
+	cutscene2.dialogue_box=$DialogueBox2
+	$death.dialogue_box=$DialogueBox2
 
+
+
+		
 # TODO: Mover isto daqui para CutsceneManager.gd ou outro script mais apropriado
 func _set_npc_interactable(npc: Node2D, enabled: bool):
 	npc.visible = enabled
@@ -37,16 +44,37 @@ func _on_mid_action(action_name: String):
 			on_checkpoint()
 		"next_scene":
 			_action_next_scene()
+		"take_hostage":
+			_take_hostage()
+
+
+
+		
 		_:
 			push_warning("Unknown mid_action: " + action_name)
 			dialogue_box.continue_after_action()
-
+			
+func _take_hostage():
+	var target_pos = Vector2($death.global_position.x, $death.global_position.y+7)
+	var slide=cutscene.slide_character($Guard2, target_pos)
+	
+	
+	await slide
+	await get_tree().create_timer(0.8).timeout
+	dialogue_box2.continue_after_action()
+	
+	
 func on_checkpoint():
 	_set_npc_interactable(frieda_npc, false)
 	_set_npc_interactable(next_scene_npc, true)
+	print(frieda_npc.visible, next_scene_npc.visible)
 	player.changeObjective("Go hide in the dorms")
 	player.update_inventory(load("res://items/Cookie.tres"))
-	
+	if $Area2D:
+		$Area2D.queue_free()
+	$death.queue_free()
+	$Guard1.queue_free()
+	$Guard2.queue_free()
 	dialogue_box.continue_after_action()
 
 func _action_next_scene():
@@ -54,3 +82,12 @@ func _action_next_scene():
 	Gamestate.dialogue_locked = false
 	Gamestate.is_talking = false
 	await cutscene.scene_fade_out("res://scenes/gameplay/level_1/night_1.tscn")
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name=="Player":
+		print("here cut")
+		await cutscene2.runCutscene()
+		$Area2D.queue_free()
+
+		
