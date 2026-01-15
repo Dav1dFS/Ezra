@@ -71,7 +71,6 @@ func recalculate_vision(override_static_flag = false):
 			return
 	
 	_last_position = global_position
-	_last_position.y-=6
 	_vision_points.clear()
 	_vision_points = calculate_vision_shape(override_static_flag)
 	_update_collision_polygon()

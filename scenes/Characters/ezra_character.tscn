@@ -328,12 +328,12 @@ inv = null
 
 [node name="Base" type="AnimatedSprite2D" parent="." index="0"]
 z_index = 1
-position = Vector2(0, -9)
+position = Vector2(0.5, -16)
 sprite_frames = SubResource("SpriteFrames_rvnwh")
 animation = &"defaultD"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, -7)
+position = Vector2(0, -14)
 shape = SubResource("CapsuleShape2D_v2jhp")
 
 [node name="Camera2D" parent="." index="2"]

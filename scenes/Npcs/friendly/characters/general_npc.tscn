@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/npcs/friendly/general_talkable_npc.tscn" id="1_k2fap"]
 [ext_resource type="Texture2D" uid="uid://igii0hb2mb2m" path="res://assets/character_sprites/frieda/frieda_base.png" id="2_t6yy4"]
 [ext_resource type="Texture2D" uid="uid://cmcoj8b6lhti3" path="res://assets/animation_sheets/idlecycle_anim_prisioneiros4.png" id="3_eunhx"]
-[ext_resource type="FontFile" uid="uid://d4dn2anvknt7a" path="res://assets/fonts/Bayer TypeArchiType Regular.otf" id="3_t6yy4"]
 [ext_resource type="Texture2D" uid="uid://1vl4wp0avdw2" path="res://assets/animation_sheets/idlecycle_anim_prisioneiro2.png" id="4_m6kd1"]
 [ext_resource type="Texture2D" uid="uid://c8wwq6hs3qro4" path="res://assets/animation_sheets/idlecycle_anim_prisioneiro3.png" id="5_3jvj1"]
+[ext_resource type="FontFile" uid="uid://dg6ej1c8cf706" path="res://assets/fonts/Punk Typewriter.otf" id="6_g5ma2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbgvj"]
 atlas = ExtResource("3_eunhx")
@@ -232,50 +232,51 @@ y_sort_enabled = true
 
 [node name="Base" parent="." index="0"]
 y_sort_enabled = true
-position = Vector2(-1, -16)
+position = Vector2(-0.5, -16)
 texture = ExtResource("2_t6yy4")
 
 [node name="Base2" parent="." index="1"]
 visible = false
 y_sort_enabled = true
+position = Vector2(-0.5, 0)
 
 [node name="Lilah" type="AnimatedSprite2D" parent="." index="2"]
 visible = false
 y_sort_enabled = true
-position = Vector2(-2, -16)
+position = Vector2(-0.5, -16)
 sprite_frames = SubResource("SpriteFrames_30irs")
 frame_progress = 0.63482267
 
 [node name="Jordyn" type="AnimatedSprite2D" parent="." index="3"]
 visible = false
 y_sort_enabled = true
-position = Vector2(-1, -16)
+position = Vector2(-0.5, -16)
 sprite_frames = SubResource("SpriteFrames_32mon")
 
 [node name="Talia" type="AnimatedSprite2D" parent="." index="4"]
 visible = false
 y_sort_enabled = true
-position = Vector2(-1, -16)
+position = Vector2(-0.5, -16)
 sprite_frames = SubResource("SpriteFrames_pqbh2")
 
 [node name="rand2" type="AnimatedSprite2D" parent="." index="5"]
 visible = false
 y_sort_enabled = true
-position = Vector2(-1, -16)
+position = Vector2(-0.5, -16)
 sprite_frames = SubResource("SpriteFrames_nxsls")
 frame_progress = 0.61016136
 
 [node name="rand1" type="AnimatedSprite2D" parent="." index="6"]
 visible = false
 y_sort_enabled = true
-position = Vector2(0, -16)
+position = Vector2(-0.5, -16)
 sprite_frames = SubResource("SpriteFrames_y7q0v")
 frame_progress = 0.9759921
 
 [node name="rand3" type="AnimatedSprite2D" parent="." index="7"]
 visible = false
 y_sort_enabled = true
-position = Vector2(0, -16)
+position = Vector2(-0.5, -16)
 sprite_frames = SubResource("SpriteFrames_403la")
 
 [node name="Area2D" type="CharacterBody2D" parent="." index="8"]
@@ -286,14 +287,12 @@ disable_mode = 1
 position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_isp7f")
 
-[node name="PlayerInteractionArea" parent="." index="9"]
-position = Vector2(-0.5, 0)
-
-[node name="PlayerInteractionLabel" parent="." index="4"]
-offset_left = -28.0
-offset_top = -26.0
-offset_right = 1812.0
-offset_bottom = 288.0
+[node name="PlayerInteractionLabel" parent="." index="10"]
+z_index = 8
+offset_left = -30.5
+offset_top = -45.0
+offset_right = 1865.0343
+offset_bottom = 269.0
 scale = Vector2(0.032180898, 0.032180898)
-theme_override_fonts/font = ExtResource("3_t6yy4")
+theme_override_fonts/font = ExtResource("6_g5ma2")
 theme_override_font_sizes/font_size = 300

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1h7yyq5catbo"]
+[gd_scene load_steps=7 format=3 uid="uid://c1h7yyq5catbo"]
 
 [ext_resource type="PackedScene" uid="uid://rigk7iiiey25" path="res://scenes/npcs/friendly/general_talkable_npc.tscn" id="1_2pq55"]
 [ext_resource type="Texture2D" uid="uid://dvjslhq7s1vpg" path="res://assets/character_sprites/prisoners_static/pm1.png" id="2_1n62i"]
 [ext_resource type="Texture2D" uid="uid://b1g1ep0ctfora" path="res://assets/character_sprites/ezra/ezra_base.png" id="2_j8hir"]
 [ext_resource type="Texture2D" uid="uid://cjchqjjy8qgul" path="res://assets/character_sprites/prisoners_static/pm1b.png" id="3_lmmyn"]
+[ext_resource type="FontFile" uid="uid://dg6ej1c8cf706" path="res://assets/fonts/Punk Typewriter.otf" id="5_lmmyn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2pq55"]
 radius = 3.7122967
@@ -26,3 +27,13 @@ hframes = 4
 position = Vector2(0, -7.9999986)
 scale = Vector2(1, 2.155)
 shape = SubResource("CapsuleShape2D_2pq55")
+
+[node name="PlayerInteractionLabel" parent="." index="4"]
+z_index = 8
+offset_left = -29.5
+offset_top = -46.0
+offset_right = 1810.5
+offset_bottom = 268.0
+scale = Vector2(0.032180898, 0.032180898)
+theme_override_fonts/font = ExtResource("5_lmmyn")
+theme_override_font_sizes/font_size = 300

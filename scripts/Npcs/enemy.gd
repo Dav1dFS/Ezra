@@ -62,6 +62,13 @@ func _ready():
 		flashlight_bob_amount = 3.0
 		self.npc_name="Director"
 		self.npc_portrait = "res://assets/character_sprites/guards_static/guard_biggg.png"
+		# Disable FlashlightBob's VisionConeArea since it has no script to update its collision polygon
+		var flashlight_area = flashlight.get_node_or_null("VisionConeArea")
+		if flashlight_area:
+			flashlight_area.monitoring = false
+			flashlight_area.monitorable = false
+		# Force recalculate the vision cone with the new angle
+		vision_cone.recalculate_vision(true)
 
 	_setup_cone_light()
 
@@ -219,6 +226,12 @@ func _rotate_in_place():
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	_handle_player_detected(body)
+
+func _on_vision_cone_area_body_entered(body: Node2D) -> void:
+	_handle_player_detected(body)
+
+func _on_vision_cone_area_body_exited(_body: Node2D) -> void:
+	pass
 
 func _process_movement(delta: float):
 	if is_turning:

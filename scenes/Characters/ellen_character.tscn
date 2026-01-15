@@ -758,7 +758,7 @@ radius = 5.0
 height = 14.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wsosn"]
-polygon = PackedVector2Array(0, 6, -5, 6, -5, -14, -2, -17, 2, -17, 5, -14, 5, 6)
+polygon = PackedVector2Array(0, 6, -5, 6, -5, -3, -2, -6, 2, -6, 5, -3, 5, 6)
 
 [node name="EllenCharacter" instance=ExtResource("1_base")]
 z_as_relative = false
@@ -769,23 +769,24 @@ character_name = "Ellen"
 
 [node name="Base" type="AnimatedSprite2D" parent="." index="0"]
 y_sort_enabled = true
-position = Vector2(0.5, -8)
+position = Vector2(0.5, -16)
 sprite_frames = SubResource("SpriteFrames_myuhx")
 animation = &"defaultD"
 frame_progress = 0.4947583
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 1)
+position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_cwiox")
 
-[node name="Camera2D" parent="." index="2"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="2"]
+position = Vector2(0, -8)
+occluder = SubResource("OccluderPolygon2D_wsosn")
+
+[node name="Camera2D" parent="." index="3"]
 position = Vector2(0, -10)
 
 [node name="Inventory" parent="GUI" index="0"]
 offset_left = 1042.0001
 offset_right = 1066.0001
 
-[node name="Timer" type="Timer" parent="." index="4"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="5"]
-occluder = SubResource("OccluderPolygon2D_wsosn")
+[node name="Timer" type="Timer" parent="." index="7"]

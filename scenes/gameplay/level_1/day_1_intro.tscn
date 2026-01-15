@@ -41,7 +41,7 @@ position = Vector2(4889, 2252)
 [node name="DialogueBox" parent="." instance=ExtResource("5_ydfot")]
 
 [node name="Player" parent="." instance=ExtResource("4_71j44")]
-position = Vector2(4785, 2296)
+position = Vector2(4785, 2304)
 collision_layer = 3
 
 [node name="EllenNPC" parent="." instance=ExtResource("5_282ja")]
@@ -73,7 +73,7 @@ cutscene_flag_name = "night_1_intro"
 stream = ExtResource("14_wwqmh")
 
 [node name="Director" parent="." instance=ExtResource("9_ydfot")]
-position = Vector2(4813, 2325)
+position = Vector2(4813, 2336)
 npc_name = "Director"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Director": ExtResource("13_iidb0"),

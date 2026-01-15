@@ -370,11 +370,11 @@ target_npc = NodePath("../Frieda")
 transition_text = "Night 1"
 
 [node name="Ellen" parent="." instance=ExtResource("7_4ov1t")]
-position = Vector2(4844, 1987)
+position = Vector2(4816, 2002)
 dialogue_file = "res://dialogues/night_1/night_1_ellen.json"
 
 [node name="Frieda" parent="." instance=ExtResource("9_t5b4k")]
-position = Vector2(5040, 1750)
+position = Vector2(5040, 1773)
 script = ExtResource("10_3fgql")
 ability_hold_time = 3.0
 dialogue_file = "res://dialogues/night_1/night_1_frieda.json"
@@ -413,10 +413,10 @@ script = ExtResource("12_bqncc")
 [node name="ColorRect" type="ColorRect" parent="FogWalls"]
 z_index = 4
 material = SubResource("ShaderMaterial_bqncc")
-offset_left = 3117.0
-offset_top = 820.0
-offset_right = 3157.0
-offset_bottom = 860.0
+offset_left = 3119.0
+offset_top = 826.0
+offset_right = 3159.0
+offset_bottom = 866.0
 scale = Vector2(61.555775, 46.340397)
 
 [node name="TopWall" type="Node2D" parent="FogWalls"]

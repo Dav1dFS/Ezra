@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dd4id7br4hm7x" path="res://scripts/day_1_puzzle_1.gd" id="1_5hwlc"]
 [ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="2_j7nyh"]
 [ext_resource type="PackedScene" uid="uid://c3u1vrdbkdehy" path="res://scenes/gameplay/main_map.tscn" id="2_qy4rw"]
-[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/Characters/ellen_character.tscn" id="3_l7v7i"]
+[ext_resource type="PackedScene" uid="uid://crx5k8n7j2mp8" path="res://scenes/characters/ellen_character.tscn" id="3_l7v7i"]
 [ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/npcs/enemies/enemy_guard.tscn" id="4_w2lpk"]
 [ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_rusdq"]
 [ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/npcs/friendly/characters/frieda_npc.tscn" id="6_qy4rw"]

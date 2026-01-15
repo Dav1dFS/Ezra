@@ -99,7 +99,8 @@ func _action_ezra_possesses_ellen():
 
 	director_character.visible = true
 	director_character.modulate.a = 1.0
-	await cutscene.slide_character(director_character, ezra_initial_pos).finished
+	var target_director_pos = Vector2(ezra_initial_pos.x, ellen_initial_pos.y)
+	await cutscene.slide_character(director_character, target_director_pos).finished
 
 	var target_pos = Vector2(frieda_initial_pos.x, cutscene.cutscene_camera.global_position.y)
 	await cutscene.move_camera_to(target_pos).finished

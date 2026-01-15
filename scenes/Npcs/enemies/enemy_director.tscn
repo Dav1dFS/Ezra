@@ -2,27 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cgckhlyl2c1k6" path="res://scripts/npcs/enemy.gd" id="1_vjb1u"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_l7752"]
-[ext_resource type="Texture2D" uid="uid://c8vggm6tiss2l" path="res://assets/animation_sheets/gaurdadirector_sheet.png" id="3_a8c1g"]
+[ext_resource type="Texture2D" uid="uid://c1dwq1fwtkw1l" path="res://assets/animation_sheets/gaurdadirector_sheet.png" id="3_a8c1g"]
 [ext_resource type="Script" uid="uid://i8dyh7gg7lel" path="res://scripts/npcs/movement_editor_helper.gd" id="4_0drax"]
 [ext_resource type="PackedScene" uid="uid://bycu3ppdrfsjl" path="res://scenes/gameplay/whistle.tscn" id="5_g12yd"]
 [ext_resource type="AudioStream" uid="uid://cv376tpat6uhu" path="res://assets/audios/footsteps-walking-boots-parquet-1-420135.mp3" id="6_fntb1"]
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tx05f"]
-cull_mode = 1
-polygon = PackedVector2Array(1.1226686, -1.710556, -1.9727317, 0.8940048, -1.8976371, 1.5409737, -1.8319296, 2.0724106, 1.1681019, 3.82518, -2.0759869, 2.0030937, -2.3093565, 1.8133354, -2.1667705, 0.76039314, -0.4140109, -4.6503906)
-
-[sub_resource type="Gradient" id="Gradient_kjesm"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.82666665, 0.99333334, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_e2ie0"]
-gradient = SubResource("Gradient_kjesm")
-width = 78
-height = 65
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78gd7"]
 atlas = ExtResource("3_a8c1g")
@@ -276,6 +259,23 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vjb1u"]
+cull_mode = 1
+polygon = PackedVector2Array(0.47757894, 0, -1.7300689, 1.2105255, -1.9278486, 1.3026314, -1.9171576, 1.8157902, 0.47757894, 3.3684235, 0.3291053, 4.3030643, -1.3825492, 3.0417652, -2.3093565, 1.8133354, -2.1667705, 0.76039314, 0.3291053, -0.74956703)
+
+[sub_resource type="Gradient" id="Gradient_kjesm"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.47333333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l7752"]
+gradient = SubResource("Gradient_kjesm")
+width = 78
+height = 65
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvwks"]
 radius = 2.774074
 height = 22.78481
@@ -290,8 +290,39 @@ alert_color = Color(0.69411767, 0.05882353, 0.36862746, 0.36862746)
 npc_portrait = "uid://durs75xmm7uy3"
 backward_distance = 100.0
 
+[node name="Base" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+position = Vector2(1.5, -16)
+sprite_frames = SubResource("SpriteFrames_f6hne")
+animation = &"wU"
+
+[node name="FlashlightBob" type="Node2D" parent="."]
+position = Vector2(0, -9)
+rotation = -1.5707964
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="FlashlightBob"]
+z_index = 3
+y_sort_enabled = true
+position = Vector2(1, 0.30199996)
+rotation = 1.5707964
+scale = Vector2(1.4615386, 0.59375)
+occluder = SubResource("OccluderPolygon2D_vjb1u")
+
+[node name="PointLight2D" type="PointLight2D" parent="FlashlightBob"]
+z_index = 3
+y_sort_enabled = true
+position = Vector2(0.09375, -1.984375)
+rotation = 1.5707964
+scale = Vector2(1.8589745, 0.59375)
+range_z_min = 0
+range_z_max = 0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_l7752")
+offset = Vector2(11.557108, -1.5263157)
+
 [node name="VisionCone2D" parent="." instance=ExtResource("2_l7752")]
-position = Vector2(-0.057308197, 0)
+position = Vector2(1.5, -11.01416)
 rotation = -1.5707964
 
 [node name="VisionConeRenderer" parent="VisionCone2D" index="0"]
@@ -300,92 +331,27 @@ visible = false
 [node name="VisionConeArea" parent="VisionCone2D" index="1"]
 visible = false
 
-[node name="VisionConeCollider" parent="VisionCone2D/VisionConeArea" index="0"]
-visible = false
-
 [node name="DebugDraw" parent="VisionCone2D" index="2"]
 visible = false
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="VisionCone2D"]
-visible = false
-z_index = 3
-y_sort_enabled = true
-position = Vector2(1, 0.302)
-scale = Vector2(1.4615386, 0.59375)
-occluder = SubResource("OccluderPolygon2D_tx05f")
-
-[node name="PointLight2D" type="PointLight2D" parent="VisionCone2D"]
-visible = false
-z_index = 3
-y_sort_enabled = true
-position = Vector2(0.30248806, 0.56150436)
-scale = Vector2(1.8589745, 1.6337507)
-range_z_min = 0
-range_z_max = 0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-texture = SubResource("GradientTexture2D_e2ie0")
-offset = Vector2(11.444821, -3.0846193)
-
-[node name="FlashlightBob" parent="." instance=ExtResource("2_l7752")]
-position = Vector2(-0.057308197, 0)
-rotation = -1.5707964
-script = null
-
-[node name="VisionConeRenderer" parent="FlashlightBob" index="0"]
-visible = false
-
-[node name="VisionConeArea" parent="FlashlightBob" index="1"]
-visible = false
-
-[node name="DebugDraw" parent="FlashlightBob" index="2"]
-visible = false
-script = null
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="FlashlightBob"]
-z_index = 3
-y_sort_enabled = true
-position = Vector2(1.5752794, -1.9778194)
-rotation = 1.5707964
-scale = Vector2(1.4615386, 0.59375)
-occluder = SubResource("OccluderPolygon2D_tx05f")
-
-[node name="PointLight2D" type="PointLight2D" parent="FlashlightBob"]
-z_index = 3
-y_sort_enabled = true
-position = Vector2(0.87776744, -1.7183151)
-rotation = 1.5707964
-scale = Vector2(1.8589745, 1.6337507)
-range_z_min = 0
-range_z_max = 0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-texture = SubResource("GradientTexture2D_e2ie0")
-offset = Vector2(11.444821, -3.0846193)
-
-[node name="Base" type="AnimatedSprite2D" parent="."]
-light_mask = 0
-position = Vector2(-0.5573082, -4.98584)
-sprite_frames = SubResource("SpriteFrames_f6hne")
-animation = &"wU"
+position = Vector2(-2.0141602, -1.5000001)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.057308197, 2.0141602)
+position = Vector2(-1.1920929e-07, -9)
 scale = Vector2(1.35, 0.79)
 shape = SubResource("CapsuleShape2D_tvwks")
 
 [node name="MovementDebugDraw" type="Node2D" parent="."]
 z_index = 4096
 z_as_relative = false
-position = Vector2(-0.057308197, -4.98584)
+position = Vector2(1.5, -16)
 script = ExtResource("4_0drax")
 point_color = Color(1, 0, 0, 0.36862746)
 
 [node name="DetectionArea" type="Area2D" parent="."]
-position = Vector2(-0.057308197, -4.98584)
+position = Vector2(0, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(-0.20578384, 13.0236225)
+position = Vector2(0, 13)
 scale = Vector2(2.395, 1.545)
 shape = SubResource("CircleShape2D_mm8ar")
 
@@ -399,8 +365,5 @@ bus = &"SFX"
 
 [connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]
-[connection signal="body_entered" from="FlashlightBob/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
-[connection signal="body_exited" from="FlashlightBob/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]
 
 [editable path="VisionCone2D"]
-[editable path="FlashlightBob"]
