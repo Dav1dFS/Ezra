@@ -496,8 +496,9 @@ pitch_scale = 0.85
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_22lfy")
-max_distance = 135.0
-panning_strength = 1.5
+max_distance = 200.0
+attenuation = 3.0314329
+panning_strength = 3.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]

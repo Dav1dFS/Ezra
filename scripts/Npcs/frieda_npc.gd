@@ -78,13 +78,31 @@ func _can_use_ability() -> bool:
 
 	return Gamestate.get(all_collected_gamestate_flag) == true
 
+func _try_push_possess_ability():
+	if not player_in_range:
+		return
+
+	var player = get_tree().get_first_node_in_group("Player")
+	if not player:
+		player = get_tree().get_first_node_in_group("player")
+	if not player:
+		return
+
+	Gamestate.ezra_can_spawn_footprints = false
+
+	var ability_manager = player.get("ability_manager")
+	if ability_manager:
+		var possess_ability = EzraPossessAbility.new()
+		ability_manager.push_ability(possess_ability)
+
+
 func _on_body_entered(body: Node):
 	super._on_body_entered(body)
 	if body.name == "Player" and Gamestate.can_control_frieda:
 		Gamestate.ezra_can_spawn_footprints = false
 
-		if body.has_node("AbilityManager"):
-			var ability_manager = body.get_node("AbilityManager")
+		var ability_manager = body.get("ability_manager")
+		if ability_manager:
 			var possess_ability = EzraPossessAbility.new()
 			ability_manager.push_ability(possess_ability)
 
@@ -95,8 +113,8 @@ func _on_body_exited(body: Node):
 		if ability_label:
 			ability_label.visible = false
 
-		if body.has_node("AbilityManager"):
-			var ability_manager = body.get_node("AbilityManager")
+		var ability_manager = body.get("ability_manager")
+		if ability_manager:
 			ability_manager.pop_ability()
 
 func _start_day2_transition():
@@ -127,8 +145,11 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 
 	if all_memories_collected and fully_completed and not all_collected_dialogue_shown:
 		all_collected_dialogue_shown = true
-		
+
 		if glowrect:
 			glowrect.visible = true
 		if pointlight:
 			pointlight.visible = true
+
+		# Push possess ability if player is still in range
+		_try_push_possess_ability()
