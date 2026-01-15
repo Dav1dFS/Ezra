@@ -68,3 +68,4 @@ autowrap_mode = 3
 
 [node name="DialogueSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_dialogue_sound")
+volume_db = -6.71
