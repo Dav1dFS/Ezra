@@ -92,7 +92,10 @@ func _on_ability_changed(ability: Ability):
 		visible = true
 
 	ability_icon.texture = ability.ability_icon
-	ability_label.text = ability.ability_name
+	ability_label.text = "Press SPACE to\n" + ability.ability_name
+	if ability.ability_name == "Possess":
+		ability_label.text = "Hold SPACE to\n" + ability.ability_name
+
 
 	_reset_ui()
 

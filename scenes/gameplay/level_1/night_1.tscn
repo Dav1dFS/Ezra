@@ -266,7 +266,7 @@ parameters/looping = true
 [node name="MainMap" parent="." instance=ExtResource("2_4ov1t")]
 
 [node name="Memory" parent="." instance=ExtResource("3_u6i4i")]
-position = Vector2(4874, 2193)
+position = Vector2(4879, 1936)
 dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
 level_id = "night1"
 
@@ -293,7 +293,7 @@ texture = SubResource("GradientTexture2D_sg2hc")
 texture_scale = 1.5
 
 [node name="Memory2" parent="." instance=ExtResource("3_u6i4i")]
-position = Vector2(4371, 1309)
+position = Vector2(4932, 1840)
 dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
 level_id = "night1"
 
@@ -320,7 +320,7 @@ texture = SubResource("GradientTexture2D_sg2hc")
 texture_scale = 1.5
 
 [node name="Memory3" parent="." instance=ExtResource("3_u6i4i")]
-position = Vector2(3818, 1610)
+position = Vector2(4878, 1881)
 dialogue_file_path = "res://dialogues/night_1/night_1_memories.json"
 level_id = "night1"
 
