@@ -3,7 +3,7 @@ extends Node2D
 @onready var player: Node2D = $Player
 @onready var ellen_character: Node2D = $"EllenNPC"
 @onready var frieda_character: Node2D = $"FriedaNPC"
-@onready var general_character: Node2D = $"General"
+@onready var director_character: Node2D = $"Director"
 @onready var dialogue_box: CanvasLayer = $DialogueBox
 @onready var cutscene: Node2D = $CutsceneController
 @onready var door_knock_sound: AudioStreamPlayer = $DoorKnock
@@ -22,7 +22,7 @@ func _ready():
 
 	player.visible = false
 	frieda_character.visible = false
-	general_character.visible = false
+	director_character.visible = false
 
 	cutscene.mid_action_requested.connect(_on_mid_action)
 
@@ -97,9 +97,9 @@ func _action_ezra_possesses_ellen():
 	await cutscene.slide_character(ellen_character, ellen_hide_pos).finished
 	await cutscene.slide_character(frieda_character, ellen_initial_pos).finished
 
-	general_character.visible = true
-	general_character.modulate.a = 1.0
-	await cutscene.slide_character(general_character, ezra_initial_pos).finished
+	director_character.visible = true
+	director_character.modulate.a = 1.0
+	await cutscene.slide_character(director_character, ezra_initial_pos).finished
 
 	var target_pos = Vector2(frieda_initial_pos.x, cutscene.cutscene_camera.global_position.y)
 	await cutscene.move_camera_to(target_pos).finished

@@ -54,18 +54,18 @@ func _ready():
 
 	dialogue_handler.load_dialogue_file(dialogue_file)
 
-	if "General" in self.name:
+	if "Director" in self.name:
 		vision_cone.angle_deg = 100
 		vision_cone._angle = deg_to_rad(100)
 		vision_cone._angle_half = vision_cone._angle / 2.0
 		vision_cone._angular_delta = vision_cone._angle / vision_cone.ray_count
 		flashlight_bob_amount = 3.0
-		self.npc_name="General"
+		self.npc_name="Director"
 		self.npc_portrait = "res://assets/character_sprites/guards_static/guard_biggg.png"
 
 	_setup_cone_light()
 
-	if "General" not in self.name:
+	if "Director" not in self.name:
 		if not is_moving:
 			match current_direction:
 				Direction.RIGHT:
@@ -306,7 +306,7 @@ func start_dialogue():
 
 	dialogue_box.set_speaker_portraits({
 			"Guard": load(npc_portrait),
-			"General": load(npc_portrait),
+			"Director": load(npc_portrait),
 			"Ezra": preload("res://assets/character_sprites/ezra/ezra_base.png"),
 		})
 	dialogue_box.start(processed_dialogue, self)

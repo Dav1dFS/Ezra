@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8vggm6tiss2l"
-path="res://.godot/imported/gaurdageneral_sheet.png-bb2affba3e62d94bcbdb1e8920428748.ctex"
+uid="uid://c1dwq1fwtkw1l"
+path="res://.godot/imported/gaurdadirector_sheet.png-e7ee984c14134d22af656be714cb195a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animation_sheets/gaurdageneral_sheet.png"
-dest_files=["res://.godot/imported/gaurdageneral_sheet.png-bb2affba3e62d94bcbdb1e8920428748.ctex"]
+source_file="res://assets/animation_sheets/gaurdadirector_sheet.png"
+dest_files=["res://.godot/imported/gaurdadirector_sheet.png-e7ee984c14134d22af656be714cb195a.ctex"]
 
 [params]
 
