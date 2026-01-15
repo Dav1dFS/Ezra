@@ -22,6 +22,7 @@ extends CharacterBody2D
 @onready var moving_forward = true
 @onready var original_color = vision_renderer.color if vision_renderer else Color.WHITE
 @onready var flashlight = $FlashlightBob
+@onready var flashlight_light: PointLight2D = $FlashlightBob/PointLight2D
 
 var previous_position: Vector2
 var stuck_timer: float = 0.0
@@ -61,7 +62,10 @@ func _ready():
 		flashlight_bob_amount = 3.0
 		self.npc_name="General"
 		self.npc_portrait = "res://assets/character_sprites/guards_static/guard_biggg.png"
-	else:
+
+	_setup_cone_light()
+
+	if "General" not in self.name:
 		if not is_moving:
 			match current_direction:
 				Direction.RIGHT:
@@ -152,46 +156,36 @@ func _set_direction(dir: Direction):
 	_apply_visual_direction(dir)
 
 func _apply_visual_direction(dir: Direction):
+	spriteChar.light_mask = ~(1 << 0)
+
 	if is_moving:
 		match dir:
 			Direction.RIGHT:
 				spriteChar.play("wR")
 				vision_cone.rotation = -PI / 2
-				if "General" not in self.name:
-					spriteChar.light_mask=~(1 << 0)
 			Direction.LEFT:
 				spriteChar.play("wL")
 				vision_cone.rotation = PI / 2
-				if "General" not in self.name:
-					spriteChar.light_mask=1
 			Direction.UP:
 				spriteChar.play("wU")
 				vision_cone.rotation = PI
-				if "General" not in self.name:
-					spriteChar.light_mask=~(1 << 0)
 			Direction.DOWN:
 				spriteChar.play("wD")
 				vision_cone.rotation = 0
-				if "General" not in self.name:
-					spriteChar.light_mask=1
 	else:
 		match dir:
 			Direction.RIGHT:
 				spriteChar.play("iR")
 				vision_cone.rotation = -PI / 2
-				spriteChar.light_mask=~(1 << 0)
 			Direction.LEFT:
 				spriteChar.play("iL")
 				vision_cone.rotation = PI / 2
-				spriteChar.light_mask=1
 			Direction.UP:
 				spriteChar.play("iU")
 				vision_cone.rotation = PI
-				spriteChar.light_mask=~(1 << 0)
 			Direction.DOWN:
 				spriteChar.play("iD")
 				vision_cone.rotation = 0
-				spriteChar.light_mask=1
 			
 
 func _get_opposite_direction(dir: Direction) -> Direction:
@@ -340,3 +334,52 @@ func _restart_level():
 		await cutscene_controller.scene_fade_out()
 
 	get_tree().reload_current_scene()
+
+func _setup_cone_light():
+	var cone_angle_deg := vision_cone.angle_deg as float
+	var cone_texture := _generate_cone_texture(128, 128, cone_angle_deg)
+	flashlight_light.texture = cone_texture
+	var scale_factor : float = vision_cone.max_distance / 64.0
+	flashlight_light.texture_scale = scale_factor
+	flashlight_light.offset = Vector2(0, vision_cone.max_distance / 2.0)
+	flashlight_light.rotation = 0.0
+	flashlight_light.position = Vector2.ZERO
+	flashlight_light.scale = Vector2(1.0, 1.0)
+
+func _generate_cone_texture(width: int, height: int, angle_deg: float) -> ImageTexture:
+	var image := Image.create(width, height, false, Image.FORMAT_RGBA8)
+	var half_angle := deg_to_rad(angle_deg) / 2.0
+	var center_x := width / 2.0
+	# Cone apex at top center, pointing down
+	var apex_y := 0.0
+
+	for y in range(height):
+		for x in range(width):
+			var dx := x - center_x
+			var dy := float(y) - apex_y
+
+			var dist := sqrt(dx * dx + dy * dy)
+			var max_dist := float(height)
+			var dist_factor: float = clamp(dist / max_dist, 0.0, 1.0)
+
+			var pixel_angle: float = abs(atan2(dx, dy))
+
+			var edge_softness := 0.15
+			var angular_factor := 1.0
+			if pixel_angle > half_angle:
+				angular_factor = 0.0
+			elif pixel_angle > half_angle - edge_softness:
+				angular_factor = 1.0 - (pixel_angle - (half_angle - edge_softness)) / edge_softness
+
+			var radial_factor := 1.0 - smoothstep(0.3, 1.0, dist_factor)
+
+			var intensity := angular_factor * radial_factor
+
+			var color := Color(1.0, 1.0, 1.0, intensity)
+			image.set_pixel(x, y, color)
+
+	return ImageTexture.create_from_image(image)
+
+func smoothstep(edge0: float, edge1: float, x: float) -> float:
+	var t: float = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0)
+	return t * t * (3.0 - 2.0 * t)
