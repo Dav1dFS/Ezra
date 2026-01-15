@@ -55,7 +55,7 @@ func _on_mid_action(action_name: String):
 			dialogue_box.continue_after_action()
 			
 func _take_hostage():
-	var target_pos = Vector2($death.global_position.x, $death.global_position.y+10)
+	var target_pos = Vector2($death.global_position.x, $death.global_position.y+7)
 	var slide=cutscene.slide_character($Guard2, target_pos)
 	
 	

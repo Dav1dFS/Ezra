@@ -21,10 +21,16 @@ var dialogue_handler := DialogueHandler.new()
 func _ready():
 	if override_base_sprite != null and sprite:
 		sprite.texture = override_base_sprite
-	if base_anims.sprite_frames != null and override_base_sprite != null:
+	if base_anims.sprite_frames != null:
 		sprite.visible=false
 		base_anims.visible=true
 		base_anims.play()
+	else:
+		for child in self.get_children():
+			if child is AnimatedSprite2D and child.name ==npc_name:
+				sprite.visible=false
+				child.visible=true
+				child.play()
 	if dialogue_file != "":
 		dialogue_handler.load_dialogue_file(dialogue_file)
 		area.body_entered.connect(_on_body_entered)

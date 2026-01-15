@@ -6,25 +6,28 @@
 [ext_resource type="FontFile" uid="uid://d4dn2anvknt7a" path="res://assets/fonts/Bayer TypeArchiType Regular.otf" id="4_jqqvx"]
 [ext_resource type="Texture2D" uid="uid://dbke65tqnrspu" path="res://assets/animation_sheets/ruth_idlecycle.png" id="4_wr4n2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rbm7f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wr4n2"]
 atlas = ExtResource("4_wr4n2")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_81mft"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbm7f"]
 atlas = ExtResource("4_wr4n2")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lt8gr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_81mft"]
 atlas = ExtResource("4_wr4n2")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b60dq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt8gr"]
 atlas = ExtResource("4_wr4n2")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m2yk6"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wr4n2")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rbm7f")
 }, {
@@ -33,13 +36,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lt8gr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b60dq")
 }],
 "loop": true,
 "name": &"default",
-"speed": 3.0
+"speed": 4.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_isp7f"]
@@ -61,6 +61,7 @@ texture = ExtResource("2_d65lc")
 visible = false
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_m2yk6")
+frame_progress = 0.5218658
 
 [node name="Area2D" type="CharacterBody2D" parent="." index="2"]
 position = Vector2(0.5, 16)

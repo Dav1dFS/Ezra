@@ -242,7 +242,7 @@ speaker_portraits = Dictionary[String, Texture2D]({
 override_base_sprite = ExtResource("11_aey7p")
 
 [node name="death" parent="." node_paths=PackedStringArray("dialogue_box") instance=ExtResource("5_fh8rj")]
-position = Vector2(3951, 2115)
+position = Vector2(3951, 2126)
 npc_name = "Talia"
 dialogue_file = "res://dialogues/day_1/day_1_death.json"
 speaker_portraits = Dictionary[String, Texture2D]({
@@ -257,7 +257,7 @@ dialogue_box = NodePath("../DialogueBox2")
 
 [node name="rand1" parent="." instance=ExtResource("5_fh8rj")]
 position = Vector2(3526, 2093)
-npc_name = "Talia"
+npc_name = "rand1"
 dialogue_file = "res://dialogues/day_1/day_1_talia.json"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ellen": ExtResource("12_pmqis"),
@@ -269,7 +269,7 @@ override_base_sprite = ExtResource("13_m6v5w")
 
 [node name="rand2" parent="." instance=ExtResource("5_fh8rj")]
 position = Vector2(3526, 2106)
-npc_name = "Talia"
+npc_name = "rand2"
 dialogue_file = "res://dialogues/day_1/day_1_talia.json"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ellen": ExtResource("12_pmqis"),
@@ -281,7 +281,7 @@ override_base_sprite = ExtResource("14_q2dts")
 
 [node name="rand3" parent="." instance=ExtResource("5_fh8rj")]
 position = Vector2(3526, 2120)
-npc_name = "Talia"
+npc_name = "rand3"
 dialogue_file = "res://dialogues/day_1/day_1_talia.json"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ellen": ExtResource("12_pmqis"),
@@ -293,7 +293,7 @@ override_base_sprite = ExtResource("15_qjn6r")
 
 [node name="rand4" parent="." instance=ExtResource("5_fh8rj")]
 position = Vector2(3526, 2133)
-npc_name = "Talia"
+npc_name = "rand3"
 dialogue_file = "res://dialogues/day_1/day_1_talia.json"
 speaker_portraits = Dictionary[String, Texture2D]({
 "Ellen": ExtResource("12_pmqis"),
