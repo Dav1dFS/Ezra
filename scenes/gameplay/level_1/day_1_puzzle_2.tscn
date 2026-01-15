@@ -353,7 +353,8 @@ forward_distance = 300.0
 initial_direction = 3
 
 [node name="NextSceneNPC" parent="." instance=ExtResource("5_fh8rj")]
-position = Vector2(3794, 2206)
+visible = false
+position = Vector2(3794, 2221)
 npc_name = "Frieda2"
 dialogue_file = "res://dialogues/next_scene.json"
 speaker_portraits = Dictionary[String, Texture2D]({
