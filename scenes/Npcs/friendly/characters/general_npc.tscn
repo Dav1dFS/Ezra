@@ -289,11 +289,11 @@ shape = SubResource("CapsuleShape2D_isp7f")
 [node name="PlayerInteractionArea" parent="." index="9"]
 position = Vector2(-0.5, 0)
 
-[node name="PlayerInteractionLabel" parent="." index="10"]
-offset_left = -28.000011
-offset_top = -27.000004
+[node name="PlayerInteractionLabel" parent="." index="4"]
+offset_left = -28.0
+offset_top = -26.0
 offset_right = 1812.0
-offset_bottom = 218.0
+offset_bottom = 288.0
 scale = Vector2(0.032180898, 0.032180898)
-theme_override_fonts/font = ExtResource("3_t6yy4")
-theme_override_font_sizes/font_size = 180
+theme_override_fonts/font = ExtResource("2_owu8i")
+theme_override_font_sizes/font_size = 300

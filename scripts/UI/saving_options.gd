@@ -65,6 +65,7 @@ func _on_slot_selected(slot_index: int):
 					slot.refresh_slot_info()
 		action_types.LOAD:
 			SaveManager.load_game(slot_index)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			return
 
 	action_completed.emit(success)

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/npcs/friendly/characters/frieda_npc.tscn" id="6_vy4kv"]
 [ext_resource type="Texture2D" uid="uid://bbvyp32os1srn" path="res://assets/character_sprites/ellen/ellen_base.png" id="7_1ao5p"]
 [ext_resource type="Texture2D" uid="uid://igii0hb2mb2m" path="res://assets/character_sprites/frieda/frieda_base.png" id="8_62cim"]
-[ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/Npcs/friendly/characters/general_npc.tscn" id="9_ydfot"]
+[ext_resource type="PackedScene" uid="uid://cqtr1jdiu7mp2" path="res://scenes/npcs/friendly/characters/general_npc.tscn" id="9_ydfot"]
 [ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="11_5m0g0"]
 [ext_resource type="PackedScene" uid="uid://bcqh0tgm5hj1m" path="res://scenes/gameplay/audioBack.tscn" id="12_r6aca"]
 [ext_resource type="Texture2D" uid="uid://cvnn0uuppro4n" path="res://assets/character_sprites/guards_static/g3s.png" id="13_iidb0"]
@@ -64,7 +64,7 @@ speaker_portraits = Dictionary[String, Texture2D]({
 [node name="CutsceneController" parent="." node_paths=PackedStringArray("target_npc", "dialogue_box") instance=ExtResource("11_5m0g0")]
 auto_start_cutscene = true
 target_npc = NodePath("../EllenNPC")
-dialogue_box = NodePath("../DialogueBox")
+dialogue_box = NodePath("../dialogueBox")
 cutscene_flag_name = "night_1_intro"
 
 [node name="BackGround" parent="." instance=ExtResource("12_r6aca")]

@@ -48,7 +48,7 @@ func _on_value_changed(value: float):
 	if int_val >= _max_value:
 		_is_unlimited = true
 		slider.value = _max_unlimited
-		value_label.text = "∞"
+		value_label.text = "Unlimited"
 		emit_signal("fps_changed", 0)
 	else:
 		if slider.value > _max_value:

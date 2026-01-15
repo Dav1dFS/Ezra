@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var portrait = $TextureRect
 @onready var name_label = $Label
 @onready var text_label = $Label2
-@onready var text_bg = $Panel
+@onready var text_bg = $TextureRect2
 
 signal dialogue_ended(npc_node, fully_completed: bool)
 signal mid_action_triggered(action_name: String)
@@ -14,6 +14,12 @@ var active: bool = false
 var waiting_for_action: bool = false
 var current_npc: Node = null
 var speaker_portraits: Dictionary = {}
+
+#cenas typewriting
+var full_text: String = ""
+var char_index: int = 0
+var typing_speed := 0.05
+var is_typing: bool = false
 
 func set_speaker_portraits(portraits: Dictionary):
 	speaker_portraits = portraits
@@ -28,7 +34,26 @@ func start(dialogue : Dictionary, npc: Node):
 	lines = dialogue.get("lines", [])
 	current_line = 0
 	_show_line()
-	
+
+func _start_typewriter(text: String):
+	full_text = text
+	char_index = 0
+	text_label.text = ""
+	is_typing = true
+	_type_next_char()
+
+func _type_next_char():
+	if not is_typing:
+		return
+
+	if char_index < full_text.length():
+		text_label.text += full_text[char_index]
+		char_index += 1
+		await get_tree().create_timer(typing_speed).timeout
+		_type_next_char()
+	else:
+		is_typing = false
+		
 func _show_line():
 	if current_line < lines.size():
 		var line_data = lines[current_line]
@@ -44,7 +69,7 @@ func _show_line():
 		var speaker = line_data.get("speaker")
 
 		visible = true
-		text_label.text = text
+		_start_typewriter(text)
 
 		if speaker == null:
 			name_label.text = ""
@@ -79,7 +104,12 @@ func _input(event):
 				current_line = max(current_line - 1, 0)
 				_show_line()
 				return
-
+		
+		if is_typing:
+			is_typing = false
+			text_label.text = full_text
+			return
+		
 		current_line += 1
 		_show_line()
 		

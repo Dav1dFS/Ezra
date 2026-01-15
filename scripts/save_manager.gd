@@ -187,7 +187,7 @@ func _restore_player_state(node: Node, save_data: Dictionary):
 				if item:
 					node.inv.current_items.append(item)
 		node.inv.inventory_changed.emit()
-
+		
 	is_loading = false
 
 func delete_save(slot_index: int) -> bool:

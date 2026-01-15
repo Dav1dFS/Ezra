@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flashlight: Node2D = $Flashlight
+@onready var flashlight_light: PointLight2D = $Flashlight/PointLight2D
 
 enum GuardState { SLEEP, WAKE, ALERT, ALERT_ENDING }
 enum FacingDirection { DOWN, LEFT, RIGHT }
@@ -40,6 +41,7 @@ var flashlight_rotations := {
 }
 
 func _ready():
+	_setup_cone_light()
 	_update_flashlight_initial()
 	_play_sleep()
 
@@ -163,3 +165,49 @@ func on_dog_alert_ended():
 		should_end_alert = true
 	elif state == GuardState.ALERT_ENDING:
 		pass
+
+func _setup_cone_light():
+	var cone_texture := _generate_cone_texture(128, 128, 30.0)
+	flashlight_light.texture = cone_texture
+	var max_distance := 75.0
+	var scale_factor := max_distance / 64.0
+	flashlight_light.texture_scale = scale_factor
+	flashlight_light.offset = Vector2(0, max_distance / 2.0)
+	flashlight_light.rotation = 0.0
+	flashlight_light.position = Vector2.ZERO
+	flashlight_light.scale = Vector2(1.0, 1.0)
+
+func _generate_cone_texture(width: int, height: int, angle_deg: float) -> ImageTexture:
+	var image := Image.create(width, height, false, Image.FORMAT_RGBA8)
+	var half_angle := deg_to_rad(angle_deg) / 2.0
+	var center_x := width / 2.0
+	var apex_y := 0.0
+
+	for y in range(height):
+		for x in range(width):
+			var dx := x - center_x
+			var dy := float(y) - apex_y
+
+			var dist := sqrt(dx * dx + dy * dy)
+			var max_dist := float(height)
+			var dist_factor: float = clamp(dist / max_dist, 0.0, 1.0)
+
+			var pixel_angle: float = abs(atan2(dx, dy))
+
+			var edge_softness := 0.15
+			var angular_factor := 1.0
+			if pixel_angle > half_angle:
+				angular_factor = 0.0
+			elif pixel_angle > half_angle - edge_softness:
+				angular_factor = 1.0 - (pixel_angle - (half_angle - edge_softness)) / edge_softness
+
+			var radial_factor := 1.0 - _smoothstep(0.3, 1.0, dist_factor)
+			var intensity := angular_factor * radial_factor
+			var color := Color(1.0, 1.0, 1.0, intensity)
+			image.set_pixel(x, y, color)
+
+	return ImageTexture.create_from_image(image)
+
+func _smoothstep(edge0: float, edge1: float, x: float) -> float:
+	var t: float = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0)
+	return t * t * (3.0 - 2.0 * t)

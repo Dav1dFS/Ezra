@@ -3,6 +3,7 @@ extends Control
 @onready var fps_label = get_tree().get_root().find_child("FPSLabel", true, false)
 @onready var settings = $Settings
 @onready var saving_options = $SavingOptions
+@onready var fade_rect: ColorRect = $Fadecredits
 
 func _ready():
 	
@@ -14,7 +15,7 @@ func _close_menus():
 		settings.close_settings()
 	if saving_options.visible:
 		saving_options.close_saving_options()
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.2).timeout
 
 func _process(_delta: float):
 	UIUtils.update_fps_label(fps_label)
@@ -54,5 +55,17 @@ func _on_options_pressed() -> void:
 		settings.close_settings()
 
 
+func _on_credits_pressed() -> void:
+	await fade_to_black(0.6)
+	get_tree().change_scene_to_file("res://scenes/UI/credits_cutscene.tscn")
+	
 func _on_exit_desktop_pressed() -> void:
 	get_tree().quit()
+
+func fade_to_black(duration := 0.5) -> void:
+	fade_rect.visible = true
+	fade_rect.modulate.a = 0.0
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(fade_rect, "modulate:a", 1.0, duration)
+	await tween.finished

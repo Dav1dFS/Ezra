@@ -7,10 +7,16 @@ extends Control
 @onready var hold_progress: TextureProgressBar = $AbilityCircle/HoldProgress
 @onready var ability_label: Label = $AbilityLabel
 @onready var ability_sound: AudioStreamPlayer = $AbilitySoundEffect
+@onready var active_border: TextureRect = $ActiveBorder
 
 var ability_manager: AbilityManager = null
 var icon_tween: Tween
+var border_glow_tween: Tween
 var should_show_ui: bool = true
+
+const GLOW_COLOR_BRIGHT := Color(0.5, 1.0, 0.5, 1.0)
+const GLOW_COLOR_DIM := Color(0.3, 0.8, 0.3, 0.6)
+const GLOW_PULSE_DURATION := 0.5
 
 
 func _ready():
@@ -56,6 +62,7 @@ func _process(_delta: float):
 func _connect_signals():
 	ability_manager.ability_changed.connect(_on_ability_changed)
 	ability_manager.ability_activated.connect(_on_ability_activated)
+	ability_manager.ability_deactivated.connect(_on_ability_deactivated)
 	ability_manager.cooldown_updated.connect(_on_cooldown_updated)
 	ability_manager.hold_updated.connect(_on_hold_updated)
 
@@ -67,6 +74,9 @@ func _reset_ui():
 	cooldown_overlay.value = 100
 	hold_progress.value = 0
 	hold_progress.visible = false
+	_stop_glow_animation()
+	if active_border:
+		active_border.visible = false
 
 
 func _on_ability_changed(ability: Ability):
@@ -93,6 +103,35 @@ func _on_ability_activated(ability: Ability):
 	if ability.ability_sound:
 		ability_sound.stream = ability.ability_sound
 		ability_sound.play()
+
+	if active_border:
+		active_border.visible = true
+		_start_glow_animation()
+
+
+func _on_ability_deactivated(_ability: Ability):
+	_stop_glow_animation()
+	if active_border:
+		active_border.visible = false
+
+
+func _start_glow_animation():
+	if not active_border:
+		return
+
+	_stop_glow_animation()
+
+	active_border.modulate = GLOW_COLOR_BRIGHT
+	border_glow_tween = create_tween()
+	border_glow_tween.set_loops()
+	border_glow_tween.tween_property(active_border, "modulate", GLOW_COLOR_DIM, GLOW_PULSE_DURATION).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	border_glow_tween.tween_property(active_border, "modulate", GLOW_COLOR_BRIGHT, GLOW_PULSE_DURATION).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+
+
+func _stop_glow_animation():
+	if border_glow_tween:
+		border_glow_tween.kill()
+		border_glow_tween = null
 
 
 func _animate_icon_change(new_icon: Texture2D):
@@ -121,3 +160,4 @@ func _on_hold_updated(progress: float):
 func _exit_tree():
 	if icon_tween:
 		icon_tween.kill()
+	_stop_glow_animation()
