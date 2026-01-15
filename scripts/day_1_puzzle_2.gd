@@ -19,7 +19,6 @@ func _ready():
 	await cutscene.scene_fade_in()
 	player.changeObjective("Find Miss Ruth")
 	dialogue_box.mid_action_triggered.connect(_on_mid_action)
-	cutscene.mid_action_requested.connect(_on_mid_action)
 	cutscene2.mid_action_requested.connect(_on_mid_action)
 	cutscene2.dialogue_box=$DialogueBox2
 	$death.dialogue_box=$DialogueBox2
@@ -68,6 +67,7 @@ func _take_hostage():
 func on_checkpoint():
 	_set_npc_interactable(frieda_npc, false)
 	_set_npc_interactable(next_scene_npc, true)
+	print(frieda_npc.visible, next_scene_npc.visible)
 	player.changeObjective("Go hide in the dorms")
 	player.update_inventory(load("res://items/Cookie.tres"))
 	if $Area2D:

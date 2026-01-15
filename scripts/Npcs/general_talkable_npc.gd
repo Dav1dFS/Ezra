@@ -88,7 +88,7 @@ func _on_dialogue_ended(npc_node: Node, fully_completed: bool):
 	if npc_node != self:
 		return
 
-	var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+	dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 	if dialogue_box and dialogue_box.dialogue_ended.is_connected(_on_dialogue_ended):
 		dialogue_box.dialogue_ended.disconnect(_on_dialogue_ended)
 
@@ -118,6 +118,6 @@ func _on_body_exited(body: Node):
 			interact_label.visible = false
 
 		if dialogue_is_on and not is_cutscene_dialogue:
-			var dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
+			dialogue_box = get_tree().get_current_scene().get_node_or_null("DialogueBox")
 			if dialogue_box and dialogue_box.active:
 				dialogue_box.end_dialogue()
