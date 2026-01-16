@@ -12,7 +12,7 @@
 [ext_resource type="Shader" uid="uid://cku83md4wcs5r" path="res://scripts/shaders/memory_halo.gdshader" id="7_lsjfn"]
 [ext_resource type="PackedScene" uid="uid://cg8nkwvp2h5y1" path="res://scenes/npcs/effects/npc_glow.tscn" id="9_glow"]
 [ext_resource type="PackedScene" uid="uid://f3qo7r6kimms" path="res://scenes/npcs/friendly/characters/frieda_npc.tscn" id="9_t5b4k"]
-[ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/Npcs/frieda_npc.gd" id="10_3fgql"]
+[ext_resource type="Script" uid="uid://dubuqiw0bvf6s" path="res://scripts/npcs/frieda_npc.gd" id="10_3fgql"]
 [ext_resource type="PackedScene" uid="uid://dq1u03wrdd7aj" path="res://scenes/cutscene/cutscene_controller.tscn" id="10_lsjfn"]
 [ext_resource type="Texture2D" uid="uid://cd85becst2y5y" path="res://assets/grey_circle.png" id="11_jcha6"]
 [ext_resource type="Script" uid="uid://dbquasdj2kuv6" path="res://scripts/fog_wall.gd" id="12_bqncc"]

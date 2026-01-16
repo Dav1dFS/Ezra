@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ddkqx2brtr8hc" path="res://scenes/UI/InputSettings.tscn" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://bfwjdvpx7ty5i" path="res://scripts/npcs/npcs.gd" id="3_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://b5ui5m6o18t" path="res://scenes/npcs/npcTalk.tscn" id="4_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/Dialogue/dialogue_box.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://ddcft0p2lnsmk" path="res://scenes/dialogue/dialogue_box.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://rq853mcdau80" path="res://scenes/npcs/enemyGuard.tscn" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://qrd46ikxghqo" path="res://scenes/npcs/enemyGeneral.tscn" id="9_0tnpc"]
 
