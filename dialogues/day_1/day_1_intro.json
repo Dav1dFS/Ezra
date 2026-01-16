@@ -24,7 +24,7 @@
 				{"speaker": "Frieda","text": "I'm not telling anyone anything. Who are you, child?"},
 				{"speaker": "Ellen","text": "I'm Ellen. I have been hiding from those monsters since they took my brother."},
 				{"speaker": "Frieda","text": "You are indeed the girl they have been looking for."},
-				{"speaker": "Ellen","text": "Don't worry, I'm not going to tell them anything, but you have to be silent; they come here often."},
+				{"speaker": "Frieda","text": "Don't worry, I'm not going to tell them anything, but you have to be silent; they come here often."},
 				
 				{ "mid_action": "guards_searching_ellen" },
 				
