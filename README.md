@@ -1,2 +1,1 @@
-# Ezra_Repository
-Repository for the development of PJ2D game "Ezra"
+Check out the project here: https://birras04.itch.io/ezra
